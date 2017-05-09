@@ -1,0 +1,319 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0616276B73AE36C771160C0A /* b3PosixThreadSupport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 51DC70787718625A37CC5229 /* b3PosixThreadSupport.cpp */; };
+		4E5D7C41119174C62C2D74A7 /* b3ThreadSupportInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E04048E3E2A5C5445610BF4 /* b3ThreadSupportInterface.cpp */; };
+		796D14A3722518497F346762 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F133B5432D2300606D949F5 /* main.cpp */; };
+		55980848500E066D1E6915B1 /* libBullet3Common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F5E5E4F1F02471158C63575 /* libBullet3Common.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		56E361AF42063EE227CC5925 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EB31B836E2C2A4C17BF2BE6 /* Bullet3Common.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7286400C7A6B293022187975;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+		2A1F136E54CE22C954A863EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0EB31B836E2C2A4C17BF2BE6 /* Bullet3Common.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21A04AE25B811749672F45CC;
+			remoteInfo = "libBullet3Common_xcode4_x64_release.a";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		51DC70787718625A37CC5229 /* b3PosixThreadSupport.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3PosixThreadSupport.cpp"; path = "../../examples/MultiThreading/b3PosixThreadSupport.cpp"; sourceTree = "<group>"; };
+		0088701E71A12A3D1B4E5F13 /* b3PosixThreadSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3PosixThreadSupport.h"; path = "../../examples/MultiThreading/b3PosixThreadSupport.h"; sourceTree = "<group>"; };
+		5E04048E3E2A5C5445610BF4 /* b3ThreadSupportInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3ThreadSupportInterface.cpp"; path = "../../examples/MultiThreading/b3ThreadSupportInterface.cpp"; sourceTree = "<group>"; };
+		3E1439E045A040261A2F3EDC /* b3ThreadSupportInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3ThreadSupportInterface.h"; path = "../../examples/MultiThreading/b3ThreadSupportInterface.h"; sourceTree = "<group>"; };
+		1F133B5432D2300606D949F5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "main.cpp"; path = "../../examples/MultiThreading/main.cpp"; sourceTree = "<group>"; };
+		73644A4051A069A70DFB7118 /* App_ThreadingTest_xcode4_x64_release */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "App_ThreadingTest_xcode4_x64_release"; path = "App_ThreadingTest_xcode4_x64_release"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0EB31B836E2C2A4C17BF2BE6 /* Bullet3Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Bullet3Common.xcodeproj"; path = "Bullet3Common.xcodeproj"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67EE68D64E4B1F471778660C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55980848500E066D1E6915B1 /* libBullet3Common.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		333E4D9526AB615112EB0924 /* App_ThreadingTest */ = {
+			isa = PBXGroup;
+			children = (
+				5426409B2C3A4D0944A47F7A /* examples */,
+				65A6792706522DD725976F81 /* Products */,
+				1F38169526815F69181526FC /* Projects */,
+			);
+			name = "App_ThreadingTest";
+			sourceTree = "<group>";
+		};
+		5426409B2C3A4D0944A47F7A /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				3E9748655FEC24BB76E817BE /* MultiThreading */,
+			);
+			name = "examples";
+			sourceTree = "<group>";
+		};
+		3E9748655FEC24BB76E817BE /* MultiThreading */ = {
+			isa = PBXGroup;
+			children = (
+				51DC70787718625A37CC5229 /* b3PosixThreadSupport.cpp */,
+				0088701E71A12A3D1B4E5F13 /* b3PosixThreadSupport.h */,
+				5E04048E3E2A5C5445610BF4 /* b3ThreadSupportInterface.cpp */,
+				3E1439E045A040261A2F3EDC /* b3ThreadSupportInterface.h */,
+				1F133B5432D2300606D949F5 /* main.cpp */,
+			);
+			name = "MultiThreading";
+			sourceTree = "<group>";
+		};
+		65A6792706522DD725976F81 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73644A4051A069A70DFB7118 /* App_ThreadingTest_xcode4_x64_release */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		1F38169526815F69181526FC /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				0EB31B836E2C2A4C17BF2BE6 /* Bullet3Common.xcodeproj */,
+			);
+			name = "Projects";
+			sourceTree = "<group>";
+		};
+		19FF5A0F2133526034F00D3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F5E5E4F1F02471158C63575 /* libBullet3Common.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F251FAE11A505A315686C9B /* App_ThreadingTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BCE027F64450F5B53EF110C /* Build configuration list for PBXNativeTarget "App_ThreadingTest" */;
+			buildPhases = (
+				686F10016D2661A05CDE0BD2 /* Resources */,
+				2A25788713062F0576040F85 /* Sources */,
+				67EE68D64E4B1F471778660C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F4E0DB163BD43E2684E0E6D /* PBXTargetDependency */,
+			);
+			name = "App_ThreadingTest";
+			productInstallPath = "$(HOME)/bin";
+			productName = "App_ThreadingTest";
+			productReference = 73644A4051A069A70DFB7118 /* App_ThreadingTest_xcode4_x64_release */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "App_ThreadingTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 333E4D9526AB615112EB0924 /* App_ThreadingTest */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 19FF5A0F2133526034F00D3D /* Products */;
+					ProjectRef = 0EB31B836E2C2A4C17BF2BE6 /* Bullet3Common.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				5F251FAE11A505A315686C9B /* App_ThreadingTest_xcode4_x64_release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3F5E5E4F1F02471158C63575 /* libBullet3Common.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libBullet3Common.a";
+			remoteRef = 56E361AF42063EE227CC5925 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		686F10016D2661A05CDE0BD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A25788713062F0576040F85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0616276B73AE36C771160C0A /* b3PosixThreadSupport.cpp in Sources */,
+				4E5D7C41119174C62C2D74A7 /* b3ThreadSupportInterface.cpp in Sources */,
+				796D14A3722518497F346762 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin PBXTargetDependency section */
+		5F4E0DB163BD43E2684E0E6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libBullet3Common.a";
+			targetProxy = 2A1F136E54CE22C954A863EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0C92707133B006A2127211FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "App_ThreadingTest_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		55615EFF756076FB0A375427 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "App_ThreadingTest_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		77857E0F28A174E86C726EF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/MultiThreading",
+					"../../src",
+				);
+				OBJROOT = "obj/x64/Release/App_ThreadingTest";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				OTHER_LDFLAGS = (
+					"-lpthread",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Release";
+		};
+		65C717E60BE51AA16DB31822 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/MultiThreading",
+					"../../src",
+				);
+				OBJROOT = "obj/x64/Debug/App_ThreadingTest";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				OTHER_LDFLAGS = (
+					"-lpthread",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1BCE027F64450F5B53EF110C /* Build configuration list for PBXNativeTarget "App_ThreadingTest_xcode4_x64_release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C92707133B006A2127211FC /* Release */,
+				55615EFF756076FB0A375427 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "App_ThreadingTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				77857E0F28A174E86C726EF9 /* Release */,
+				65C717E60BE51AA16DB31822 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

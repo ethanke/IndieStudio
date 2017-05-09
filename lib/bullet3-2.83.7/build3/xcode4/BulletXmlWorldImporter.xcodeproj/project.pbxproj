@@ -1,0 +1,276 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		314810665705208868DF3C14 /* btBulletXmlWorldImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37CD0B7C046727D91EC07BDA /* btBulletXmlWorldImporter.cpp */; };
+		5B390F4677187AC45FD71DBE /* string_split.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071524C2434662A42A84761C /* string_split.cpp */; };
+		3C024D49099C659F2D453220 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE106FB0350259255513F79 /* tinystr.cpp */; };
+		6DD427476782418321D216A1 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 175443221404197E3924790B /* tinyxml.cpp */; };
+		4E4721C51D87283F515B614D /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 007A4F874BDE60976226686E /* tinyxmlerror.cpp */; };
+		584A1DAA3BA97B77561B44B9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A036624589C756033202C3B /* tinyxmlparser.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		37CD0B7C046727D91EC07BDA /* btBulletXmlWorldImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "btBulletXmlWorldImporter.cpp"; path = "../../Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.cpp"; sourceTree = "<group>"; };
+		6361095006F622A7428A7386 /* btBulletXmlWorldImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "btBulletXmlWorldImporter.h"; path = "../../Extras/Serialize/BulletXmlWorldImporter/btBulletXmlWorldImporter.h"; sourceTree = "<group>"; };
+		071524C2434662A42A84761C /* string_split.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "string_split.cpp"; path = "../../Extras/Serialize/BulletXmlWorldImporter/string_split.cpp"; sourceTree = "<group>"; };
+		378C63D7402767D43ABE182D /* string_split.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "string_split.h"; path = "../../Extras/Serialize/BulletXmlWorldImporter/string_split.h"; sourceTree = "<group>"; };
+		4CE106FB0350259255513F79 /* tinystr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "tinystr.cpp"; path = "../../Extras/Serialize/BulletXmlWorldImporter/tinystr.cpp"; sourceTree = "<group>"; };
+		71E113A801C2274F45D674B6 /* tinystr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tinystr.h"; path = "../../Extras/Serialize/BulletXmlWorldImporter/tinystr.h"; sourceTree = "<group>"; };
+		175443221404197E3924790B /* tinyxml.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "tinyxml.cpp"; path = "../../Extras/Serialize/BulletXmlWorldImporter/tinyxml.cpp"; sourceTree = "<group>"; };
+		42BC009D56AD7D3B62670193 /* tinyxml.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tinyxml.h"; path = "../../Extras/Serialize/BulletXmlWorldImporter/tinyxml.h"; sourceTree = "<group>"; };
+		007A4F874BDE60976226686E /* tinyxmlerror.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "tinyxmlerror.cpp"; path = "../../Extras/Serialize/BulletXmlWorldImporter/tinyxmlerror.cpp"; sourceTree = "<group>"; };
+		1A036624589C756033202C3B /* tinyxmlparser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "tinyxmlparser.cpp"; path = "../../Extras/Serialize/BulletXmlWorldImporter/tinyxmlparser.cpp"; sourceTree = "<group>"; };
+		699F731C5DFB27393B1C531D /* libBulletXmlWorldImporter_xcode4_x64_release.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libBulletXmlWorldImporter_xcode4_x64_release.a"; path = "libBulletXmlWorldImporter_xcode4_x64_release.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21FD09933EC26A0F0EAC42A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		424F604430C77E6405811242 /* BulletXmlWorldImporter */ = {
+			isa = PBXGroup;
+			children = (
+				66B92CB930825E9321252276 /* Extras */,
+				64A125C9335E7D61120C06E8 /* Products */,
+			);
+			name = "BulletXmlWorldImporter";
+			sourceTree = "<group>";
+		};
+		66B92CB930825E9321252276 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				1FC145B716D914A834BF1608 /* Serialize */,
+			);
+			name = "Extras";
+			sourceTree = "<group>";
+		};
+		1FC145B716D914A834BF1608 /* Serialize */ = {
+			isa = PBXGroup;
+			children = (
+				68F939BB25BC13C063DA3DF5 /* BulletXmlWorldImporter */,
+			);
+			name = "Serialize";
+			sourceTree = "<group>";
+		};
+		68F939BB25BC13C063DA3DF5 /* BulletXmlWorldImporter */ = {
+			isa = PBXGroup;
+			children = (
+				37CD0B7C046727D91EC07BDA /* btBulletXmlWorldImporter.cpp */,
+				6361095006F622A7428A7386 /* btBulletXmlWorldImporter.h */,
+				071524C2434662A42A84761C /* string_split.cpp */,
+				378C63D7402767D43ABE182D /* string_split.h */,
+				4CE106FB0350259255513F79 /* tinystr.cpp */,
+				71E113A801C2274F45D674B6 /* tinystr.h */,
+				175443221404197E3924790B /* tinyxml.cpp */,
+				42BC009D56AD7D3B62670193 /* tinyxml.h */,
+				007A4F874BDE60976226686E /* tinyxmlerror.cpp */,
+				1A036624589C756033202C3B /* tinyxmlparser.cpp */,
+			);
+			name = "BulletXmlWorldImporter";
+			sourceTree = "<group>";
+		};
+		64A125C9335E7D61120C06E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				699F731C5DFB27393B1C531D /* libBulletXmlWorldImporter_xcode4_x64_release.a */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4E8114CD2ACA653D2BF52210 /* BulletXmlWorldImporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AA268D51D6C598A0004314D /* Build configuration list for PBXNativeTarget "BulletXmlWorldImporter" */;
+			buildPhases = (
+				5C14650410D51ABA384234A6 /* Resources */,
+				159C5D99702C6E192FAA5495 /* Sources */,
+				21FD09933EC26A0F0EAC42A1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BulletXmlWorldImporter";
+			productName = "BulletXmlWorldImporter";
+			productReference = 699F731C5DFB27393B1C531D /* libBulletXmlWorldImporter_xcode4_x64_release.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "BulletXmlWorldImporter" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 424F604430C77E6405811242 /* BulletXmlWorldImporter */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4E8114CD2ACA653D2BF52210 /* libBulletXmlWorldImporter_xcode4_x64_release.a */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5C14650410D51ABA384234A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		159C5D99702C6E192FAA5495 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				314810665705208868DF3C14 /* btBulletXmlWorldImporter.cpp in Sources */,
+				5B390F4677187AC45FD71DBE /* string_split.cpp in Sources */,
+				3C024D49099C659F2D453220 /* tinystr.cpp in Sources */,
+				6DD427476782418321D216A1 /* tinyxml.cpp in Sources */,
+				4E4721C51D87283F515B614D /* tinyxmlerror.cpp in Sources */,
+				584A1DAA3BA97B77561B44B9 /* tinyxmlparser.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5EAD64CA19C75BE459252728 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CONFIGURATION_BUILD_DIR = "../../Extras/lib";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = "BulletXmlWorldImporter_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		27A35A047C2970DD4CFB0A5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../../Extras/lib";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = "BulletXmlWorldImporter_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		44B847A060024D6A1C9F32FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../Extras/Serialize/BulletWorldImporter",
+					"../../Extras/Serialize/BulletFileLoader",
+					"../../src",
+				);
+				OBJROOT = "obj/x64/Release/BulletXmlWorldImporter";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../Extras/lib";
+			};
+			name = "Release";
+		};
+		1A0D797064E71A06227C7D79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../Extras/Serialize/BulletWorldImporter",
+					"../../Extras/Serialize/BulletFileLoader",
+					"../../src",
+				);
+				OBJROOT = "obj/x64/Debug/BulletXmlWorldImporter";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../Extras/lib";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6AA268D51D6C598A0004314D /* Build configuration list for PBXNativeTarget "libBulletXmlWorldImporter_xcode4_x64_release.a" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EAD64CA19C75BE459252728 /* Release */,
+				27A35A047C2970DD4CFB0A5D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "BulletXmlWorldImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44B847A060024D6A1C9F32FF /* Release */,
+				1A0D797064E71A06227C7D79 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

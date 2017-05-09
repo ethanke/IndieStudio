@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00A01D865A01338F1D4C15AB /* GLPrimitiveRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD9389614A657E53AF76481 /* GLPrimitiveRenderer.cpp */; };
+		13BD1AC71C0F2AF76AE97F4C /* LoadShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6DB715276AB959037DAD1947 /* LoadShader.cpp */; };
+		47595B6163A6428940AB450F /* MacOpenGLWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0B9F2A4B2A1022A122591121 /* MacOpenGLWindow.mm */; };
+		51931F6F3CF249CE236630BD /* OpenSans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DD213696BC16F3E59F5129A /* OpenSans.cpp */; };
+		3085012C727707686AB676F7 /* TwFonts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 666922AC74D3548B0BF32D5E /* TwFonts.cpp */; };
+		417C5E8F229423FC0B925FE2 /* fontstash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D193D260E1C5E1801E90081 /* fontstash.cpp */; };
+		487E092167151BFF0D0340DE /* opengl_fontstashcallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72DE4FE22DFC0FBF767B2202 /* opengl_fontstashcallbacks.cpp */; };
+		13311D303A535A943E8107DE /* b3Clock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7B6FD80F01146321F82D1A /* b3Clock.cpp */; };
+		7C5C13102012330A05115D14 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3D76378859D61205165150BC /* Button.cpp */; };
+		3656642C34C929EE6B5E0CDD /* Checkbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672228FA45B10DD20947440D /* Checkbox.cpp */; };
+		1C37025874064CED0D907B73 /* ComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C39857DF01D9555BA5860 /* ComboBox.cpp */; };
+		43D638CA70F321DA301E34B0 /* CrossSplitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F17145D6D361F486A49035A /* CrossSplitter.cpp */; };
+		2375751F67856F353C2269FC /* GroupBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BD838B328253CA31843056A /* GroupBox.cpp */; };
+		3C3154DE56CA00A418613CD7 /* ImagePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 345D7DDD65507FA938BA44B6 /* ImagePanel.cpp */; };
+		04BE6F3F12A4795806D105E3 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6630179A01792F732C131E2E /* Label.cpp */; };
+		4E2C66064D82462B330A0481 /* ListBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05BA78DD19DE4AA136DD7FE0 /* ListBox.cpp */; };
+		537326924ED30F0130391651 /* MenuStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 451A527A521B08294EB84509 /* MenuStrip.cpp */; };
+		7EE6611156D95C9F6ADB6F15 /* Numeric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D0919EC59673A5271D6362F /* Numeric.cpp */; };
+		12C140D4563B5DBA11F848AD /* OpenGLSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 63685FF62CA51D6362EE3467 /* OpenGLSample.cpp */; };
+		1327690775C8488C726E54A7 /* PanelListPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65E722E0322C7DEA285E4DF7 /* PanelListPanel.cpp */; };
+		503909873144713D6C617BAA /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58920D93457457E6799668AB /* ProgressBar.cpp */; };
+		07FE3FBF23275F98255A63BA /* Properties.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76534E0A1FF945CE62481E92 /* Properties.cpp */; };
+		4D445C630BA653FD21335A8B /* RadioButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 539422337F973EA42AF777A0 /* RadioButton.cpp */; };
+		630C56F468501D277DE77B4A /* ScrollControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C8127954188793E745B0BEA /* ScrollControl.cpp */; };
+		6C5A258C2C2A0F930A6833DA /* Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 47FB5A7B75C1545B466E7366 /* Slider.cpp */; };
+		3FE104D141DF49E315EC6932 /* StatusBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CCE7A015B3848206D442DD0 /* StatusBar.cpp */; };
+		26520FEA5D37542767200D71 /* TabControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 599B0D5A4E371DEB529E2BAF /* TabControl.cpp */; };
+		74DF671A1CA85BF629E1219E /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30E80BD636E858263D336368 /* TextBox.cpp */; };
+		17307D936AE01BE16B6569C0 /* TreeControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35FB781200E0067702F606FE /* TreeControl.cpp */; };
+		26944CCE16C645F24735703C /* UnitTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C6A06932AC11B6664146199 /* UnitTest.cpp */; };
+		22836349625B46CB619B3AC8 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ED628A71F0B321F2125214C /* OpenGL.framework */; };
+		1D4274F87F1D61DD24C50710 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 267436F31F9D121959740922 /* Cocoa.framework */; };
+		23FC082D7BD71C2845B3037B /* libgwen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00EE457C05525391057963A0 /* libgwen.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1523478F1E5F25C144B02DA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F3C06F429845A8C4C421501 /* gwen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 317C040A37177F6959AC3F56;
+			remoteInfo = "libgwen_xcode4_x64_release.a";
+		};
+		5C6059CB27222ADD408D78E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F3C06F429845A8C4C421501 /* gwen.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 524D4B3523B23878082D5BB5;
+			remoteInfo = "libgwen_xcode4_x64_release.a";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6FD9389614A657E53AF76481 /* GLPrimitiveRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "GLPrimitiveRenderer.cpp"; path = "../../examples/OpenGLWindow/GLPrimitiveRenderer.cpp"; sourceTree = "<group>"; };
+		126D616357BC316E4EF81EB5 /* GLPrimitiveRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GLPrimitiveRenderer.h"; path = "../../examples/OpenGLWindow/GLPrimitiveRenderer.h"; sourceTree = "<group>"; };
+		2B0243965EBB4735109B55EF /* GwenOpenGL3CoreRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GwenOpenGL3CoreRenderer.h"; path = "../../examples/OpenGLWindow/GwenOpenGL3CoreRenderer.h"; sourceTree = "<group>"; };
+		6DB715276AB959037DAD1947 /* LoadShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "LoadShader.cpp"; path = "../../examples/OpenGLWindow/LoadShader.cpp"; sourceTree = "<group>"; };
+		696638F21EED015648F81249 /* LoadShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LoadShader.h"; path = "../../examples/OpenGLWindow/LoadShader.h"; sourceTree = "<group>"; };
+		7FFE3A3F13E27A7F5332799A /* MacOpenGLWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MacOpenGLWindow.h"; path = "../../examples/OpenGLWindow/MacOpenGLWindow.h"; sourceTree = "<group>"; };
+		0B9F2A4B2A1022A122591121 /* MacOpenGLWindow.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objc; name = "MacOpenGLWindow.mm"; path = "../../examples/OpenGLWindow/MacOpenGLWindow.mm"; sourceTree = "<group>"; };
+		7DD213696BC16F3E59F5129A /* OpenSans.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "OpenSans.cpp"; path = "../../examples/OpenGLWindow/OpenSans.cpp"; sourceTree = "<group>"; };
+		666922AC74D3548B0BF32D5E /* TwFonts.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "TwFonts.cpp"; path = "../../examples/OpenGLWindow/TwFonts.cpp"; sourceTree = "<group>"; };
+		00C870814B1434E27A3273FE /* TwFonts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TwFonts.h"; path = "../../examples/OpenGLWindow/TwFonts.h"; sourceTree = "<group>"; };
+		5D193D260E1C5E1801E90081 /* fontstash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "fontstash.cpp"; path = "../../examples/OpenGLWindow/fontstash.cpp"; sourceTree = "<group>"; };
+		7BB4747549A50DAD07150C56 /* fontstash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "fontstash.h"; path = "../../examples/OpenGLWindow/fontstash.h"; sourceTree = "<group>"; };
+		72DE4FE22DFC0FBF767B2202 /* opengl_fontstashcallbacks.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "opengl_fontstashcallbacks.cpp"; path = "../../examples/OpenGLWindow/opengl_fontstashcallbacks.cpp"; sourceTree = "<group>"; };
+		59E4430036BC7460779512EC /* opengl_fontstashcallbacks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "opengl_fontstashcallbacks.h"; path = "../../examples/OpenGLWindow/opengl_fontstashcallbacks.h"; sourceTree = "<group>"; };
+		4D7B6FD80F01146321F82D1A /* b3Clock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "b3Clock.cpp"; path = "../../examples/Utils/b3Clock.cpp"; sourceTree = "<group>"; };
+		30D6584A1C3250DC1FA32554 /* b3Clock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "b3Clock.h"; path = "../../examples/Utils/b3Clock.h"; sourceTree = "<group>"; };
+		3D76378859D61205165150BC /* Button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Button.cpp"; path = "../../test/GwenOpenGLTest/Button.cpp"; sourceTree = "<group>"; };
+		672228FA45B10DD20947440D /* Checkbox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Checkbox.cpp"; path = "../../test/GwenOpenGLTest/Checkbox.cpp"; sourceTree = "<group>"; };
+		2D6C39857DF01D9555BA5860 /* ComboBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "ComboBox.cpp"; path = "../../test/GwenOpenGLTest/ComboBox.cpp"; sourceTree = "<group>"; };
+		4F17145D6D361F486A49035A /* CrossSplitter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "CrossSplitter.cpp"; path = "../../test/GwenOpenGLTest/CrossSplitter.cpp"; sourceTree = "<group>"; };
+		1BD838B328253CA31843056A /* GroupBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "GroupBox.cpp"; path = "../../test/GwenOpenGLTest/GroupBox.cpp"; sourceTree = "<group>"; };
+		345D7DDD65507FA938BA44B6 /* ImagePanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "ImagePanel.cpp"; path = "../../test/GwenOpenGLTest/ImagePanel.cpp"; sourceTree = "<group>"; };
+		6630179A01792F732C131E2E /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Label.cpp"; path = "../../test/GwenOpenGLTest/Label.cpp"; sourceTree = "<group>"; };
+		05BA78DD19DE4AA136DD7FE0 /* ListBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "ListBox.cpp"; path = "../../test/GwenOpenGLTest/ListBox.cpp"; sourceTree = "<group>"; };
+		451A527A521B08294EB84509 /* MenuStrip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "MenuStrip.cpp"; path = "../../test/GwenOpenGLTest/MenuStrip.cpp"; sourceTree = "<group>"; };
+		4D0919EC59673A5271D6362F /* Numeric.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Numeric.cpp"; path = "../../test/GwenOpenGLTest/Numeric.cpp"; sourceTree = "<group>"; };
+		63685FF62CA51D6362EE3467 /* OpenGLSample.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "OpenGLSample.cpp"; path = "../../test/GwenOpenGLTest/OpenGLSample.cpp"; sourceTree = "<group>"; };
+		65E722E0322C7DEA285E4DF7 /* PanelListPanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "PanelListPanel.cpp"; path = "../../test/GwenOpenGLTest/PanelListPanel.cpp"; sourceTree = "<group>"; };
+		58920D93457457E6799668AB /* ProgressBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "ProgressBar.cpp"; path = "../../test/GwenOpenGLTest/ProgressBar.cpp"; sourceTree = "<group>"; };
+		76534E0A1FF945CE62481E92 /* Properties.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Properties.cpp"; path = "../../test/GwenOpenGLTest/Properties.cpp"; sourceTree = "<group>"; };
+		539422337F973EA42AF777A0 /* RadioButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "RadioButton.cpp"; path = "../../test/GwenOpenGLTest/RadioButton.cpp"; sourceTree = "<group>"; };
+		7C8127954188793E745B0BEA /* ScrollControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "ScrollControl.cpp"; path = "../../test/GwenOpenGLTest/ScrollControl.cpp"; sourceTree = "<group>"; };
+		47FB5A7B75C1545B466E7366 /* Slider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "Slider.cpp"; path = "../../test/GwenOpenGLTest/Slider.cpp"; sourceTree = "<group>"; };
+		5CCE7A015B3848206D442DD0 /* StatusBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "StatusBar.cpp"; path = "../../test/GwenOpenGLTest/StatusBar.cpp"; sourceTree = "<group>"; };
+		599B0D5A4E371DEB529E2BAF /* TabControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "TabControl.cpp"; path = "../../test/GwenOpenGLTest/TabControl.cpp"; sourceTree = "<group>"; };
+		30E80BD636E858263D336368 /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "TextBox.cpp"; path = "../../test/GwenOpenGLTest/TextBox.cpp"; sourceTree = "<group>"; };
+		35FB781200E0067702F606FE /* TreeControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "TreeControl.cpp"; path = "../../test/GwenOpenGLTest/TreeControl.cpp"; sourceTree = "<group>"; };
+		3C6A06932AC11B6664146199 /* UnitTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "UnitTest.cpp"; path = "../../test/GwenOpenGLTest/UnitTest.cpp"; sourceTree = "<group>"; };
+		25397DBE66DB43553BCE6A22 /* UnitTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UnitTest.h"; path = "../../test/GwenOpenGLTest/UnitTest.h"; sourceTree = "<group>"; };
+		6ED628A71F0B321F2125214C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "OpenGL.framework"; path = "/System/Library/Frameworks/OpenGL.framework"; sourceTree = "<absolute>"; };
+		267436F31F9D121959740922 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Cocoa.framework"; path = "/System/Library/Frameworks/Cocoa.framework"; sourceTree = "<absolute>"; };
+		66C85E5121E81A082FE56D5E /* Test_Gwen_OpenGL_xcode4_x64_release */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "Test_Gwen_OpenGL_xcode4_x64_release"; path = "Test_Gwen_OpenGL_xcode4_x64_release"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3C06F429845A8C4C421501 /* gwen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "gwen.xcodeproj"; path = "gwen.xcodeproj"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		54782328316F703B5834598A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22836349625B46CB619B3AC8 /* OpenGL.framework in Frameworks */,
+				1D4274F87F1D61DD24C50710 /* Cocoa.framework in Frameworks */,
+				23FC082D7BD71C2845B3037B /* libgwen.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7D1632BF215E2CFD3B0703C8 /* Test_Gwen_OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				7B4A760035EE561F4B312C14 /* examples */,
+				4004656029F517C310C470CC /* test */,
+				055C06553D240EEC379C6D0E /* Frameworks */,
+				52E14BC57B49231D5C60304A /* Products */,
+				7AA70F0D45F83B5304801986 /* Projects */,
+			);
+			name = "Test_Gwen_OpenGL";
+			sourceTree = "<group>";
+		};
+		7B4A760035EE561F4B312C14 /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				557503BA546D45747D436441 /* OpenGLWindow */,
+				45DD690442BB362E24DB5FA8 /* Utils */,
+			);
+			name = "examples";
+			sourceTree = "<group>";
+		};
+		557503BA546D45747D436441 /* OpenGLWindow */ = {
+			isa = PBXGroup;
+			children = (
+				6FD9389614A657E53AF76481 /* GLPrimitiveRenderer.cpp */,
+				126D616357BC316E4EF81EB5 /* GLPrimitiveRenderer.h */,
+				2B0243965EBB4735109B55EF /* GwenOpenGL3CoreRenderer.h */,
+				6DB715276AB959037DAD1947 /* LoadShader.cpp */,
+				696638F21EED015648F81249 /* LoadShader.h */,
+				7FFE3A3F13E27A7F5332799A /* MacOpenGLWindow.h */,
+				0B9F2A4B2A1022A122591121 /* MacOpenGLWindow.mm */,
+				7DD213696BC16F3E59F5129A /* OpenSans.cpp */,
+				666922AC74D3548B0BF32D5E /* TwFonts.cpp */,
+				00C870814B1434E27A3273FE /* TwFonts.h */,
+				5D193D260E1C5E1801E90081 /* fontstash.cpp */,
+				7BB4747549A50DAD07150C56 /* fontstash.h */,
+				72DE4FE22DFC0FBF767B2202 /* opengl_fontstashcallbacks.cpp */,
+				59E4430036BC7460779512EC /* opengl_fontstashcallbacks.h */,
+			);
+			name = "OpenGLWindow";
+			sourceTree = "<group>";
+		};
+		45DD690442BB362E24DB5FA8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4D7B6FD80F01146321F82D1A /* b3Clock.cpp */,
+				30D6584A1C3250DC1FA32554 /* b3Clock.h */,
+			);
+			name = "Utils";
+			sourceTree = "<group>";
+		};
+		4004656029F517C310C470CC /* test */ = {
+			isa = PBXGroup;
+			children = (
+				6B822F314FD9460929923AD6 /* GwenOpenGLTest */,
+			);
+			name = "test";
+			sourceTree = "<group>";
+		};
+		6B822F314FD9460929923AD6 /* GwenOpenGLTest */ = {
+			isa = PBXGroup;
+			children = (
+				3D76378859D61205165150BC /* Button.cpp */,
+				672228FA45B10DD20947440D /* Checkbox.cpp */,
+				2D6C39857DF01D9555BA5860 /* ComboBox.cpp */,
+				4F17145D6D361F486A49035A /* CrossSplitter.cpp */,
+				1BD838B328253CA31843056A /* GroupBox.cpp */,
+				345D7DDD65507FA938BA44B6 /* ImagePanel.cpp */,
+				6630179A01792F732C131E2E /* Label.cpp */,
+				05BA78DD19DE4AA136DD7FE0 /* ListBox.cpp */,
+				451A527A521B08294EB84509 /* MenuStrip.cpp */,
+				4D0919EC59673A5271D6362F /* Numeric.cpp */,
+				63685FF62CA51D6362EE3467 /* OpenGLSample.cpp */,
+				65E722E0322C7DEA285E4DF7 /* PanelListPanel.cpp */,
+				58920D93457457E6799668AB /* ProgressBar.cpp */,
+				76534E0A1FF945CE62481E92 /* Properties.cpp */,
+				539422337F973EA42AF777A0 /* RadioButton.cpp */,
+				7C8127954188793E745B0BEA /* ScrollControl.cpp */,
+				47FB5A7B75C1545B466E7366 /* Slider.cpp */,
+				5CCE7A015B3848206D442DD0 /* StatusBar.cpp */,
+				599B0D5A4E371DEB529E2BAF /* TabControl.cpp */,
+				30E80BD636E858263D336368 /* TextBox.cpp */,
+				35FB781200E0067702F606FE /* TreeControl.cpp */,
+				3C6A06932AC11B6664146199 /* UnitTest.cpp */,
+				25397DBE66DB43553BCE6A22 /* UnitTest.h */,
+			);
+			name = "GwenOpenGLTest";
+			sourceTree = "<group>";
+		};
+		055C06553D240EEC379C6D0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6ED628A71F0B321F2125214C /* OpenGL.framework */,
+				267436F31F9D121959740922 /* Cocoa.framework */,
+			);
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		52E14BC57B49231D5C60304A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				66C85E5121E81A082FE56D5E /* Test_Gwen_OpenGL_xcode4_x64_release */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		7AA70F0D45F83B5304801986 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				4F3C06F429845A8C4C421501 /* gwen.xcodeproj */,
+			);
+			name = "Projects";
+			sourceTree = "<group>";
+		};
+		3DC63D261F5B35EA22C94AA8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00EE457C05525391057963A0 /* libgwen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		61F6670066F422126E3657D2 /* Test_Gwen_OpenGL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06EF4F8136406185799555DA /* Build configuration list for PBXNativeTarget "Test_Gwen_OpenGL" */;
+			buildPhases = (
+				6915645C0CE73144756C23D9 /* Resources */,
+				10955A5E7D3D6BD1067D3160 /* Sources */,
+				54782328316F703B5834598A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09C514F650317911640D373A /* PBXTargetDependency */,
+			);
+			name = "Test_Gwen_OpenGL";
+			productInstallPath = "$(HOME)/bin";
+			productName = "Test_Gwen_OpenGL";
+			productReference = 66C85E5121E81A082FE56D5E /* Test_Gwen_OpenGL_xcode4_x64_release */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "Test_Gwen_OpenGL" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = 7D1632BF215E2CFD3B0703C8 /* Test_Gwen_OpenGL */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3DC63D261F5B35EA22C94AA8 /* Products */;
+					ProjectRef = 4F3C06F429845A8C4C421501 /* gwen.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				61F6670066F422126E3657D2 /* Test_Gwen_OpenGL_xcode4_x64_release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		00EE457C05525391057963A0 /* libgwen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "../../bin/libgwen.a";
+			remoteRef = 1523478F1E5F25C144B02DA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6915645C0CE73144756C23D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10955A5E7D3D6BD1067D3160 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00A01D865A01338F1D4C15AB /* GLPrimitiveRenderer.cpp in Sources */,
+				13BD1AC71C0F2AF76AE97F4C /* LoadShader.cpp in Sources */,
+				47595B6163A6428940AB450F /* MacOpenGLWindow.mm in Sources */,
+				51931F6F3CF249CE236630BD /* OpenSans.cpp in Sources */,
+				3085012C727707686AB676F7 /* TwFonts.cpp in Sources */,
+				417C5E8F229423FC0B925FE2 /* fontstash.cpp in Sources */,
+				487E092167151BFF0D0340DE /* opengl_fontstashcallbacks.cpp in Sources */,
+				13311D303A535A943E8107DE /* b3Clock.cpp in Sources */,
+				7C5C13102012330A05115D14 /* Button.cpp in Sources */,
+				3656642C34C929EE6B5E0CDD /* Checkbox.cpp in Sources */,
+				1C37025874064CED0D907B73 /* ComboBox.cpp in Sources */,
+				43D638CA70F321DA301E34B0 /* CrossSplitter.cpp in Sources */,
+				2375751F67856F353C2269FC /* GroupBox.cpp in Sources */,
+				3C3154DE56CA00A418613CD7 /* ImagePanel.cpp in Sources */,
+				04BE6F3F12A4795806D105E3 /* Label.cpp in Sources */,
+				4E2C66064D82462B330A0481 /* ListBox.cpp in Sources */,
+				537326924ED30F0130391651 /* MenuStrip.cpp in Sources */,
+				7EE6611156D95C9F6ADB6F15 /* Numeric.cpp in Sources */,
+				12C140D4563B5DBA11F848AD /* OpenGLSample.cpp in Sources */,
+				1327690775C8488C726E54A7 /* PanelListPanel.cpp in Sources */,
+				503909873144713D6C617BAA /* ProgressBar.cpp in Sources */,
+				07FE3FBF23275F98255A63BA /* Properties.cpp in Sources */,
+				4D445C630BA653FD21335A8B /* RadioButton.cpp in Sources */,
+				630C56F468501D277DE77B4A /* ScrollControl.cpp in Sources */,
+				6C5A258C2C2A0F930A6833DA /* Slider.cpp in Sources */,
+				3FE104D141DF49E315EC6932 /* StatusBar.cpp in Sources */,
+				26520FEA5D37542767200D71 /* TabControl.cpp in Sources */,
+				74DF671A1CA85BF629E1219E /* TextBox.cpp in Sources */,
+				17307D936AE01BE16B6569C0 /* TreeControl.cpp in Sources */,
+				26944CCE16C645F24735703C /* UnitTest.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin PBXTargetDependency section */
+		09C514F650317911640D373A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libgwen.a";
+			targetProxy = 5C6059CB27222ADD408D78E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		735366651074354704D13FF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "Test_Gwen_OpenGL_xcode4_x64_release";
+			};
+			name = "Release";
+		};
+		7E7F48624A3B7EB40BD63C72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "../../bin";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = "Test_Gwen_OpenGL_xcode4_x64_debug";
+			};
+			name = "Debug";
+		};
+		28484B0820256E356D98563F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"GWEN_COMPILE_STATIC",
+					"_HAS_EXCEPTIONS=0",
+					"_STATIC_CPPLIB",
+					"DONT_USE_GLUT",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/ThirdPartyLibs",
+					"../../examples",
+					"../../test/GwenOpenGLTest",
+				);
+				OBJROOT = "obj/x64/Release/Test_Gwen_OpenGL";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Release";
+		};
+		6A2F3B6F18E706711B1F24AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT) $(ARCHS_STANDARD_64_BIT)";
+				VALID_ARCHS = "x86_64 i386";
+				SDKROOT = macosx;
+				ARCHS = "x86_64";
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)";
+				CONFIGURATION_TEMP_DIR = "$(OBJROOT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"GWEN_COMPILE_STATIC",
+					"_HAS_EXCEPTIONS=0",
+					"_STATIC_CPPLIB",
+					"DONT_USE_GLUT",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../examples/ThirdPartyLibs",
+					"../../examples",
+					"../../test/GwenOpenGLTest",
+				);
+				OBJROOT = "obj/x64/Debug/Test_Gwen_OpenGL";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-ffast-math",
+				);
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = static;
+				SYMROOT = "../../bin";
+			};
+			name = "Debug";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06EF4F8136406185799555DA /* Build configuration list for PBXNativeTarget "Test_Gwen_OpenGL_xcode4_x64_release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				735366651074354704D13FF0 /* Release */,
+				7E7F48624A3B7EB40BD63C72 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "Test_Gwen_OpenGL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28484B0820256E356D98563F /* Release */,
+				6A2F3B6F18E706711B1F24AC /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release";
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
