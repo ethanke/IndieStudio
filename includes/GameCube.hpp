@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 20:26:16 2017 Sousa Victor
-// Last update Mon May  8 21:51:45 2017 Sousa Victor
+// Last update Tue May  9 19:17:01 2017 Sousa Victor
 //
 
 #ifndef GAMECUBE_HPP
@@ -18,8 +18,8 @@ namespace indie {
     class GameCube : public AGameObject, public irr::scene::IMeshSceneNode {
 
     public:
-        GameCube(irr::scene::ISceneManager *sceneManager,
-                 irr::f32 size, irr::scene::ISceneNode *parent, irr::s32 id,
+        GameCube(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world,
+                 irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id,
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &scale = irr::core::vector3df(1.0f, 1.0f, 1.0f));
@@ -42,6 +42,8 @@ namespace indie {
 
     private:
         irr::scene::IMeshSceneNode *_cube;
+        ICollisionShape *_shape;
+        IRigidBody *_body;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {

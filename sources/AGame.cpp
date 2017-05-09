@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Tue May  9 01:37:54 2017 Sousa Victor
+// Last update Tue May  9 18:51:07 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -31,6 +31,9 @@ void AGame::Setup() {
     this->_smgr = this->_device->getSceneManager();
     this->_gui = this->_device->getGUIEnvironment();
 
+    this->_world.reset(createIrrBulletWorld(this->_device, true));
+    this->_world->setGravity(irr::core::vector3df(0,-10,0));
+
     addCameraObject();
     addGameObject();
 }
@@ -52,6 +55,7 @@ void AGame::loop() {
         processDeltaTime();
         if (this->_device->isWindowActive()) {
 
+            this->_world->stepSimulation(IGame::DeltaTime);
             objectOnFrame();
 
             this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));

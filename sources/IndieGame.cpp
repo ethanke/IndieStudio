@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue May  9 02:45:59 2017 Sousa Victor
+// Last update Tue May  9 19:48:09 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -20,17 +20,22 @@ IndieGame::~IndieGame() {
 }
 
 void IndieGame::addGameObject() {
-    GameCube *cube = new GameCube(this->_smgr, 10.0f, 0, -1, irr::core::vector3df(0.0f, 0.0f, 30.0f));
-    //cube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
-    this->_objectList.push_back(cube);
-
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/lib/irrlicht-1.8.4/media/map-20kdm2.pk3")).c_str());
     irr::scene::IAnimatedMesh* mesh = this->_smgr->getMesh("20kdm2.bsp");
     irr::scene::ISceneNode* node = 0;
-    if (mesh)
-        node = this->_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
-    if (node)
-        node->setPosition(irr::core::vector3df(-1300,-144,-1249));
+    node = this->_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
+    node->setScale(irr::core::vector3df(0.25, 0.25, 0.25));
+    node->setPosition(irr::core::vector3df(-450,-120,-400));
+    node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+    ICollisionShape *shape = new IBvhTriangleMeshShape(node, mesh->getMesh(0), 0);
+    auto building = this->_world->addRigidBody(shape);
+    building->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
+
+
+    GameCube *cube = new GameCube(this->_smgr, this->_world, 10.0f, 10, 0, -1, irr::core::vector3df(0.0f, 0.0f, 30.0f));
+    //cube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
+    this->_objectList.push_back(cube);
 }
 
 void IndieGame::addCameraObject() {

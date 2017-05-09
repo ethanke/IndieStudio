@@ -5,13 +5,14 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 20:16:03 2017 Sousa Victor
-// Last update Mon May  8 22:01:34 2017 Sousa Victor
+// Last update Tue May  9 18:35:50 2017 Sousa Victor
 //
 
 #ifndef IGAMEOBJECT_HPP_
 #define IGAMEOBJECT_HPP_
 
 #include <irrlicht.h>
+#include <irrBullet.h>
 
 #include "IGame.hpp"
 

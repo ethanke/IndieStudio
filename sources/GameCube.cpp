@@ -5,18 +5,23 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 20:29:22 2017 Sousa Victor
-// Last update Mon May  8 22:12:11 2017 Sousa Victor
+// Last update Tue May  9 19:33:35 2017 Sousa Victor
 //
 
 #include "GameCube.hpp"
 
 using namespace indie;
 
-GameCube::GameCube(irr::scene::ISceneManager *sceneManager, irr::f32 size, irr::scene::ISceneNode *parent, irr::s32 id,
+GameCube::GameCube(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id,
                    const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
                    : AGameObject (sceneManager), IMeshSceneNode(parent, sceneManager, id, position, rotation, scale) {
 
     this->_cube = this->_smgr->addCubeSceneNode(size, parent, id, position, rotation, scale);
+    setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+
+    this->_shape = new IBoxShape(this->_cube, mass, false);
+    this->_body = world->addRigidBody(this->_shape);
 
 }
 
@@ -36,7 +41,7 @@ GameCube::~GameCube() {
 }
 
 void GameCube::OnFrame() {
-    
+
 }
 
 //CCubeSceneNode
