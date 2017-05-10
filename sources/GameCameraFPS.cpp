@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 05:46:16 2017 Sousa Victor
-// Last update Tue May  9 01:48:50 2017 Sousa Victor
+// Last update Thu May 11 00:05:57 2017 Sousa Victor
 //
 
 #include "GameCameraFPS.hpp"
@@ -32,6 +32,9 @@ GameCameraFPS::GameCameraFPS(irr::scene::ISceneManager *sceneManager, const irr:
     this->_camera = this->_smgr->addCameraSceneNodeFPS(parent, rotateSpeed, moveSpeed, id,
                                                                           (keyMapArray == NULL ? keyMap : keyMapArray), (keyMapArray == NULL ? 5 : keyMapSize),
                                                                           noVerticalMovement, jumpSpeed, invertMouseY, makeActive);
+
+    this->_camera->setPosition(irr::core::vector3df(0, 10, 0));
+
 }
 
 GameCameraFPS::GameCameraFPS(const GameCameraFPS &cam) : AGameCamera(cam) {
@@ -48,5 +51,6 @@ GameCameraFPS::~GameCameraFPS() {
 }
 
 void GameCameraFPS::OnFrame() {
+    std::cout << this->_camera->getRotation().X << " " << this->_camera->getRotation().Y <<  " " << this->_camera->getRotation().Z << std::endl;
 
 }
