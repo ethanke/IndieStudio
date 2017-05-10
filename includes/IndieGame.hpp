@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Wed May 10 16:08:03 2017 Sousa Victor
+// Last update Wed May 10 21:32:31 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -22,7 +22,7 @@ namespace indie {
     class IndieGame: public AGame {
 
     public:
-        IndieGame(int width = 1080, int height = 720);
+        IndieGame(int width = 1920, int height = 1080);
         ~IndieGame();
 
     private:

@@ -12,10 +12,7 @@ vt 0.0000 1.0000
 vt 0.6894 1.0000
 vt 1.0000 0.7480
 vt 0.6426 0.0161
-vn -0.0348 0.9994 0.0030
-vn -0.0349 0.9994 0.0029
-g CityEngineMaterial_826_CityEngineMaterial_826_CityEngineMaterial_826_mat
 usemtl CityEngineMaterial_826_mat
 s 1
-f 1/1/1 2/2/2 3/3/2 4/4/2
-f 1/1/1 4/4/2 5/5/2
+f 1/1 2/2 3/3 4/4
+f 1/1 4/4 5/5
