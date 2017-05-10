@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 05:46:16 2017 Sousa Victor
-// Last update Thu May 11 00:05:57 2017 Sousa Victor
+// Last update Thu May 11 00:29:37 2017 Sousa Victor
 //
 
 #include "GameCameraFPS.hpp"
@@ -51,6 +51,5 @@ GameCameraFPS::~GameCameraFPS() {
 }
 
 void GameCameraFPS::OnFrame() {
-    std::cout << this->_camera->getRotation().X << " " << this->_camera->getRotation().Y <<  " " << this->_camera->getRotation().Z << std::endl;
 
 }
