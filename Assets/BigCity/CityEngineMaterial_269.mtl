@@ -10,6 +10,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd /Users/vicostudio/Downloads/BigCity47/ceramicRoof_2.jpg
-map_Bump /Users/vicostudio/Downloads/BigCity47/ceramicRoof_2.jpg
-map_Ka /Users/vicostudio/Downloads/BigCity47/ceramicRoof_2.jpg
+map_Kd ./texture/ceramicRoof_2.jpg
+map_Bump ./texture/ceramicRoof_2.jpg
+map_Ka ./texture/ceramicRoof_2.jpg

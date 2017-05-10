@@ -10,5 +10,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd /Users/vicostudio/Downloads/BigCity47/u_f025_t010_Office_000.jpg
-map_Ka /Users/vicostudio/Downloads/BigCity47/u_f025_t010_Office_000.jpg
+map_Kd ./texture/u_f025_t010_Office_000.jpg
+map_Ka ./texture/u_f025_t010_Office_000.jpg

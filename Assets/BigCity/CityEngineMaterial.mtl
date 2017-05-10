@@ -10,5 +10,5 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd /Users/vicostudio/Downloads/BigCity47/asphalt_14x14m.jpg
-map_Ka /Users/vicostudio/Downloads/BigCity47/asphalt_14x14m.jpg
+map_Kd ./texture/asphalt_14x14m.jpg
+map_Ka ./texture/asphalt_14x14m.jpg
