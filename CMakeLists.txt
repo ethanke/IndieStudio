@@ -78,7 +78,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/EventReceiver.cpp
     ${PROJECT_SOURCE_DIR}/sources/AModelObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/APhysicObject.cpp
-    ${PROJECT_SOURCE_DIR}/sources/Car.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarModel.cpp
 )
 
 # build executable
