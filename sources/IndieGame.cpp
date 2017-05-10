@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 11 01:21:12 2017 Sousa Victor
+// Last update Thu May 11 01:46:46 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -51,8 +51,8 @@ void IndieGame::addGameObject() {
         loader.execute();
     #endif
 
-    Car *car = new Car(this->_smgr, "SPECTER/SPECTER_GT3_.obj", this->_world,
-                       NULL, -1, 1, irr::core::vector3df(0, 10, 0), irr::core::vector3df(15, 90, 0), irr::core::vector3df(4, 4, 4));
+    Car *car = new Car(this->_smgr, "Lambo/MURCIELAGO640.obj", this->_world,
+                       NULL, -1, 1, irr::core::vector3df(5, 10, 0), irr::core::vector3df(0, -90, 0), irr::core::vector3df(0.40, 0.40, 0.40));
     this->_objectList.push_back(car);
 
 }
