@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 10 15:46:10 2017 Sousa Victor
-// Last update Wed May 10 16:15:31 2017 Sousa Victor
+// Last update Wed May 10 20:41:05 2017 Sousa Victor
 //
 
 #ifndef FOLDERLOADER_HPP
@@ -25,7 +25,7 @@ namespace indie {
     public:
         virtual ~ILoader() {};
 
-        virtual void execute() = 0;
+        virtual void execute(irr::core::vector3df const &scale, irr::core::vector3df const &position) = 0;
 
     };
 
@@ -36,7 +36,7 @@ namespace indie {
                      std::string const &extension, std::string const &folder);
         ~FolderLoader();
 
-        virtual void execute();
+        virtual void execute(irr::core::vector3df const &scale = irr::core::vector3df(0, 0, 0), irr::core::vector3df const &position = irr::core::vector3df(0, 0, 0));
 
     private:
         irr::scene::ISceneManager *_smgr;

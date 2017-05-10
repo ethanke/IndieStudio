@@ -1,0 +1,21 @@
+# Blender v2.78 (sub 0) OBJ File: ''
+# www.blender.org
+mtllib CityEngineMaterial_826.mtl
+o CityEngineMaterial_826
+v 32.033699 35.280602 -1246.047729
+v 29.291401 35.280605 -1263.550293
+v 13.797800 34.665707 -1261.122803
+v 7.504900 34.497406 -1255.618286
+v 17.545900 34.777302 -1244.066528
+vt -0.0000 -0.0000
+vt 0.0000 1.0000
+vt 0.6894 1.0000
+vt 1.0000 0.7480
+vt 0.6426 0.0161
+vn -0.0348 0.9994 0.0030
+vn -0.0349 0.9994 0.0029
+g CityEngineMaterial_826_CityEngineMaterial_826_CityEngineMaterial_826_mat
+usemtl CityEngineMaterial_826_mat
+s 1
+f 1/1/1 2/2/2 3/3/2 4/4/2
+f 1/1/1 4/4/2 5/5/2

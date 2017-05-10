@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 10 15:49:51 2017 Sousa Victor
-// Last update Wed May 10 16:31:04 2017 Sousa Victor
+// Last update Wed May 10 20:41:36 2017 Sousa Victor
 //
 
 #include "FolderLoader.hpp"
@@ -26,7 +26,7 @@ FolderLoader::~FolderLoader() {
 
 }
 
-void FolderLoader::execute() {
+void FolderLoader::execute(irr::core::vector3df const &scale, irr::core::vector3df const &position) {
     if(boost::filesystem::is_directory(this->_folderPath)) {
         for(auto& entry : boost::make_iterator_range(boost::filesystem::directory_iterator(this->_folderPath), {})) {
             std::string path = entry.path().string();
@@ -38,7 +38,8 @@ void FolderLoader::execute() {
                     std::cout << path << std::endl;
                     irr::scene::IMesh* mesh = this->_smgr->getMesh(path.c_str());
                     irr::scene::ISceneNode *node = this->_smgr->addOctreeSceneNode(mesh, 0, -1, 1024);
-                    node->setPosition(irr::core::vector3df(0, -150, 0));
+                    node->setScale(scale);
+                    node->setPosition(position);
                     node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
                     node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
                     ICollisionShape *shape = new IBvhTriangleMeshShape(node, mesh, 0);
