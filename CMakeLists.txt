@@ -68,6 +68,7 @@ endif()
 
 set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/main.cpp
+    ${PROJECT_SOURCE_DIR}/sources/FolderLoader.cpp
     ${PROJECT_SOURCE_DIR}/sources/AGame.cpp
     ${PROJECT_SOURCE_DIR}/sources/IndieGame.cpp
     ${PROJECT_SOURCE_DIR}/sources/AGameObject.cpp
@@ -95,6 +96,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         BulletDynamics
         BulletCollision
         LinearMath
+        boost_system
+        boost_filesystem
         "-framework Cocoa"
         "-framework OpenGL"
         "-framework IOKit"

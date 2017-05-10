@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue May  9 19:48:09 2017 Sousa Victor
+// Last update Wed May 10 16:27:44 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -20,22 +20,24 @@ IndieGame::~IndieGame() {
 }
 
 void IndieGame::addGameObject() {
-    this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/lib/irrlicht-1.8.4/media/map-20kdm2.pk3")).c_str());
-    irr::scene::IAnimatedMesh* mesh = this->_smgr->getMesh("20kdm2.bsp");
-    irr::scene::ISceneNode* node = 0;
-    node = this->_smgr->addOctreeSceneNode(mesh->getMesh(0), 0, -1, 1024);
-    node->setScale(irr::core::vector3df(0.25, 0.25, 0.25));
-    node->setPosition(irr::core::vector3df(-450,-120,-400));
-    node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
-    node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
-    ICollisionShape *shape = new IBvhTriangleMeshShape(node, mesh->getMesh(0), 0);
-    auto building = this->_world->addRigidBody(shape);
-    building->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
+    this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
+    //this->_device->getFileSystem()->addFileArchive("/Users/vicostudio/Downloads/Paris/");
 
-
-    GameCube *cube = new GameCube(this->_smgr, this->_world, 10.0f, 10, 0, -1, irr::core::vector3df(0.0f, 0.0f, 30.0f));
-    //cube->setMaterialFlag(irr::video::EMF_WIREFRAME, true);
+    GameCube *cube = new GameCube(this->_smgr, this->_world, 10.0f, 1, 0, -1, irr::core::vector3df(0.0f, 0.0f, 30.0f));
     this->_objectList.push_back(cube);
+
+    irr::scene::ISceneNode* skybox = this->_smgr->addSkyBoxSceneNode(
+        this->_driver->getTexture("skybox/irrlicht2_up.jpg"),
+        this->_driver->getTexture("skybox/irrlicht2_dn.jpg"),
+        this->_driver->getTexture("skybox/irrlicht2_lf.jpg"),
+        this->_driver->getTexture("skybox/irrlicht2_rt.jpg"),
+        this->_driver->getTexture("skybox/irrlicht2_ft.jpg"),
+        this->_driver->getTexture("skybox/irrlicht2_bk.jpg"));
+    irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/skydome.jpg"),16,8,0.95f,2.0f);
+    this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
+
+    FolderLoader loader(this->_smgr, this->_world, "obj", std::string(SOURCES_PATH) + std::string("/Assets/Paris"));
+    loader.execute();
 }
 
 void IndieGame::addCameraObject() {
