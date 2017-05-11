@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 19:54:43 2017 Sousa Victor
-// Last update Mon May  8 22:33:46 2017 Sousa Victor
+// Last update Fri May 12 01:24:17 2017 Sousa Victor
 //
 
 #ifndef EVENTRECEIVER_HPP_
@@ -36,7 +36,7 @@ namespace indie {
 #else
 
 namespace indie {
-    class EventReceiver : public irr::IEventReceiver;
+    class EventReceiver;
 }
 
 #endif /*EVENTRECEIVER_HPP_*/

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Fri May 12 00:27:30 2017 Sousa Victor
+// Last update Fri May 12 01:30:28 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -13,14 +13,15 @@
 
 #include "BasicCamera.hpp"
 #include "CarModel.hpp"
-#include "EventDelegate.hpp"
+#include "EventReceiver.hpp"
+#include "SteeringWheel.hpp"
 
 namespace indie {
 
-    class Car : public IGameObject, public EventDelegate {
+    class Car : public IGameObject {
 
     public:
-        Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world);
+        Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
         ~Car();
 
         void OnFrame();
@@ -30,6 +31,7 @@ namespace indie {
     protected:
         CarModel _carModel;
         BasicCamera *_camera;
+        EventReceiver *_eventReceiver;
 
     };
 
