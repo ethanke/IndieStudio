@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 11 01:46:46 2017 Sousa Victor
+// Last update Thu May 11 02:24:02 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -25,6 +25,9 @@ void IndieGame::addGameObject() {
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
+
+    SteeringWheel *steeringwheel = new SteeringWheel(this->_smgr, std::string("car/steeringwheel.obj"), 0, -1, irr::core::vector3df(1, 10, 1), irr::core::vector3df(0, 0, 0), irr::core::vector3df(0.01, 0.01, 0.01));
+    this->_objectList.push_back(steeringwheel);
 
     #ifdef DEBUG
         std::string array[8] = {
@@ -51,7 +54,7 @@ void IndieGame::addGameObject() {
         loader.execute();
     #endif
 
-    Car *car = new Car(this->_smgr, "Lambo/MURCIELAGO640.obj", this->_world,
+    Car *car = new Car(this->_smgr, "car/Lambo/MURCIELAGO640.obj", this->_world,
                        NULL, -1, 1, irr::core::vector3df(5, 10, 0), irr::core::vector3df(0, -90, 0), irr::core::vector3df(0.40, 0.40, 0.40));
     this->_objectList.push_back(car);
 
@@ -72,5 +75,6 @@ void IndieGame::addCameraObject() {
     GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), 0, 75.0f, 0.001f, -1, keyMap1, 5, true, 0.1, false, true);
     cameraFps1->setAspectRatio(1.f * cameraFps1->getViewPort().getWidth() / cameraFps1->getViewPort().getHeight());
     cameraFps1->setFOV(cameraFps1->getFOV() * cameraFps1->getViewPort().getHeight() / this->_windowSize.Height);
+    cameraFps1->setNearValue(0.1);
     this->_cameraList.push_back(cameraFps1);
 }

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Thu May 11 01:53:15 2017 Ethan Kerdelhue
+// Last update Thu May 11 02:02:47 2017 Ethan Kerdelhue
 //
 
 #ifndef INDIEGAME_HPP
@@ -17,6 +17,7 @@
 #include "GameCube.hpp"
 #include "GameCameraFPS.hpp"
 #include "CarModel.hpp"
+#include "SteeringWheel.hpp"
 
 namespace indie {
 
