@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 10 15:49:51 2017 Sousa Victor
-// Last update Wed May 10 20:41:36 2017 Sousa Victor
+// Last update Thu May 11 03:56:07 2017 Sousa Victor
 //
 
 #include "FolderLoader.hpp"
@@ -35,7 +35,6 @@ void FolderLoader::execute(irr::core::vector3df const &scale, irr::core::vector3
             if(idx != std::string::npos) {
                 std::string extension = path.substr(idx + 1);
                 if (extension == this->_extension) {
-                    std::cout << path << std::endl;
                     irr::scene::IMesh* mesh = this->_smgr->getMesh(path.c_str());
                     irr::scene::ISceneNode *node = this->_smgr->addOctreeSceneNode(mesh, 0, -1, 1024);
                     node->setScale(scale);

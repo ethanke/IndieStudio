@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 05:46:16 2017 Sousa Victor
-// Last update Thu May 11 00:29:37 2017 Sousa Victor
+// Last update Thu May 11 02:55:55 2017 Sousa Victor
 //
 
 #include "GameCameraFPS.hpp"
@@ -33,7 +33,7 @@ GameCameraFPS::GameCameraFPS(irr::scene::ISceneManager *sceneManager, const irr:
                                                                           (keyMapArray == NULL ? keyMap : keyMapArray), (keyMapArray == NULL ? 5 : keyMapSize),
                                                                           noVerticalMovement, jumpSpeed, invertMouseY, makeActive);
 
-    this->_camera->setPosition(irr::core::vector3df(0, 10, 0));
+    this->_camera->setPosition(irr::core::vector3df(0, 8, 0));
 
 }
 
