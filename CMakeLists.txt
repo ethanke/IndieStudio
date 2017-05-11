@@ -57,6 +57,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
 
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    link_directories(/usr/local/lib/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/OSX/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/lib/OSX/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrBullet/lib/OSX)
@@ -119,6 +120,7 @@ endif()
 
 # location of header files
 include_directories(
+    /usr/local/include/
     ${PROJECT_BINARY_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
