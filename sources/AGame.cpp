@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Fri May 12 00:12:06 2017 Sousa Victor
+// Last update Fri May 12 01:14:12 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -35,6 +35,7 @@ void AGame::Setup() {
     this->_world->setGravity(irr::core::vector3df(0,-10,0));
 
     addGameObject();
+    addEventReceiver();
 }
 
 void AGame::Start() {
@@ -87,6 +88,9 @@ bool AGame::isRunning() const {
 }
 
 bool AGame::OnEvent(const irr::SEvent& event) {
+    for (auto &receiver: this->_eventReceiverList) {
+        (void)receiver;
+    }
     return EventReceiver::OnEvent(event);
 }
 

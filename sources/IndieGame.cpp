@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri May 12 00:00:49 2017 Sousa Victor
+// Last update Fri May 12 01:03:22 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -47,6 +47,10 @@ void IndieGame::addGameObject() {
     sun_node->setRotation(irr::core::vector3df(45,0,0));
 
     this->_smgr->setAmbientLight(irr::video::SColorf(1.5,1.5,1.5,1));
+
+}
+
+void IndieGame::addEventReceiver() {
 
 }
 

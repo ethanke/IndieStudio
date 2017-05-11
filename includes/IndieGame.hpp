@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Fri May 12 00:00:31 2017 Sousa Victor
+// Last update Fri May 12 01:03:18 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -29,6 +29,7 @@ namespace indie {
 
     private:
         void addGameObject();
+        void addEventReceiver();
 
         void loadMap();
 

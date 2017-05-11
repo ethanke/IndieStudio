@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Thu May 11 23:47:47 2017 Sousa Victor
+// Last update Fri May 12 00:27:30 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -13,10 +13,11 @@
 
 #include "BasicCamera.hpp"
 #include "CarModel.hpp"
+#include "EventDelegate.hpp"
 
 namespace indie {
 
-    class Car : public IGameObject {
+    class Car : public IGameObject, public EventDelegate {
 
     public:
         Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world);
