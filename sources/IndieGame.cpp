@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 11 21:14:09 2017 Sousa Victor
+// Last update Thu May 11 22:08:06 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -26,7 +26,7 @@ void IndieGame::addGameObject() {
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
-    SteeringWheel *steeringwheel = new SteeringWheel(this->_smgr, std::string("car/steeringwheel.obj"), 0, -1, irr::core::vector3df(1, 10, 1), irr::core::vector3df(0, 0, 0), irr::core::vector3df(0.01, 0.01, 0.01));
+    SteeringWheel *steeringwheel = new SteeringWheel(this->_smgr, std::string("car/steeringwheel.obj"), 0, -1, irr::core::vector3df(1, 10, 1), irr::core::vector3df(0, 0, 0), irr::core::vector3df(1, 1, 1));
     this->_objectList.push_back(steeringwheel);
 
     loadMap();

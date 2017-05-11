@@ -5,7 +5,7 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Wed May 10 23:26:18 2017 Ethan Kerdelhue
-// Last update Thu May 11 21:22:24 2017 Ethan Kerdelhue
+// Last update Thu May 11 22:09:03 2017 Ethan Kerdelhue
 //
 
 #include "SteeringWheel.hpp"
@@ -41,7 +41,7 @@ void SteeringWheel::OnFrame() {
     irr::core::vector3df steeringRotation = this->_node->getRotation();
     irr::core::vector3df steeringPosition = this->_node->getPosition();
     irr::core::vector3df steeringForward = this->_node->getRotation().rotationToDirection();
-    std::cout << "Ma vie est chouette : " << steeringForward.X << " " << steeringForward.Y << " " << steeringForward.Z << std::endl;
+
     irr::core::quaternion test;
     test.fromAngleAxis(i, irr::core::vector3df(steeringForward.X, steeringForward.Y, steeringForward.Z));
     test.normalize();
@@ -51,5 +51,5 @@ void SteeringWheel::OnFrame() {
     rot.Z = rot.Z + steeringForward.Z;
     test.toEuler(rot);
     this->_node->setRotation(rot * irr::core::RADTODEG);
-    std::cout << "Ma vie est nul : " << rot.X << " " << rot.Y << " " << rot.Z << std::endl;
+    
 }
