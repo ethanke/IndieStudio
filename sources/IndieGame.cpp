@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 11 03:57:49 2017 Sousa Victor
+// Last update Thu May 11 18:57:27 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -29,35 +29,46 @@ void IndieGame::addGameObject() {
     SteeringWheel *steeringwheel = new SteeringWheel(this->_smgr, std::string("car/steeringwheel.obj"), 0, -1, irr::core::vector3df(1, 10, 1), irr::core::vector3df(0, 0, 0), irr::core::vector3df(0.01, 0.01, 0.01));
     this->_objectList.push_back(steeringwheel);
 
-    #ifdef DEBUG
-        std::string array[8] = {
-            "BigCity/CityEngineMaterial_2_part1.obj",
-            "BigCity/CityEngineMaterial_2_part2.obj",
-            "BigCity/CityEngineMaterial_2_part3.obj",
-            "BigCity/CityEngineMaterial_6.obj",
-            "BigCity/CityEngineMaterial.obj",
-            "BigCity/CityEngineMaterial_9.obj",
-            "BigCity/CityEngineMaterial_12.obj",
-            "BigCity/CityEngineMaterial_10.obj"
-        };
-        for (auto const &str: array) {
-            irr::scene::IMesh* mesh = this->_smgr->getMesh(str.c_str());
-            irr::scene::ISceneNode *node = this->_smgr->addOctreeSceneNode(mesh, 0, -1, 1024);
-            node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-            node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
-            ICollisionShape *shape = new IBvhTriangleMeshShape(node, mesh, 0);
-            auto building = this->_world->addRigidBody(shape);
-            building->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
-        }
-    #else
-        FolderLoader loader(this->_smgr, this->_world, "obj", std::string(SOURCES_PATH) + std::string("/Assets/BigCity"));
-        loader.execute();
+    loadMap();
+
+    // Car *car = new Car(this->_smgr, "car/Lambo/MURCIELAGO640.obj", this->_world,
+    //                    NULL, -1, 1, irr::core::vector3df(2, 40, 0), irr::core::vector3df(0, -90, 0), irr::core::vector3df(1, 1, 1));
+    // this->_objectList.push_back(car);
+
+}
+
+void IndieGame::loadMap() {
+    irr::scene::IMesh* mesh_road = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_1.obj").c_str());
+    irr::scene::ISceneNode *node_road = this->_smgr->addOctreeSceneNode(mesh_road, 0, -1, 1024);
+    node_road->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    node_road->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+    ICollisionShape *shape_road = new IBvhTriangleMeshShape(node_road, mesh_road, 0);
+    auto building_road = this->_world->addRigidBody(shape_road);
+    building_road->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
+    irr::scene::IMesh* mesh_road2 = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_2.obj").c_str());
+    irr::scene::ISceneNode *node_road2 = this->_smgr->addOctreeSceneNode(mesh_road2, 0, -1, 1024);
+    node_road2->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    node_road2->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+    ICollisionShape *shape_road2 = new IBvhTriangleMeshShape(node_road2, mesh_road2, 0);
+    auto building_road2 = this->_world->addRigidBody(shape_road2);
+    building_road2->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
+
+    #ifndef DEBUG
+        irr::scene::IMesh* mesh = this->_smgr->getMesh(std::string("BigCity/BigCity_1.obj").c_str());
+        irr::scene::ISceneNode *node = this->_smgr->addOctreeSceneNode(mesh, 0, -1, 1024);
+        node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+        node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+        ICollisionShape *shape = new IBvhTriangleMeshShape(node, mesh, 0);
+        auto building = this->_world->addRigidBody(shape);
+        building->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
+        irr::scene::IMesh* mesh2 = this->_smgr->getMesh(std::string("BigCity/BigCity_2.obj").c_str());
+        irr::scene::ISceneNode *node2 = this->_smgr->addOctreeSceneNode(mesh2, 0, -1, 1024);
+        node2->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+        node2->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+        ICollisionShape *shape2 = new IBvhTriangleMeshShape(node2, mesh2, 0);
+        auto building2 = this->_world->addRigidBody(shape2);
+        building2->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
     #endif
-
-    Car *car = new Car(this->_smgr, "car/Lambo/MURCIELAGO640.obj", this->_world,
-                       NULL, -1, 1, irr::core::vector3df(2, 7, 0), irr::core::vector3df(0, -90, 0), irr::core::vector3df(0.40, 0.40, 0.40));
-    this->_objectList.push_back(car);
-
 }
 
 void IndieGame::addCameraObject() {
@@ -87,7 +98,7 @@ void IndieGame::addCameraObject() {
     keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
     keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
     keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
-    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), 0, 100.0f, 0.01f, -1, keyMap1, 5, true, 0.1, false, true);
+    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), 0, 100.0f, 0.1f, -1, keyMap1, 5, true, 0.1, false, true);
     cameraFps1->setAspectRatio(1.f * cameraFps1->getViewPort().getWidth() / cameraFps1->getViewPort().getHeight());
     cameraFps1->setFOV(cameraFps1->getFOV() * cameraFps1->getViewPort().getHeight() / this->_windowSize.Height);
     cameraFps1->setNearValue(0.1);

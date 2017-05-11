@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Thu May 11 02:02:47 2017 Ethan Kerdelhue
+// Last update Thu May 11 18:51:27 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -30,6 +30,8 @@ namespace indie {
     private:
         void addGameObject();
         void addCameraObject();
+
+        void loadMap();
 
     };
 
