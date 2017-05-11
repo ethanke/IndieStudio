@@ -5,17 +5,17 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 05:35:32 2017 Sousa Victor
-// Last update Tue May  9 01:47:10 2017 Sousa Victor
+// Last update Thu May 11 23:54:53 2017 Sousa Victor
 //
 
 #include "AGameCamera.hpp"
 
 using namespace indie;
 
-AGameCamera::AGameCamera(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent, irr::s32 id, const irr::core::rect<irr::s32>& viewPort,
+AGameCamera::AGameCamera(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent, irr::s32 id,
             const irr::core::vector3df& position, const irr::core::vector3df& rotation, const irr::core::vector3df& scale)
             : AGameObject(sceneManager), ICameraSceneNode(parent, sceneManager, id, position, rotation, scale) {
-    this->_viewport = viewPort;
+    
 }
 
 AGameCamera::AGameCamera(const AGameCamera &cam) : AGameObject(cam), ICameraSceneNode(cam._camera->getParent(), cam._camera->getSceneManager(), cam._camera->getID(), cam._camera->getPosition(), cam._camera->getRotation(), cam._camera->getScale()) {

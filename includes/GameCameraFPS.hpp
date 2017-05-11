@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 05:44:38 2017 Sousa Victor
-// Last update Tue May  9 00:24:26 2017 Sousa Victor
+// Last update Thu May 11 23:55:23 2017 Sousa Victor
 //
 
 #ifndef GAMECAMERAFPS_HPP
@@ -18,7 +18,7 @@ namespace indie {
     class GameCameraFPS: public AGameCamera {
 
     public:
-        GameCameraFPS(irr::scene::ISceneManager *sceneManager, const irr::core::rect<irr::s32>& viewPort, irr::scene::ISceneNode* parent = 0,
+        GameCameraFPS(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent = 0,
 			          irr::f32 rotateSpeed = 100.0f, irr::f32 moveSpeed = .5f, irr::s32 id = -1, irr::SKeyMap* keyMapArray=0, irr::s32 keyMapSize=0,
                       bool noVerticalMovement=false, irr::f32 jumpSpeed = 0.f, bool invertMouseY=false, bool makeActive=true);
         GameCameraFPS(const GameCameraFPS &cam);

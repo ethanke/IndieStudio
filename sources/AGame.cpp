@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Wed May 10 23:55:05 2017 Sousa Victor
+// Last update Fri May 12 00:12:06 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -34,7 +34,6 @@ void AGame::Setup() {
     this->_world.reset(createIrrBulletWorld(this->_device, true));
     this->_world->setGravity(irr::core::vector3df(0,-10,0));
 
-    addCameraObject();
     addGameObject();
 }
 
@@ -58,18 +57,10 @@ void AGame::loop() {
             this->_world->stepSimulation(IGame::DeltaTime);
             objectOnFrame();
 
-            this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
-
-            for (auto &cam: this->_cameraList) {
-                this->_smgr->setActiveCamera(cam->getCamera());
-                this->_driver->setViewPort(cam->getViewPort());
-                this->_smgr->drawAll();
-            }
-
+            this->_smgr->drawAll();
             this->_gui->drawAll();
             this->_driver->endScene();
-
 
             int fps = this->_driver->getFPS();
             irr::core::stringw str = L"Q3 [";
@@ -85,8 +76,6 @@ void AGame::loop() {
 void AGame::objectOnFrame() {
     for (auto &obj: this->_objectList)
         obj->OnFrame();
-    for (auto &cam: this->_cameraList)
-        cam->OnFrame();
 }
 
 irr::core::dimension2du const &AGame::getWindowSize() const {
@@ -98,9 +87,6 @@ bool AGame::isRunning() const {
 }
 
 bool AGame::OnEvent(const irr::SEvent& event) {
-    for (auto &cam: this->_cameraList) {
-        cam->OnEvent(event);
-    }
     return EventReceiver::OnEvent(event);
 }
 

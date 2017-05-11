@@ -5,17 +5,17 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 05:46:16 2017 Sousa Victor
-// Last update Thu May 11 05:15:13 2017 Sousa Victor
+// Last update Thu May 11 23:55:12 2017 Sousa Victor
 //
 
 #include "GameCameraFPS.hpp"
 
 using namespace indie;
 
-GameCameraFPS::GameCameraFPS(irr::scene::ISceneManager *sceneManager, const irr::core::rect<irr::s32>& viewPort, irr::scene::ISceneNode* parent,
+GameCameraFPS::GameCameraFPS(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent,
               irr::f32 rotateSpeed, irr::f32 moveSpeed, irr::s32 id, irr::SKeyMap* keyMapArray, irr::s32 keyMapSize,
               bool noVerticalMovement, irr::f32 jumpSpeed, bool invertMouseY, bool makeActive)
-              : AGameCamera(sceneManager, parent, id, viewPort) {
+              : AGameCamera(sceneManager, parent, id) {
 
     irr::SKeyMap keyMap[5];                    // re-assigne les commandes
     keyMap[0].Action = irr::EKA_MOVE_FORWARD;  // avancer

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 04:15:45 2017 Sousa Victor
-// Last update Tue May  9 00:37:22 2017 Sousa Victor
+// Last update Thu May 11 23:53:51 2017 Sousa Victor
 //
 
 #ifndef AGAMECAMERA_HPP_
@@ -19,7 +19,6 @@ namespace indie {
 
     public:
         AGameCamera(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent, irr::s32 id,
-                    const irr::core::rect<irr::s32>& viewPort,
 			        const irr::core::vector3df& position = irr::core::vector3df(0,0,0),
 			        const irr::core::vector3df& rotation = irr::core::vector3df(0,0,0),
                     const irr::core::vector3df& scale = irr::core::vector3df(1.0f,1.0f,1.0f));
@@ -33,9 +32,6 @@ namespace indie {
         virtual const irr::core::aabbox3d<irr::f32>& getBoundingBox() const {
             return this->_camera->getBoundingBox();
         }
-        virtual irr::core::rect<irr::s32> const &getViewPort() const {
-            return this->_viewport;
-        }
         virtual irr::scene::ICameraSceneNode* getCamera() const  {
             return this->_camera;
         }
@@ -43,7 +39,6 @@ namespace indie {
         virtual void OnFrame() = 0;
 
     protected:
-        irr::core::rect<irr::s32> _viewport;
         irr::scene::ICameraSceneNode* _camera;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ICameraSceneNode function with custom parameter

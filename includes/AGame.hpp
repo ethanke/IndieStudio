@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:20:36 2017 Sousa Victor
-// Last update Tue May  9 18:11:23 2017 Sousa Victor
+// Last update Fri May 12 00:00:20 2017 Sousa Victor
 //
 
 #ifndef AGAME_HPP_
@@ -43,7 +43,6 @@ namespace indie {
 
     protected:
         virtual void addGameObject() = 0;
-        virtual void addCameraObject() = 0;
         virtual void processDeltaTime();
         virtual void loop();
         virtual void objectOnFrame();
@@ -58,7 +57,6 @@ namespace indie {
         irr::gui::IGUIEnvironment* _gui;
         std::shared_ptr<irrBulletWorld> _world;
         std::vector<IGameObject *> _objectList;
-        std::vector<AGameCamera *> _cameraList;
 
     };
 
