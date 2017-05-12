@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:54:49 2017 Sousa Victor
-// Last update Thu May 11 01:02:40 2017 Sousa Victor
+// Last update Fri May 12 18:03:25 2017 Sousa Victor
 //
 
 #include "APhysicObject.hpp"
@@ -17,7 +17,7 @@ APhysicObject::APhysicObject(irr::scene::ISceneManager *sceneManager, std::strin
          const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
          : AModelObject(sceneManager, path, parent, id, position, rotation, scale) {
 
-    this->_shape = new IBoxShape(this->_node, mass, false);
+    this->_shape = new IBoxShape(this->_node, mass);
     this->_body = world->addRigidBody(this->_shape);
 
 }

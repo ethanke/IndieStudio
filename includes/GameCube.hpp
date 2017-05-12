@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 20:26:16 2017 Sousa Victor
-// Last update Tue May  9 19:17:01 2017 Sousa Victor
+// Last update Fri May 12 13:17:39 2017 Sousa Victor
 //
 
 #ifndef GAMECUBE_HPP
@@ -198,7 +198,7 @@ namespace indie {
 #else
 
 namespace indie {
-    class GameCube : public AGameObject, public irr::scene::IMeshSceneNode;
+    class GameCube;
 }
 
 #endif /*GAMECUBE_HPP*/

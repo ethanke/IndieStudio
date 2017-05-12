@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:30:11 2017 Sousa Victor
-// Last update Thu May 11 00:58:52 2017 Sousa Victor
+// Last update Fri May 12 17:22:05 2017 Sousa Victor
 //
 
 #ifndef IMODELOBJECT_HPP_
@@ -32,7 +32,7 @@ namespace indie {
     protected:
         std::string _path;
         irr::scene::IMesh* _mesh;
-        irr::scene::ISceneNode *_node;
+        irr::scene::IMeshSceneNode *_node;
 
     public:
         virtual const irr::c8* getName() const {

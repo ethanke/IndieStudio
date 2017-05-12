@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Fri May 12 01:30:28 2017 Sousa Victor
+// Last update Fri May 12 13:16:00 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -15,6 +15,8 @@
 #include "CarModel.hpp"
 #include "EventReceiver.hpp"
 #include "SteeringWheel.hpp"
+
+#include "GameCube.hpp"
 
 namespace indie {
 

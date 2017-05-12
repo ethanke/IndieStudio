@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 01:10:00 2017 Sousa Victor
-// Last update Thu May 11 23:17:11 2017 Sousa Victor
+// Last update Fri May 12 03:03:36 2017 Sousa Victor
 //
 
 #ifndef CARMODEL_HPP_
@@ -26,6 +26,10 @@ namespace indie {
         ~CarModel();
 
         void OnFrame();
+
+        IRigidBody *getBody() const {
+            return this->_body;
+        }
 
     };
 

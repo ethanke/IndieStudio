@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:37:40 2017 Sousa Victor
-// Last update Thu May 11 03:02:35 2017 Sousa Victor
+// Last update Fri May 12 17:24:12 2017 Sousa Victor
 //
 
 #include "AModelObject.hpp"
@@ -18,7 +18,7 @@ AModelObject::AModelObject(irr::scene::ISceneManager *sceneManager, std::string 
 
     this->_path = path;
     this->_mesh = this->_smgr->getMesh(path.c_str());
-    this->_node = this->_smgr->addOctreeSceneNode(this->_mesh, 0, -1, 1024);
+    this->_node = this->_smgr->addOctreeSceneNode(this->_mesh, parent, id, 1024);
     this->_node->setPosition(position);
     this->_node->setRotation(rotation);
     this->_node->setScale(scale);
