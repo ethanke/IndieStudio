@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Fri May 12 13:16:00 2017 Sousa Victor
+// Last update Sat May 13 22:36:14 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -13,6 +13,7 @@
 
 #include "BasicCamera.hpp"
 #include "CarModel.hpp"
+#include "CarMotor.hpp"
 #include "EventReceiver.hpp"
 #include "SteeringWheel.hpp"
 
@@ -20,7 +21,7 @@
 
 namespace indie {
 
-    class Car : public IGameObject {
+    class Car : public IGameObject, public CarMotor {
 
     public:
         Car();

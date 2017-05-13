@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Fri May 12 18:15:59 2017 Sousa Victor
+// Last update Sat May 13 22:49:01 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -30,7 +30,6 @@ Car::~Car() {
 }
 
 void Car::OnFrame() {
-    std::cout << this->_carModel.getPosition().X << " " << this->_carModel.getPosition().Y << " " << this->_carModel.getPosition().Z << std::endl;
 
     if (this->_eventReceiver->IsKeyDown(irr::KEY_UP)) {
         this->_camera->getCamera()->setPosition(this->_camera->getCamera()->getPosition() + irr::core::vector3df(0.5, 0, 0));

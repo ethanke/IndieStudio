@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:28:43 2017 Sousa Victor
-// Last update Sat May 13 22:35:28 2017 Sousa Victor
+// Last update Sat May 13 22:43:25 2017 Sousa Victor
 //
 
 #ifndef CARMOTOR_HPP_
@@ -15,7 +15,7 @@
 
 namespace indie {
 
-    class CarMotor : public IGameObject {
+    class CarMotor {
 
     public:
         CarMotor();

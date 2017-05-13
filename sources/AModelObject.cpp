@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:37:40 2017 Sousa Victor
-// Last update Fri May 12 17:24:12 2017 Sousa Victor
+// Last update Sat May 13 22:50:22 2017 Sousa Victor
 //
 
 #include "AModelObject.hpp"
@@ -13,7 +13,7 @@
 using namespace indie;
 
 AModelObject::AModelObject() {
-    
+
 }
 
 AModelObject::AModelObject(irr::scene::ISceneManager *sceneManager, std::string const &path, irr::scene::ISceneNode *parent, irr::s32 id,
@@ -28,6 +28,9 @@ AModelObject::AModelObject(irr::scene::ISceneManager *sceneManager, std::string 
     this->_node->setScale(scale);
     this->_node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
     this->_node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
+    this->_node->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
+    this->_node->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
+    this->_node->addShadowVolumeSceneNode();
 
 }
 
