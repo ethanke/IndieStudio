@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Fri May 12 17:30:11 2017 Sousa Victor
+// Last update Sun May 14 00:03:29 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -58,9 +58,18 @@ void AGame::loop() {
             this->_world->stepSimulation(IGame::DeltaTime);
             objectOnFrame();
 
+            irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
+            this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
             this->_smgr->drawAll();
             this->_gui->drawAll();
+
+            if (this->_minimapCamera != NULL) {
+                this->_smgr->setActiveCamera(this->_minimapCamera);
+                this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
+                this->_smgr->drawAll();
+            }
+            this->_smgr->setActiveCamera(mainCam);
             this->_driver->endScene();
 
             int fps = this->_driver->getFPS();
@@ -77,6 +86,8 @@ void AGame::loop() {
 void AGame::objectOnFrame() {
     for (auto &obj: this->_objectList)
         obj->OnFrame();
+    if (this->_minimapCamera)
+        this->_minimapCamera->OnFrame();
 }
 
 irr::core::dimension2du const &AGame::getWindowSize() const {

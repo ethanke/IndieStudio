@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:20:36 2017 Sousa Victor
-// Last update Fri May 12 01:03:37 2017 Sousa Victor
+// Last update Sat May 13 23:40:38 2017 Sousa Victor
 //
 
 #ifndef AGAME_HPP_
@@ -24,6 +24,7 @@
 #include "EventDelegate.hpp"
 #include "IGameObject.hpp"
 #include "AGameCamera.hpp"
+#include "Minimap.hpp"
 
 namespace indie {
 
@@ -60,6 +61,7 @@ namespace indie {
         std::shared_ptr<irrBulletWorld> _world;
         std::vector<IGameObject *> _objectList;
         std::vector<EventDelegate *> _eventReceiverList;
+        AGameCamera *_minimapCamera;
 
     };
 

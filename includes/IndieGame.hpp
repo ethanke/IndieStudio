@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Fri May 12 01:23:52 2017 Sousa Victor
+// Last update Sat May 13 23:28:07 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -16,6 +16,7 @@
 #include "FolderLoader.hpp"
 #include "GameCube.hpp"
 #include "GameCameraFPS.hpp"
+#include "Minimap.hpp"
 #include "Car.hpp"
 
 namespace indie {

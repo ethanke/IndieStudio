@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:34:06 2017 Sousa Victor
-// Last update Sat May 13 22:34:57 2017 Sousa Victor
+// Last update Sat May 13 22:58:21 2017 Sousa Victor
 //
 
 #include "CarMotor.hpp"
@@ -20,6 +20,6 @@ CarMotor::~CarMotor() {
 
 }
 
-void CarMotor::OnFrame() {
+void CarMotor::OnFrame(int inputX, int inputY) {
     
 }
