@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun May 14 01:31:36 2017 Ethan Kerdelhue
+// Last update Sun May 14 01:53:20 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -20,6 +20,20 @@ IndieGame::~IndieGame() {
 }
 
 void IndieGame::addGameObject() {
+    irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
+    keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
+    keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
+    keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
+    keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
+    keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
+    keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
+    keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
+    keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
+    keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
+    keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
+    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
+    this->_objectList.push_back(cameraFps1);
+    cameraFps1->setFarValue(1000);
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
@@ -28,11 +42,11 @@ void IndieGame::addGameObject() {
     this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
     this->_objectList.push_back(this->_car);
 
-
-    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_device);
+    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver);
     map->setViewport(irr::core::rect<irr::s32>(30, this->_windowSize.Height - this->_windowSize.Height / 3.5, this->_windowSize.Height / 2.8, this->_windowSize.Height - 20));
     map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
     map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
+    map->Init();
     this->_minimapCamera = map;
 
 
@@ -127,18 +141,4 @@ void IndieGame::loadMap() {
         auto building2 = this->_world->addRigidBody(shape2);
         building2->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
     #endif
-
-    irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
-    keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
-    keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
-    keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
-    keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
-    keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
-    keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
-    keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
-    keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
-    keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
-    keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
-    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
-    cameraFps1->setFarValue(1000);
 }

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Sun May 14 00:03:29 2017 Sousa Victor
+// Last update Sun May 14 01:55:15 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -63,13 +63,10 @@ void AGame::loop() {
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
             this->_smgr->drawAll();
             this->_gui->drawAll();
-
             if (this->_minimapCamera != NULL) {
-                this->_smgr->setActiveCamera(this->_minimapCamera);
-                this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
-                this->_smgr->drawAll();
+                dynamic_cast<Minimap *>(this->_minimapCamera)->displayMap();
+                dynamic_cast<Minimap *>(this->_minimapCamera)->createMap();
             }
-            this->_smgr->setActiveCamera(mainCam);
             this->_driver->endScene();
 
             int fps = this->_driver->getFPS();
