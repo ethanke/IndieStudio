@@ -18,6 +18,7 @@ namespace indie {
     class APhysicObject: public AModelObject {
 
     public:
+        APhysicObject();
         APhysicObject(irr::scene::ISceneManager *sceneManager, std::string const &path, std::shared_ptr<irrBulletWorld> world,
                  irr::scene::ISceneNode *parent = 0, irr::s32 id = -1, irr::f32 mass = 0,
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),

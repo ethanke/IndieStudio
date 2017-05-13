@@ -23,6 +23,7 @@ namespace indie {
     class Car : public IGameObject {
 
     public:
+        Car();
         Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
         ~Car();
 

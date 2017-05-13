@@ -12,6 +12,10 @@
 
 using namespace indie;
 
+AGameObject::AGameObject() {
+    
+}
+
 AGameObject::AGameObject(irr::scene::ISceneManager *sceneManager) {
     this->_smgr = sceneManager;
 }

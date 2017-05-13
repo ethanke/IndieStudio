@@ -12,6 +12,10 @@
 
 using namespace indie;
 
+CarModel::CarModel() {
+    
+}
+
 CarModel::CarModel(irr::scene::ISceneManager *sceneManager, std::string const &path, std::shared_ptr<irrBulletWorld> world,
     irr::scene::ISceneNode *parent, irr::s32 id, irr::f32 mass, const irr::core::vector3df &position,
     const irr::core::vector3df &rotation, const irr::core::vector3df &scale)

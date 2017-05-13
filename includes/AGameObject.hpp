@@ -18,6 +18,7 @@ namespace indie {
     class AGameObject : public IGameObject {
 
     public:
+        AGameObject();
         AGameObject(irr::scene::ISceneManager *sceneManager);
         AGameObject(const AGameObject &obj);
         AGameObject &operator=(const AGameObject &obj);

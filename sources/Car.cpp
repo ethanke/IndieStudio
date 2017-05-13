@@ -12,6 +12,10 @@
 
 using namespace indie;
 
+Car::Car() {
+    
+}
+
 Car::Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver)
     : _carModel(sceneManager, "car/car1/Smallcar.obj", world, NULL, -1, 100, irr::core::vector3df(2, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1)) {
 

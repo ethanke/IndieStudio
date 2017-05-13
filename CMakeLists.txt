@@ -83,6 +83,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/CarModel.cpp
     ${PROJECT_SOURCE_DIR}/sources/Car.cpp
     ${PROJECT_SOURCE_DIR}/sources/SteeringWheel.cpp
+    ${PROJECT_SOURCE_DIR}/sources/Watcher/carWatcher.cpp
 )
 
 # build executable
@@ -121,6 +122,7 @@ endif()
 # location of header files
 include_directories(
     /usr/local/include/
+    ${PROJECT_SOURCE_DIR}/includes/Watcher/
     ${PROJECT_BINARY_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/

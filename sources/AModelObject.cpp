@@ -12,6 +12,10 @@
 
 using namespace indie;
 
+AModelObject::AModelObject() {
+    
+}
+
 AModelObject::AModelObject(irr::scene::ISceneManager *sceneManager, std::string const &path, irr::scene::ISceneNode *parent, irr::s32 id,
          const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
          : AGameObject(sceneManager) {
