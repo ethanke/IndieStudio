@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:28:43 2017 Sousa Victor
-// Last update Sun May 14 00:28:47 2017 Sousa Victor
+// Last update Sun May 14 00:41:59 2017 Sousa Victor
 //
 
 #ifndef CARMOTOR_HPP_
@@ -26,6 +26,8 @@ namespace indie {
     private:
         bool _debug;
         irr::gui::IGUIEnvironment* _gui;
+
+         IGUIStaticText *_inputGui;
 
     };
 
