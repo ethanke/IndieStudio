@@ -26,6 +26,9 @@ namespace indie {
         virtual bool OnEvent(const irr::SEvent& event);
         virtual bool IsKeyDown(irr::EKEY_CODE keyCode) const;
 
+        bool OnEnterGarage(void);
+
+
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
 

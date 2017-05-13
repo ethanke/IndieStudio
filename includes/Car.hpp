@@ -30,6 +30,7 @@ namespace indie {
         void OnFrame();
 
         AGameCamera *getCamera() const;
+        irr::core::vector3d<float> getPosition() const;
 
     protected:
         CarModel _carModel;

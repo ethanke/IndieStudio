@@ -13,7 +13,7 @@
 using namespace indie;
 
 Car::Car() {
-    
+
 }
 
 Car::Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver)
@@ -46,6 +46,11 @@ void Car::OnFrame() {
         this->_camera->getCamera()->setPosition(this->_camera->getCamera()->getPosition() + irr::core::vector3df(0, 0, -0.5));
     }
 }
+
+irr::core::vector3d<float>	Car::getPosition() const {
+    return _carModel.getPosition();
+}
+
 
 AGameCamera *Car::getCamera() const {
     return this->_camera;
