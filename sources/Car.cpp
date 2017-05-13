@@ -5,19 +5,20 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sat May 13 22:57:56 2017 Sousa Victor
+// Last update Sun May 14 00:33:08 2017 Sousa Victor
 //
 
 #include "Car.hpp"
 
 using namespace indie;
 
-Car::Car() {
+Car::Car(): CarMotor(NULL) {
 
 }
 
-Car::Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver)
-    : _carModel(sceneManager, "car/car1/Smallcar.obj", world, NULL, -1, 100, irr::core::vector3df(2, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1)) {
+Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver)
+    : _carModel(sceneManager, "car/car1/Smallcar.obj", world, NULL, -1, 100, irr::core::vector3df(2, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1))
+    , CarMotor(guiManager, true) {
 
     this->_eventReceiver = eventReceiver;
     this->_camera = new BasicCamera(sceneManager, 0, -1, irr::core::vector3df(-10, 42.5, 0), irr::core::vector3df(2, 36, 0));

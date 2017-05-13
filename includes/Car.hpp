@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sat May 13 22:36:14 2017 Sousa Victor
+// Last update Sun May 14 00:25:21 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -25,7 +25,7 @@ namespace indie {
 
     public:
         Car();
-        Car(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
+        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
         ~Car();
 
         void OnFrame();

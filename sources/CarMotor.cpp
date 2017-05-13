@@ -5,15 +5,16 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:34:06 2017 Sousa Victor
-// Last update Sat May 13 22:58:21 2017 Sousa Victor
+// Last update Sun May 14 00:30:16 2017 Sousa Victor
 //
 
 #include "CarMotor.hpp"
 
 using namespace indie;
 
-CarMotor::CarMotor() {
-
+CarMotor::CarMotor(irr::gui::IGUIEnvironment* guiManager, bool debugMode) {
+    this->_gui = guiManager;
+    this->_debug = debugMode;
 }
 
 CarMotor::~CarMotor() {
@@ -21,5 +22,7 @@ CarMotor::~CarMotor() {
 }
 
 void CarMotor::OnFrame(int inputX, int inputY) {
-    
+    if (this->_debug && this->_gui != NULL) {
+
+    }
 }

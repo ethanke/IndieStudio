@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun May 14 00:01:23 2017 Sousa Victor
+// Last update Sun May 14 00:26:18 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -31,7 +31,7 @@ void IndieGame::addGameObject() {
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
-    this->_car = new Car(this->_smgr, this->_world, this);
+    this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
     this->_objectList.push_back(this->_car);
 
     loadMap();
