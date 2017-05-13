@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun May 14 00:26:18 2017 Sousa Victor
+// Last update Sun May 14 01:31:36 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -22,17 +22,19 @@ IndieGame::~IndieGame() {
 void IndieGame::addGameObject() {
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
 
-    Minimap *map = new Minimap(this->_smgr, NULL, -1);
-    map->setViewport(irr::core::rect<irr::s32>(0, this->_windowSize.Height - this->_windowSize.Height / 4, this->_windowSize.Height / 4, this->_windowSize.Height));
-    map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
-    map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
-    this->_minimapCamera = map;
-
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
     this->_objectList.push_back(this->_car);
+
+
+    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_device);
+    map->setViewport(irr::core::rect<irr::s32>(30, this->_windowSize.Height - this->_windowSize.Height / 3.5, this->_windowSize.Height / 2.8, this->_windowSize.Height - 20));
+    map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
+    map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
+    this->_minimapCamera = map;
+
 
     loadMap();
 
