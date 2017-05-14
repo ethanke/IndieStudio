@@ -5,14 +5,14 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Sun May 14 02:53:46 2017 Ethan Kerdelhue
+// Last update Sun May 14 23:47:16 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
 
 using namespace indie;
 
-irr::f32 IGame::DeltaTime;
+irr::f32 DeltaTimer::DeltaTime;
 AGame::AGame(int width, int height) {
     this->_windowSize = irr::core::dimension2du(width, height);
 }
@@ -55,7 +55,7 @@ void AGame::loop() {
         processDeltaTime();
         if (this->_device->isWindowActive()) {
 
-            this->_world->stepSimulation(IGame::DeltaTime);
+            this->_world->stepSimulation(DeltaTimer::DeltaTime);
             objectOnFrame();
 
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
@@ -63,7 +63,7 @@ void AGame::loop() {
                 this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
                 this->_smgr->drawAll();
                 this->_gui->drawAll();
-                            
+
                             if (this->_minimapCamera != NULL) {
                                 this->_smgr->setActiveCamera(this->_minimapCamera);
                                 this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
@@ -107,6 +107,6 @@ bool AGame::OnEvent(const irr::SEvent& event) {
 
 void AGame::processDeltaTime() {
     const irr::u32 now = this->_device->getTimer()->getTime();
-    IGame::DeltaTime = (irr::f32)(now - this->_oldTime) / 1000.f;
+    DeltaTimer::DeltaTime = (irr::f32)(now - this->_oldTime) / 1000.f;
     this->_oldTime = now;
 }

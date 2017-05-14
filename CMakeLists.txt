@@ -72,6 +72,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/FolderLoader.cpp
     ${PROJECT_SOURCE_DIR}/sources/AGame.cpp
     ${PROJECT_SOURCE_DIR}/sources/IndieGame.cpp
+    ${PROJECT_SOURCE_DIR}/sources/Vector3.cpp
     ${PROJECT_SOURCE_DIR}/sources/AGameObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/GameCube.cpp
     ${PROJECT_SOURCE_DIR}/sources/AGameCamera.cpp
