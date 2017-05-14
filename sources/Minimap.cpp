@@ -5,7 +5,7 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Sat May 13 22:28:14 2017 Ethan Kerdelhue
-// Last update Sun May 14 01:55:43 2017 Sousa Victor
+// Last update Sun May 14 02:19:50 2017 Sousa Victor
 //
 
 #include "Minimap.hpp"
@@ -17,6 +17,11 @@ Minimap::Minimap(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode
       const irr::core::vector3df& scale) : AGameCamera(sceneManager, parent, id, position, rotation, scale) {
 
     _driver = driver;
+    _camera1 = this->_smgr->getActiveCamera();
+    _camera = this->_smgr->addCameraSceneNode(0, position,  irr::core::vector3df(2, 36, 0));
+    _camera->setPosition(irr::core::vector3df(-200, 125, 0));
+    //_camera->setRotation(irr::core::vector3df(2, 36, 0));
+    this->_smgr->setActiveCamera(_camera1);
 }
 
 Minimap::~Minimap()
@@ -29,27 +34,23 @@ void Minimap::OnFrame() {
 }
 
 void Minimap::Init() {
-    std::cout << "start init\n";
-    _camera1 = this->_smgr->getActiveCamera();
     if (_driver->queryFeature(irr::video::EVDF_RENDER_TO_TARGET))
     {
         _tMap = _driver->addRenderTargetTexture(irr::core::dimension2d<irr::u32>(_viewport.getWidth(), _viewport.getHeight()), "RTT1");
-       _camera2 = this->_smgr->addCameraSceneNode(0, irr::core::vector3df(10,10,-80), irr::core::vector3df(-10,10,-100));
    } else {
        std::cout << "can't render minimap on your pc" << std::endl;
    }
-   std::cout << "end init\n";
 }
 
 void Minimap::setCamera(irr::scene::ICameraSceneNode* camera)
 {
-   _camera2 = camera;
+   _camera = camera;
 }
 void Minimap::createMap()
 {
     _driver->setRenderTarget(_tMap);
 
-    this->_smgr->setActiveCamera(_camera2);
+    this->_smgr->setActiveCamera(_camera);
     this->_driver->setViewPort(this->_viewport);
     this->_smgr->drawAll();
     _driver->setRenderTarget(0, true, true, 0);
