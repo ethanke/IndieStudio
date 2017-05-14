@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun May 14 02:15:14 2017 Sousa Victor
+// Last update Sun May 14 02:54:32 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -42,11 +42,10 @@ void IndieGame::addGameObject() {
     this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
     this->_objectList.push_back(this->_car);
 
-    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver);
+    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car);
     map->setViewport(irr::core::rect<irr::s32>(30, this->_windowSize.Height - this->_windowSize.Height / 3.5, this->_windowSize.Height / 2.8, this->_windowSize.Height - 20));
     map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
     map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
-    map->Init();
     this->_minimapCamera = map;
 
 
