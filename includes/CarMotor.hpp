@@ -5,14 +5,16 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:28:43 2017 Sousa Victor
-// Last update Sun May 14 22:05:26 2017 Sousa Victor
+// Last update Mon May 15 11:31:56 2017 Sousa Victor
 //
 
 #ifndef CARMOTOR_HPP_
 #define CARMOTOR_HPP_
 
 //#include "CarWheel.hpp"
+#include "Utils.hpp"
 #include "Vector3.hpp"
+#include "Vector2.hpp"
 //
 // //C# TO C++ CONVERTER NOTE: The following .NET attribute has no direct equivalent in native C++:
 // //ORIGINAL LINE: [RequireComponent(typeof(Rigidbody))] public class VehicleController : MonoBehaviour
@@ -578,31 +580,33 @@
 // };
 // }
 //
-//
-//     class CarMotor {
-//
-//     public:
-//         CarMotor(irr::gui::IGUIEnvironment* guiManager, bool debugMode = false);
-//         ~CarMotor();
-//
-//         void OnFrame(int inputX, int inputY);
-//
-//     private:
-//         bool _debug;
-//         irr::gui::IGUIEnvironment* _gui;
-//
-//         irr::gui::IGUIStaticText *_inputGui;
-//
-//     };
-//
-// }
-//
-// #else
-//
-// namespace indie {
-//
-//     class CarMotor;
-//
-// }
+
+namespace indie {
+
+    class CarMotor {
+
+    public:
+        CarMotor(irr::gui::IGUIEnvironment* guiManager, bool debugMode = false);
+        ~CarMotor();
+
+        void OnFrame(int inputX, int inputY);
+
+    private:
+        bool _debug;
+        irr::gui::IGUIEnvironment* _gui;
+
+        irr::gui::IGUIStaticText *_inputGui;
+
+    };
+
+}
+
+#else
+
+namespace indie {
+
+    class CarMotor;
+
+}
 
 #endif /*CARMOTOR_HPP_*/

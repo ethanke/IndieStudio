@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:00:26 2017 Sousa Victor
-// Last update Sun May 14 23:46:27 2017 Sousa Victor
+// Last update Mon May 15 11:31:07 2017 Sousa Victor
 //
 
 #ifndef IGAME_HPP_
@@ -26,10 +26,6 @@ namespace indie {
 
         virtual irr::core::dimension2du const &getWindowSize() const = 0;
         virtual bool isRunning() const = 0;
-
-        static wchar_t* StrToWstr(std::string str) {
-            return const_cast<wchar_t*>(std::wstring(str.begin(), str.end()).c_str());
-        }
 
     };
 
