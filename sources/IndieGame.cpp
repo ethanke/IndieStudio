@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun May 14 02:54:32 2017 Ethan Kerdelhue
+// Last update Mon May 15 13:30:04 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -20,20 +20,20 @@ IndieGame::~IndieGame() {
 }
 
 void IndieGame::addGameObject() {
-    irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
-    keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
-    keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
-    keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
-    keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
-    keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
-    keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
-    keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
-    keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
-    keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
-    keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
-    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
-    this->_objectList.push_back(cameraFps1);
-    cameraFps1->setFarValue(1000);
+    // irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
+    // keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
+    // keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
+    // keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
+    // keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
+    // keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
+    // keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
+    // keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
+    // keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
+    // keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
+    // keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
+    // GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
+    // this->_objectList.push_back(cameraFps1);
+    // cameraFps1->setFarValue(1000);
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
