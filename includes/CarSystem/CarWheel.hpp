@@ -5,15 +5,45 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 21:22:35 2017 Sousa Victor
-// Last update Sun May 14 21:23:01 2017 Sousa Victor
+// Last update Mon May 15 17:58:21 2017 Sousa Victor
 //
 
 #ifndef CARWHEEL_HPP_
 #define CARWHEEL_HPP_
 
 #include "IGameObject.hpp"
+#include "Vector3.hpp"
+#include "Vector2.hpp"
 
 namespace indie {
+
+    class GroundMaterial {
+
+    public: enum SurfaceType {
+            Hard,
+            Soft
+        };
+
+    public:
+        GroundMaterial();
+        ~GroundMaterial();
+
+        float getGrip() const;
+        void setGrip(float grip);
+
+        float getDrag() const;
+        void setDrag(float drag);
+
+    private:
+        //PhysicMaterial physicMaterial;
+        float _grip;
+        float _drag;
+        SurfaceType _surfaceType;
+
+        // TireMarksRenderer marksRenderer;
+        // TireParticleEmitter particleEmitter;
+	};
+
 
     class Wheel {
 
@@ -55,6 +85,49 @@ namespace indie {
     };
 
 
+    class WheelHit {
+
+    public:
+        WheelHit();
+        ~WheelHit();
+
+        const Collider &getCollider() const;
+        void setCollider(const Collider &collider);
+
+        float getForce() const;
+        void setForce(float force);
+
+        const Vector3 &getForwardDir() const;
+        void setForwardDir(const Vector3 &forwardDir);
+
+        float getForwardSlip() const;
+        void setForwardSlip(float forwardSlip);
+
+        const Vector3 &getNormal() const;
+        void setNormal(const Vector3 &normal);
+
+        const Vector3 &getPoint() const;
+        void setPoint(const Vector3 &point);
+
+        const Vector3 &getSidewaysDir() const;
+        void setSidewaysDir(const Vector3 &sidewaysDir);
+
+        float getSidewaysSlip() const;
+        void setSidewaysSlip(float sidewaysSlip);
+
+
+    private:
+        Collider _collider;
+        float _force;
+		Vector3 _forwardDir;
+		float _forwardSlip;
+		Vector3 _normal;
+		Vector3 _point;
+		Vector3 _sidewaysDir;
+		float _sidewaysSlip;
+	};
+
+
     class WheelData {
 
     public:
@@ -91,8 +164,8 @@ namespace indie {
         float getSuspensionCompression() const;
         void setSuspensionCompression(float suspensionCompression) const;
 
-        float getSownforce() const;
-        void setSownforce(float downforce) const;
+        float getDownforce() const;
+        void setDownforce(float downforce) const;
 
         const Vector3 &getVelocity() const;
         void setVelocity(const Vector3 &velocity) const;
@@ -141,7 +214,6 @@ namespace indie {
 
         float getDownforceRatio() const;
         void setDownforceRatio(float downforceRatio) const;
-
 
     private:
     	Wheel _wheel;

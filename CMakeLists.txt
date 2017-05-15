@@ -84,11 +84,13 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/EventReceiver.cpp
     ${PROJECT_SOURCE_DIR}/sources/AModelObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/APhysicObject.cpp
-    ${PROJECT_SOURCE_DIR}/sources/CarModel.cpp
-    ${PROJECT_SOURCE_DIR}/sources/CarMotor.cpp
-    ${PROJECT_SOURCE_DIR}/sources/Car.cpp
     ${PROJECT_SOURCE_DIR}/sources/SteeringWheel.cpp
     ${PROJECT_SOURCE_DIR}/sources/Watcher/carWatcher.cpp
+
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarModel.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarMotor.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarWheel.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
 )
 
 # build executable
@@ -140,6 +142,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/includes/Watcher/
     ${PROJECT_BINARY_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes
+    ${PROJECT_SOURCE_DIR}/includes/CarSystem
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
     ${PROJECT_SOURCE_DIR}/lib/irrBullet/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
