@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 22:44:53 2017 Sousa Victor
-// Last update Mon May 15 00:09:55 2017 Sousa Victor
+// Last update Mon May 15 10:20:19 2017 John Doe
 //
 
 #include "Vector3.hpp"
@@ -21,7 +21,7 @@ Vector3::Vector3(float x, float y, float z) {
 }
 
 Vector3::~Vector3() {
-    
+
 }
 
 float &Vector3::operator [](int index) {
@@ -73,7 +73,7 @@ bool Vector3::operator == (Vector3 rhs) {
 }
 
 bool Vector3::operator != (Vector3 rhs) {
-	return !(*this == rhs);
+		return !(*this == rhs);
 }
 
 std::string Vector3::ToString() {
@@ -87,7 +87,11 @@ Vector3 Vector3::getnormalized() const {
 }
 
 float Vector3::getmagnitude() const {
-	return std::sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
+	#ifdef SYSTEM_LINUX
+			return sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
+	#else
+		return std::sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
+	#endif
 }
 
 float Vector3::getsqrMagnitude() const {
@@ -279,7 +283,11 @@ float Vector3::Angle(Vector3 from, Vector3 to) {
 
 float Vector3::Distance(Vector3 a, Vector3 b) {
 	Vector3 vector = Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
-	return std::sqrtf(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+	#ifdef SYSTEM_LINUX
+			return sqrtf(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+	#else
+			return std::sqrtf(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+	#endif
 }
 
 Vector3 Vector3::ClampMagnitude(Vector3 vector, float maxLength) {
@@ -293,7 +301,11 @@ Vector3 Vector3::ClampMagnitude(Vector3 vector, float maxLength) {
 }
 
 float Vector3::Magnitude(Vector3 a) {
-	return std::sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
+	#ifdef SYSTEM_LINUX
+			return sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
+	#else
+			return std::sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
+	#endif
 }
 
 float Vector3::SqrMagnitude(Vector3 a) {

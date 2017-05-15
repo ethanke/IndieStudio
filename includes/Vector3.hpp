@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 22:05:46 2017 Sousa Victor
-// Last update Sun May 14 23:59:23 2017 Sousa Victor
+// Last update Mon May 15 10:16:59 2017 John Doe
 //
 
 #ifndef VECTOR3_HPP_
@@ -14,6 +14,7 @@
 #include <sstream>
 #include <string>
 #include <cmath>
+#include <math.h>
 #include <vector>
 #include <limits>
 #include <stdexcept>
