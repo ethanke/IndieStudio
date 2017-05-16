@@ -85,7 +85,6 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/AModelObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/APhysicObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/SteeringWheel.cpp
-    ${PROJECT_SOURCE_DIR}/sources/Watcher/carWatcher.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/GroundMaterial.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarModel.cpp
@@ -94,6 +93,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/WheelHit.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Wheel.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/carWatcher.cpp
 )
 
 # build executable
@@ -142,7 +142,6 @@ endif()
 # location of header files
 include_directories(
     /usr/local/include/
-    ${PROJECT_SOURCE_DIR}/includes/Watcher/
     ${PROJECT_BINARY_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes/CarSystem
