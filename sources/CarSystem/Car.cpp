@@ -17,7 +17,7 @@ Car::Car(): CarMotor(NULL) {
 }
 
 Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver)
-    : _carModel(sceneManager, "car/car1/Smallcar.obj", world, NULL, -1, 100, irr::core::vector3df(2, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1))
+    : _carModel(sceneManager, "car/car1/Smallcar.obj", world, NULL, -1, 100, irr::core::vector3df(0, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1))
     , CarMotor(guiManager, true) {
 
     this->_eventReceiver = eventReceiver;

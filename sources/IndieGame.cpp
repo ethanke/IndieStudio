@@ -50,9 +50,13 @@ void IndieGame::addGameObject() {
 
     Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
 
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, irr::core::vector3df(0, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(384.2, 0, 4.4)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(744.1, 0, 502.7)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(313.75, 0, -215.9)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(-1700.6, 0, 70.4)));
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
+    this->_objectList.push_back(_carWatch);
 
     Settings *settings = new Settings(this->_gui);
 

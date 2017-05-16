@@ -25,7 +25,7 @@ GameCube::GameCube(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrB
 
 }
 
-GameCube::GameCube(const GameCube &obj) : AGameObject (obj._smgr), IMeshSceneNode(obj._cube->getParent(), obj._cube->getSceneManager(), obj._cube->getID(), obj._cube->getPosition(), obj._cube->getRotation(), obj._cube->getRotation()) {
+GameCube::GameCube(const GameCube &obj) : AGameObject (obj._smgr), IMeshSceneNode(obj._cube->getParent(), obj._cube->getSceneManager(), obj._cube->getID(), obj._cube->getPosition(), obj._cube->getRotation(), obj._cube->getScale()) {
     this->_cube = obj._cube;
 }
 

@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:21 2017 Lucas Gambini
-** Last update Tue May 16 18:23:52 2017 Lucas Gambini
+** Last update Wed May 17 00:30:00 2017 Lucas Gambini
 */
 
 #ifndef CAR_WATCHER_HPP
@@ -27,6 +27,8 @@ namespace indie {
         virtual ~carWatcher();
 
         virtual void OnFrame();
+        bool isCarInCheck(GameCheckpoint const &ch) const;
+        bool inLine(float a, float new_a) const;
 
     private:
         irr::scene::ISceneManager* _smgr;

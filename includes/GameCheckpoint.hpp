@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Tue May 16 15:40:29 2017 Lucas Gambini
+** Last update Wed May 17 00:40:40 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -17,13 +17,18 @@ namespace indie {
 
     class GameCheckpoint : public AGameObject, public irr::scene::IMeshSceneNode {
 
+    public: enum Type {
+        GARAGE,
+        CONCESSIONNAIRE,
+        COURSE
+    };
+
     public:
         GameCheckpoint(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world,
-                 irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id,
+                 irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id, Type type,
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &scale = irr::core::vector3df(1.0f, 1.0f, 1.0f));
-         GameCheckpoint(const GameCheckpoint &obj);
          GameCheckpoint &operator=(const GameCheckpoint &obj);
         ~GameCheckpoint();
 
@@ -32,6 +37,7 @@ namespace indie {
         //CCubeSceneNode
         void render();
         const irr::core::aabbox3d<irr::f32>& getBoundingBox() const;
+        Type getChType() const;
 
         //IMeshSceneNode
         void setMesh(irr::scene::IMesh* mesh);
@@ -42,8 +48,7 @@ namespace indie {
 
     private:
         irr::scene::IMeshSceneNode *_cylindre;
-        ICollisionShape *_shape;
-        IRigidBody *_body;
+        Type _type;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {

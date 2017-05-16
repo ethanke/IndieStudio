@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Tue May 16 18:24:02 2017 Lucas Gambini
+** Last update Wed May 17 00:44:20 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -25,16 +25,36 @@ carWatcher::~carWatcher()
 
 }
 
+bool carWatcher::inLine(float a, float new_a) const
+{
+    return (a >= new_a && a <= new_a + 5);
+}
+
+bool carWatcher::isCarInCheck(GameCheckpoint const &ch) const {
+    bool xIn = inLine(_car->getPosition().X, ch.getPosition().X)
+    || inLine(ch.getPosition().X, _car->getPosition().X);
+
+    bool zIn = inLine(_car->getPosition().Z, ch.getPosition().Z)
+    || inLine(ch.getPosition().Z, _car->getPosition().Z);
+
+    return xIn && zIn;
+}
+
 void carWatcher::OnFrame() {
+    if (this->_car == NULL)
+        return;
     irr::core::vector3df cpos = this->_car->getPosition();
-    for (auto &x : this->_checkpoints) {
-        if (cpos.X >= x.getPosition().X - 5 && cpos.X <= x.getPosition().X + 5 &&
-            cpos.Y >= x.getPosition().Y - 5 && cpos.Y >= x.getPosition().Y + 5)
+
+    for (auto const &x : this->_checkpoints) {
+        if (isCarInCheck(x) == true)
         {
-            x.setMesh(this->_smgr->getGeometryCreator()->createCylinderMesh(5, 2000, 50, irr::video::SColor(150, 0, 255, 0), true, 0.f));
-            _eventReceiver->OnEnterGarage();
-        } else {
-            x.setMesh(this->_smgr->getGeometryCreator()->createCylinderMesh(5, 2000, 50, irr::video::SColor(150, 255, 0, 0), true, 0.f));
+            switch (x.getChType()) {
+                case GameCheckpoint::GARAGE:
+                    _eventReceiver->OnEnterGarage();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
