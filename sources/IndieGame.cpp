@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Mon May 15 13:30:04 2017 Sousa Victor
+// Last update Tue May 16 18:50:50 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -47,6 +47,8 @@ void IndieGame::addGameObject() {
     // map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
     // map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
     // this->_minimapCamera = map;
+
+    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
 
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, irr::core::vector3df(0, 0, 0)));
 
@@ -146,5 +148,5 @@ void IndieGame::loadMap() {
 }
 
 void IndieGame::OnFrame() {
-    
+
 }
