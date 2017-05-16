@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue May 16 18:50:50 2017 Ethan Kerdelhue
+// Last update Wed May 17 01:19:55 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -55,7 +55,7 @@ void IndieGame::addGameObject() {
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(313.75, 0, -215.9)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(-1700.6, 0, 70.4)));
 
-    this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
+    this->_carWatch = new carWatcher(/*this->_car*/NULL, this->_checkpoints, this, this->_smgr);
     this->_objectList.push_back(_carWatch);
 
     Settings *settings = new Settings(this->_gui);
