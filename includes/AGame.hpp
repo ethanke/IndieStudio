@@ -38,6 +38,8 @@ namespace indie {
         virtual void Start();
         virtual void Clean();
 
+        virtual void OnFrame() = 0;
+
         irr::core::dimension2du const &getWindowSize() const;
         bool isRunning() const;
 

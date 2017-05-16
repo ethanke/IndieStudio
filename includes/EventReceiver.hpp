@@ -29,7 +29,7 @@ namespace indie {
         bool OnEnterGarage(void);
 
 
-    private:
+    protected:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
 
     };

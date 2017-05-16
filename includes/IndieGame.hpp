@@ -28,6 +28,8 @@ namespace indie {
         IndieGame(int width = 1920, int height = 1080);
         ~IndieGame();
 
+        virtual void OnFrame();
+
     private:
         void addGameObject();
         void addEventReceiver();

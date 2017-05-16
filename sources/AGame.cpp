@@ -57,6 +57,7 @@ void AGame::loop() {
         if (this->_device->isWindowActive()) {
 
             this->_world->stepSimulation(DeltaTimer::DeltaTime);
+            this->OnFrame();
             objectOnFrame();
 
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();

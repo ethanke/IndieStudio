@@ -144,3 +144,7 @@ void IndieGame::loadMap() {
         building2->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
     #endif
 }
+
+void IndieGame::OnFrame() {
+    
+}
