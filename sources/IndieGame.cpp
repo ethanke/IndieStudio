@@ -54,6 +54,8 @@ void IndieGame::addGameObject() {
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
 
+    Settings *settings = new Settings(this->_gui);
+
     loadMap();
 
 

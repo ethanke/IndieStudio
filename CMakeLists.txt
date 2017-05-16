@@ -95,6 +95,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Wheel.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/carWatcher.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GUI/Settings.cpp
 )
 
 # build executable
@@ -149,6 +150,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
     ${PROJECT_SOURCE_DIR}/lib/irrBullet/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
+    ${PROJECT_SOURCE_DIR}/includes/GUI/
 )
 
 

@@ -19,6 +19,7 @@
 #include "Minimap.hpp"
 #include "Car.hpp"
 #include "carWatcher.hpp"
+#include "Settings.hpp"
 
 namespace indie {
 
