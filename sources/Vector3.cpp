@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 22:44:53 2017 Sousa Victor
-// Last update Mon May 15 10:20:19 2017 John Doe
+// Last update Mon May 15 18:46:23 2017 Sousa Victor
 //
 
 #include "Vector3.hpp"
@@ -61,7 +61,7 @@ Vector3 Vector3::operator / (float d) {
 	return Vector3(this->x / d, this->y / d, this->z / d);
 }
 
-Vector3 Vector3::operator = (Vector3 rhs) {
+Vector3 Vector3::operator = (Vector3 const &rhs) {
     this->x = rhs.x;
     this->y = rhs.y;
     this->z = rhs.z;

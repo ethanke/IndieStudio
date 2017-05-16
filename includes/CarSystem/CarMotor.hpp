@@ -5,13 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:28:43 2017 Sousa Victor
-// Last update Mon May 15 15:58:41 2017 Sousa Victor
+// Last update Tue May 16 12:31:12 2017 Sousa Victor
 //
 
 #ifndef CARMOTOR_HPP_
 #define CARMOTOR_HPP_
 
-#include "CarWheel.hpp"
+#include "WheelData.hpp"
 #include "Utils.hpp"
 #include "Vector3.hpp"
 #include "Vector2.hpp"

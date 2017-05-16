@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 22:05:46 2017 Sousa Victor
-// Last update Mon May 15 10:16:59 2017 John Doe
+// Last update Mon May 15 18:46:03 2017 Sousa Victor
 //
 
 #ifndef VECTOR3_HPP_
@@ -43,7 +43,7 @@ namespace indie
 		Vector3 operator - ();
 		Vector3 operator * (float d);
 		Vector3 operator / (float d);
-        Vector3 operator = (Vector3 rhs);
+        Vector3 operator = (Vector3 const &rhs);
 		bool operator == (Vector3 rhs);
 		bool operator != (Vector3 rhs);
 		virtual std::string ToString();

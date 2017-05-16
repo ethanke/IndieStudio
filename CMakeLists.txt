@@ -87,9 +87,12 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/SteeringWheel.cpp
     ${PROJECT_SOURCE_DIR}/sources/Watcher/carWatcher.cpp
 
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/GroundMaterial.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarModel.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarMotor.cpp
-    ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarWheel.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/WheelData.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/WheelHit.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/Wheel.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
 )
 
