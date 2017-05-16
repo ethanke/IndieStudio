@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May 15 00:48:15 2017 Sousa Victor
-// Last update Mon May 15 13:01:20 2017 Sousa Victor
+// Last update Tue May 16 18:30:08 2017 Romain Fagnola
 //
 
 #include "Vector2.hpp"
@@ -86,7 +86,13 @@ Vector2 Vector2::getnormalized() const {
 }
 
 float Vector2::getmagnitude() const {
-	return std::sqrtf(this->x * this->x + this->y * this->y);
+#ifdef SYSTEM_LINUX
+  return sqrtf(this->x * this->x + this->y * this->y);
+#else
+  return std::sqrtf(this->x * this->x + this->y * this->y);
+#endif
+  
+
 }
 
 float Vector2::getsqrMagnitude() const {
