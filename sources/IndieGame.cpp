@@ -20,34 +20,37 @@ IndieGame::~IndieGame() {
 }
 
 void IndieGame::addGameObject() {
-    // irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
-    // keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
-    // keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
-    // keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
-    // keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
-    // keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
-    // keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
-    // keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
-    // keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
-    // keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
-    // keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
-    // GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
-    // this->_objectList.push_back(cameraFps1);
-    // cameraFps1->setFarValue(1000);
+    irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
+    keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
+    keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
+    keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
+    keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
+    keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
+    keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
+    keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
+    keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
+    keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
+    keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
+    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
+    this->_objectList.push_back(cameraFps1);
+    cameraFps1->setFarValue(1000);
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
-    this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
-    this->_objectList.push_back(this->_car);
+    // this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
+    // this->_objectList.push_back(this->_car);
 
-    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car);
-    map->setViewport(irr::core::rect<irr::s32>(30, this->_windowSize.Height - this->_windowSize.Height / 3.5, this->_windowSize.Height / 2.8, this->_windowSize.Height - 20));
-    map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
-    map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
-    this->_minimapCamera = map;
+    // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car);
+    // map->setViewport(irr::core::rect<irr::s32>(30, this->_windowSize.Height - this->_windowSize.Height / 3.5, this->_windowSize.Height / 2.8, this->_windowSize.Height - 20));
+    // map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
+    // map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
+    // this->_minimapCamera = map;
 
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, irr::core::vector3df(0, 0, 0)));
+
+    this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
 
     loadMap();
 

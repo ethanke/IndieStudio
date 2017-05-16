@@ -11,12 +11,14 @@
 #ifndef INDIEGAME_HPP
 #define INDIEGAME_HPP
 
+#include <vector>
 #include "AGame.hpp"
-
 #include "GameCube.hpp"
 #include "GameCameraFPS.hpp"
+#include "GameCheckpoint.hpp"
 #include "Minimap.hpp"
 #include "Car.hpp"
+#include "carWatcher.hpp"
 
 namespace indie {
 
@@ -34,6 +36,8 @@ namespace indie {
 
     private:
         Car *_car;
+        std::vector<GameCheckpoint> _checkpoints;
+        carWatcher *_carWatch;
 
     };
 

@@ -85,6 +85,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/AModelObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/APhysicObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/SteeringWheel.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GameCheckpoint.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/GroundMaterial.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarModel.cpp

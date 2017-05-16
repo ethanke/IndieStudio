@@ -15,6 +15,7 @@ using namespace indie;
 irr::f32 DeltaTimer::DeltaTime;
 AGame::AGame(int width, int height) {
     this->_windowSize = irr::core::dimension2du(width, height);
+    this->_minimapCamera = NULL;
 }
 
 AGame::~AGame() {

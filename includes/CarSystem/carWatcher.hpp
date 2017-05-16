@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:21 2017 Lucas Gambini
-** Last update Sun May 14 00:22:29 2017 Lucas Gambini
+** Last update Tue May 16 18:23:52 2017 Lucas Gambini
 */
 
 #ifndef CAR_WATCHER_HPP
@@ -15,7 +15,7 @@
 #include <vector3d.h>
 #include "Car.hpp"
 #include "EventReceiver.hpp"
-#include <functional>
+#include "GameCheckpoint.hpp"
 #include <map>
 
 namespace indie {
@@ -23,17 +23,16 @@ namespace indie {
     class carWatcher : public IGameObject {
 
     public:
-        carWatcher(Car const &, EventReceiver *, irr::scene::ISceneManager*);
+        carWatcher(Car *, std::vector<GameCheckpoint> const &, EventReceiver *, irr::scene::ISceneManager *);
         virtual ~carWatcher();
 
         virtual void OnFrame();
 
     private:
         irr::scene::ISceneManager* _smgr;
-        Car _car;
-        std::map<std::map<int, int>, std::function<void(int)>> _checkpoints;
+        Car *_car;
         EventReceiver *_eventReceiver;
-
+        std::vector<GameCheckpoint> _checkpoints;
     };
 
 }
