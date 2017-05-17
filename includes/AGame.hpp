@@ -52,12 +52,8 @@ namespace indie {
         virtual void loop();
         virtual void objectOnFrame();
 
-        // void setLoading(bool);
-        // bool isLoading() const;
-
     protected:
         bool _isRunning;
-        // bool _isLoading;
         irr::u32 _oldTime;
         irr::core::dimension2du _windowSize;
         irr::IrrlichtDevice *_device;

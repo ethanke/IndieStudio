@@ -19,7 +19,7 @@ IndieGame::~IndieGame() {
 
 }
 
-void IndieGame::addGameObjectRoutine() {
+void IndieGame::addGameObject() {
 
     irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
     keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
@@ -55,6 +55,8 @@ void IndieGame::addGameObjectRoutine() {
 
     // Settings *settings = new Settings(this->_gui);
 
+
+
     loadMap();
 
     irr::scene::ILightSceneNode *sun_node;
@@ -72,13 +74,6 @@ void IndieGame::addGameObjectRoutine() {
     this->_smgr->setAmbientLight(irr::video::SColorf(1.85, 1.85, 2, 2.5));
 
     // setLoading(false);
-}
-
-void IndieGame::addGameObject() {
-    // setLoading(true);
-    // std::thread thread(&IndieGame::addGameObjectRoutine, this);
-    addGameObjectRoutine();
-    // thread.detach();
 }
 
 void IndieGame::addEventReceiver() {

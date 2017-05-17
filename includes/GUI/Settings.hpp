@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:15:48 2017 Vacca_J
-** Last update Mon May 15 20:04:52 2017 Vacca_J
+** Last update Thu May 18 01:09:05 2017 Lucas Gambini
 */
 
 #ifndef SETTING_HPP_
@@ -16,12 +16,10 @@
 #include <IGUIContextMenu.h>
 #include <IGUIStaticText.h>
 #include <IGUISkin.h>
-#include "IGameObject.hpp"
 
 namespace indie {
 
-
-class Settings : public IGameObject {
+class Settings {
 
 private:
   //irr::gui::IGUISkin *_skin;
@@ -30,11 +28,10 @@ private:
   irr::gui::IGUIContextMenu *_menu;
   irr::gui::IGUIButton *_button;
 public:
-  void OnFrame();
 
   Settings (irr::gui::IGUIEnvironment* gui);
-
   virtual ~Settings ();
+
   };
 
 }

@@ -33,7 +33,6 @@ namespace indie {
         virtual void OnFrame();
 
     private:
-        void addGameObjectRoutine();
         void addGameObject();
         void addEventReceiver();
 

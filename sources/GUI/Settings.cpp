@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:39:14 2017 Vacca_J
-** Last update Tue May 16 23:21:10 2017 Lucas Gambini
+** Last update Thu May 18 01:06:21 2017 Lucas Gambini
 */
 
 #include <Settings.hpp>
@@ -27,11 +27,6 @@ Settings::Settings(irr::gui::IGUIEnvironment* gui)
 }
 
 Settings::~Settings()
-{
-
-}
-
-void Settings::OnFrame()
 {
 
 }
