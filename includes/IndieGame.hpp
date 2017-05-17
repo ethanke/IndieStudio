@@ -11,6 +11,7 @@
 #ifndef INDIEGAME_HPP
 #define INDIEGAME_HPP
 
+#include <thread>
 #include <vector>
 #include "AGame.hpp"
 #include "GameCube.hpp"
@@ -32,6 +33,7 @@ namespace indie {
         virtual void OnFrame();
 
     private:
+        void addGameObjectRoutine();
         void addGameObject();
         void addEventReceiver();
 
@@ -50,7 +52,7 @@ namespace indie {
 
 namespace indie {
     class IGame;
-    class IndieGame: public AGame;
+    class IndieGame : public AGame;
 }
 
 #endif /*INDIEGAME_HPP*/

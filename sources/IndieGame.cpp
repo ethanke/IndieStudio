@@ -19,7 +19,8 @@ IndieGame::~IndieGame() {
 
 }
 
-void IndieGame::addGameObject() {
+void IndieGame::addGameObjectRoutine() {
+
     irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
     keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
     keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
@@ -34,19 +35,12 @@ void IndieGame::addGameObject() {
     GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
     this->_objectList.push_back(cameraFps1);
     cameraFps1->setFarValue(1000);
-    this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     // this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
     // this->_objectList.push_back(this->_car);
-
-    // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car);
-    // map->setViewport(irr::core::rect<irr::s32>(30, this->_windowSize.Height - this->_windowSize.Height / 3.5, this->_windowSize.Height / 2.8, this->_windowSize.Height - 20));
-    // map->setAspectRatio(1.f * map->getViewport().getWidth() / map->getViewport().getHeight());
-    // map->setFOV(map->getFOV() * map->getViewport().getHeight() / this->_windowSize.Height);
-    // this->_minimapCamera = map;
 
     Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     this->_objectList.push_back(map);
@@ -59,12 +53,10 @@ void IndieGame::addGameObject() {
     this->_carWatch = new carWatcher(/*this->_car*/NULL, this->_checkpoints, this, this->_smgr);
     this->_objectList.push_back(_carWatch);
 
-    Settings *settings = new Settings(this->_gui);
+    // Settings *settings = new Settings(this->_gui);
 
     loadMap();
 
-
-    // Setup the light source node
     irr::scene::ILightSceneNode *sun_node;
     irr::video::SLight sun_data;
     sun_node = this->_smgr->addLightSceneNode();
@@ -78,6 +70,15 @@ void IndieGame::addGameObject() {
     sun_node->setPosition(irr::core::vector3df(0, 0, 0));
     sun_node->setRotation(irr::core::vector3df(0, 0, 0));
     this->_smgr->setAmbientLight(irr::video::SColorf(1.85, 1.85, 2, 2.5));
+
+    // setLoading(false);
+}
+
+void IndieGame::addGameObject() {
+    // setLoading(true);
+    // std::thread thread(&IndieGame::addGameObjectRoutine, this);
+    addGameObjectRoutine();
+    // thread.detach();
 }
 
 void IndieGame::addEventReceiver() {

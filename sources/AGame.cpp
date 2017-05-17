@@ -19,7 +19,6 @@ AGame::AGame(int width, int height) {
 }
 
 AGame::~AGame() {
-
 }
 
 
@@ -35,13 +34,24 @@ void AGame::Setup() {
     this->_world.reset(createIrrBulletWorld(this->_device, true));
     this->_world->setGravity(irr::core::vector3df(0,-10,0));
 
+    this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
+    this->_image = this->_driver->getTexture("misc/loading.jpg");
+    irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
+    this->_device->run();
+    this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
+    this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
+    this->_driver->endScene();
+
     addGameObject();
     addEventReceiver();
+
 }
 
 void AGame::Start() {
     this->_isRunning = true;
+
     this->loop();
+
     this->_isRunning = false;
 }
 
@@ -55,25 +65,22 @@ void AGame::loop() {
     while(this->_device->run()) {
         processDeltaTime();
         if (this->_device->isWindowActive()) {
-
             this->_world->stepSimulation(DeltaTimer::DeltaTime);
             this->OnFrame();
             objectOnFrame();
 
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
-                            this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
-                this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
+            this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
+            this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
+            this->_smgr->drawAll();
+            this->_gui->drawAll();
+            if (this->_minimapCamera != NULL) {
+                this->_smgr->setActiveCamera(this->_minimapCamera);
+                this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
                 this->_smgr->drawAll();
-                this->_gui->drawAll();
-
-                            if (this->_minimapCamera != NULL) {
-                                this->_smgr->setActiveCamera(this->_minimapCamera);
-                                this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
-                                this->_smgr->drawAll();
-                              }
-                              this->_smgr->setActiveCamera(mainCam);
-                this->_driver->endScene();
-
+            }
+            this->_smgr->setActiveCamera(mainCam);
+            this->_driver->endScene();
             int fps = this->_driver->getFPS();
             irr::core::stringw str = L"Q3 [";
             str += this->_driver->getName();
@@ -112,3 +119,11 @@ void AGame::processDeltaTime() {
     DeltaTimer::DeltaTime = (irr::f32)(now - this->_oldTime) / 1000.f;
     this->_oldTime = now;
 }
+
+// void AGame::setLoading(bool loading) {
+//     this->_isLoading = loading;
+// }
+//
+// bool AGame::isLoading(void) const {
+//     return this->_isLoading;
+// }

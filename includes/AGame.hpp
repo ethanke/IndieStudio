@@ -52,11 +52,16 @@ namespace indie {
         virtual void loop();
         virtual void objectOnFrame();
 
+        // void setLoading(bool);
+        // bool isLoading() const;
+
     protected:
         bool _isRunning;
+        // bool _isLoading;
         irr::u32 _oldTime;
         irr::core::dimension2du _windowSize;
         irr::IrrlichtDevice *_device;
+
         irr::video::IVideoDriver* _driver;
         irr::scene::ISceneManager* _smgr;
         irr::gui::IGUIEnvironment* _gui;
@@ -64,6 +69,9 @@ namespace indie {
         std::vector<IGameObject *> _objectList;
         std::vector<EventDelegate *> _eventReceiverList;
         AGameCamera *_minimapCamera;
+
+    private:
+        irr::video::ITexture *_image;
 
     };
 
