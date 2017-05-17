@@ -5,22 +5,23 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Sat May 13 20:33:23 2017 Ethan Kerdelhue
-// Last update Sun May 14 02:54:15 2017 Ethan Kerdelhue
+// Last update Wed May 17 02:45:28 2017 Ethan Kerdelhue
 //
 
 #ifndef MINIMAP_HPP
   #define MINIMAP_HPP
 
-#include "AGameCamera.hpp"
+#include <IVideoDriver.h>
+#include <IGeometryCreator.h>
+#include "AGameObject.hpp"
 #include "Car.hpp"
-#include <thread>
 
 namespace indie {
 
-  class Minimap : public AGameCamera {
+  class Minimap : public AGameObject {
 
   public:
-    Minimap (irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent, irr::s32 id, Car *car,
+    Minimap (irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent, irr::s32 id, Car *car, irr::video::IVideoDriver* driver, irr::IrrlichtDevice *device,
           const irr::core::vector3df& position = irr::core::vector3df(0,0,0),
           const irr::core::vector3df& rotation = irr::core::vector3df(0,0,0),
           const irr::core::vector3df& scale = irr::core::vector3df(1.0f,1.0f,1.0f));
@@ -38,9 +39,11 @@ namespace indie {
     protected:
         irr::core::rect<irr::s32>     _viewport;
         Car                           *_car;
+        irr::scene::ICameraSceneNode  *_camera;
+        irr::scene::IMesh     *_plane;
+        irr::scene::IMeshSceneNode *_plane_node;
 
   };
 }
-
 
 #endif
