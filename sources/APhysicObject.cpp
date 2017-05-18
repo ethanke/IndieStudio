@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:54:49 2017 Sousa Victor
-// Last update Fri May 12 18:03:25 2017 Sousa Victor
+// Last update Thu May 18 19:28:36 2017 Sousa Victor
 //
 
 #include "APhysicObject.hpp"
@@ -13,16 +13,14 @@
 using namespace indie;
 
 APhysicObject::APhysicObject() {
-    
+
 }
 
-APhysicObject::APhysicObject(irr::scene::ISceneManager *sceneManager, std::string const &path, std::shared_ptr<irrBulletWorld> world,
+APhysicObject::APhysicObject(irr::scene::ISceneManager *sceneManager, std::string const &path,
          irr::scene::ISceneNode *parent, irr::s32 id, irr::f32 mass,
          const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
          : AModelObject(sceneManager, path, parent, id, position, rotation, scale) {
 
-    this->_shape = new IBoxShape(this->_node, mass);
-    this->_body = world->addRigidBody(this->_shape);
 
 }
 
@@ -32,8 +30,6 @@ APhysicObject::APhysicObject(const APhysicObject &obj) : AModelObject(obj._smgr,
 
 APhysicObject &APhysicObject::operator=(const APhysicObject &obj) {
     AModelObject::operator=(obj);
-    this->_shape = obj._shape;
-    this->_body = obj._body;
     return *this;
 }
 

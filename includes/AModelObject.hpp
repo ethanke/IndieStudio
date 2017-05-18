@@ -5,12 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:30:11 2017 Sousa Victor
-// Last update Fri May 12 17:22:05 2017 Sousa Victor
+// Last update Thu May 18 19:28:00 2017 Sousa Victor
 //
 
 #ifndef IMODELOBJECT_HPP_
 #define IMODELOBJECT_HPP_
 
+#include <string>
 #include "AGameObject.hpp"
 
 namespace indie {

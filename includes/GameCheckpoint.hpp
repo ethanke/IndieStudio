@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Wed May 17 00:40:40 2017 Lucas Gambini
+** Last update Thu May 18 19:26:06 2017 Sousa Victor
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -24,7 +24,7 @@ namespace indie {
     };
 
     public:
-        GameCheckpoint(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world,
+        GameCheckpoint(irr::scene::ISceneManager *sceneManager,
                  irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id, Type type,
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),

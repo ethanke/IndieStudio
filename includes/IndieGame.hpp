@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Mon May 15 10:40:47 2017 John Doe
+// Last update Thu May 18 19:24:04 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -14,7 +14,6 @@
 #include <thread>
 #include <vector>
 #include "AGame.hpp"
-#include "GameCube.hpp"
 #include "GameCameraFPS.hpp"
 #include "GameCheckpoint.hpp"
 #include "Minimap.hpp"

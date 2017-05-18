@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 01:10:00 2017 Sousa Victor
-// Last update Fri May 12 03:03:36 2017 Sousa Victor
+// Last update Thu May 18 19:22:15 2017 Sousa Victor
 //
 
 #ifndef CARMODEL_HPP_
@@ -19,7 +19,7 @@ namespace indie {
 
     public:
         CarModel();
-        CarModel(irr::scene::ISceneManager *sceneManager, std::string const &path, std::shared_ptr<irrBulletWorld> world,
+        CarModel(irr::scene::ISceneManager *sceneManager, std::string const &path,
             irr::scene::ISceneNode *parent = 0, irr::s32 id = -1, irr::f32 mass = 10,
             const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
             const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),
@@ -27,10 +27,6 @@ namespace indie {
         ~CarModel();
 
         void OnFrame();
-
-        IRigidBody *getBody() const {
-            return this->_body;
-        }
 
     };
 

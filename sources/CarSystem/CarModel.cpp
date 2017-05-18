@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 01:12:02 2017 Sousa Victor
-// Last update Thu May 11 22:18:56 2017 Sousa Victor
+// Last update Thu May 18 19:21:50 2017 Sousa Victor
 //
 
 #include "CarModel.hpp"
@@ -13,13 +13,13 @@
 using namespace indie;
 
 CarModel::CarModel() {
-    
+
 }
 
-CarModel::CarModel(irr::scene::ISceneManager *sceneManager, std::string const &path, std::shared_ptr<irrBulletWorld> world,
+CarModel::CarModel(irr::scene::ISceneManager *sceneManager, std::string const &path,
     irr::scene::ISceneNode *parent, irr::s32 id, irr::f32 mass, const irr::core::vector3df &position,
     const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
-    : APhysicObject(sceneManager, path, world, parent, id, mass, position, rotation, scale) {
+    : APhysicObject(sceneManager, path, parent, id, mass, position, rotation, scale) {
 
 }
 

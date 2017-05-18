@@ -5,14 +5,14 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Wed May 17 00:40:34 2017 Lucas Gambini
+** Last update Thu May 18 19:25:57 2017 Sousa Victor
 */
 
 #include "GameCheckpoint.hpp"
 
 using namespace indie;
 
-GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, std::shared_ptr<irrBulletWorld> world, irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id,
+GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id,
                    Type type, const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
                    : AGameObject (sceneManager), IMeshSceneNode(parent, sceneManager, id, position, rotation, scale) {
 
