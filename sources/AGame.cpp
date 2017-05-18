@@ -66,19 +66,19 @@ void AGame::loop() {
         processDeltaTime();
         if (this->_device->isWindowActive()) {
             this->_world->stepSimulation(DeltaTimer::DeltaTime);
-            this->OnFrame();
-            objectOnFrame();
-
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
             this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
-            this->_smgr->drawAll();
-            this->_gui->drawAll();
+            this->_smgr->drawAll(); // NE PAS
+            this->OnFrame(); // CHANGER
+            objectOnFrame(); // CET
+            this->_gui->drawAll(); // ORDRE DE CALL
             if (this->_minimapCamera != NULL) {
                 this->_smgr->setActiveCamera(this->_minimapCamera);
                 this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
                 this->_smgr->drawAll();
             }
+
             this->_smgr->setActiveCamera(mainCam);
             this->_driver->endScene();
             int fps = this->_driver->getFPS();

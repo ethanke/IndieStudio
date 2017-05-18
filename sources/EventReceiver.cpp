@@ -33,8 +33,14 @@ EventReceiver::~EventReceiver() {
 }
 
 bool EventReceiver::OnEvent(const irr::SEvent& event) {
-    if (event.EventType == irr::EET_KEY_INPUT_EVENT)
+    if (event.EventType == irr::EET_KEY_INPUT_EVENT){
+        if (this->_keyIsDown[event.KeyInput.Key] && !event.KeyInput.PressedDown) {
+            this->OnReleaseKey(event.KeyInput.Key);
+        } else if (!this->_keyIsDown[event.KeyInput.Key] && event.KeyInput.PressedDown){
+            this->OnEnterKey(event.KeyInput.Key);
+        }
         this->_keyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
+    }
     return false;
 }
 

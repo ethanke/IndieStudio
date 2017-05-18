@@ -21,6 +21,7 @@
 #include "Car.hpp"
 #include "carWatcher.hpp"
 #include "Settings.hpp"
+#include "Garage.hpp"
 
 namespace indie {
 
@@ -37,6 +38,9 @@ namespace indie {
         void addEventReceiver();
 
         void loadMap();
+
+        virtual void OnEnterKey(irr::EKEY_CODE keyCode);
+        virtual void OnReleaseKey(irr::EKEY_CODE keyCode);
 
     private:
         Car *_car;
