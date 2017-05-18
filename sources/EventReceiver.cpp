@@ -44,10 +44,6 @@ bool EventReceiver::OnEvent(const irr::SEvent& event) {
     return false;
 }
 
-bool EventReceiver::OnEnterGarage(void) {
-    return true;
-}
-
 bool EventReceiver::IsKeyDown(irr::EKEY_CODE keyCode) const {
     return this->_keyIsDown[keyCode];
 }

@@ -50,15 +50,10 @@ void IndieGame::addGameObject() {
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(313.75, 0, -215.9)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, this->_world, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(-1700.6, 0, 70.4)));
 
-    this->_carWatch = new carWatcher(/*this->_car*/NULL, this->_checkpoints, this, this->_smgr);
+    this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
     this->_objectList.push_back(_carWatch);
 
     // Settings *settings = new Settings(this->_gui);
-
-    Garage *_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
-    _garage->SetupGUI();
-    this->_objectList.push_back(_garage);
-    // _garage.setVisible(false);
 
     loadMap();
 
@@ -76,7 +71,8 @@ void IndieGame::addGameObject() {
     sun_node->setRotation(irr::core::vector3df(0, 0, 0));
     this->_smgr->setAmbientLight(irr::video::SColorf(1.85, 1.85, 2, 2.5));
 
-    // setLoading(false);
+    this->_garage = NULL;
+
 }
 
 void IndieGame::addEventReceiver() {
@@ -155,6 +151,15 @@ void IndieGame::loadMap() {
 
 void IndieGame::OnFrame() {
 
+}
+
+void IndieGame::OnEnterGarage(void) {
+    if (!this->_garage) {
+        this->_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
+        this->_garage->SetupGUI();
+        this->_objectList.push_back(this->_garage);
+    }
+    _garage->setVisible(true);
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {

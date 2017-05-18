@@ -41,11 +41,13 @@ namespace indie {
 
         virtual void OnEnterKey(irr::EKEY_CODE keyCode);
         virtual void OnReleaseKey(irr::EKEY_CODE keyCode);
+        virtual void OnEnterGarage(void);
 
     private:
         Car *_car;
         std::vector<GameCheckpoint> _checkpoints;
         carWatcher *_carWatch;
+        Garage *_garage;
 
     };
 

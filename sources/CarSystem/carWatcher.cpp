@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Wed May 17 01:22:53 2017 Lucas Gambini
+** Last update Thu May 18 18:45:37 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -30,12 +30,12 @@ bool carWatcher::inLine(float a, float new_a) const
     return (a >= new_a && a <= new_a + 5);
 }
 
-bool carWatcher::isCarInCheck(GameCheckpoint const &ch) const {
-    bool xIn = inLine(_car->getPosition().X, ch.getPosition().X)
-    || inLine(ch.getPosition().X, _car->getPosition().X);
+bool carWatcher::isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df const &cpos) const {
+    bool xIn = inLine(cpos.X, ch.getPosition().X)
+    || inLine(ch.getPosition().X, cpos.X);
 
-    bool zIn = inLine(_car->getPosition().Z, ch.getPosition().Z)
-    || inLine(ch.getPosition().Z, _car->getPosition().Z);
+    bool zIn = inLine(cpos.Z, ch.getPosition().Z)
+    || inLine(ch.getPosition().Z, cpos.Z);
 
     return xIn && zIn;
 }
@@ -44,9 +44,8 @@ void carWatcher::OnFrame() {
     if (this->_car == NULL)
         return;
     irr::core::vector3df cpos = this->_car->getPosition();
-
     for (auto const &x : this->_checkpoints) {
-        if (isCarInCheck(x) == true)
+        if (isCarInCheck(x, cpos) == true)
         {
             switch (x.getChType()) {
                 case GameCheckpoint::GARAGE:

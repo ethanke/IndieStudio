@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:26 2017 Lucas Gambini
-** Last update Thu May 18 14:00:03 2017 Lucas Gambini
+** Last update Thu May 18 18:35:23 2017 Lucas Gambini
 */
 
 #include "Garage.hpp"
@@ -36,10 +36,10 @@ void Garage::SetupGUI() {
     this->_leave = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 120), 0, -1,
             L"Leave Garage", L"Leave Garage");
 
-    this->_title = this->_gui->addStaticText(L"Garage", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
+    this->_title = this->_gui->addStaticText(L"Garage", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200), false, false, 0, -1, false);
     this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
 
-    this->_isVisible = true;
+    this->_isVisible = false;
 }
 
 void Garage::setVisible(bool visible) {
@@ -62,5 +62,4 @@ void Garage::OnFrame(void) {
         this->_repair->setVisible(false);
         this->_leave->setVisible(false);
     }
-
 }

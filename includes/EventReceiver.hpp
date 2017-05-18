@@ -29,7 +29,7 @@ namespace indie {
         virtual void OnEnterKey(irr::EKEY_CODE keyCode) = 0;
         virtual void OnReleaseKey(irr::EKEY_CODE keyCode) = 0;
 
-        bool OnEnterGarage(void);
+        virtual void OnEnterGarage(void) = 0;
 
 
     private:
