@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Thu May 18 03:06:27 2017 Sousa Victor
+// Last update Thu May 18 16:56:52 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -13,7 +13,7 @@
 using namespace indie;
 
 Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver)
-    : _carModel(sceneManager, "car/Car1/Ferrari LaFerrari F150 2014.obj", world, NULL, -1, 100, irr::core::vector3df(2, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1)) {
+    : _carModel(sceneManager, "car/Car1/SV.obj", world, NULL, -1, 100, irr::core::vector3df(2, 36, 0), irr::core::vector3df(180, 82.5, 175), irr::core::vector3df(1, 1, 1)) {
 
     this->_motor = new CarMotor(guiManager, _carModel.getBody(), true);
     this->_eventReceiver = eventReceiver;

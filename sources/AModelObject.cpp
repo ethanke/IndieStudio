@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:37:40 2017 Sousa Victor
-// Last update Thu May 18 02:03:55 2017 Sousa Victor
+// Last update Thu May 18 16:57:12 2017 Sousa Victor
 //
 
 #include "AModelObject.hpp"
@@ -26,10 +26,8 @@ AModelObject::AModelObject(irr::scene::ISceneManager *sceneManager, std::string 
     this->_node->setPosition(position);
     this->_node->setRotation(rotation);
     this->_node->setScale(scale);
-    this->_node->setMaterialFlag(irr::video::EMF_LIGHTING, true);
+    this->_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     this->_node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
-    this->_node->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
-    this->_node->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
     this->_node->addShadowVolumeSceneNode();
 
 }
