@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:34:06 2017 Sousa Victor
-// Last update Thu May 18 03:17:50 2017 Sousa Victor
+// Last update Thu May 18 17:25:43 2017 Sousa Victor
 //
 
 #include "CarMotor.hpp"
@@ -17,7 +17,9 @@ CarMotor::CarMotor(irr::gui::IGUIEnvironment* guiManager, IRigidBody *rigidbody,
     this->_debug = debugMode;
     this->m_rigidbody = rigidbody;
 
-    this->_inputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 50, 500, 100), true, true, 0, -1, true);
+    this->_inputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 50, 300, 65), true, true, 0, -1, true);
+    this->_steerInputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 65, 300, 80), true, true, 0, -1, true);
+    this->_steerAngleGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 80, 300, 140), true, true, 0, -1, true);
 
     setupCar();
     startCar();
@@ -125,10 +127,10 @@ void CarMotor::OnFrame(int inputX, int inputY) {
 
     ComputeSteerAngle();
 
-    // for (auto wd in m_wheelData) {
-    //     UpdateSteering(wd);
-    //     UpdateTransform(wd);
-    // }
+    for (auto wd : m_wheelData) {
+        UpdateSteering(wd);
+        //UpdateTransform(wd);
+    }
     //
     // if (needDisableColliders)
     //     EnableCollidersRaycast();
@@ -139,11 +141,21 @@ void CarMotor::OnFrame(int inputX, int inputY) {
     //     // debugText = string.Format("Drag Pos: {0}  Drag Velocity: {1,5:0.00}  Drag Friction: {2,4:0.00}", localDragPosition, localDragVelocity.magnitude, localDragFriction);
     // }
 
-    if (this->_debug && this->_gui != NULL) {
+    if (this->_debug) {
         std::stringstream ss;
         ss << "intput,  X: " << inputX << ",  Y: " << inputY << std::endl;
-        ss << "steer value: " << m_steerAngle << std::endl;
         this->_inputGui->setText(Utils::StrToWstr(ss.str()));
+
+        std::stringstream ss1;
+        ss1 << "steer value: " << m_steerAngle << std::endl;
+        this->_steerInputGui->setText(Utils::StrToWstr(ss1.str()));
+
+        std::stringstream ss2;
+        ss2 << "Wheel 1: " << m_wheelData[0].getSteerAngle() << std::endl;
+        ss2 << "Wheel 2: " << m_wheelData[1].getSteerAngle() << std::endl;
+        ss2 << "Wheel 3: " << m_wheelData[2].getSteerAngle() << std::endl;
+        ss2 << "Wheel 4: " << m_wheelData[3].getSteerAngle();
+        this->_steerAngleGui->setText(Utils::StrToWstr(ss2.str()));
     }
 }
 
@@ -168,6 +180,14 @@ void CarMotor::ComputeSteerAngle ()
         assistedSteerAngle = m_speedAngle * steeringAssistRatio * speedFactor * CarMotor::InverseLerp(2.0f, 3.0f, std::fabs(m_speedAngle));
 
     m_steerAngle = inputSteerAngle + assistedSteerAngle < -maxSteerAngle ? -maxSteerAngle : inputSteerAngle + assistedSteerAngle > +maxSteerAngle ? +maxSteerAngle : inputSteerAngle + assistedSteerAngle;
+}
+
+void CarMotor::UpdateSteering (WheelData wd){
+    if (wd.getWheel().getSteer())
+        wd.setSteerAngle(m_steerAngle);
+	else
+		wd.setSteerAngle(0.0f);
+	//wd.collider.steerAngle = wd.getSteerAngle();
 }
 
 float CarMotor::InverseLerp(float a, float b, float value)

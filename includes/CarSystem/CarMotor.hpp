@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat May 13 22:28:43 2017 Sousa Victor
-// Last update Thu May 18 03:11:29 2017 Sousa Victor
+// Last update Thu May 18 17:19:24 2017 Sousa Victor
 //
 
 #ifndef CARMOTOR_HPP_
@@ -32,6 +32,8 @@ namespace indie {
         bool _debug;
         irr::gui::IGUIEnvironment* _gui;
         irr::gui::IGUIStaticText *_inputGui;
+        irr::gui::IGUIStaticText *_steerInputGui;
+        irr::gui::IGUIStaticText *_steerAngleGui;
 
         std::vector<Wheel> wheels;
 
@@ -139,6 +141,7 @@ namespace indie {
     private:
         void ConfigureCenterOfMass();
         void ComputeSteerAngle();
+        void UpdateSteering(WheelData wd);
 
     private:
         static float InverseLerp(float a, float b, float value);
