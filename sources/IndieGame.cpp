@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 18 19:27:23 2017 Sousa Victor
+// Last update Thu May 18 19:49:02 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -52,6 +52,11 @@ void IndieGame::addGameObject() {
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
     this->_objectList.push_back(_carWatch);
+
+
+    // Menu *_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
+    // _menu->SetupGUI();
+    // this->_objectList.push_back(_menu);
 
     // Settings *settings = new Settings(this->_gui);
 
