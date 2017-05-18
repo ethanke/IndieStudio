@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Mon May 15 13:29:09 2017 Sousa Victor
+// Last update Thu May 18 01:54:59 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -21,10 +21,9 @@
 
 namespace indie {
 
-    class Car : public IGameObject, public CarMotor {
+    class Car : public IGameObject {
 
     public:
-        Car();
         Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
         ~Car();
 
@@ -35,6 +34,7 @@ namespace indie {
 
     protected:
         CarModel _carModel;
+        CarMotor *_motor;
         BasicCamera *_camera;
         EventReceiver *_eventReceiver;
 

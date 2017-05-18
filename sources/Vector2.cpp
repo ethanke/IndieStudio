@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May 15 00:48:15 2017 Sousa Victor
-// Last update Tue May 16 18:30:08 2017 Romain Fagnola
+// Last update Thu May 18 03:14:45 2017 Sousa Victor
 //
 
 #include "Vector2.hpp"
@@ -59,7 +59,7 @@ Vector2 Vector2::operator / (float d) {
 	return Vector2(this->x / d, this->y / d);
 }
 
-Vector2 Vector2::operator =(const Vector2 &rhs) {
+Vector2 &Vector2::operator =(const Vector2 &rhs) {
     this->x = rhs.x;
     this->y = rhs.y;
     return *this;
@@ -91,7 +91,7 @@ float Vector2::getmagnitude() const {
 #else
   return std::sqrtf(this->x * this->x + this->y * this->y);
 #endif
-  
+
 
 }
 
