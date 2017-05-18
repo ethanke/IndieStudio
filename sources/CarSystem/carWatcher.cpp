@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Thu May 18 18:45:37 2017 Lucas Gambini
+** Last update Thu May 18 18:53:39 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -41,9 +41,9 @@ bool carWatcher::isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df con
 }
 
 void carWatcher::OnFrame() {
-    if (this->_car == NULL)
-        return;
-    irr::core::vector3df cpos = this->_car->getPosition();
+    // if (this->_car == NULL)
+    //     return;
+    irr::core::vector3df cpos = /*this->_car->*/this->_smgr->getActiveCamera()->getPosition();
     for (auto const &x : this->_checkpoints) {
         if (isCarInCheck(x, cpos) == true)
         {
