@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 21:22:35 2017 Sousa Victor
-// Last update Tue May 16 12:29:41 2017 Sousa Victor
+// Last update Wed May 17 01:12:26 2017 Sousa Victor
 //
 
 #ifndef WHEELDATA_HPP_
@@ -13,53 +13,12 @@
 
 #include "IGameObject.hpp"
 #include "GroundMaterial.hpp"
+#include "Wheel.hpp"
 #include "WheelHit.hpp"
 #include "Vector3.hpp"
 #include "Vector2.hpp"
 
 namespace indie {
-
-    class Wheel {
-
-    public:
-        Wheel();
-        Wheel(const Wheel &rhs);
-        ~Wheel();
-        Wheel &operator =(const Wheel &rhs);
-
-
-        // // WheelCollider const &getWheelCollider() const;
-        // // void setWheelCollider(WheelCollider const &wheelCollider);
-        //
-        // Transform const &getWheelTransform() const;
-        // void setWheelTransform(Transform const &wheelTransform);
-        //
-        // Transform const &getCaliperTransform() const;
-        // void setCaliperTransform(Transform const &caliperTransform);
-
-        bool getSteer() const;
-        void setSteer(bool steer);
-
-        bool getDrive() const;
-        void setDrive(bool drive);
-
-        bool getBrake() const;
-        void setBrake(bool brake);
-
-        bool getHandBrake() const;
-        void setHandBrake(bool handbrake);
-
-
-    private:
-        // WheelCollider _wheelCollider;
-        // Transform _wheelTransform;
-        // Transform _caliperTransform;
-        bool _steer;
-        bool _drive;
-        bool _brake;
-        bool _handbrake;
-
-    };
 
     class WheelData {
 

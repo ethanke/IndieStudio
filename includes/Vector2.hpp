@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May 15 00:38:56 2017 Sousa Victor
-// Last update Mon May 15 13:01:32 2017 Sousa Victor
+// Last update Thu May 18 03:14:52 2017 Sousa Victor
 //
 
 #ifndef VECTOR2_HPP_
@@ -37,7 +37,7 @@ namespace indie {
 		Vector2 operator - ();
 		Vector2 operator *(float d);
 		Vector2 operator / (float d);
-        Vector2 operator = (const Vector2 &rhs);
+        Vector2 &operator = (const Vector2 &rhs);
 		bool operator == (Vector2 rhs);
 		bool operator != (Vector2 rhs);
         virtual std::string ToString();
