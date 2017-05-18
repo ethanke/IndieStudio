@@ -17,9 +17,16 @@ CarMotor::CarMotor(irr::gui::IGUIEnvironment* guiManager, IRigidBody *rigidbody,
     this->_debug = debugMode;
     this->m_rigidbody = rigidbody;
 
-    this->_inputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 50, 300, 65), true, true, 0, -1, true);
-    this->_steerInputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 65, 300, 80), true, true, 0, -1, true);
-    this->_steerAngleGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 80, 300, 140), true, true, 0, -1, true);
+
+    irr::gui::IGUISkin* skin = this->_gui->getSkin();
+    irr::gui::IGUIFont* font = this->_gui->getFont("misc/fontcourier.bmp");
+    if (font)
+        skin->setFont(font);
+    skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
+
+    this->_inputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 50, 500, 105), false, false, 0, -1, false);
+    this->_steerInputGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 150, 500, 250), false, false, 0, -1, false);
+    this->_steerAngleGui = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(50, 300, 500, 400), false, false, 0, -1, false);
 
     setupCar();
     startCar();
