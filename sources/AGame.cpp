@@ -30,6 +30,7 @@ void AGame::Setup() {
     this->_driver = this->_device->getVideoDriver();
     this->_smgr = this->_device->getSceneManager();
     this->_gui = this->_device->getGUIEnvironment();
+    this->_device->getCursorControl()->setVisible(false);
 
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
     this->_image = this->_driver->getTexture("misc/loading.jpg");

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 18 19:27:23 2017 Sousa Victor
+// Last update Thu May 18 19:49:02 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -39,6 +39,7 @@ void IndieGame::addGameObject() {
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
+    this->_car = NULL; //NE PAS ENLEVER / COMMENTER
     this->_car = new Car(this->_smgr, this->_gui, this);
     this->_objectList.push_back(this->_car);
 
@@ -52,6 +53,11 @@ void IndieGame::addGameObject() {
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
     this->_objectList.push_back(_carWatch);
+
+
+    // Menu *_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
+    // _menu->SetupGUI();
+    // this->_objectList.push_back(_menu);
 
     // Settings *settings = new Settings(this->_gui);
 
@@ -125,7 +131,11 @@ void IndieGame::OnEnterGarage(void) {
         this->_garage->SetupGUI();
         this->_objectList.push_back(this->_garage);
     }
-    _garage->setVisible(true);
+    this->_garage->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    if (this->_car) {
+        this->_car->getCamera()->setInputReceiverEnabled(true);
+    }
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {

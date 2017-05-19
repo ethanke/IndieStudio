@@ -88,6 +88,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/carWatcher.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Settings.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Garage.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GUI/Menu.cpp
 )
 
 # build executable

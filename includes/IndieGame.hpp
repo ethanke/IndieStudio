@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Thu May 18 19:24:04 2017 Sousa Victor
+// Last update Thu May 18 19:46:20 2017 John Doe
 //
 
 #ifndef INDIEGAME_HPP
@@ -21,6 +21,7 @@
 #include "carWatcher.hpp"
 #include "Settings.hpp"
 #include "Garage.hpp"
+#include "Menu.hpp"
 
 namespace indie {
 
