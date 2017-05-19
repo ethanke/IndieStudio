@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Thu May 18 19:25:57 2017 Sousa Victor
+** Last update Fri May 19 20:17:00 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -23,12 +23,14 @@ GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32
     this->_cylindre->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
     this->_type = type;
+    this->_isBusy = false;
 }
 
 GameCheckpoint &GameCheckpoint::operator=(const GameCheckpoint &obj) {
     AGameObject::operator=(obj);
     this->_cylindre = obj._cylindre;
     this->_type = obj._type;
+    this->_isBusy = obj._isBusy;
     return *this;
 }
 
@@ -43,6 +45,14 @@ void GameCheckpoint::OnFrame() {
 
 GameCheckpoint::Type GameCheckpoint::getChType() const {
     return _type;
+}
+
+bool GameCheckpoint::isBusy() const {
+    return this->_isBusy;
+}
+
+void GameCheckpoint::setBusy(bool value) {
+    this->_isBusy = value;
 }
 
 //CCubeSceneNode

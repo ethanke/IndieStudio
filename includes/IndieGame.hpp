@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Fri May 19 16:12:24 2017 John Doe
+// Last update Fri May 19 20:49:14 2017 John Doe
 //
 
 #ifndef INDIEGAME_HPP
@@ -32,6 +32,7 @@ namespace indie {
         ~IndieGame();
 
         virtual void OnFrame();
+        virtual bool OnEvent(const irr::SEvent& event);
 
     private:
         void addGameObject();
@@ -45,6 +46,7 @@ namespace indie {
         virtual void OnLeavingGarage(void);
 
         virtual void OnOpenningMenu();
+        virtual void OnLeavingMenu();
 
     private:
         Car *_car;

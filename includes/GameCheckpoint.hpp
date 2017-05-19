@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Thu May 18 19:26:06 2017 Sousa Victor
+** Last update Fri May 19 20:09:58 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -38,6 +38,8 @@ namespace indie {
         void render();
         const irr::core::aabbox3d<irr::f32>& getBoundingBox() const;
         Type getChType() const;
+        bool isBusy() const;
+        void setBusy(bool);
 
         //IMeshSceneNode
         void setMesh(irr::scene::IMesh* mesh);
@@ -49,6 +51,7 @@ namespace indie {
     private:
         irr::scene::IMeshSceneNode *_cylindre;
         Type _type;
+        bool _isBusy;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {

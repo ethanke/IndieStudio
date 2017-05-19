@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:44:55 2017 Full Name
-** Last update	Fri May 19 16:00:29 2017 Full Name
+** Last update	Fri May 19 20:51:42 2017 Full Name
 */
 
 #ifndef _MENU_HPP_
@@ -18,6 +18,14 @@
 namespace indie {
 
     class Menu : public IGameObject {
+
+    public: enum MENU_BTNS
+    {
+        SETTING = 7878,
+        RESUME,
+        QUIT,
+    };
+
     public:
         Menu(irr::gui::IGUIEnvironment*, irr::video::IVideoDriver*, irr::core::dimension2du);
         ~Menu();

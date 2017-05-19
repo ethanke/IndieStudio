@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri May 19 21:25:03 2017 Sousa Victor
+// Last update Fri May 19 21:29:41 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -47,8 +47,8 @@ void IndieGame::addGameObject() {
     // this->_objectList.push_back(map);
 
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(384.2, 0, 4.4)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(744.1, 0, 502.7)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(313.75, 0, -215.9)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::COURSE, irr::core::vector3df(744.1, 0, 502.7)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::CONCESSIONNAIRE, irr::core::vector3df(313.75, 0, -215.9)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(-1700.6, 0, 70.4)));
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
@@ -126,6 +126,36 @@ void IndieGame::OnFrame() {
 
 }
 
+bool IndieGame::OnEvent(const irr::SEvent& event){
+    if (event.EventType == irr::EET_GUI_EVENT) {
+        irr::s32 id = event.GUIEvent.Caller->getID();
+        switch(event.GUIEvent.EventType) {
+            case irr::gui::EGET_BUTTON_CLICKED:
+                switch(id) {
+                    case Garage::REPAIR:
+                        //this->_car->repair();
+                        break;
+                    case Garage::LEAVE:
+                        OnLeavingGarage();
+                        break;
+                    case Menu::SETTING:
+                        //VACCA
+                        break;
+                    case Menu::RESUME:
+                        OnLeavingMenu();
+                        break;
+                    case Menu::QUIT:
+                        //QUIT
+                        break;
+                }
+            default:
+                break;
+         }
+    }
+
+    return EventReceiver::OnEvent(event);
+}
+
 void IndieGame::OnEnterGarage(void) {
     if (!this->_garage) {
         this->_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
@@ -138,8 +168,13 @@ void IndieGame::OnEnterGarage(void) {
 }
 
 void IndieGame::OnLeavingGarage(void) {
-    if (this->_garage)
-        this->_garage->setVisible(false);
+    this->_garage->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::OnLeavingMenu() {
+    this->_menu->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
@@ -152,10 +187,16 @@ void IndieGame::OnOpenningMenu()
         this->_menu->SetupGUI();
         this->_objectList.push_back(this->_menu);
     }
-    this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-    this->_menu->isVisible() == true ? this->_menu->setVisible(false) :
+    if (this->_menu->isVisible() == true) {
+        this->_device->getCursorControl()->setVisible(false);
+        this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+        this->_menu->setVisible(false);
+    } else {
+        this->_device->getCursorControl()->setVisible(true);
+        this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
         this->_menu->setVisible(true);
+    }
+
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {

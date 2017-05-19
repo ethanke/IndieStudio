@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:26 2017 Lucas Gambini
-** Last update Fri May 19 17:59:54 2017 Lucas Gambini
+** Last update Fri May 19 19:03:45 2017 Lucas Gambini
 */
 
 #include "Garage.hpp"
@@ -32,10 +32,10 @@ void Garage::SetupGUI() {
         skin->setFont(font);
     skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
 
-    this->_repair = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 120, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 40), 0, -1,
-            L"Repair car", L"Repair car");
-    this->_leave = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 120), 0, -1,
-            L"Leave Garage", L"Leave Garage");
+    this->_repair = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 120, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 40), 0, REPAIR,
+            L"Repair car", L"");
+    this->_leave = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 120), 0, LEAVE,
+            L"Leave Garage", L"");
 
     this->_title = this->_gui->addStaticText(L"Garage", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 120), false, false, 0, -1, false);
     this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);

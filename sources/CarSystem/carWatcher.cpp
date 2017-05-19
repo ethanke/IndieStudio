@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Thu May 18 18:53:39 2017 Lucas Gambini
+** Last update Fri May 19 20:43:29 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -14,10 +14,10 @@ using namespace indie;
 
 carWatcher::carWatcher(Car *car, std::vector<GameCheckpoint> const &checkpoints, EventReceiver *eventReceiver, irr::scene::ISceneManager* smgr)
 {
-    _smgr = smgr;
-    _car = car;
-    _eventReceiver = eventReceiver;
-    _checkpoints = checkpoints;
+    this->_smgr = smgr;
+    this->_car = car;
+    this->_eventReceiver = eventReceiver;
+    this->_checkpoints = checkpoints;
 }
 
 carWatcher::~carWatcher()
@@ -27,7 +27,7 @@ carWatcher::~carWatcher()
 
 bool carWatcher::inLine(float a, float new_a) const
 {
-    return (a >= new_a && a <= new_a + 5);
+    return (a > new_a && a < new_a + 5);
 }
 
 bool carWatcher::isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df const &cpos) const {
@@ -43,10 +43,12 @@ bool carWatcher::isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df con
 void carWatcher::OnFrame() {
     // if (this->_car == NULL)
     //     return;
+    bool check;
     irr::core::vector3df cpos = /*this->_car->*/this->_smgr->getActiveCamera()->getPosition();
-    for (auto const &x : this->_checkpoints) {
-        if (isCarInCheck(x, cpos) == true)
+    for (auto &x : this->_checkpoints) {
+        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false)
         {
+            x.setBusy(true);
             switch (x.getChType()) {
                 case GameCheckpoint::GARAGE:
                     _eventReceiver->OnEnterGarage();
@@ -54,6 +56,8 @@ void carWatcher::OnFrame() {
                 default:
                     break;
             }
+        } else if (check == false) {
+            x.setBusy(false);
         }
     }
 }
