@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Fri May 19 21:58:56 2017 Lucas Gambini
-** Last update Fri May 19 22:05:18 2017 Lucas Gambini
+** Last update Fri May 19 22:10:48 2017 Lucas Gambini
 */
 
 #ifndef IGUI_HPP
@@ -18,7 +18,7 @@ namespace indie {
     class IGUI : public IGameObject {
 
     public:
-        virtual ~IGUI();
+        virtual ~IGUI(){};
         virtual void SetupGUI() = 0;
         virtual void OnFrame() = 0;
         virtual bool isVisible() const = 0;
