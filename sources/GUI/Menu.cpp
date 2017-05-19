@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:46:39 2017 Full Name
-** Last update	Fri May 19 20:52:59 2017 Full Name
+** Last update Fri May 19 22:46:02 2017 Lucas Gambini
 */
 
 #include "Menu.hpp"
@@ -25,12 +25,6 @@ Menu::~Menu(){
 }
 
 void Menu::SetupGUI() {
-    irr::gui::IGUISkin* skin = this->_gui->getSkin();
-    irr::gui::IGUIFont* font = this->_gui->getFont("misc/fontcourier.bmp");
-    if (font)
-        skin->setFont(font);
-    skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
-
     this->_setting = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 60), NULL, 7878,
             L"Settings", L"Settings");
     this->_resume = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 40), NULL, 7879,

@@ -34,6 +34,14 @@ void AGame::Setup() {
 
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
     this->_image = this->_driver->getTexture("misc/loading.jpg");
+
+    irr::gui::IGUISkin* skin = this->_gui->getSkin();
+    irr::gui::IGUIFont* font = this->_gui->getFont("misc/fontcourier.bmp");
+    if (font)
+        skin->setFont(font);
+    skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
+
+
     irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
     this->_device->run();
     this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));

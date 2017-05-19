@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:26 2017 Lucas Gambini
-** Last update Fri May 19 19:03:45 2017 Lucas Gambini
+** Last update Fri May 19 22:45:14 2017 Lucas Gambini
 */
 
 #include "Garage.hpp"
@@ -26,12 +26,6 @@ Garage::~Garage()
 }
 
 void Garage::SetupGUI() {
-    irr::gui::IGUISkin* skin = this->_gui->getSkin();
-    irr::gui::IGUIFont* font = this->_gui->getFont("misc/fontcourier.bmp");
-    if (font)
-        skin->setFont(font);
-    skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
-
     this->_repair = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 120, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 40), 0, REPAIR,
             L"Repair car", L"");
     this->_leave = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 120), 0, LEAVE,
