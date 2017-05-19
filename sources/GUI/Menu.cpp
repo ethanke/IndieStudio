@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:46:39 2017 Full Name
-** Last update Fri May 19 22:46:02 2017 Lucas Gambini
+** Last update	Fri May 19 23:46:52 2017 Full Name
 */
 
 #include "Menu.hpp"
@@ -18,6 +18,7 @@ Menu::Menu(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *driver, irr
     this->_driver = driver;
     this->_windowSize = windowSize;
     this->_isVisible = false;
+    this->_options = NULL;
 }
 
 Menu::~Menu(){
@@ -25,12 +26,12 @@ Menu::~Menu(){
 }
 
 void Menu::SetupGUI() {
-    this->_setting = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 60), NULL, 7878,
-            L"Settings", L"Settings");
-    this->_resume = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 40), NULL, 7879,
-            L"Resume", L"Resume");
-    this->_quit = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), NULL, 7880,
-            L"Quit", L"Quit");
+    this->_setting = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 60), NULL, RESUME,
+            L"Resume", L"");
+    this->_resume = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 40), NULL, SETTING,
+            L"Settings", L"");
+    this->_quit = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), NULL, QUIT,
+            L"Quit", L"");
      this->_title = this->_gui->addStaticText(L"Menu", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 140));
      this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
 }
@@ -41,6 +42,25 @@ void Menu::setVisible(bool visible) {
 
 bool Menu::isVisible(void) const {
     return this->_isVisible;
+}
+
+void Menu::OnEnterSetting()
+{
+    if (!_options)
+    {
+        this->_options = new Settings(this->_gui, this->_driver, this->_windowSize);
+        this->_options->SetupGUI();
+        this->_isVisible = false;
+    }
+    else
+    {
+        this->_options->setVisible(true);
+    }
+}
+
+IGUI *Menu::getSettings()
+{
+    return _options;
 }
 
 void Menu::OnFrame()

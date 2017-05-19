@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri May 19 22:25:38 2017 John Doe
+// Last update Fri May 19 23:40:31 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -139,6 +139,10 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         OnLeavingGarage();
                         break;
                     case Menu::SETTING:
+                        _menu->OnEnterSetting();
+                        this->_objectList.push_back(this->_menu->getSettings());
+                        this->_guiVisible.push_back(this->_menu->getSettings());
+                        this->guiVisible(this->_menu->getSettings());
                         //VACCA
                         break;
                     case Menu::RESUME:

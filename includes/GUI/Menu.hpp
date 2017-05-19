@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:44:55 2017 Full Name
-** Last update Fri May 19 22:05:47 2017 Lucas Gambini
+** Last update	Fri May 19 23:38:37 2017 Full Name
 */
 
 #ifndef _MENU_HPP_
@@ -14,6 +14,7 @@
 #include <irrlicht.h>
 #include <IGUIEnvironment.h>
 #include "IGUI.hpp"
+#include "Settings.hpp"
 
 namespace indie {
 
@@ -35,6 +36,10 @@ namespace indie {
          void setVisible(bool visible);
          bool isVisible(void) const;
 
+         void OnEnterSetting();
+
+         IGUI *getSettings();
+
     private:
         irr::gui::IGUIEnvironment *_gui;
         irr::gui::IGUIWindow *_window;
@@ -48,6 +53,7 @@ namespace indie {
         irr::gui::IGUIButton *_resume;
         irr::gui::IGUIButton *_quit;
 
+        Settings *_options;
     };
 }
 

@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:39:14 2017 Vacca_J
-** Last update Fri May 19 22:36:39 2017 Vacca_J
+** Last update	Fri May 19 23:35:21 2017 Full Name
 */
 
 #include <Settings.hpp>
@@ -17,7 +17,7 @@ Settings::Settings(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *dri
   this->_gui = gui;
   this->_driver = driver;
   this->_windowSize = windowSize;
-  this->_isVisible = false;
+  this->_isVisible = true;
 }
 
 Settings::~Settings()
