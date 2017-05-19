@@ -36,7 +36,7 @@ void AGame::Setup() {
     this->_image = this->_driver->getTexture("misc/loading.jpg");
 
     irr::gui::IGUISkin* skin = this->_gui->getSkin();
-    irr::gui::IGUIFont* font = this->_gui->getFont("misc/fontcourier.bmp");
+    irr::gui::IGUIFont* font = this->_gui->getFont("misc/try.xml");
     if (font)
         skin->setFont(font);
     skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
