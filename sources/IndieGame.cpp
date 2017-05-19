@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri May 19 17:08:22 2017 John Doe
+// Last update Fri May 19 20:54:32 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -47,8 +47,8 @@ void IndieGame::addGameObject() {
     // this->_objectList.push_back(map);
 
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(384.2, 0, 4.4)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(744.1, 0, 502.7)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(313.75, 0, -215.9)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::COURSE, irr::core::vector3df(744.1, 0, 502.7)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::CONCESSIONNAIRE, irr::core::vector3df(313.75, 0, -215.9)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(-1700.6, 0, 70.4)));
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
@@ -173,6 +173,15 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case Garage::LEAVE:
                         OnLeavingGarage();
                         break;
+                    case Menu::SETTING:
+                        //VACCA
+                        break;
+                    case Menu::RESUME:
+                        OnLeavingMenu();
+                        break;
+                    case Menu::QUIT:
+                        //QUIT
+                        break;
                 }
             default:
                 break;
@@ -195,6 +204,12 @@ void IndieGame::OnEnterGarage(void) {
 
 void IndieGame::OnLeavingGarage(void) {
     this->_garage->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::OnLeavingMenu() {
+    this->_menu->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
