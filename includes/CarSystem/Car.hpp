@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Fri May 19 04:12:01 2017 Sousa Victor
+// Last update Fri May 19 06:15:26 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -17,7 +17,7 @@
 
 namespace indie {
 
-    class Car : public IGameObject {
+    class Car : public AGameObject {
 
     public:
         Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
@@ -29,7 +29,11 @@ namespace indie {
         irr::core::vector3d<float> getPosition() const;
 
     protected:
-        CarModel _carModel;
+        irr::scene::IAnimatedMeshSceneNode *_carNode;
+        IGImpactMeshShape *_carShape;
+        IRigidBody *_carRigidBody;
+        IRaycastVehicle *_vehicle;
+
         BasicCamera *_camera;
         EventReceiver *_eventReceiver;
 

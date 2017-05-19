@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Fri May 19 04:07:40 2017 Sousa Victor
+// Last update Fri May 19 04:49:00 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -70,6 +70,8 @@ void AGame::loop() {
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
             this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
+            this->_world->debugDrawWorld(true);
+            this->_world->debugDrawProperties(true);
             this->_smgr->drawAll(); // NE PAS
             this->OnFrame(); // CHANGER
             objectOnFrame(); // CET
