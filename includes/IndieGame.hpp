@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Thu May 18 19:46:20 2017 John Doe
+// Last update Fri May 19 16:12:24 2017 John Doe
 //
 
 #ifndef INDIEGAME_HPP
@@ -43,11 +43,14 @@ namespace indie {
         virtual void OnReleaseKey(irr::EKEY_CODE keyCode);
         virtual void OnEnterGarage(void);
 
+        virtual void OnOpenningMenu();
+
     private:
         Car *_car;
         std::vector<GameCheckpoint> _checkpoints;
         carWatcher *_carWatch;
         Garage *_garage;
+        Menu *_menu;
 
     };
 

@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:46:39 2017 Full Name
-** Last update	Thu May 18 19:40:09 2017 Full Name
+** Last update	Fri May 19 16:59:42 2017 Full Name
 */
 
 #include "Menu.hpp"
@@ -17,6 +17,7 @@ Menu::Menu(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *driver, irr
     this->_gui = gui;
     this->_driver = driver;
     this->_windowSize = windowSize;
+    this->_isVisible = false;
 }
 
 Menu::~Menu(){
@@ -36,11 +37,33 @@ void Menu::SetupGUI() {
             L"Resume", L"Resume");
     this->_quit = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), NULL, -1,
             L"Quit", L"Quit");
-    this->_title = this->_gui->addStaticText(L"Menu", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
-    this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
+     this->_title = this->_gui->addStaticText(L"Menu", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 140));
+     this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
+}
+
+void Menu::setVisible(bool visible) {
+    this->_isVisible = visible;
+}
+
+bool Menu::isVisible(void) const {
+    return this->_isVisible;
 }
 
 void Menu::OnFrame()
 {
-    this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 200, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
+    if (_isVisible == true)
+    {
+        this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 200, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
+        this->_setting->setVisible(true);
+        this->_resume->setVisible(true);
+        this->_quit->setVisible(true);
+        this->_title->setVisible(true);
+    }
+    else
+    {
+        this->_setting->setVisible(false);
+        this->_resume->setVisible(false);
+        this->_quit->setVisible(false);
+        this->_title->setVisible(false);
+    }
 }

@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:44:55 2017 Full Name
-** Last update	Thu May 18 19:40:13 2017 Full Name
+** Last update	Fri May 19 16:00:29 2017 Full Name
 */
 
 #ifndef _MENU_HPP_
@@ -23,13 +23,17 @@ namespace indie {
         ~Menu();
          void SetupGUI();
          void OnFrame(void);
-    //
+
+         void setVisible(bool visible);
+         bool isVisible(void) const;
+
     private:
         irr::gui::IGUIEnvironment *_gui;
         irr::gui::IGUIWindow *_window;
         irr::video::IVideoDriver *_driver;
         irr::core::dimension2du _windowSize;
 
+        bool _isVisible;
         irr::gui::IGUIStaticText *_title;
 
         irr::gui::IGUIButton *_setting;
