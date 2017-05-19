@@ -32,6 +32,7 @@ namespace indie {
         ~IndieGame();
 
         virtual void OnFrame();
+        virtual bool OnEvent(const irr::SEvent& event);
 
     private:
         void addGameObject();

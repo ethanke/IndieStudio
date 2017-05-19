@@ -161,6 +161,27 @@ void IndieGame::OnFrame() {
 
 }
 
+bool IndieGame::OnEvent(const irr::SEvent& event){
+    if (event.EventType == irr::EET_GUI_EVENT) {
+        irr::s32 id = event.GUIEvent.Caller->getID();
+        switch(event.GUIEvent.EventType) {
+            case irr::gui::EGET_BUTTON_CLICKED:
+                switch(id) {
+                    case Garage::REPAIR:
+                        //this->_car->repair();
+                        break;
+                    case Garage::LEAVE:
+                        OnLeavingGarage();
+                        break;
+                }
+            default:
+                break;
+         }
+    }
+
+    return EventReceiver::OnEvent(event);
+}
+
 void IndieGame::OnEnterGarage(void) {
     if (!this->_garage) {
         this->_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
@@ -173,8 +194,7 @@ void IndieGame::OnEnterGarage(void) {
 }
 
 void IndieGame::OnLeavingGarage(void) {
-    if (this->_garage)
-        this->_garage->setVisible(false);
+    this->_garage->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
@@ -187,10 +207,16 @@ void IndieGame::OnOpenningMenu()
         this->_menu->SetupGUI();
         this->_objectList.push_back(this->_menu);
     }
-    this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-    this->_menu->isVisible() == true ? this->_menu->setVisible(false) :
+    if (this->_menu->isVisible() == true) {
+        this->_device->getCursorControl()->setVisible(false);
+        this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+        this->_menu->setVisible(false);
+    } else {
+        this->_device->getCursorControl()->setVisible(true);
+        this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
         this->_menu->setVisible(true);
+    }
+
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {

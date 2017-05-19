@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:56 2017 Lucas Gambini
-** Last update Thu May 18 18:47:41 2017 Lucas Gambini
+** Last update Fri May 19 18:16:27 2017 Lucas Gambini
 */
 
 #ifndef GARAGE_HPP
@@ -18,6 +18,12 @@
 namespace indie {
 
 class Garage : public IGameObject {
+
+    public: enum BTN_IDS
+    {
+        REPAIR = 4242,
+        LEAVE
+    };
 
     public:
         Garage(irr::gui::IGUIEnvironment *, irr::video::IVideoDriver *, irr::core::dimension2du);
