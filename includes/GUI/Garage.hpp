@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:56 2017 Lucas Gambini
-** Last update Fri May 19 18:16:27 2017 Lucas Gambini
+** Last update Fri May 19 22:05:31 2017 Lucas Gambini
 */
 
 #ifndef GARAGE_HPP
@@ -13,11 +13,11 @@
 
 #include <irrlicht.h>
 #include <IGUIEnvironment.h>
-#include "IGameObject.hpp"
+#include "IGUI.hpp"
 
 namespace indie {
 
-class Garage : public IGameObject {
+class Garage : public IGUI {
 
     public: enum BTN_IDS
     {

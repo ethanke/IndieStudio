@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Fri May 19 20:17:00 2017 Lucas Gambini
+** Last update Fri May 19 20:58:48 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -16,10 +16,19 @@ GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32
                    Type type, const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
                    : AGameObject (sceneManager), IMeshSceneNode(parent, sceneManager, id, position, rotation, scale) {
 
-    irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(5, 2000, 50, irr::video::SColor(150, 255, 0, 0), true, 0.f);
+    irr::video::SColor color;
+    if (type == GARAGE)
+        color = irr::video::SColor(150, 255, 0, 0);
+    else if (type == COURSE)
+        color = irr::video::SColor(150, 0, 0, 255);
+    else if (type == CONCESSIONNAIRE)
+        color = irr::video::SColor(150, 0, 255, 0);
+    else
+        color = irr::video::SColor(150, 100, 100, 100);
+    irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(5, 2000, 50, color, true, 0.f);
     this->_cylindre = this->_smgr->addMeshSceneNode(_mesh, 0, -1, position, rotation, scale);
-    this->_cylindre->getMaterial(0).AmbientColor.set(255,255,0,0);
-    this->_cylindre->getMaterial(0).DiffuseColor.set(255,255,0,0);
+    // this->_cylindre->getMaterial(0).AmbientColor.set(255,255,0,0);
+    // this->_cylindre->getMaterial(0).DiffuseColor.set(255,255,0,0);
     this->_cylindre->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 
     this->_type = type;

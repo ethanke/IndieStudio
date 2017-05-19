@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:44:55 2017 Full Name
-** Last update	Fri May 19 20:51:42 2017 Full Name
+** Last update Fri May 19 22:05:47 2017 Lucas Gambini
 */
 
 #ifndef _MENU_HPP_
@@ -13,11 +13,11 @@
 
 #include <irrlicht.h>
 #include <IGUIEnvironment.h>
-#include "IGameObject.hpp"
+#include "IGUI.hpp"
 
 namespace indie {
 
-    class Menu : public IGameObject {
+    class Menu : public IGUI {
 
     public: enum MENU_BTNS
     {
