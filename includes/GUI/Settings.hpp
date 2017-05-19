@@ -5,32 +5,42 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:15:48 2017 Vacca_J
-** Last update Thu May 18 01:09:05 2017 Lucas Gambini
+** Last update Fri May 19 21:39:19 2017 Vacca_J
 */
 
 #ifndef SETTING_HPP_
 #define SETTING_HPP_
 
 #include <irrlicht.h>
+#include <ITexture.h>
 #include <IGUIEnvironment.h>
-#include <IGUIContextMenu.h>
-#include <IGUIStaticText.h>
-#include <IGUISkin.h>
+#include "IGameObject.hpp"
 
 namespace indie {
 
-class Settings {
+class Settings : public IGameObject {
 
 private:
-  //irr::gui::IGUISkin *_skin;
+  irr::gui::IGUIWindow *_window;
   irr::gui::IGUIEnvironment *_gui;
-  irr::gui::IGUIStaticText *_text;
-  irr::gui::IGUIContextMenu *_menu;
-  irr::gui::IGUIButton *_button;
+  irr::video::IVideoDriver *_driver;
+  irr::core::dimension2du _windowSize;
+
+  irr::video::ITexture *_images;
+  irr::gui::IGUIStaticText *_title;
+  irr::gui::IGUIButton *_graphic;
+  irr::gui::IGUIButton *_song;
+  irr::gui::IGUIButton *_keyboard;
+  bool _isVisible;
 public:
 
-  Settings (irr::gui::IGUIEnvironment* gui);
-  virtual ~Settings ();
+  Settings(irr::gui::IGUIEnvironment*, irr::video::IVideoDriver*, irr::core::dimension2du);
+  ~Settings ();
+  void setSettings();
+
+  void setVisible(bool visible);
+  bool isVisible(void) const;
+  void OnFrame();
 
   };
 
