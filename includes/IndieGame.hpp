@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Fri May 19 20:49:14 2017 John Doe
+// Last update Fri May 19 22:25:46 2017 John Doe
 //
 
 #ifndef INDIEGAME_HPP
@@ -48,6 +48,8 @@ namespace indie {
         virtual void OnOpenningMenu();
         virtual void OnLeavingMenu();
 
+        virtual void guiVisible(IGUI*);
+
     private:
         Car *_car;
         std::vector<GameCheckpoint> _checkpoints;
@@ -55,6 +57,7 @@ namespace indie {
         Garage *_garage;
         Menu *_menu;
 
+        std::vector<IGUI*> _guiVisible;
     };
 
 }

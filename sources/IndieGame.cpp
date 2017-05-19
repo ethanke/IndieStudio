@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri May 19 21:29:41 2017 Sousa Victor
+// Last update Fri May 19 22:25:38 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -40,8 +40,8 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new Car(this->_smgr, this->_gui, this);
-    this->_objectList.push_back(this->_car);
+    // this->_car = new Car(this->_smgr, this->_gui, this);
+    // this->_objectList.push_back(this->_car);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     // this->_objectList.push_back(map);
@@ -161,10 +161,12 @@ void IndieGame::OnEnterGarage(void) {
         this->_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
         this->_garage->SetupGUI();
         this->_objectList.push_back(this->_garage);
+        this->_guiVisible.push_back(this->_garage);
     }
     this->_garage->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(_garage);
 }
 
 void IndieGame::OnLeavingGarage(void) {
@@ -186,6 +188,7 @@ void IndieGame::OnOpenningMenu()
         this->_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
         this->_menu->SetupGUI();
         this->_objectList.push_back(this->_menu);
+        this->_guiVisible.push_back(this->_menu);
     }
     if (this->_menu->isVisible() == true) {
         this->_device->getCursorControl()->setVisible(false);
@@ -196,7 +199,16 @@ void IndieGame::OnOpenningMenu()
         this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
         this->_menu->setVisible(true);
     }
+    this->guiVisible(_menu);
+}
 
+void IndieGame::guiVisible(IGUI *obj)
+{
+    for (auto & gui : _guiVisible)
+    {
+        if (gui->isVisible() == true && gui != obj)
+            gui->setVisible(false);
+    }
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
