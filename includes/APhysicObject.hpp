@@ -5,13 +5,12 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 00:49:59 2017 Sousa Victor
-// Last update Fri May 19 04:08:40 2017 Sousa Victor
+// Last update Fri May 19 21:26:20 2017 Sousa Victor
 //
 
 #ifndef APHYSICOBJECT_HPP_
 #define APHYSICOBJECT_HPP_
 
-#include <irrBullet.h>
 #include "AModelObject.hpp"
 
 namespace indie {
@@ -20,7 +19,7 @@ namespace indie {
 
     public:
         APhysicObject();
-        APhysicObject(irr::scene::ISceneManager *sceneManager, std::string const &path, std::shared_ptr<irrBulletWorld> world,
+        APhysicObject(irr::scene::ISceneManager *sceneManager, std::string const &path,
                  irr::scene::ISceneNode *parent = 0, irr::s32 id = -1, irr::f32 mass = 0,
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),
@@ -32,8 +31,6 @@ namespace indie {
         virtual void OnFrame() = 0;
 
     protected:
-        ICollisionShape *_shape;
-        IRigidBody *_body;
 
     };
 

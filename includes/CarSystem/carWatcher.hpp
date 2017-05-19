@@ -5,18 +5,19 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:21 2017 Lucas Gambini
-** Last update Thu May 18 18:45:26 2017 Lucas Gambini
+** Last update Fri May 19 21:28:18 2017 Sousa Victor
 */
 
 #ifndef CAR_WATCHER_HPP
 #define CAR_WATCHER_HPP
 
 #include <irrlicht.h>
+#include <map>
+#include <vector>
 #include <vector3d.h>
 #include "Car.hpp"
 #include "EventReceiver.hpp"
 #include "GameCheckpoint.hpp"
-#include <map>
 
 namespace indie {
 

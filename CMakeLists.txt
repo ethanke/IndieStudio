@@ -56,13 +56,11 @@ endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/Linux/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/lib/Linux/)
-    link_directories(${PROJECT_SOURCE_DIR}/lib/irrBullet/lib/Linux/)
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     link_directories(/usr/local/lib/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/OSX/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/lib/OSX/)
-    link_directories(${PROJECT_SOURCE_DIR}/lib/irrBullet/lib/OSX)
 endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/Win64-visualStudio/)
@@ -86,7 +84,6 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/GameCheckpoint.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/GroundMaterial.cpp
-    ${PROJECT_SOURCE_DIR}/sources/CarSystem/CarModel.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/carWatcher.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Settings.cpp
@@ -102,7 +99,6 @@ add_executable(IndieStudio ${SRC_FILES})
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     target_link_libraries(${PROJECT_NAME}
         Irrlicht
-        irrBullet
         BulletSoftBody
         BulletDynamics
         BulletCollision
@@ -119,7 +115,6 @@ endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     target_link_libraries(${PROJECT_NAME}
         Irrlicht
-        irrBullet
         BulletSoftBody
         BulletDynamics
         BulletCollision
