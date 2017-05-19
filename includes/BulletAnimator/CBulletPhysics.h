@@ -82,11 +82,11 @@ namespace irr
 				virtual void	drawContactPoint(const btVector3& PointOnB,const btVector3& normalOnB,btScalar distance,int lifeTime,const btVector3& color);
 				virtual void	reportErrorWarning(const char* warningString);
 				virtual void	draw3dText(const btVector3& location,const char* textString);
-				
+
 				virtual void	setDebugMode(int debugMode);
 
-				virtual int		getDebugMode() const 
-				{ 
+				virtual int		getDebugMode() const
+				{
 					return m_debugMode;
 				}
 
@@ -167,8 +167,8 @@ namespace irr
 			void OnUpdate(u32 timeMs);
 
 			//! Create animator
-			CPhysicsObject* CBulletPhysics::createWorldObject(
-				scene::ISceneNode* sceneNode, 
+			CPhysicsObject* createWorldObject(
+				scene::ISceneNode* sceneNode,
 				CPhysicsGeometry* geometry,
 				SPhysicsParams* physicsParams,
 				bool animated = true);
@@ -178,7 +178,7 @@ namespace irr
 
 			//! Adds a box object
 			CPhysicsObject* addBox(
-				scene::ISceneNode* sceneNode, 
+				scene::ISceneNode* sceneNode,
 				core::vector3df& halfExtends,
 				SPhysicsParams* physicsParams,
 				bool autoCalculate = true,
@@ -187,7 +187,7 @@ namespace irr
 
 			//! Adds a sphere object
 			CPhysicsObject* addSphere(
-				scene::ISceneNode* sceneNode, 
+				scene::ISceneNode* sceneNode,
 				f32 radius,
 				SPhysicsParams* physicsParams,
 				bool autoCalculate = true,
@@ -197,17 +197,17 @@ namespace irr
 
 			//! Adds a cylinder object
 			CPhysicsObject* addCylinder(
-				scene::ISceneNode* sceneNode, 
+				scene::ISceneNode* sceneNode,
 				core::vector3df& halfExtends,
 				SPhysicsParams* physicsParams,
 				bool autoCalculate = true,
 				bool staticObject = false
 			);
 
-			
+
 			//! Adds a terrain object
 			CPhysicsObject* addTerrain(
-				scene::ISceneNode* sceneNode, 
+				scene::ISceneNode* sceneNode,
 				SPhysicsParams* physicsParams,
 				bool useQuantizedAabbCompression = true
 			);
@@ -215,7 +215,7 @@ namespace irr
 
 			//! Adds a concave mesh (ex. terrain) object
 			CPhysicsObject* addConcaveMesh(
-				scene::ISceneNode* sceneNode, 
+				scene::ISceneNode* sceneNode,
 				scene::IMesh* mesh,
 				SPhysicsParams* physicsParams,
 				bool useQuantizedAabbCompression = true,
@@ -354,7 +354,7 @@ namespace irr
 
 
 			core::aabbox3d<f32> GetBoundingBox(scene::ISceneNode* node);
-			void CBulletPhysics::getHalfExtends(scene::ISceneNode* sceneNode, core::vector3df& halfExtends);
+			void getHalfExtends(scene::ISceneNode* sceneNode, core::vector3df& halfExtends);
 
 		};
 

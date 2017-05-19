@@ -18,7 +18,7 @@ namespace irr
 		//-----------------------------------------------------------------------
 		//                           T D e b u g N o d e
 		//-----------------------------------------------------------------------
-		TDebugNode::TDebugNode(ISceneNode* parent, ISceneManager* mgr, s32 id) : 
+		TDebugNode::TDebugNode(ISceneNode* parent, ISceneManager* mgr, s32 id) :
 			scene::ISceneNode(parent, mgr, id),
 			m_vertices(0),
 			m_vcount(0),
@@ -64,8 +64,10 @@ namespace irr
 
 			m_vertices[m_vcount++] = v1;
 			m_vertices[m_vcount++] = v2;
-			m_indices[m_icount] = m_icount++;
-			m_indices[m_icount] = m_icount++;
+			m_indices[m_icount] = m_icount;
+            m_icount++;
+			m_indices[m_icount] = m_icount;
+            m_icount++;
 
 			m_aabb.addInternalPoint(v1.Pos);
 			m_aabb.addInternalPoint(v2.Pos);
@@ -91,7 +93,7 @@ namespace irr
 			if (IsVisible)
 				SceneManager->registerNodeForRendering(this);
 
-			ISceneNode::OnRegisterSceneNode();        
+			ISceneNode::OnRegisterSceneNode();
 		}
 
 		//-----------------------------------------------------------------------
@@ -103,12 +105,12 @@ namespace irr
 		}
 
 		//-----------------------------------------------------------------------
-		//                          g e t M a t e r i a l 
+		//                          g e t M a t e r i a l
 		//-----------------------------------------------------------------------
 		video::SMaterial& TDebugNode::getMaterial(u32 i)
 		{
 			return m_material;
-		}	
+		}
 
 		//-----------------------------------------------------------------------
 		//                              r e n d e r
@@ -132,4 +134,3 @@ namespace irr
 
 	} // namespace physics
 } // namespace irr
-

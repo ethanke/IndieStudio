@@ -69,23 +69,36 @@ endif()
 
 set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/main.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/AGame.cpp
     ${PROJECT_SOURCE_DIR}/sources/IndieGame.cpp
+    ${PROJECT_SOURCE_DIR}/sources/EventReceiver.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/Vector2.cpp
     ${PROJECT_SOURCE_DIR}/sources/Vector3.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/AGameObject.cpp
+    ${PROJECT_SOURCE_DIR}/sources/AModelObject.cpp
+    ${PROJECT_SOURCE_DIR}/sources/APhysicObject.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/AGameCamera.cpp
     ${PROJECT_SOURCE_DIR}/sources/BasicCamera.cpp
     ${PROJECT_SOURCE_DIR}/sources/GameCameraFPS.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/Minimap.cpp
-    ${PROJECT_SOURCE_DIR}/sources/EventReceiver.cpp
-    ${PROJECT_SOURCE_DIR}/sources/AModelObject.cpp
-    ${PROJECT_SOURCE_DIR}/sources/APhysicObject.cpp
     ${PROJECT_SOURCE_DIR}/sources/GameCheckpoint.cpp
+
+    ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysics.cpp
+    ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysicsAnimator.cpp
+    ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysicsUtils.cpp
+    ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CDebugNode.cpp
+    ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/PhysicsCar.cpp
+    ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/PhysicsObject.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/GroundMaterial.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/carWatcher.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/GUI/Settings.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Garage.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Menu.cpp
@@ -138,6 +151,7 @@ include_directories(
     ${PROJECT_BINARY_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes/CarSystem
+    ${PROJECT_SOURCE_DIR}/includes/BulletAnimator
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
     ${PROJECT_SOURCE_DIR}/lib/irrBullet/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/

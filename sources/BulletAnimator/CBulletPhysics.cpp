@@ -103,7 +103,7 @@ namespace irr
 			m_collisionDispatcher = new	btCollisionDispatcher(m_collisionConfiguration);
 			btGImpactCollisionAlgorithm::registerAlgorithm(m_collisionDispatcher);
 
-			// The default constraint solver. 
+			// The default constraint solver.
 			// For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
 			m_constraintSolver = new btSequentialImpulseConstraintSolver();
 			m_broadphase = new  btDbvtBroadphase(); // btSimpleBroadphase();
@@ -177,7 +177,7 @@ namespace irr
 		//! createBulletPhysicsAnimator
 		//! Create CBulletPhysicsAnimator
 		CPhysicsObject* CBulletPhysics::createWorldObject(
-			scene::ISceneNode* sceneNode, 
+			scene::ISceneNode* sceneNode,
 			CPhysicsGeometry* geometry,
 			SPhysicsParams* physicsParams,
 			bool animated)
@@ -189,7 +189,7 @@ namespace irr
 			{
 				if (sceneNode->getType() == scene::ESNT_ANIMATED_MESH)
 				{
-					if (sceneNode->getBoundingBox().isEmpty()) 
+					if (sceneNode->getBoundingBox().isEmpty())
 					{
 						RepairBoundingBox((scene::IAnimatedMeshSceneNode*)sceneNode);
 					}
@@ -213,48 +213,48 @@ namespace irr
 			case CBPAGT_SPHERE:   // ***
 				{
 					collisionShape = new btSphereShape(geometry->sphere.radius);
-				} 
+				}
 				break;
 
 			case CBPAGT_BOX:   // ***
 				{
 					collisionShape = new btBoxShape(btVector3(geometry->box.X, geometry->box.Y, geometry->box.Z));
-				} 
+				}
 				break;
 
 			case CBPAGT_CYLINDER:  // ***
 				{
 					collisionShape = new btCylinderShape(btVector3(geometry->box.X, geometry->box.Y, geometry->box.Z));
-				} 
+				}
 				break;
 
 			case CBPAGT_CAPSULE:
 				{
-					if (geometry->AutoCalculate) 
+					if (geometry->AutoCalculate)
 					{
 						box = sceneNode->getTransformedBoundingBox();
 						collisionShape = new btCapsuleShape(
 							(box.MaxEdge.X - box.getCenter().X) * scaling.X,	//radio
 							(box.MaxEdge.Y - box.MinEdge.Y) * scaling.Y * 0.5	//altura
-							); 
+							);
 					}
 					else
 					{
 						collisionShape = new btCapsuleShape(geometry->box.X, geometry->box.Y * 2);
 					}
-				} 
+				}
 				break;
 
 			case CBPAGT_CONE:
 				{
 					collisionShape = new btConeShape(geometry->box.X, geometry->box.Y * 2);
-				} 
+				}
 				break;
 
 			case CBPAGT_STATIC_PLANE:
 				{
 					collisionShape = new btStaticPlaneShape(btVector3(geometry->box.X, geometry->box.Y, geometry->box.Z), 1);
-				} 
+				}
 				break;
 
 			case CBPAGT_CONVEX_MESH:
@@ -264,7 +264,7 @@ namespace irr
 
 					collisionShape = new btConvexTriangleMeshShape(triangleMesh);
 					//collisionShape = ConvertIrrMeshToBulletConvexHullShape(geometry->mesh.irrMesh);
-				} 
+				}
 				break;
 
 			case CBPAGT_CONCAVE_MESH:  // ***
@@ -279,7 +279,7 @@ namespace irr
 
 					collisionShape = new btBvhTriangleMeshShape(triangleMesh, useQuantizedAabbCompression);
 					//collisionShape = new btConvexHullShape();
-				} 
+				}
 				break;
 
 			case CBPAGT_CONCAVE_GIMPACT_MESH:
@@ -290,7 +290,7 @@ namespace irr
 					btGImpactMeshShape* gimpactShape = new btGImpactMeshShape(triangleMesh);
 					gimpactShape->updateBound();
 					collisionShape = gimpactShape;
-				} 
+				}
 				break;
 
 			default:
@@ -305,7 +305,7 @@ namespace irr
 
 
 			CPhysicsObject* worldObject = new CPhysicsObject(
-				this, 
+				this,
 				physicsParams,
 				sceneNode,
 				collisionShape,
@@ -364,7 +364,7 @@ namespace irr
 			core::aabbox3d<f32> box;
 			irr::core::vector3df scaling = sceneNode->getScale(); // get node scaling
 
-			if (sceneNode->getBoundingBox().isEmpty()) 
+			if (sceneNode->getBoundingBox().isEmpty())
 			{
 				RepairBoundingBox((scene::IAnimatedMeshSceneNode*)sceneNode);
 			}
@@ -382,7 +382,7 @@ namespace irr
 		//! Adds scene node
 		//!
 		CPhysicsObject* CBulletPhysics::addBox(
-			scene::ISceneNode* sceneNode, 
+			scene::ISceneNode* sceneNode,
 			core::vector3df& halfExtends,
 			SPhysicsParams* physicsParams,
 			bool autoCalculate,
@@ -398,7 +398,7 @@ namespace irr
 			}
 
 			CPhysicsObject* worldObject = new CPhysicsObject(
-				this, 
+				this,
 				physicsParams,
 				sceneNode,
 
@@ -417,7 +417,7 @@ namespace irr
 		//! Adds scene node
 		//!
 		CPhysicsObject* CBulletPhysics::addSphere(
-			scene::ISceneNode* sceneNode, 
+			scene::ISceneNode* sceneNode,
 			f32 radius,
 			SPhysicsParams* physicsParams,
 			bool autoCalculate,
@@ -432,7 +432,7 @@ namespace irr
 				{
 					//getHalfExtends(sceneNode, halfExtends);
 
-					if (sceneNode->getBoundingBox().isEmpty()) 
+					if (sceneNode->getBoundingBox().isEmpty())
 					{
 						RepairBoundingBox((scene::IAnimatedMeshSceneNode*)sceneNode);
 					}
@@ -442,7 +442,7 @@ namespace irr
 			}
 
 			CPhysicsObject* worldObject = new CPhysicsObject(
-				this, 
+				this,
 				physicsParams,
 				sceneNode,
 
@@ -461,7 +461,7 @@ namespace irr
 		//! Adds scene node
 		//!
 		CPhysicsObject* CBulletPhysics::addCylinder(
-			scene::ISceneNode* sceneNode, 
+			scene::ISceneNode* sceneNode,
 			core::vector3df& halfExtends,
 			SPhysicsParams* physicsParams,
 			bool autoCalculate,
@@ -477,7 +477,7 @@ namespace irr
 			}
 
 			CPhysicsObject* worldObject = new CPhysicsObject(
-				this, 
+				this,
 				physicsParams,
 				sceneNode,
 
@@ -495,13 +495,13 @@ namespace irr
 		//------------------------------------------------------------------------------
 		//! Adds a terrain object
 		CPhysicsObject* CBulletPhysics::addTerrain(
-			scene::ISceneNode* sceneNode, 
+			scene::ISceneNode* sceneNode,
 			SPhysicsParams* physicsParams,
 			bool useQuantizedAabbCompression
 		)
 		{
 			return addConcaveMesh(
-				sceneNode, 
+				sceneNode,
 				NULL,
 				physicsParams,
 				useQuantizedAabbCompression,
@@ -512,14 +512,14 @@ namespace irr
 		//------------------------------------------------------------------------------
 		//! Adds a concave mesh (ex. terrain) object
 		CPhysicsObject* CBulletPhysics::addConcaveMesh(
-			scene::ISceneNode* sceneNode, 
+			scene::ISceneNode* sceneNode,
 			scene::IMesh* mesh,
 			SPhysicsParams* physicsParams,
 			bool useQuantizedAabbCompression,
 			bool staticObject
 		)
 		{
-			if (sceneNode == NULL) return NULL; 
+			if (sceneNode == NULL) return NULL;
 
 			btTriangleMesh* triangleMesh;
 			irr::core::vector3df scaling = sceneNode->getScale(); // get node scaling
@@ -535,7 +535,7 @@ namespace irr
 			}
 
 			CPhysicsObject* worldObject = new CPhysicsObject(
-				this, 
+				this,
 				physicsParams,
 				sceneNode,
 
@@ -567,13 +567,13 @@ namespace irr
 			btScalar friction = 0.5f;
 			btScalar restitution = 0.3f;
 
-			//using motionstate is recommended, it provides interpolation capabilities, 
+			//using motionstate is recommended, it provides interpolation capabilities,
 			// and only synchronizes 'active' objects
 			btDefaultMotionState* myMotionState = new btDefaultMotionState(pStartTransform);
 			btRigidBody::btRigidBodyConstructionInfo rbInfo(
 				pMass,
-				myMotionState,    
-				pShape,    
+				myMotionState,
+				pShape,
 				localInertia
 			);
 
@@ -633,7 +633,7 @@ namespace irr
 		{
 			core::aabbox3d<f32> extent;
 			if (node) extent = node->getBoundingBox();
-			if (extent.isEmpty()) 
+			if (extent.isEmpty())
 			{
 				extent.addInternalPoint(core::vector3df(-0.5, -0.5, -0.5));
 				extent.addInternalPoint(core::vector3df(0.5, 0.5, 0.5));
@@ -644,8 +644,8 @@ namespace irr
 
 				//NOTE - loading of (these) .X files will not work properly with Irrlicht 1.2,
 				// unless CXAnimationPlayer.cpp is patched (bounding box wrong size)
-				//Line 805, updateBoundingBoxFromAnimation(): Drop these 3 lines 
-				//		if (first)	
+				//Line 805, updateBoundingBoxFromAnimation(): Drop these 3 lines
+				//		if (first)
 				//			Box.reset(p);
 				//		else
 				guienv->addMessageBox(L"Error: ", L"Error in Irrlicht: Bounding box zero size - see IrrlichtObject::GetBoundingBox() code for patch");
@@ -701,8 +701,8 @@ namespace irr
 
 				video::S3DVertex vert1(v1, v1, icolor, core::vector2df());
 				video::S3DVertex vert2(v2, v2, icolor, core::vector2df());
-			
-				m_debugNode->addLine(vert1, vert2); 
+
+				m_debugNode->addLine(vert1, vert2);
 			}
 		}
 
@@ -788,7 +788,7 @@ namespace irr
 			////	if (m_debugMode > 0)
 			//{
 			//	const btVector3	n=btCross(b-a,c-a).normalized();
-			//	glBegin(GL_TRIANGLES);		
+			//	glBegin(GL_TRIANGLES);
 			//	glColor4f(color.getX(), color.getY(), color.getZ(),alpha);
 			//	glNormal3d(n.getX(),n.getY(),n.getZ());
 			//	glVertex3d(a.getX(),a.getY(),a.getZ());
@@ -808,7 +808,7 @@ namespace irr
 		void	btDebugDrawer::draw3dText(const btVector3& location,const char* textString)
 		{
 			//printf(">> TDebugNode::drawTriangle\n");
-			
+
 			//glRasterPos3f(location.x(),  location.y(),  location.z());
 			////BMF_DrawString(BMF_GetFont(BMF_kHelvetica10),textString);
 		}
@@ -835,7 +835,7 @@ namespace irr
 			//	glVertex3d(to.getX(), to.getY(), to.getZ());
 			//	glEnd();
 
-			//	
+			//
 			//	glRasterPos3f(from.x(),  from.y(),  from.z());
 			//	char buf[12];
 			//	sprintf(buf," %d",lifeTime);

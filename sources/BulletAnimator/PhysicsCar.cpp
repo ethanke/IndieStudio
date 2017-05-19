@@ -50,13 +50,22 @@ namespace irr
 
 			m_carParams = *carParams;
 
-			m_chassisObject = m_bulletPhysicsSystem->addBox(
-				m_chassisNode, 
-				core::vector3df(1, 1, 1), 
+            core::vector3df halfExtends(1, 1, 1);
+            m_chassisObject = m_bulletPhysicsSystem->addBox(
+				m_chassisNode,
+				halfExtends,
 				&m_carParams,
 				true,						// we need the collision shape calculated authomaticaly
 				false						// this is not a static object, so the irr. animator will be created
 			);
+
+			// m_chassisObject = m_bulletPhysicsSystem->addBox(
+			// 	m_chassisNode,
+			// 	core::vector3df(1, 1, 1),
+			// 	&m_carParams,
+			// 	true,						// we need the collision shape calculated authomaticaly
+			// 	false						// this is not a static object, so the irr. animator will be created
+			// );
 
 			// we are using our own animator
 			m_chassisObject->removeAnimator();
@@ -68,8 +77,8 @@ namespace irr
 			// create vehicle
 			m_vehicleRayCaster = new btDefaultVehicleRaycaster(m_dynamicsWorld);
 			m_vehicle = new btRaycastVehicle(
-				m_tuning, 
-				m_chassisObject->getRigidBody(), 
+				m_tuning,
+				m_chassisObject->getRigidBody(),
 				m_vehicleRayCaster
 			);
 
@@ -79,7 +88,7 @@ namespace irr
 			// add the car to the physics world
 			m_dynamicsWorld->addAction(m_vehicle);
 
-		
+
 			// car axes definition
 			s32 rightIndex = 0;
 			s32 upIndex = 1;
@@ -102,18 +111,18 @@ namespace irr
 
 			// front left
 			btVector3 connectionPointCS0 = btVector3(
-				-frontWheelAxeHalfWidth, 
-				carBodyOffset, 
+				-frontWheelAxeHalfWidth,
+				carBodyOffset,
 				frontWheelAxeOffset
 			);
 
 			btWheelInfo& wheel_FL = m_vehicle->addWheel(
-				connectionPointCS0, 
-				m_wheelDirectionCS0, 
-				m_wheelAxleCS, 
-				m_carParams.SuspensionRestLength, 
-				m_carParams.WheelRadius, 
-				m_tuning, 
+				connectionPointCS0,
+				m_wheelDirectionCS0,
+				m_wheelAxleCS,
+				m_carParams.SuspensionRestLength,
+				m_carParams.WheelRadius,
+				m_tuning,
 				isFrontWheel
 			);
 
@@ -127,18 +136,18 @@ namespace irr
 
 			// front right
 			connectionPointCS0 = btVector3(
-				frontWheelAxeHalfWidth, 
-				carBodyOffset, 
+				frontWheelAxeHalfWidth,
+				carBodyOffset,
 				frontWheelAxeOffset
 			);
 
 			btWheelInfo& wheel_FR = m_vehicle->addWheel(
-				connectionPointCS0, 
-				m_wheelDirectionCS0, 
-				m_wheelAxleCS, 
-				m_carParams.SuspensionRestLength, 
-				m_carParams.WheelRadius, 
-				m_tuning, 
+				connectionPointCS0,
+				m_wheelDirectionCS0,
+				m_wheelAxleCS,
+				m_carParams.SuspensionRestLength,
+				m_carParams.WheelRadius,
+				m_tuning,
 				isFrontWheel
 			);
 
@@ -149,23 +158,23 @@ namespace irr
 			wheel_FR.m_rollInfluence = m_carParams.RollInfluence;
 			wheel_FR.m_clientInfo = (void*)m_wheelNode_FR;
 
-			
+
 			// rear left
 			isFrontWheel = false;
 
 			connectionPointCS0 = btVector3(
-				-rearWheelAxeHalfWidth, 
-				carBodyOffset, 
+				-rearWheelAxeHalfWidth,
+				carBodyOffset,
 				rearWheelAxeOffset
-			); 
+			);
 
 			btWheelInfo& wheel_RL = m_vehicle->addWheel(
-				connectionPointCS0, 
-				m_wheelDirectionCS0, 
-				m_wheelAxleCS, 
-				m_carParams.SuspensionRestLength, 
-				m_carParams.WheelRadius, 
-				m_tuning, 
+				connectionPointCS0,
+				m_wheelDirectionCS0,
+				m_wheelAxleCS,
+				m_carParams.SuspensionRestLength,
+				m_carParams.WheelRadius,
+				m_tuning,
 				isFrontWheel
 			);
 
@@ -179,18 +188,18 @@ namespace irr
 
 			// rear right
 			connectionPointCS0 = btVector3(
-				rearWheelAxeHalfWidth, 
-				carBodyOffset, 
+				rearWheelAxeHalfWidth,
+				carBodyOffset,
 				rearWheelAxeOffset
 			);
 
 			btWheelInfo& wheel_RR = m_vehicle->addWheel(
-				connectionPointCS0, 
-				m_wheelDirectionCS0, 
-				m_wheelAxleCS, 
-				m_carParams.SuspensionRestLength, 
-				m_carParams.WheelRadius, 
-				m_tuning, 
+				connectionPointCS0,
+				m_wheelDirectionCS0,
+				m_wheelAxleCS,
+				m_carParams.SuspensionRestLength,
+				m_carParams.WheelRadius,
+				m_tuning,
 				isFrontWheel
 			);
 
@@ -215,7 +224,7 @@ namespace irr
 			chassisBody->setAngularVelocity(btVector3(0, 0, 0));
 
 			m_dynamicsWorld->getBroadphase()->getOverlappingPairCache()->cleanProxyFromPairs(
-				chassisBody->getBroadphaseHandle(), 
+				chassisBody->getBroadphaseHandle(),
 				m_dynamicsWorld->getDispatcher()
 			);
 
@@ -335,7 +344,7 @@ namespace irr
 			m_chassisNode->setRotation(mat.getRotationDegrees());
 
 #endif
-			
+
 
 			//draw wheels
 			for (int i = 0; i < m_vehicle->getNumWheels(); i++)
@@ -343,7 +352,7 @@ namespace irr
 				//synchronize the wheels with the (interpolated) chassis worldtransform
 				m_vehicle->updateWheelTransform(i, true);
 
-				scene::IAnimatedMeshSceneNode* wheelNode =  
+				scene::IAnimatedMeshSceneNode* wheelNode =
 					(scene::IAnimatedMeshSceneNode*)m_vehicle->getWheelInfo(i).m_clientInfo;
 
 				if (wheelNode != NULL)
@@ -374,7 +383,7 @@ namespace irr
 		}
 
 
-		core::vector3df PhysicsCar::getPosition(void) 
+		core::vector3df PhysicsCar::getPosition(void)
 		{
 			btTransform chassisWorldTrans;
 			m_chassisObject->getRigidBody()->getMotionState()->getWorldTransform(chassisWorldTrans);
@@ -382,7 +391,7 @@ namespace irr
 			// get the position
 			btVector3 p = chassisWorldTrans.getOrigin();
 
-			return core::vector3df(p.getX(), p.getY(), p.getZ()); 
+			return core::vector3df(p.getX(), p.getY(), p.getZ());
 		}
 
 		//returning car's speed...
@@ -399,13 +408,13 @@ namespace irr
 
 		}
 
-		void PhysicsCar::setPosition(core::vector3df& v) 
+		void PhysicsCar::setPosition(core::vector3df& v)
 		{
 			btTransform t = m_vehicle->getRigidBody()->getWorldTransform();
 
 			btVector3 btv(v.X, v.Y, v.Z);
 			t.setOrigin(btv);
-			
+
 			m_vehicle->getRigidBody()->setWorldTransform(t);
 
 			if (m_vehicle)
@@ -463,4 +472,3 @@ namespace irr
 
 	} // end of namespace physics
 } // end of namespace irr
-
