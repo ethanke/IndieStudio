@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:15:48 2017 Vacca_J
-** Last update Fri May 19 21:39:19 2017 Vacca_J
+** Last update Fri May 19 22:32:41 2017 Vacca_J
 */
 
 #ifndef SETTING_HPP_
@@ -15,10 +15,11 @@
 #include <ITexture.h>
 #include <IGUIEnvironment.h>
 #include "IGameObject.hpp"
+#include "IGUI.hpp"
 
 namespace indie {
 
-class Settings : public IGameObject {
+class Settings : public IGUI {
 
 private:
   irr::gui::IGUIWindow *_window;
@@ -38,6 +39,7 @@ public:
   ~Settings ();
   void setSettings();
 
+  void SetupGUI();
   void setVisible(bool visible);
   bool isVisible(void) const;
   void OnFrame();

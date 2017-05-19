@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:39:14 2017 Vacca_J
-** Last update Fri May 19 21:40:26 2017 Vacca_J
+** Last update Fri May 19 22:36:39 2017 Vacca_J
 */
 
 #include <Settings.hpp>
@@ -17,14 +17,14 @@ Settings::Settings(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *dri
   this->_gui = gui;
   this->_driver = driver;
   this->_windowSize = windowSize;
-  this->_isVisible = true;
+  this->_isVisible = false;
 }
 
 Settings::~Settings()
 {
 }
 
-void Settings::setSettings()
+void Settings::SetupGUI()
 {
   this->_graphic = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 60), NULL, -1,
           L"Affichage", L"Affichage");
@@ -45,6 +45,7 @@ bool Settings::isVisible(void) const
 {
     return this->_isVisible;
 }
+
 
 void Settings::OnFrame()
 {
