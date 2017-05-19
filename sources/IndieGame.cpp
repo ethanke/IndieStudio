@@ -40,8 +40,8 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
-    this->_objectList.push_back(this->_car);
+    // this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
+    // this->_objectList.push_back(this->_car);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     // this->_objectList.push_back(map);
@@ -169,9 +169,14 @@ void IndieGame::OnEnterGarage(void) {
     }
     this->_garage->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
-    if (this->_car) {
-        this->_car->getCamera()->setInputReceiverEnabled(true);
-    }
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+}
+
+void IndieGame::OnLeavingGarage(void) {
+    if (this->_garage)
+        this->_garage->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::OnOpenningMenu()
@@ -182,19 +187,19 @@ void IndieGame::OnOpenningMenu()
         this->_menu->SetupGUI();
         this->_objectList.push_back(this->_menu);
     }
-    //this->_menu->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->_menu->isVisible() == true ? this->_menu->setVisible(false) :
+        this->_menu->setVisible(true);
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
-    if (keyCode == irr::KEY_ESCAPE)
-    {
-        OnOpenningMenu();
-        if (this->_menu->isVisible() == true)
-            this->_menu->setVisible(false);
-        else
-            this->_menu->setVisible(true);
+    switch (keyCode) {
+        case irr::KEY_ESCAPE:
+            OnOpenningMenu();
+            break;
+        default:
+            break;
     }
 }
 

@@ -42,6 +42,7 @@ namespace indie {
         virtual void OnEnterKey(irr::EKEY_CODE keyCode);
         virtual void OnReleaseKey(irr::EKEY_CODE keyCode);
         virtual void OnEnterGarage(void);
+        virtual void OnLeavingGarage(void);
 
         virtual void OnOpenningMenu();
 

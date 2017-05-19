@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:26 2017 Lucas Gambini
-** Last update Thu May 18 22:47:48 2017 Lucas Gambini
+** Last update Fri May 19 17:59:54 2017 Lucas Gambini
 */
 
 #include "Garage.hpp"
@@ -17,6 +17,7 @@ Garage::Garage(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *driver,
     this->_gui = gui;
     this->_driver = driver;
     this->_windowSize = windowSize;
+    this->_isVisible = false;
 }
 
 Garage::~Garage()
@@ -36,10 +37,9 @@ void Garage::SetupGUI() {
     this->_leave = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 120), 0, -1,
             L"Leave Garage", L"Leave Garage");
 
-    this->_title = this->_gui->addStaticText(L"Garage", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200), false, false, 0, -1, false);
+    this->_title = this->_gui->addStaticText(L"Garage", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 120), false, false, 0, -1, false);
     this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
 
-    this->_isVisible = false;
 }
 
 void Garage::setVisible(bool visible) {
