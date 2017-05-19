@@ -151,6 +151,14 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case Menu::QUIT:
                         //QUIT
                         break;
+                    case Course::RUN:
+                        //LANCER LA COURSE SA MERE
+                        break;
+                    case Course::CANCEL:
+                        OnLeavingCourse();
+                        break;
+                    default:
+                        break;
                 }
             default:
                 break;
@@ -158,6 +166,25 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
     }
 
     return EventReceiver::OnEvent(event);
+}
+
+void IndieGame::OnEnterCourse(void) {
+    if (!this->_course) {
+        this->_course = new Course(this->_gui, this->_driver, this->_windowSize);
+        this->_course->SetupGUI();
+        this->_objectList.push_back(this->_course);
+        this->_guiVisible.push_back(this->_course);
+    }
+    this->_course->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(this->_course);
+}
+
+void IndieGame::OnLeavingCourse(void) {
+    this->_course->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::OnEnterGarage(void) {
@@ -219,6 +246,9 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
     switch (keyCode) {
         case irr::KEY_ESCAPE:
             OnOpenningMenu();
+            break;
+        case irr::KEY_KEY_Q: // TMP POUR DEBUG LE GUI COURSE
+            this->_course->addPlayer(10);
             break;
         default:
             break;

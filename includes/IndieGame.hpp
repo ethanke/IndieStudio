@@ -22,6 +22,7 @@
 #include "Settings.hpp"
 #include "Garage.hpp"
 #include "Menu.hpp"
+#include "Course.hpp"
 
 namespace indie {
 
@@ -48,6 +49,9 @@ namespace indie {
         virtual void OnOpenningMenu();
         virtual void OnLeavingMenu();
 
+        virtual void OnEnterCourse();
+        virtual void OnLeavingCourse();
+
         virtual void guiVisible(IGUI*);
 
     private:
@@ -56,6 +60,7 @@ namespace indie {
         carWatcher *_carWatch;
         Garage *_garage;
         Menu *_menu;
+        Course *_course;
 
         std::vector<IGUI*> _guiVisible;
     };

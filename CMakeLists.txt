@@ -102,6 +102,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/GUI/Settings.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Garage.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Menu.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GUI/Course.cpp
 )
 
 # build executable

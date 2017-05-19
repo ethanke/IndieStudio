@@ -30,7 +30,13 @@ namespace indie {
         virtual void OnReleaseKey(irr::EKEY_CODE keyCode) = 0;
 
         virtual void OnEnterGarage(void) = 0;
+        virtual void OnLeavingGarage(void) = 0;
 
+        virtual void OnOpenningMenu() = 0;
+        virtual void OnLeavingMenu() = 0;
+
+        virtual void OnEnterCourse() = 0;
+        virtual void OnLeavingCourse() = 0;
 
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];

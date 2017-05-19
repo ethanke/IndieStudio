@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Fri May 19 20:43:29 2017 Lucas Gambini
+** Last update Sat May 20 00:43:06 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -52,6 +52,9 @@ void carWatcher::OnFrame() {
             switch (x.getChType()) {
                 case GameCheckpoint::GARAGE:
                     _eventReceiver->OnEnterGarage();
+                    break;
+                case GameCheckpoint::COURSE:
+                    _eventReceiver->OnEnterCourse();
                     break;
                 default:
                     break;

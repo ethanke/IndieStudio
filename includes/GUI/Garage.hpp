@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Thu May 18 01:01:56 2017 Lucas Gambini
-** Last update Fri May 19 22:05:31 2017 Lucas Gambini
+** Last update Sat May 20 00:38:42 2017 Lucas Gambini
 */
 
 #ifndef GARAGE_HPP
@@ -17,37 +17,37 @@
 
 namespace indie {
 
-class Garage : public IGUI {
+    class Garage : public IGUI {
 
-    public: enum BTN_IDS
-    {
-        REPAIR = 4242,
-        LEAVE
-    };
+        public: enum BTN_IDS
+        {
+            REPAIR = 4242,
+            LEAVE
+        };
 
-    public:
-        Garage(irr::gui::IGUIEnvironment *, irr::video::IVideoDriver *, irr::core::dimension2du);
-        virtual ~Garage();
+        public:
+            Garage(irr::gui::IGUIEnvironment *, irr::video::IVideoDriver *, irr::core::dimension2du);
+            virtual ~Garage();
 
-        void SetupGUI();
-        void setVisible(bool visible);
-        bool isVisible(void) const;
+            void SetupGUI();
+            void setVisible(bool visible);
+            bool isVisible(void) const;
 
-        virtual void OnFrame();
+            virtual void OnFrame();
 
-    private:
-        irr::gui::IGUIEnvironment *_gui;
-        irr::gui::IGUIWindow *_window;
-        irr::video::IVideoDriver *_driver;
+        private:
+            irr::gui::IGUIEnvironment *_gui;
+            irr::gui::IGUIWindow *_window;
+            irr::video::IVideoDriver *_driver;
 
-        bool _isVisible;
-        irr::core::dimension2du _windowSize;
+            bool _isVisible;
+            irr::core::dimension2du _windowSize;
 
-        irr::gui::IGUIStaticText *_title;
-        irr::gui::IGUIButton *_repair;
-        irr::gui::IGUIButton *_leave;
+            irr::gui::IGUIStaticText *_title;
+            irr::gui::IGUIButton *_repair;
+            irr::gui::IGUIButton *_leave;
 
-    };
+        };
 
 }
 
