@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Thu May 18 19:23:57 2017 Sousa Victor
+// Last update Fri May 19 04:12:01 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -13,7 +13,6 @@
 
 #include "BasicCamera.hpp"
 #include "CarModel.hpp"
-#include "CarMotor.hpp"
 #include "EventReceiver.hpp"
 
 namespace indie {
@@ -21,7 +20,7 @@ namespace indie {
     class Car : public IGameObject {
 
     public:
-        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver);
+        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, std::shared_ptr<irrBulletWorld> world, EventReceiver *eventReceiver);
         ~Car();
 
         void OnFrame();
@@ -31,7 +30,6 @@ namespace indie {
 
     protected:
         CarModel _carModel;
-        CarMotor *_motor;
         BasicCamera *_camera;
         EventReceiver *_eventReceiver;
 

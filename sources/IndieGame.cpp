@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 18 19:49:02 2017 John Doe
+// Last update Fri May 19 04:13:46 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -40,7 +40,7 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new Car(this->_smgr, this->_gui, this);
+    this->_car = new Car(this->_smgr, this->_gui, this->_world, this);
     this->_objectList.push_back(this->_car);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
@@ -86,6 +86,29 @@ void IndieGame::addEventReceiver() {
 }
 
 void IndieGame::loadMap() {
+    ILiquidBody* water = _world->addLiquidBody(irr::core::vector3df(-5000,0,5000),irr::core::aabbox3df(0, -10000, 0, 10000, 0, 10000), 500.0f, 200.0f);
+    water->setCurrentDirection(irr::core::vector3df(0,0,0));
+    water->setGlobalWaveChangeIncrement(0.01f);
+    water->setGlobalWaveUpdateFrequency(1.0f);
+    water->setMaxGlobalWaveHeight(4.0f);
+    water->setMinGlobalWaveHeight(-1.0f);
+    water->setLocalWaveValues(10,1,0.5f);
+    water->setInfinite(true);
+    water->setInfiniteDepth(true);
+    water->setLiquidDensity(0.1f);
+
+    irr::scene::IAnimatedMesh* mesh = _device->getSceneManager()->addHillPlaneMesh( "myHill",
+                irr::core::dimension2d<irr::f32>(20,20),
+                irr::core::dimension2d<irr::u32>(40,40), 0, 0,
+                irr::core::dimension2d<irr::f32>(0,0),
+                irr::core::dimension2d<irr::f32>(1000,1000));
+    irr::scene::ISceneNode* node = _device->getSceneManager()->addWaterSurfaceSceneNode(mesh->getMesh(0), 0.0f, 300.0f, 30.0f);
+    node->setPosition(irr::core::vector3df(0,5,0));
+    node->setMaterialTexture(0, _device->getVideoDriver()->getTexture("water.jpg"));
+    node->setScale(irr::core::vector3df(1000,1,1000));
+    node->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
+    node->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, false);
+
     irr::scene::IMesh* mesh_road = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_1.obj").c_str());
     irr::scene::IMeshSceneNode *node_road = this->_smgr->addOctreeSceneNode(mesh_road, 0, -1);
     node_road->setMaterialFlag(irr::video::EMF_LIGHTING, true);
@@ -93,6 +116,9 @@ void IndieGame::loadMap() {
     node_road->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
     node_road->addShadowVolumeSceneNode();
+    ICollisionShape *shape_road = new IBvhTriangleMeshShape(node_road, mesh_road, 0);
+    auto building_road = this->_world->addRigidBody(shape_road);
+    building_road->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
 
     irr::scene::IMesh* mesh_road2 = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_2.obj").c_str());
     irr::scene::IMeshSceneNode *node_road2 = this->_smgr->addOctreeSceneNode(mesh_road2, 0, -1);
@@ -101,6 +127,9 @@ void IndieGame::loadMap() {
     node_road2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
     node_road2->addShadowVolumeSceneNode();
+    ICollisionShape *shape_road2 = new IBvhTriangleMeshShape(node_road2, mesh_road2, 0);
+    auto building_road2 = this->_world->addRigidBody(shape_road2);
+    building_road2->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
 
     #ifndef DEBUG
         irr::scene::IMesh* mesh1 = this->_smgr->getMesh(std::string("BigCity/BigCity_1.obj").c_str());
@@ -110,6 +139,9 @@ void IndieGame::loadMap() {
         node1->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node1->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
         node1->addShadowVolumeSceneNode();
+        ICollisionShape *shape1 = new IBvhTriangleMeshShape(node1, mesh1, 0);
+        auto building1 = this->_world->addRigidBody(shape1);
+        building1->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
 
         irr::scene::IMesh* mesh2 = this->_smgr->getMesh(std::string("BigCity/BigCity_2.obj").c_str());
         irr::scene::IMeshSceneNode *node2 = this->_smgr->addOctreeSceneNode(mesh2, 0, -1);
@@ -118,6 +150,9 @@ void IndieGame::loadMap() {
         node2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
         node2->addShadowVolumeSceneNode();
+        ICollisionShape *shape2 = new IBvhTriangleMeshShape(node2, mesh2, 0);
+        auto building2 = this->_world->addRigidBody(shape2);
+        building2->setCollisionFlags(ECollisionFlag::ECF_STATIC_OBJECT);
     #endif
 }
 

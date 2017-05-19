@@ -5,13 +5,14 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:20:36 2017 Sousa Victor
-// Last update Thu May 18 19:20:01 2017 Sousa Victor
+// Last update Fri May 19 04:06:40 2017 Sousa Victor
 //
 
 #ifndef AGAME_HPP_
 #define AGAME_HPP_
 
 #include <irrlicht.h>
+#include <irrBullet.h>
 #include <exception>
 #include <string>
 #include <vector>
@@ -60,6 +61,7 @@ namespace indie {
         irr::video::IVideoDriver* _driver;
         irr::scene::ISceneManager* _smgr;
         irr::gui::IGUIEnvironment* _gui;
+        std::shared_ptr<irrBulletWorld> _world;
         std::vector<IGameObject *> _objectList;
         std::vector<EventDelegate *> _eventReceiverList;
         AGameCamera *_minimapCamera;

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Thu May 18 19:26:23 2017 Sousa Victor
+// Last update Fri May 19 04:07:40 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -31,6 +31,9 @@ void AGame::Setup() {
     this->_smgr = this->_device->getSceneManager();
     this->_gui = this->_device->getGUIEnvironment();
     this->_device->getCursorControl()->setVisible(false);
+
+    this->_world.reset(createIrrBulletWorld(this->_device, true));
+    this->_world->setGravity(irr::core::vector3df(0,-10,0));
 
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
     this->_image = this->_driver->getTexture("misc/loading.jpg");
@@ -63,6 +66,7 @@ void AGame::loop() {
     while(this->_device->run()) {
         processDeltaTime();
         if (this->_device->isWindowActive()) {
+            this->_world->stepSimulation(DeltaTimer::DeltaTime);
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
             this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
