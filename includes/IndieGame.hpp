@@ -24,6 +24,8 @@
 #include "Menu.hpp"
 #include "Course.hpp"
 #include "RandomEvent.hpp"
+#include "Audio.hpp"
+#include "Keyboard.hpp"
 
 namespace indie {
 
