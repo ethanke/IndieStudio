@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Sat May 20 00:43:06 2017 Lucas Gambini
+** Last update Sat May 20 16:10:18 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -44,6 +44,7 @@ void carWatcher::OnFrame() {
     // if (this->_car == NULL)
     //     return;
     bool check;
+    int index = 0;
     irr::core::vector3df cpos = /*this->_car->*/this->_smgr->getActiveCamera()->getPosition();
     for (auto &x : this->_checkpoints) {
         if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false)
@@ -56,11 +57,21 @@ void carWatcher::OnFrame() {
                 case GameCheckpoint::COURSE:
                     _eventReceiver->OnEnterCourse();
                     break;
+                case GameCheckpoint::MONEY:
+                    x.remove();
+                    this->_checkpoints.erase(this->_checkpoints.begin() + index);
+                    _eventReceiver->OnEnterMoney();
+                    break;
                 default:
                     break;
             }
         } else if (check == false) {
             x.setBusy(false);
         }
+        index++;
     }
+}
+
+void carWatcher::addCheckpoint(GameCheckpoint &check) {
+    this->_checkpoints.push_back(check);
 }

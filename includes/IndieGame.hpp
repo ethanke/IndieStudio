@@ -23,6 +23,7 @@
 #include "Garage.hpp"
 #include "Menu.hpp"
 #include "Course.hpp"
+#include "RandomEvent.hpp"
 
 namespace indie {
 
@@ -52,6 +53,8 @@ namespace indie {
         virtual void OnEnterCourse();
         virtual void OnLeavingCourse();
 
+        virtual void OnEnterMoney();
+
         virtual void guiVisible(IGUI*);
 
     private:
@@ -61,8 +64,12 @@ namespace indie {
         Garage *_garage;
         Menu *_menu;
         Course *_course;
+        RandomEvent *_events;
 
         std::vector<IGUI*> _guiVisible;
+
+        //Text debug
+        irr::gui::IGUIStaticText *_pos;
     };
 
 }

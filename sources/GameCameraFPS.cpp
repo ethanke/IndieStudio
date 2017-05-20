@@ -33,7 +33,7 @@ GameCameraFPS::GameCameraFPS(irr::scene::ISceneManager *sceneManager, irr::scene
                                                                           (keyMapArray == NULL ? keyMap : keyMapArray), (keyMapArray == NULL ? 5 : keyMapSize),
                                                                           noVerticalMovement, jumpSpeed, invertMouseY, makeActive);
 
-    this->_camera->setPosition(irr::core::vector3df(0, 50, 0));
+    this->_camera->setPosition(irr::core::vector3df(0, 250, 0));
 
 }
 
@@ -51,5 +51,4 @@ GameCameraFPS::~GameCameraFPS() {
 }
 
 void GameCameraFPS::OnFrame() {
-
 }

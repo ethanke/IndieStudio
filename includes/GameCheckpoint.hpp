@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Fri May 19 20:09:58 2017 Lucas Gambini
+** Last update Sat May 20 16:11:20 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -20,7 +20,8 @@ namespace indie {
     public: enum Type {
         GARAGE,
         CONCESSIONNAIRE,
-        COURSE
+        COURSE,
+        MONEY
     };
 
     public:

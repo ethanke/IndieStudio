@@ -38,6 +38,8 @@ namespace indie {
         virtual void OnEnterCourse() = 0;
         virtual void OnLeavingCourse() = 0;
 
+        virtual void OnEnterMoney() = 0;
+
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
 

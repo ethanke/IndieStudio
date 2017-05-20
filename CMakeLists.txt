@@ -87,6 +87,7 @@ set(SRC_FILES
 
     ${PROJECT_SOURCE_DIR}/sources/Minimap.cpp
     ${PROJECT_SOURCE_DIR}/sources/GameCheckpoint.cpp
+    ${PROJECT_SOURCE_DIR}/sources/RandomEvent.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysics.cpp
     ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysicsAnimator.cpp

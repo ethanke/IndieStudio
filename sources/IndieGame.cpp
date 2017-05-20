@@ -34,7 +34,7 @@ void IndieGame::addGameObject() {
     keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
     GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
     this->_objectList.push_back(cameraFps1);
-    cameraFps1->setFarValue(1000);
+    cameraFps1->setFarValue(25000);
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
@@ -52,8 +52,10 @@ void IndieGame::addGameObject() {
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, irr::core::vector3df(-1700.6, 0, 70.4)));
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
-    this->_objectList.push_back(_carWatch);
+    this->_objectList.push_back(this->_carWatch);
 
+    this->_events = new RandomEvent(this->_smgr, this->_carWatch);
+    this->_objectList.push_back(this->_events);
 
     // Menu *_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
     // _menu->SetupGUI();
@@ -79,6 +81,10 @@ void IndieGame::addGameObject() {
 
     this->_garage = NULL;
     this->_menu = NULL;
+
+    //GUI DEBUG
+    this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
+    this->_pos->setTextAlignment(irr::gui::EGUIA_SCALE , irr::gui::EGUIA_SCALE);
 
 }
 
@@ -123,7 +129,8 @@ void IndieGame::loadMap() {
 }
 
 void IndieGame::OnFrame() {
-
+    std::string str("      \nX: " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + "\nZ: " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z));
+    this->_pos->setText(Utils::StrToWstr(str));
 }
 
 bool IndieGame::OnEvent(const irr::SEvent& event){
@@ -233,6 +240,10 @@ void IndieGame::OnOpenningMenu()
     this->guiVisible(_menu);
 }
 
+void IndieGame::OnEnterMoney() {
+    //Ajouter de l'argent --> serveur
+}
+
 void IndieGame::guiVisible(IGUI *obj)
 {
     for (auto & gui : _guiVisible)
@@ -249,6 +260,9 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
             break;
         case irr::KEY_KEY_Q: // TMP POUR DEBUG LE GUI COURSE
             this->_course->addPlayer(10);
+            break;
+        case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
+            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + " >> pos").c_str());
             break;
         default:
             break;
