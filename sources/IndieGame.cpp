@@ -85,6 +85,7 @@ void IndieGame::addGameObject() {
 
     this->_garage = NULL;
     this->_menu = NULL;
+    this->_course = NULL;
 
     //GUI DEBUG
     this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
