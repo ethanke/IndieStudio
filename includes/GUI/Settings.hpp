@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:15:48 2017 Vacca_J
-** Last update Fri May 19 22:32:41 2017 Vacca_J
+** Last update Sat May 20 17:32:10 2017 Vacca_J
 */
 
 #ifndef SETTING_HPP_
