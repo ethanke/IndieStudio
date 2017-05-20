@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Fri May 19 22:25:46 2017 John Doe
+// Last update Sat May 20 21:44:40 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -67,6 +67,9 @@ namespace indie {
         Menu *_menu;
         Course *_course;
         RandomEvent *_events;
+
+        physics::CBulletPhysics* bulletPhysSys;
+        physics::SPhysicsParams physicsParams;
 
         std::vector<IGUI*> _guiVisible;
 

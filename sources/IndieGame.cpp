@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri May 19 23:40:31 2017 John Doe
+// Last update Sat May 20 22:04:29 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -20,6 +20,10 @@ IndieGame::~IndieGame() {
 }
 
 void IndieGame::addGameObject() {
+    bulletPhysSys = new physics::CBulletPhysics();
+	if (bulletPhysSys->Create() == false) {
+		printf("bullet init failed..");
+	}
 
     irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
     keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
@@ -40,8 +44,8 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    // this->_car = new Car(this->_smgr, this->_gui, this);
-    // this->_objectList.push_back(this->_car);
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys);
+    this->_objectList.push_back(this->_car);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     // this->_objectList.push_back(map);
@@ -93,13 +97,18 @@ void IndieGame::addEventReceiver() {
 }
 
 void IndieGame::loadMap() {
-    irr::scene::IMesh* mesh_road = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_1.obj").c_str());
-    irr::scene::IMeshSceneNode *node_road = this->_smgr->addOctreeSceneNode(mesh_road, 0, -1);
+    physicsParams.Mass = 0.0f;
+    //physicsParams.Friction = 10.f;
+
+    irr::scene::IAnimatedMesh* mesh_road = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_1.obj").c_str());
+    irr::scene::IAnimatedMeshSceneNode *node_road = this->_smgr->addAnimatedMeshSceneNode(mesh_road, 0, -1);
     node_road->setMaterialFlag(irr::video::EMF_LIGHTING, true);
     node_road->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
     node_road->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
     node_road->addShadowVolumeSceneNode();
+    bulletPhysSys->addConcaveMesh(node_road, node_road->getMesh(), &physicsParams);
+
 
     irr::scene::IMesh* mesh_road2 = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_2.obj").c_str());
     irr::scene::IMeshSceneNode *node_road2 = this->_smgr->addOctreeSceneNode(mesh_road2, 0, -1);
@@ -108,6 +117,7 @@ void IndieGame::loadMap() {
     node_road2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
     node_road2->addShadowVolumeSceneNode();
+    bulletPhysSys->addConcaveMesh(node_road2, node_road2->getMesh(), &physicsParams);
 
     #ifndef DEBUG
         irr::scene::IMesh* mesh1 = this->_smgr->getMesh(std::string("BigCity/BigCity_1.obj").c_str());
@@ -117,6 +127,7 @@ void IndieGame::loadMap() {
         node1->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node1->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
         node1->addShadowVolumeSceneNode();
+        bulletPhysSys->addConcaveMesh(node1, node1->getMesh(), &physicsParams);
 
         irr::scene::IMesh* mesh2 = this->_smgr->getMesh(std::string("BigCity/BigCity_2.obj").c_str());
         irr::scene::IMeshSceneNode *node2 = this->_smgr->addOctreeSceneNode(mesh2, 0, -1);
@@ -125,12 +136,15 @@ void IndieGame::loadMap() {
         node2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
         node2->addShadowVolumeSceneNode();
+        bulletPhysSys->addConcaveMesh(node2, node2->getMesh(), &physicsParams);
     #endif
 }
 
 void IndieGame::OnFrame() {
     std::string str("      \nX: " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + "\nZ: " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z));
     this->_pos->setText(Utils::StrToWstr(str));
+
+    bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }
 
 bool IndieGame::OnEvent(const irr::SEvent& event){
