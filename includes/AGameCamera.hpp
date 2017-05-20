@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 04:15:45 2017 Sousa Victor
-// Last update Thu May 11 23:53:51 2017 Sousa Victor
+// Last update Sat May 20 22:11:08 2017 Sousa Victor
 //
 
 #ifndef AGAMECAMERA_HPP_
@@ -65,6 +65,9 @@ namespace indie {
         }
 		virtual void setRotation(const irr::core::vector3df& rotation) {
             this->_camera->setRotation(rotation);
+        }
+        virtual void setPosition(const irr::core::vector3df& position) {
+            this->_camera->setPosition(position);
         }
 		virtual const irr::core::vector3df& getTarget() const {
             return this->_camera->getTarget();
