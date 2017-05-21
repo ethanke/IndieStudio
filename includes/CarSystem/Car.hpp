@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sat May 20 21:59:51 2017 Sousa Victor
+// Last update Sun May 21 01:56:45 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -29,11 +29,13 @@ namespace indie {
         irr::core::vector3d<float> getPosition() const;
 
     protected:
+        physics::CBulletPhysics* _bulletPhysicsSystem;
+        EventReceiver *_eventReceiver;
+
         int m_car_no;
-        CLoadCar loadCar;
+        CLoadCar _carLoader;
+        physics::PhysicsCar* _car;
         irr::s32 drive_tipe;
-        physics::PhysicsCar* m_car;
-        physics::CBulletPhysics* m_bulletPhysicsSystem;
 
         bool reverse;
         bool drive;
@@ -46,9 +48,6 @@ namespace indie {
         float m_maxCameraDistance;
 
         void KeyboardEvent();
-
-        EventReceiver *_eventReceiver;
-
         void updateCamera();
 
     };

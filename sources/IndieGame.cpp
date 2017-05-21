@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sat May 20 22:04:29 2017 Sousa Victor
+// Last update Sun May 21 02:10:24 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -44,7 +44,7 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys);
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, 0);
     this->_objectList.push_back(this->_car);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
@@ -107,7 +107,7 @@ void IndieGame::loadMap() {
     node_road->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
     node_road->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
-    node_road->addShadowVolumeSceneNode();
+    node_road->addShadowVolumeSceneNode(mesh_road, -1, true);
     bulletPhysSys->addConcaveMesh(node_road, node_road->getMesh(), &physicsParams);
 
 
@@ -117,7 +117,7 @@ void IndieGame::loadMap() {
     node_road2->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
     node_road2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
-    node_road2->addShadowVolumeSceneNode();
+    node_road2->addShadowVolumeSceneNode(NULL, -1, true);
     bulletPhysSys->addConcaveMesh(node_road2, node_road2->getMesh(), &physicsParams);
 
     #ifndef DEBUG
@@ -127,7 +127,7 @@ void IndieGame::loadMap() {
         node1->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
         node1->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node1->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
-        node1->addShadowVolumeSceneNode();
+        node1->addShadowVolumeSceneNode(NULL, -1, true);
         bulletPhysSys->addConcaveMesh(node1, node1->getMesh(), &physicsParams);
 
         irr::scene::IMesh* mesh2 = this->_smgr->getMesh(std::string("BigCity/BigCity_2.obj").c_str());
@@ -136,7 +136,7 @@ void IndieGame::loadMap() {
         node2->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
         node2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
-        node2->addShadowVolumeSceneNode();
+        node2->addShadowVolumeSceneNode(NULL, -1, true);
         bulletPhysSys->addConcaveMesh(node2, node2->getMesh(), &physicsParams);
     #endif
 }
