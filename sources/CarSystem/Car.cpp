@@ -23,7 +23,7 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
 	m_minCameraDistance = 2.0f; //1.0f;
 	m_maxCameraDistance = 5.0f;
     this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
-
+    this->_camera->setFarValue(1000);
     reverse = false;
 	drive = true;
 	park = false;
