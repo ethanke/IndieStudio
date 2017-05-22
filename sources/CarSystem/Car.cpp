@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sun May 21 03:42:26 2017 Sousa Victor
+// Last update Mon May 22 23:58:39 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -32,13 +32,6 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_carLoader.setCarPos(irr::core::vector3df(2, 38, 0));
 	this->_carLoader.setCarStRot(45);
 	this->_carLoader.Init(this->_smgr, this->_bulletPhysicsSystem, m_car_no);
-
-	//lighting && shininess 0 1 3 5
-	if( m_car_no == 0 || m_car_no == 1 || m_car_no == 3 || m_car_no == 5 ) {
-		this->_carLoader.getCarNode()->setMaterialFlag(video::EMF_LIGHTING, true);
-		this->_carLoader.getCarNode()->getMaterial(this->_carLoader.getCarNode()->getMaterialCount()).Shininess = 50.0f;
-		this->_carLoader.getCarNode()->getMaterial(this->_carLoader.getCarNode()->getMaterialCount()).SpecularColor.set(255,128,128,0);
-	}
 
 	this->_car = this->_carLoader.getCar();
     drive_tipe = this->_carLoader.returnDrive();

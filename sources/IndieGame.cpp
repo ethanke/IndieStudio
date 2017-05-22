@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Mon May 22 17:52:36 2017 John Doe
+// Last update Mon May 22 23:57:33 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -98,17 +98,14 @@ void IndieGame::addEventReceiver() {
 }
 
 void IndieGame::loadMap() {
-    physicsParams.Mass = 0.0f;
-    //physicsParams.Friction = 10.f;
-
-    irr::scene::IAnimatedMesh* mesh_road = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_1.obj").c_str());
-    irr::scene::IAnimatedMeshSceneNode *node_road = this->_smgr->addAnimatedMeshSceneNode(mesh_road, 0, -1);
+    irr::scene::IMesh* mesh_road = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_1.obj").c_str());
+    irr::scene::IMeshSceneNode *node_road = this->_smgr->addOctreeSceneNode(mesh_road, 0, -1);
     node_road->setMaterialFlag(irr::video::EMF_LIGHTING, true);
     node_road->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
     node_road->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
     node_road->addShadowVolumeSceneNode(mesh_road, -1, true);
-    bulletPhysSys->addConcaveMesh(node_road, node_road->getMesh(), &physicsParams);
+    bulletPhysSys->AddMeshSceneNode(node_road, node_road->getMesh(), true);
 
 
     irr::scene::IMesh* mesh_road2 = this->_smgr->getMesh(std::string("BigCity/BigCityRoad_2.obj").c_str());
@@ -118,26 +115,28 @@ void IndieGame::loadMap() {
     node_road2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
     node_road2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
     node_road2->addShadowVolumeSceneNode(NULL, -1, true);
-    bulletPhysSys->addConcaveMesh(node_road2, node_road2->getMesh(), &physicsParams);
+    bulletPhysSys->AddMeshSceneNode(node_road2, node_road2->getMesh(), true);
 
     #ifndef DEBUG
         irr::scene::IMesh* mesh1 = this->_smgr->getMesh(std::string("BigCity/BigCity_1.obj").c_str());
         irr::scene::IMeshSceneNode *node1 = this->_smgr->addOctreeSceneNode(mesh1, 0, -1);
+
         node1->setMaterialFlag(irr::video::EMF_LIGHTING, true);
         node1->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
         node1->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node1->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
         node1->addShadowVolumeSceneNode(NULL, -1, true);
-        bulletPhysSys->addConcaveMesh(node1, node1->getMesh(), &physicsParams);
+        bulletPhysSys->AddMeshSceneNode(node1, node1->getMesh(), true);
 
         irr::scene::IMesh* mesh2 = this->_smgr->getMesh(std::string("BigCity/BigCity_2.obj").c_str());
         irr::scene::IMeshSceneNode *node2 = this->_smgr->addOctreeSceneNode(mesh2, 0, -1);
+
         node2->setMaterialFlag(irr::video::EMF_LIGHTING, true);
         node2->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
         node2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
         node2->setMaterialFlag(irr::video::EMF_GOURAUD_SHADING,true);
         node2->addShadowVolumeSceneNode(NULL, -1, true);
-        bulletPhysSys->addConcaveMesh(node2, node2->getMesh(), &physicsParams);
+        bulletPhysSys->AddMeshSceneNode(node2, node2->getMesh(), true);
     #endif
 }
 

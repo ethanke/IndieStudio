@@ -25,42 +25,41 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
     }
 	switch (val) {
 		case 0: {
-			drive = AWD;
-			max_speed = 180.0f;
-			carNode = loadMeshFromFile("car/Car/old_F1.obj");
+			drive = FWD;
+			max_speed = 220.0f;
+			carNode = loadMeshFromFile("car/SV/SV.obj");
 			carNode->setPosition(core::vector3df(0.f, 0.f, 0.f));
-            carNode->setMaterialFlag(irr::video::EMF_LIGHTING, true);
-			carNode->getMaterial(0).Shininess = 20.f;
+            carNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			car = new physics::PhysicsCar(
 				bulletPhysSys,
 				carNode,
-                loadMeshFromFile("car/Car/old_F1_tire_right.obj"),
-                loadMeshFromFile("car/Car/old_F1_tire_left.obj"),
-                loadMeshFromFile("car/Car/old_F1_tire_right.obj"),
-                loadMeshFromFile("car/Car/old_F1_tire_left.obj")
+                loadMeshFromFile("car/SV/SV_tire_front_left.obj"),      //front left
+                loadMeshFromFile("car/Car/SV_tire_front_right.obj"),     //front right
+                loadMeshFromFile("car/Car/SV_tire_back_left.obj"),      //back left
+                loadMeshFromFile("car/Car/SV_tire_back_right.obj")   //back right
 			);
 
-            carParams.CenterOfMassOffset = core::vector3df(0, -0.09, 0);
-			carParams.CarBodyOffset = 0.05f;	//-0.55f
-			carParams.FrontAxeOffset = 1.8f;	//1.37f
-			carParams.FrontAxeHalfWidth = 0.95f;	//0.8f
-			carParams.RearAxeOffset = -1.35f;	//1.37f
+            carParams.CenterOfMassOffset = core::vector3df(0, -0.0, 0);
+			carParams.CarBodyOffset = -0.1f;	//-0.55f
+			carParams.FrontAxeOffset = 1.32f;	//1.37f
+			carParams.FrontAxeHalfWidth = 0.8f;	//0.8f
+			carParams.RearAxeOffset = -1.383f;	//1.37f
 			carParams.RearAxeHalfWidth = 0.85f;	//0.8f
 			carParams.Mass = 1600.0f;
-			carParams.MaxEngineForce = 2500.0f;
+			carParams.MaxEngineForce = 4500.0f;
 			carParams.MaxBreakingForce = 50.0f;	//100.0f
 			carParams.SteeringIncrement = 0.04f;	//0.04f
-			carParams.SteeringClamp = 0.2f;
-			carParams.WheelRadius = 0.5f;	//0.35f
+			carParams.SteeringClamp = 0.5f;
+			carParams.WheelRadius = 0.35f;	//0.35f
 			carParams.WheelWidth = 0.2f;	//0.2f
 			carParams.WheelFriction = 10.f;	//10.0f
 
-			carParams.SuspensionStiffness = 70.0f;	//50.0f
+			carParams.SuspensionStiffness = 50.0f;	//50.0f
 			carParams.SuspensionDamping = 0.4f * 2.0f * btSqrt(carParams.SuspensionStiffness);
 			carParams.SuspensionCompression = 0.3f * 2.0f * btSqrt(carParams.SuspensionStiffness);
 			carParams.SuspensionRestLength = 0.15f;
 
-			carParams.RollInfluence = 0.25f;	//0.25f
+			carParams.RollInfluence = 0.15;	//0.25f
 
 			car->init(&carParams);
 
@@ -107,7 +106,6 @@ irr::scene::IAnimatedMeshSceneNode* CLoadCar::loadMeshFromFile(const char* filen
 	}
 
 	node->setMaterialFlag(video::EMF_LIGHTING, false);	// no lighting
-
 	//shadows....uncomment if shit isn't working
     //node->addShadowVolumeSceneNode(NULL, -1, true);
 
