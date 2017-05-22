@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:15:48 2017 Vacca_J
-** Last update Sat May 20 17:32:10 2017 Vacca_J
+** Last update Tue May 23 01:15:04 2017 Vacca_J
 */
 
 #ifndef SETTING_HPP_
@@ -16,10 +16,20 @@
 #include <IGUIEnvironment.h>
 #include "IGameObject.hpp"
 #include "IGUI.hpp"
+#include "Audio.hpp"
+#include "Graphic.hpp"
+#include "Keyboard.hpp"
 
 namespace indie {
 
 class Settings : public IGUI {
+
+  public: enum SETTINGS_BTNS
+  {
+      GRAPHIC = 8001,
+      AUDIO,
+      KEYBOARD,
+  };
 
 private:
   irr::gui::IGUIWindow *_window;
@@ -32,6 +42,10 @@ private:
   irr::gui::IGUIButton *_graphic;
   irr::gui::IGUIButton *_song;
   irr::gui::IGUIButton *_keyboard;
+  Audio *_Waudio;
+  Keyboard *_Wkeyboard;
+  Graphic *_Wgraphic;
+
   bool _isVisible;
 public:
 
@@ -43,6 +57,14 @@ public:
   void setVisible(bool visible);
   bool isVisible(void) const;
   void OnFrame();
+  void OnGraphic();
+  void OnEnterGraphic();
+  void OnEnterAudio();
+  void OnEnterKeyboard();
+
+  Audio *getAudio();
+  Graphic *getGraphic();
+  Keyboard *getKeyboard();
 
   };
 

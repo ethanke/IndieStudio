@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:46:39 2017 Full Name
-** Last update	Fri May 19 23:46:52 2017 Full Name
+** Last update Mon May 22 19:02:05 2017 Vacca_J
 */
 
 #include "Menu.hpp"
@@ -58,7 +58,7 @@ void Menu::OnEnterSetting()
     }
 }
 
-IGUI *Menu::getSettings()
+Settings *Menu::getSettings()
 {
     return _options;
 }

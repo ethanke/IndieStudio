@@ -107,6 +107,10 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/GUI/Course.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Audio.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Keyboard.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GUI/Concessionnaire.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GUI/Graphic.cpp
+
+
 )
 
 # build executable
