@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update	Mon May 22 17:00:15 2017 Full Name
+** Last update Mon May 22 17:33:01 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -47,7 +47,7 @@ void carWatcher::OnFrame() {
     int index = 0;
     irr::core::vector3df cpos = this->_car->getPosition();
     for (auto &x : this->_checkpoints) {
-        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false && this->_car->getVel() <= 1)
+        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false && (this->_car->getVel() <= 1 || x.getChType() == GameCheckpoint::MONEY))
         {
             x.setBusy(true);
             switch (x.getChType()) {
