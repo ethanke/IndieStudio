@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun May 21 02:10:24 2017 Sousa Victor
+// Last update Mon May 22 17:52:36 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -171,6 +171,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         OnLeavingMenu();
                         break;
                     case Menu::QUIT:
+                        this->_device->closeDevice();
                         //QUIT
                         break;
                     case Course::RUN:
