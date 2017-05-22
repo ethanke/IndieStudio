@@ -38,7 +38,7 @@ void IndieGame::addGameObject() {
     keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
     GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
     this->_objectList.push_back(cameraFps1);
-    cameraFps1->setFarValue(25000);
+    cameraFps1->setFarValue(1000);
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);

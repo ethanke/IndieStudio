@@ -149,10 +149,14 @@ void Car::KeyboardEvent() {
 }
 
 irr::core::vector3d<float>	Car::getPosition() const {
-    return irr::core::vector3df(0, 0, 0);
+    return this->_car->getPosition();
 }
 
 
 AGameCamera *Car::getCamera() const {
     return this->_camera;
+}
+
+irr::f32 Car::getVel() const {
+    return this->_car->getlinVel();
 }

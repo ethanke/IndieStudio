@@ -27,6 +27,7 @@ namespace indie {
 
         AGameCamera *getCamera() const;
         irr::core::vector3d<float> getPosition() const;
+        irr::f32 getVel() const;
 
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;
