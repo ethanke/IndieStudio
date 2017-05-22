@@ -25,20 +25,20 @@ void IndieGame::addGameObject() {
 		printf("bullet init failed..");
 	}
 
-    irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
-    keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
-    keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
-    keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
-    keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
-    keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
-    keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
-    keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
-    keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
-    keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
-    keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
-    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
-    this->_objectList.push_back(cameraFps1);
-    cameraFps1->setFarValue(1000);
+    // irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
+    // keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
+    // keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
+    // keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
+    // keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
+    // keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
+    // keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
+    // keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
+    // keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
+    // keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
+    // keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
+    // GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
+    // this->_objectList.push_back(cameraFps1);
+    // cameraFps1->setFarValue(1000);
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
@@ -274,7 +274,8 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
             OnOpenningMenu();
             break;
         case irr::KEY_KEY_Q: // TMP POUR DEBUG LE GUI COURSE
-            this->_course->addPlayer(10);
+            if (this->_course)
+                this->_course->addPlayer(10);
             break;
         case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
             system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + " >> pos").c_str());
