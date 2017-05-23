@@ -26,7 +26,7 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 	switch (val) {
 		case 0: {
 			drive = FWD;
-			max_speed = 220.0f;
+			max_speed = 150.0f;
 			carNode = loadMeshFromFile("car/SV/SV.obj");
 			carNode->setPosition(core::vector3df(0.f, 0.f, 0.f));
 			car = new physics::PhysicsCar(
@@ -38,25 +38,25 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
                 loadMeshFromFile("car/Car/SV_tire_back_right.obj")   //back right
 			);
 
-            carParams.CenterOfMassOffset = core::vector3df(0, -0.25, 0);
-			carParams.CarBodyOffset = -0.1f;	//-0.55f
+            carParams.CenterOfMassOffset = core::vector3df(0, -0.09, 0);
+			carParams.CarBodyOffset = -0.45f;	//-0.55f
 			carParams.FrontAxeOffset = 1.32f;	//1.37f
 			carParams.FrontAxeHalfWidth = 0.8f;	//0.8f
 			carParams.RearAxeOffset = -1.383f;	//1.37f
 			carParams.RearAxeHalfWidth = 0.85f;	//0.8f
 			carParams.Mass = 1600.0f;
-			carParams.MaxEngineForce = 4500.0f;
-			carParams.MaxBreakingForce = 50.0f;	//100.0f
-			carParams.SteeringIncrement = 0.04f;	//0.04f
-			carParams.SteeringClamp = 0.5f;
-			carParams.WheelRadius = 0.6f;	//0.35f
-			carParams.WheelWidth = 0.2f;	//0.2f
-			carParams.WheelFriction = 10.f;	//10.0f
+			carParams.MaxEngineForce = 2500.0f;
+			carParams.MaxBreakingForce = 100.0f;	//100.0f
+			carParams.SteeringIncrement = 0.025f;	//0.04f
+			carParams.SteeringClamp = 0.4f;
+			carParams.WheelRadius = 0.35f;	//0.35f
+			carParams.WheelWidth = 0.1f;	//0.2f
+			carParams.WheelFriction = 6.f;	//10.0f
 
-			carParams.SuspensionStiffness = 150.0f;	//50.0f
-			carParams.SuspensionDamping = 0.4f * 2.0f * btSqrt(carParams.SuspensionStiffness);
-			carParams.SuspensionCompression = 0.3f * 2.0f * btSqrt(carParams.SuspensionStiffness);
-			carParams.SuspensionRestLength = 0.25f;
+			carParams.SuspensionStiffness = 100.0f;	//50.0f
+			carParams.SuspensionDamping = 0.4f * 4.0f * btSqrt(carParams.SuspensionStiffness);
+			carParams.SuspensionCompression = 0.3f * 4.0f * btSqrt(carParams.SuspensionStiffness);
+			carParams.SuspensionRestLength = 0.1f;
 
 			carParams.RollInfluence = 0.05;	//0.25f
 

@@ -27,7 +27,7 @@ namespace irr
 				scene::IAnimatedMeshSceneNode* wheelNode_FL,
 				scene::IAnimatedMeshSceneNode* wheelNode_FR,
 				scene::IAnimatedMeshSceneNode* wheelNode_RL,
-				scene::IAnimatedMeshSceneNode* wheelNode_RR 
+				scene::IAnimatedMeshSceneNode* wheelNode_RR
 			);
 
 			~PhysicsCar(void);
@@ -53,6 +53,9 @@ namespace irr
 
 			void steerRight(void)
 			{
+                m_carParams.SteeringClamp = 75 / this->getlinVel();
+                if (m_carParams.SteeringClamp > 0.4)
+                    m_carParams.SteeringClamp = 0.4;
 				m_vehicleSteering += m_carParams.SteeringIncrement;
 				if (m_vehicleSteering > m_carParams.SteeringClamp) m_vehicleSteering = m_carParams.SteeringClamp;
 			}
@@ -60,6 +63,9 @@ namespace irr
 
 			void steerLeft(void)
 			{
+                m_carParams.SteeringClamp = 75 / this->getlinVel();
+                if (m_carParams.SteeringClamp > 0.4)
+                    m_carParams.SteeringClamp = 0.4;
 				m_vehicleSteering -= m_carParams.SteeringIncrement;
 				if (m_vehicleSteering < -m_carParams.SteeringClamp) m_vehicleSteering = -m_carParams.SteeringClamp;
 			}
@@ -75,7 +81,7 @@ namespace irr
 			void goBackwards(void)
 			{
 				m_engineForce -= m_carParams.MaxEngineForce;
-				if(m_engineForce < -1000)	m_engineForce = -1000.f;
+				if(m_engineForce < -2500)	m_engineForce = -2500.f;
 				m_breakingForce = 10.0f;
 				//printf("eng force: %f", m_engineForce);
 			}
@@ -83,7 +89,7 @@ namespace irr
 
 			void stop(void)
 			{
-				m_breakingForce = m_carParams.MaxBreakingForce; 
+				m_breakingForce = m_carParams.MaxBreakingForce;
 				m_engineForce = 0.0f;
 			}
 
@@ -91,14 +97,14 @@ namespace irr
 			void slowdown(void)
 			{
 				irr::f32 bla = m_carParams.MaxBreakingForce;
-				m_breakingForce = bla/2; 
+				m_breakingForce = bla/2;
 				m_engineForce = 0.0f;
 			}
 
 
 			void handbrake(void)
 			{
-				m_breakingForce = m_carParams.MaxBreakingForce+100.f; 
+				m_breakingForce = m_carParams.MaxBreakingForce+100.f;
 				m_engineForce = 0.0f;
 			}
 
@@ -135,14 +141,14 @@ namespace irr
 			// parameters used for building the car
 			physics::SPhysicsCarParams m_carParams;
 
-			// physics representation of the car chassis 
+			// physics representation of the car chassis
 			physics::CPhysicsObject* m_chassisObject;
-			
+
 			// the car's raycaster
 			btRaycastVehicle::btVehicleTuning m_tuning;
 			btVehicleRaycaster* m_vehicleRayCaster;
 			btRaycastVehicle* m_vehicle;
-		
+
 			// scene nodes (visual objects)
 			scene::IAnimatedMeshSceneNode* m_chassisNode;
 			scene::IAnimatedMeshSceneNode* m_wheelNode_FL;

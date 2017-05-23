@@ -51,21 +51,13 @@ namespace irr
 			m_carParams = *carParams;
 
             core::vector3df halfExtends(1, 1, 1);
-            m_chassisObject = m_bulletPhysicsSystem->addBox(
+			m_chassisObject = m_bulletPhysicsSystem->addBox(
 				m_chassisNode,
 				halfExtends,
 				&m_carParams,
 				true,						// we need the collision shape calculated authomaticaly
 				false						// this is not a static object, so the irr. animator will be created
 			);
-
-			// m_chassisObject = m_bulletPhysicsSystem->addBox(
-			// 	m_chassisNode,
-			// 	core::vector3df(1, 1, 1),
-			// 	&m_carParams,
-			// 	true,						// we need the collision shape calculated authomaticaly
-			// 	false						// this is not a static object, so the irr. animator will be created
-			// );
 
 			// we are using our own animator
 			m_chassisObject->removeAnimator();
@@ -279,7 +271,7 @@ namespace irr
 
 							m_vehicle->setSteeringValue(m_vehicleSteering, i);
 							m_vehicle->applyEngineForce(m_engineForce, i);
-							m_vehicle->setBrake(m_breakingForce, i);
+							//m_vehicle->setBrake(m_breakingForce, i);
 						}
 						else
 						{

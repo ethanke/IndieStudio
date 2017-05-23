@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Tue May 23 02:36:46 2017 Sousa Victor
+// Last update Tue May 23 19:21:48 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -54,7 +54,7 @@ void Car::updateCamera() {
     core::vector3df targetRot = this->_car->getRotation();
     core::vector3df targetdir = targetRot.rotationToDirection().normalize();
 
-    m_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + m_cameraHeight + this->_car->getlinVel() / 110, targetPos.Z) + -targetdir * (m_baseCameraDistance + this->_car->getlinVel() / 50);
+    m_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + m_cameraHeight + this->_car->getlinVel() / 70, targetPos.Z) + -targetdir * (m_baseCameraDistance + this->_car->getlinVel() / 35);
     //m_cameraPosition = targetPos + -targetdir * 0.01;
 
 	this->_camera->setPosition(m_cameraPosition);
