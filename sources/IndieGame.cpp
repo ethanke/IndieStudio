@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Mon May 22 23:57:33 2017 Sousa Victor
+// Last update Tue May 23 01:24:17 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -120,7 +120,6 @@ void IndieGame::loadMap() {
     #ifndef DEBUG
         irr::scene::IMesh* mesh1 = this->_smgr->getMesh(std::string("BigCity/BigCity_1.obj").c_str());
         irr::scene::IMeshSceneNode *node1 = this->_smgr->addOctreeSceneNode(mesh1, 0, -1);
-
         node1->setMaterialFlag(irr::video::EMF_LIGHTING, true);
         node1->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
         node1->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);
@@ -130,7 +129,6 @@ void IndieGame::loadMap() {
 
         irr::scene::IMesh* mesh2 = this->_smgr->getMesh(std::string("BigCity/BigCity_2.obj").c_str());
         irr::scene::IMeshSceneNode *node2 = this->_smgr->addOctreeSceneNode(mesh2, 0, -1);
-
         node2->setMaterialFlag(irr::video::EMF_LIGHTING, true);
         node2->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS, true);
         node2->setMaterialFlag(irr::video::EMF_BACK_FACE_CULLING, true);

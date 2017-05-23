@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sun May 21 01:56:45 2017 Sousa Victor
+// Last update Tue May 23 02:21:43 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -45,8 +45,7 @@ namespace indie {
         BasicCamera *_camera;
         core::vector3df m_cameraPosition;
         float m_cameraHeight;
-        float m_minCameraDistance;
-        float m_maxCameraDistance;
+        float m_baseCameraDistance;
 
         void KeyboardEvent();
         void updateCamera();

@@ -660,7 +660,6 @@ namespace irr
 
 		// -------------------------------------------------------
 
-		#include <stdio.h> //printf debugging
 		btDebugDrawer::btDebugDrawer() :
 			m_debugMode(0),
 			m_debugNode(NULL)
@@ -816,7 +815,7 @@ namespace irr
 
 		void	btDebugDrawer::reportErrorWarning(const char* warningString)
 		{
-			printf(warningString);
+			//printf(warningString);
 		}
 
 

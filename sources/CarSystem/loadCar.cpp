@@ -29,7 +29,6 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 			max_speed = 220.0f;
 			carNode = loadMeshFromFile("car/SV/SV.obj");
 			carNode->setPosition(core::vector3df(0.f, 0.f, 0.f));
-            carNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 			car = new physics::PhysicsCar(
 				bulletPhysSys,
 				carNode,
@@ -39,7 +38,7 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
                 loadMeshFromFile("car/Car/SV_tire_back_right.obj")   //back right
 			);
 
-            carParams.CenterOfMassOffset = core::vector3df(0, -0.0, 0);
+            carParams.CenterOfMassOffset = core::vector3df(0, -0.25, 0);
 			carParams.CarBodyOffset = -0.1f;	//-0.55f
 			carParams.FrontAxeOffset = 1.32f;	//1.37f
 			carParams.FrontAxeHalfWidth = 0.8f;	//0.8f
@@ -50,16 +49,16 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 			carParams.MaxBreakingForce = 50.0f;	//100.0f
 			carParams.SteeringIncrement = 0.04f;	//0.04f
 			carParams.SteeringClamp = 0.5f;
-			carParams.WheelRadius = 0.35f;	//0.35f
+			carParams.WheelRadius = 0.6f;	//0.35f
 			carParams.WheelWidth = 0.2f;	//0.2f
 			carParams.WheelFriction = 10.f;	//10.0f
 
-			carParams.SuspensionStiffness = 50.0f;	//50.0f
+			carParams.SuspensionStiffness = 150.0f;	//50.0f
 			carParams.SuspensionDamping = 0.4f * 2.0f * btSqrt(carParams.SuspensionStiffness);
 			carParams.SuspensionCompression = 0.3f * 2.0f * btSqrt(carParams.SuspensionStiffness);
-			carParams.SuspensionRestLength = 0.15f;
+			carParams.SuspensionRestLength = 0.25f;
 
-			carParams.RollInfluence = 0.15;	//0.25f
+			carParams.RollInfluence = 0.05;	//0.25f
 
 			car->init(&carParams);
 
@@ -69,8 +68,6 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 	car->setPosition(car_pos);
     core::vector3df rot(0, 90, 0);
 	car->setRotation(rot, angle); //90
-
-	stopPos = 0;
 
 }
 
@@ -82,14 +79,11 @@ void CLoadCar::Update(s32 drivetype)
 void CLoadCar::resetCar(s32 newangle)
 {
 	core::vector3df pos = car->getPosition();
-	if(pos.Y < stopPos) {
-		car->reset();
-        core::vector3df position(pos.X, pos.Y+5, pos.Z);
-		car->setPosition(position);
-        core::vector3df rotation(0, 90, 0);
-		car->setRotation(rotation, newangle);
-	}
-	//printf("car pos: y = %f\n", pos.Y);
+	car->reset();
+    core::vector3df position(pos.X, pos.Y+2, pos.Z);
+	car->setPosition(position);
+    core::vector3df rotation(0, 90, 0);
+	car->setRotation(rotation, newangle);
 }
 
 irr::scene::IAnimatedMeshSceneNode* CLoadCar::loadMeshFromFile(const char* filename)

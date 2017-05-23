@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Mon May 22 23:58:39 2017 Sousa Victor
+// Last update Tue May 23 02:36:46 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -19,18 +19,18 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_bulletPhysicsSystem = bulletPhysicsSystem;
 
     m_cameraPosition = core::vector3df(30, 30, 30);
-	m_cameraHeight = 5.0f;
-	m_minCameraDistance = 2.0f; //1.0f;
-	m_maxCameraDistance = 5.0f;
-    this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
-    this->_camera->setFarValue(1000);
+	m_cameraHeight = 1.5f;
+	m_baseCameraDistance = 6.0f;
+
+	this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
+    this->_camera->setFarValue(500);
+
     reverse = false;
 	drive = true;
 	park = false;
 
     m_car_no = car_no;
     this->_carLoader.setCarPos(irr::core::vector3df(2, 38, 0));
-	this->_carLoader.setCarStRot(45);
 	this->_carLoader.Init(this->_smgr, this->_bulletPhysicsSystem, m_car_no);
 
 	this->_car = this->_carLoader.getCar();
@@ -44,99 +44,58 @@ Car::~Car() {
 
 void Car::OnFrame() {
     KeyboardEvent();
-	this->_carLoader.Update(drive_tipe);
     updateCamera();
+	this->_carLoader.Update(drive_tipe);
 }
 
 void Car::updateCamera() {
 	// look at the vehicle
-	core::vector3df cameraTargetPosition = this->_car->getPosition();
+	core::vector3df targetPos = this->_car->getPosition();
+    core::vector3df targetRot = this->_car->getRotation();
+    core::vector3df targetdir = targetRot.rotationToDirection().normalize();
 
-	// interpolate the camera height
-	m_cameraPosition.Y = (15.0f * m_cameraPosition.Y + cameraTargetPosition.Y + m_cameraHeight) / 16.0f;
-
-	core::vector3df camToObject = cameraTargetPosition - m_cameraPosition;
-
-	//keep distance between min and max distance
-	float cameraDistance = camToObject.getLength();
-	float correctionFactor = 0.0f;
-
-	if (cameraDistance < m_minCameraDistance)
-	{
-		correctionFactor = 0.15 * (m_minCameraDistance - cameraDistance) / cameraDistance;
-	}
-	else if (cameraDistance > m_maxCameraDistance)
-	{
-		correctionFactor = 0.15 * (m_maxCameraDistance - cameraDistance) / cameraDistance;
-	}
-
-	m_cameraPosition -= correctionFactor * camToObject;
+    m_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + m_cameraHeight + this->_car->getlinVel() / 110, targetPos.Z) + -targetdir * (m_baseCameraDistance + this->_car->getlinVel() / 50);
+    //m_cameraPosition = targetPos + -targetdir * 0.01;
 
 	this->_camera->setPosition(m_cameraPosition);
-	this->_camera->setTarget(cameraTargetPosition);
+	this->_camera->setTarget(targetPos);
 }
 
 void Car::KeyboardEvent() {
 	//steering
-	if(_eventReceiver->IsKeyDown(irr::KEY_UP))
-	//if(_eventReceiver->IsKeyDown(irr::KEY_KEY_I))
-	{
+	if(_eventReceiver->IsKeyDown(irr::KEY_UP)) {
 		if(!reverse)
 			this->_car->goForward();
 		else
 			this->_car->goBackwards();
-		park = false;
-	} else this->_car->slowdown();
-	if(_eventReceiver->IsKeyDown(irr::KEY_DOWN))
-	//if(_eventReceiver->IsKeyDown(irr::KEY_KEY_K))
-	{
+	} else {
+        this->_car->slowdown();
+    }
+
+    if(_eventReceiver->IsKeyDown(irr::KEY_DOWN)) {
 		this->_car->stop();
 	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_LEFT))
-	//if(_eventReceiver->IsKeyDown(irr::KEY_KEY_J))
-	{
+	if(_eventReceiver->IsKeyDown(irr::KEY_LEFT)) {
 		this->_car->steerLeft();
 	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_RIGHT))
-	//if(_eventReceiver->IsKeyDown(irr::KEY_KEY_L))
-	{
+	if(_eventReceiver->IsKeyDown(irr::KEY_RIGHT)) {
 		this->_car->steerRight();
 	}
 	else if(!_eventReceiver->IsKeyDown(irr::KEY_LEFT) && !_eventReceiver->IsKeyDown(irr::KEY_RIGHT))
 		this->_car->resetSteering();
-	if(_eventReceiver->IsKeyDown(irr::KEY_SPACE))
-	{
+
+	if(_eventReceiver->IsKeyDown(irr::KEY_SPACE)) {
 		this->_car->handbrake();
-		park = true;
-		//reverse = false;
-		//drive = false;
 	}
-/*	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_V))
-	{
-		aiDebug = !aiDebug;
-		if ( aimgr )
-			aimgr->setDebugVisible(aiDebug);
-	}*/
-	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_N))
-	{
-		//stopCount = true;
-	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R))
-	{
+	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R)) {
 		reverse = true;
-		drive = false;
-		park = false;
 	}
-	//change with D in release version
-	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D))
-	{
+	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {
 		reverse = false;
-		park = false;
-		drive = true;
 	}
 	if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
 	{
-		this->_carLoader.resetCar( this->_car->getAngle() ); // 90
+		this->_carLoader.resetCar(0); // 90
 	}
 
 }
