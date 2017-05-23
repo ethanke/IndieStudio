@@ -5,10 +5,10 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sun May 14 15:39:14 2017 Vacca_J
-** Last update Sat May 20 17:32:17 2017 Vacca_J
+** Last update Tue May 23 01:18:57 2017 Vacca_J
 */
 
-#include <Settings.hpp>
+#include "Settings.hpp"
 
 using namespace indie;
 
@@ -18,6 +18,9 @@ Settings::Settings(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *dri
   this->_driver = driver;
   this->_windowSize = windowSize;
   this->_isVisible = true;
+  this->_Waudio = NULL;
+  this->_Wgraphic = NULL;
+  this->_Wkeyboard = NULL;
 }
 
 Settings::~Settings()
@@ -26,14 +29,29 @@ Settings::~Settings()
 
 void Settings::SetupGUI()
 {
-  this->_graphic = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 60), NULL, -1,
+  this->_graphic = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 - 60), NULL, 8001,
           L"Affichage", L"Affichage");
-  this->_song = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 40), NULL, -1,
+  this->_song = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 40), NULL, 8002,
           L"Audio", L"Audio");
-  this->_keyboard = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), NULL, -1,
+  this->_keyboard = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), NULL, 8003,
           L"Clavier", L"Clavier");
   this->_title = this->_gui->addStaticText(L"Settings", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 180, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 140));
   this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
+}
+
+Graphic *Settings::getGraphic()
+{
+  return this->_Wgraphic;
+}
+
+Audio *Settings::getAudio()
+{
+  return this->_Waudio;
+}
+
+Keyboard *Settings::getKeyboard()
+{
+  return this->_Wkeyboard;
 }
 
 void Settings::setVisible(bool visible)
@@ -46,6 +64,47 @@ bool Settings::isVisible(void) const
     return this->_isVisible;
 }
 
+void Settings::OnEnterGraphic()
+{
+    if (!_Wgraphic)
+    {
+      this->_Wgraphic = new Graphic(this->_gui, this->_driver, this->_windowSize);
+      this->_Wgraphic->SetupGUI();
+      this->_isVisible = false;
+    }
+    else
+    {
+      this->_Wgraphic->setVisible(true);
+    }
+}
+
+void Settings::OnEnterAudio()
+{
+  if (!_Waudio)
+  {
+    this->_Waudio = new Audio(this->_gui, this->_driver, this->_windowSize);
+    this->_Waudio->SetupGUI();
+    this->_isVisible = false;
+  }
+  else
+  {
+      this->_Waudio->setVisible(true);
+  }
+}
+
+void Settings::OnEnterKeyboard()
+{
+  if (!_Wkeyboard)
+  {
+    this->_Wkeyboard = new Keyboard(this->_gui, this->_driver, this->_windowSize);
+    this->_Wkeyboard->SetupGUI();
+    this->_isVisible = false;
+  }
+  else
+  {
+      this->_Wkeyboard->setVisible(true);
+  }
+}
 
 void Settings::OnFrame()
 {

@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:44:55 2017 Full Name
-** Last update	Fri May 19 23:38:37 2017 Full Name
+** Last update Mon May 22 19:02:04 2017 Vacca_J
 */
 
 #ifndef _MENU_HPP_
@@ -38,7 +38,7 @@ namespace indie {
 
          void OnEnterSetting();
 
-         IGUI *getSettings();
+         Settings *getSettings();
 
     private:
         irr::gui::IGUIEnvironment *_gui;

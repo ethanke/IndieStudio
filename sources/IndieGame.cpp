@@ -162,7 +162,24 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->_objectList.push_back(this->_menu->getSettings());
                         this->_guiVisible.push_back(this->_menu->getSettings());
                         this->guiVisible(this->_menu->getSettings());
-                        //VACCA
+                        break;
+                    case Settings::GRAPHIC:
+                        _menu->getSettings()->OnEnterGraphic();
+                        this->_objectList.push_back(this->_menu->getSettings()->getGraphic());
+                        this->_guiVisible.push_back(this->_menu->getSettings()->getGraphic());
+                        this->guiVisible(this->_menu->getSettings()->getGraphic());
+                        break;
+                    case Settings::AUDIO:
+                        _menu->getSettings()->OnEnterAudio();
+                        this->_objectList.push_back(this->_menu->getSettings()->getAudio());
+                        this->_guiVisible.push_back(this->_menu->getSettings()->getAudio());
+                        this->guiVisible(this->_menu->getSettings()->getAudio());
+                        break;
+                    case Settings::KEYBOARD:
+                        _menu->getSettings()->OnEnterKeyboard();
+                        this->_objectList.push_back(this->_menu->getSettings()->getKeyboard());
+                        this->_guiVisible.push_back(this->_menu->getSettings()->getKeyboard());
+                        this->guiVisible(this->_menu->getSettings()->getKeyboard());
                         break;
                     case Menu::RESUME:
                         OnLeavingMenu();

@@ -26,6 +26,7 @@
 #include "RandomEvent.hpp"
 #include "Audio.hpp"
 #include "Keyboard.hpp"
+#include "Graphic.hpp"
 
 namespace indie {
 
@@ -67,6 +68,7 @@ namespace indie {
         Menu *_menu;
         Course *_course;
         RandomEvent *_events;
+        Settings *_settings;
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;
