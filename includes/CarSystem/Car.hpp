@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Wed May 24 12:55:38 2017 John Doe
+// Last update Wed May 24 20:37:08 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -23,33 +23,32 @@ namespace indie {
         Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0);
         ~Car();
 
-        void OnFrame();
+        virtual void OnFrame();
 
-        AGameCamera *getCamera() const;
-        irr::core::vector3d<float> getPosition() const;
-        irr::f32 getVel() const;
-        irr::f32 getMaxSpeed() const;
+        virtual AGameCamera *getCamera() const;
+        virtual irr::core::vector3d<float> getPosition() const;
+        virtual irr::core::vector3d<float> getRotation() const;
+        virtual irr::f32 getVel() const;
+        virtual irr::f32 getMaxSpeed() const;
 
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;
         EventReceiver *_eventReceiver;
 
-        int m_car_no;
+        int _car_no;
         CLoadCar _carLoader;
         physics::PhysicsCar* _car;
         irr::s32 drive_tipe;
 
         bool reverse;
-        bool drive;
-        bool park;
 
         BasicCamera *_camera;
-        core::vector3df m_cameraPosition;
-        float m_cameraHeight;
-        float m_baseCameraDistance;
+        core::vector3df _cameraPosition;
+        float _cameraHeight;
+        float _baseCameraDistance;
 
-        void KeyboardEvent();
-        void updateCamera();
+        virtual void KeyboardEvent();
+        virtual void updateCamera();
 
     };
 

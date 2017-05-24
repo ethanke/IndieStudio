@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Wed May 24 12:56:58 2017 John Doe
+// Last update Wed May 24 20:36:55 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -18,20 +18,18 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_eventReceiver = eventReceiver;
     this->_bulletPhysicsSystem = bulletPhysicsSystem;
 
-    m_cameraPosition = core::vector3df(30, 30, 30);
-	m_cameraHeight = 1.5f;
-	m_baseCameraDistance = 6.0f;
+    this->_cameraPosition = core::vector3df(30, 30, 30);
+	this->_cameraHeight = 1.5f;
+	this->_baseCameraDistance = 6.0f;
 
 	this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
     this->_camera->setFarValue(500);
 
     reverse = false;
-	drive = true;
-	park = false;
 
-    m_car_no = car_no;
+    this->_car_no = car_no;
     this->_carLoader.setCarPos(irr::core::vector3df(2, 38, 0));
-	this->_carLoader.Init(this->_smgr, this->_bulletPhysicsSystem, m_car_no);
+	this->_carLoader.Init(this->_smgr, this->_bulletPhysicsSystem, this->_car_no);
 
 	this->_car = this->_carLoader.getCar();
     drive_tipe = this->_carLoader.returnDrive();
@@ -54,10 +52,10 @@ void Car::updateCamera() {
     core::vector3df targetRot = this->_car->getRotation();
     core::vector3df targetdir = targetRot.rotationToDirection().normalize();
 
-    m_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + m_cameraHeight + this->_car->getlinVel() / 70, targetPos.Z) + -targetdir * (m_baseCameraDistance + this->_car->getlinVel() / 35);
-    //m_cameraPosition = targetPos + -targetdir * 0.01;
+    this->_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + this->_cameraHeight + this->_car->getlinVel() / 70, targetPos.Z) + -targetdir * (this->_baseCameraDistance + this->_car->getlinVel() / 35);
+    //this->_cameraPosition = targetPos + -targetdir * 0.01;
 
-	this->_camera->setPosition(m_cameraPosition);
+	this->_camera->setPosition(this->_cameraPosition);
 	this->_camera->setTarget(targetPos);
 }
 
@@ -102,6 +100,10 @@ void Car::KeyboardEvent() {
 
 irr::core::vector3d<float>	Car::getPosition() const {
     return this->_car->getPosition();
+}
+
+irr::core::vector3d<float>	Car::getRotation() const {
+    return this->_car->getRotation();
 }
 
 
