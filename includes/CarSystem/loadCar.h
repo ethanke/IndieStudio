@@ -30,6 +30,10 @@ class CLoadCar{
 		//return car's drive type
 		irr::s32 returnDrive() { return drive; }
 
+		irr::f32 getMaxSpeed() const {
+			return max_speed;
+		}
+
 		void Clear();
 
 	private:

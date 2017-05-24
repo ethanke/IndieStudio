@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Tue May 23 19:21:48 2017 Sousa Victor
+// Last update Wed May 24 12:56:58 2017 John Doe
 //
 
 #include "Car.hpp"
@@ -111,4 +111,8 @@ AGameCamera *Car::getCamera() const {
 
 irr::f32 Car::getVel() const {
     return this->_car->getlinVel();
+}
+
+irr::f32 Car::getMaxSpeed() const {
+    return this->_carLoader.getMaxSpeed();
 }

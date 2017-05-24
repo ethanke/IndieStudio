@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue May 23 18:43:48 2017 Sousa Victor
+// Last update Wed May 24 12:56:14 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -123,7 +123,7 @@ void IndieGame::loadMap() {
 }
 
 void IndieGame::OnFrame() {
-    std::string str("      \nX: " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + "\nZ: " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z));
+    std::string str("      \nspeed: " + std::to_string(_car->getVel()) + "\nmax speed: " + std::to_string(_car->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
 
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);

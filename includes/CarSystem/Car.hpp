@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Tue May 23 02:21:43 2017 Sousa Victor
+// Last update Wed May 24 12:55:38 2017 John Doe
 //
 
 #ifndef CAR_HPP_
@@ -28,6 +28,7 @@ namespace indie {
         AGameCamera *getCamera() const;
         irr::core::vector3d<float> getPosition() const;
         irr::f32 getVel() const;
+        irr::f32 getMaxSpeed() const;
 
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;
