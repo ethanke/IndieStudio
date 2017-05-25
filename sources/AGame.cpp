@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Tue May 23 17:39:07 2017 Sousa Victor
+// Last update Thu May 25 17:14:23 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -78,13 +78,6 @@ void AGame::loop() {
             this->OnFrame(); // CHANGER
             objectOnFrame(); // CET
             this->_gui->drawAll(); // ORDRE DE CALL
-            if (this->_minimapCamera != NULL) {
-                this->_smgr->setActiveCamera(this->_minimapCamera);
-                this->_driver->setViewPort(dynamic_cast<Minimap *>(this->_minimapCamera)->getViewport());
-                this->_smgr->drawAll();
-            }
-
-            this->_smgr->setActiveCamera(mainCam);
             this->_driver->endScene();
             int fps = this->_driver->getFPS();
             irr::core::stringw str = L"Q3 [";

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Thu May 25 02:03:16 2017 Sousa Victor
+// Last update Thu May 25 17:56:08 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -20,7 +20,7 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_bulletPhysicsSystem = bulletPhysicsSystem;
 
     this->_cameraPosition = core::vector3df(30, 30, 30);
-	this->_cameraHeight = 1.5f;
+	this->_cameraHeight = 5.5f;
 	this->_baseCameraDistance = 6.0f;
 
 	this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));

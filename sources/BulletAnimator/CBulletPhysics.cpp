@@ -712,14 +712,14 @@ namespace irr
 
 			drawLine(from, to, color, color);
 
-			////	if (m_debugMode > 0)
-			//{
-			//	glBegin(GL_LINES);
-			//	glColor4f(color.getX(), color.getY(), color.getZ(),1.f);
-			//	glVertex3d(from.getX(), from.getY(), from.getZ());
-			//	glVertex3d(to.getX(), to.getY(), to.getZ());
-			//	glEnd();
-			//}
+			//	if (m_debugMode > 0)
+			// {
+			// 	glBegin(GL_LINES);
+			// 	glColor4f(color.getX(), color.getY(), color.getZ(),1.f);
+			// 	glVertex3d(from.getX(), from.getY(), from.getZ());
+			// 	glVertex3d(to.getX(), to.getY(), to.getZ());
+			// 	glEnd();
+			// }
 		}
 
 

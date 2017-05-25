@@ -5,12 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Thu May 25 02:02:34 2017 Sousa Victor
+// Last update Thu May 25 12:12:02 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
 #define AICAR_HPP_
 
+#include <map>
 #include "Car.hpp"
 #include "Utils.hpp"
 
@@ -26,6 +27,7 @@ namespace indie {
 
     private:
         irr::gui::IGUIStaticText *_rayInfo;
+        btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
 
     };
 
