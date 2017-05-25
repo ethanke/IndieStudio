@@ -52,6 +52,10 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES Clang)
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 endif()
 
+IF (DEFINED AIDEBUG)
+    add_definitions(-DAIDEBUG)
+ENDIF()
+
 # settings library dependencies
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/Linux/)

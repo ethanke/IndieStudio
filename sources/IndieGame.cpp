@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 25 17:49:57 2017 Sousa Victor
+// Last update Thu May 25 18:40:54 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -132,6 +132,7 @@ void IndieGame::OnFrame() {
     std::string str("      \nspeed: " + std::to_string(_car->getVel()) + "\nmax speed: " + std::to_string(_car->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
 
+    #ifdef AIDEBUG
     core::matrix4 mat;
     _driver->setTransform(video::ETS_WORLD, mat);
 
@@ -194,6 +195,7 @@ void IndieGame::OnFrame() {
 
     lkt = pos + rotateByAngle2(dir, up, -22.5) * 1000;
     this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+    #endif
 
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }
