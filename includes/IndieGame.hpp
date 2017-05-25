@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Tue May 23 19:57:11 2017 John Doe
+// Last update Thu May 25 02:04:24 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -17,7 +17,7 @@
 #include "GameCameraFPS.hpp"
 #include "GameCheckpoint.hpp"
 #include "Minimap.hpp"
-#include "Car.hpp"
+#include "AICar.hpp"
 #include "carWatcher.hpp"
 #include "Settings.hpp"
 #include "Garage.hpp"

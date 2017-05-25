@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Wed May 24 12:56:14 2017 John Doe
+// Last update Thu May 25 02:04:08 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -44,7 +44,7 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, 0);
+    this->_car = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, 0);
     this->_objectList.push_back(this->_car);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));

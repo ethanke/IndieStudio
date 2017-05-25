@@ -5,12 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Wed May 24 20:37:08 2017 Sousa Victor
+// Last update Thu May 25 02:03:03 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
 #define CAR_HPP_
 
+#include <string>
 #include "BasicCamera.hpp"
 #include "EventReceiver.hpp"
 #include "loadCar.h"
@@ -34,6 +35,7 @@ namespace indie {
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;
         EventReceiver *_eventReceiver;
+        irr::gui::IGUIEnvironment* _gui;
 
         int _car_no;
         CLoadCar _carLoader;

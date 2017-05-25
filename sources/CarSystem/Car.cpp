@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Wed May 24 20:36:55 2017 Sousa Victor
+// Last update Thu May 25 02:03:16 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -15,6 +15,7 @@ using namespace indie;
 Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
     AGameObject(sceneManager) {
 
+    this->_gui = guiManager;
     this->_eventReceiver = eventReceiver;
     this->_bulletPhysicsSystem = bulletPhysicsSystem;
 
