@@ -115,6 +115,10 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/GUI/Concessionnaire.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Graphic.cpp
 
+    ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/ANetworkData.cpp
+    ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/Network.cpp
+    ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/NetworkTrainer.cpp
+    ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/Neuron.cpp
 
 )
 
@@ -166,6 +170,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/includes
     ${PROJECT_SOURCE_DIR}/includes/CarSystem
     ${PROJECT_SOURCE_DIR}/includes/BulletAnimator
+    ${PROJECT_SOURCE_DIR}/includes/NeuralNetwork
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
     ${PROJECT_SOURCE_DIR}/lib/irrBullet/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Thu May 25 18:39:53 2017 Sousa Victor
+// Last update Fri May 26 20:24:05 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -28,7 +28,10 @@ namespace indie {
         virtual void OnFrame();
 
     private:
+        std::stringstream _outputData;
+        irr::gui::IGUIStaticText *_rayInfo;
         btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
+        virtual void KeyboardEvent();
 
     };
 
