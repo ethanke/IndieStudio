@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Thu May 25 02:03:03 2017 Sousa Victor
+// Last update Fri May 26 22:58:27 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -21,7 +21,8 @@ namespace indie {
     class Car : public AGameObject {
 
     public:
-        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0);
+        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0,
+            irr::core::vector3df position = irr::core::vector3df(2, 38, 0), bool isAI = false);
         ~Car();
 
         virtual void OnFrame();
@@ -38,6 +39,7 @@ namespace indie {
         irr::gui::IGUIEnvironment* _gui;
 
         int _car_no;
+        bool _isAI;
         CLoadCar _carLoader;
         physics::PhysicsCar* _car;
         irr::s32 drive_tipe;

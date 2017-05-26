@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Fri May 26 21:44:27 2017 Sousa Victor
+// Last update Fri May 26 23:16:46 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -13,10 +13,9 @@
 using namespace indie;
 
 AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
-    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no) {
+    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 38, 10), true), _neuralSystem(std::vector<unsigned> {}) {
 
-    this->_rayInfo = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(400, 20, 2000, 1200));
-    this->_rayInfo->setTextAlignment(irr::gui::EGUIA_SCALE , irr::gui::EGUIA_SCALE);
+    this->_neuralSystem.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car.txt");
 
 }
 
@@ -31,9 +30,6 @@ core::vector3df rotateByAngle(const core::vector3df &vec, const core::vector3df 
 }
 
 void AICar::OnFrame() {
-    this->_outputData.str(std::string());;
-    std::string str("         \n");
-
     std::unordered_map<std::string, btCollisionWorld::ClosestRayResultCallback*> hitMap;
 
     core::vector3df rot = this->_car->getRotation();
@@ -41,8 +37,11 @@ void AICar::OnFrame() {
     core::vector3df right  = dir.crossProduct(core::vector3df(0, 1, 0));
     core::vector3df up = right.crossProduct(dir);
 
-    this->_outputData << "in: " << up.X << " " << up.Y << " " << up.Z << " ";
-    this->_outputData << getVel() << " ";
+    std::vector<double> outputData;
+    outputData.push_back(up.X);
+    outputData.push_back(up.Y);
+    outputData.push_back(up.Z);
+    outputData.push_back(getVel());
 
     hitMap[" " + std::to_string(0.0)] = processHit(dir);
     hitMap[""  + std::to_string(-0.0)] = processHit((dir = -dir));
@@ -64,75 +63,63 @@ void AICar::OnFrame() {
     hitMap[""  + std::to_string(-22.5)] = processHit(rotateByAngle(dir, up, -22.5));
 
     for (auto &hit : hitMap) {
-        str += "Ray " + hit.first + ":        ";
-        if(hit.second->hasHit()){
-            core::vector3df vec(hit.second->m_hitPointWorld.getX(), hit.second->m_hitPointWorld.getY(), hit.second->m_hitPointWorld.getZ());
-            str += "Collision at : " + std::to_string(vec.getLength() / 1000) + " m\n";
-        } else {
-            str += "no hit\n";
-        }
-    }
-
-    for (auto &hit : hitMap) {
         if(hit.second->hasHit()){
             core::vector3df vec(hit.second->m_hitPointWorld.getX(), hit.second->m_hitPointWorld.getY(), hit.second->m_hitPointWorld.getZ());
             if (vec.getLength() / 1000 > 1) {
-                this->_outputData << "0.0 ";
+                outputData.push_back(0.0);
             } else {
-                this->_outputData << vec.getLength() / 1000 << " ";
+                outputData.push_back(vec.getLength() / 1000);
             }
         } else {
-            this->_outputData << "0.0 ";
+            outputData.push_back(0.0);
         }
     }
-
     if(!reverse) {
-        this->_outputData << "0.0 ";
+        outputData.push_back(0.0);
     } else {
-        this->_outputData << "1.0 ";
+        outputData.push_back(1.0);
     }
 
-    system(std::string("echo " + this->_outputData.str() + " >> sample_input").c_str());
+    this->_neuralSystem.feedForward(outputData);
 
-    this->_rayInfo->setText(Utils::StrToWstr(str));
     Car::OnFrame();
 }
 
 void AICar::KeyboardEvent() {
-    this->_outputData.str(std::string());
-    this->_outputData << "out: ";
-    //steering
-	if(_eventReceiver->IsKeyDown(irr::KEY_UP)) {
-		this->_outputData << "0.0 ";
-	} else {
-        this->_outputData << "1.1 ";
-    }
+    // std::vector<double> result = this->_neuralSystem.getResults();
+    // for (auto bite : result) {
+    //     std::cout << bite << " ";
+    // }
+    // std::cout << std::endl << std::endl;
+    //
+    // if(result[0] > 0.9) {
+	// 	if(!reverse)
+	// 		this->_car->goForward();
+	// 	else
+	// 		this->_car->goBackwards();
+	// } else {
+    //     this->_car->slowdown();
+    // }
+    //
+    // if (result[1] > 0.9) {
+	// 	this->_car->stop();
+	// }
+	// if (result[2] > 0.9) {
+	// 	this->_car->steerLeft();
+	// }
+	// if (result[3] > 0.9) {
+	// 	this->_car->steerRight();
+	// }
+	// if (result[4] > 0.9) {
+	// 	this->_car->handbrake();
+	// }
+	// if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R)) {      A IMPLENTER APRES!          result[5]
+	// 	reverse = true;                                     NE PAS OUBLIER VICTOR!
+	// }
+	// if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {                                  result[6]
+	// 	reverse = false;
+	// }                       FDP
 
-    if(_eventReceiver->IsKeyDown(irr::KEY_DOWN)) {
-        this->_outputData << "0.0 ";
-    } else {
-        this->_outputData << "1.1 ";
-    }
-
-	if(_eventReceiver->IsKeyDown(irr::KEY_LEFT)) {
-        this->_outputData << "0.0 ";
-    } else {
-        this->_outputData << "1.1 ";
-    }
-
-	if(_eventReceiver->IsKeyDown(irr::KEY_RIGHT)) {
-        this->_outputData << "0.0 ";
-    } else {
-        this->_outputData << "1.1 ";
-    }
-
-	if(_eventReceiver->IsKeyDown(irr::KEY_SPACE)) {
-        this->_outputData << "0.0 ";
-    } else {
-        this->_outputData << "1.1 ";
-    }
-    system(std::string("echo " + this->_outputData.str() + " >> sample_input").c_str());
-	Car::KeyboardEvent();
 }
 
 btCollisionWorld::ClosestRayResultCallback *AICar::processHit(const core::vector3df &dir) {

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu May 25 18:40:54 2017 Sousa Victor
+// Last update Fri May 26 22:56:47 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -44,8 +44,12 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, 0);
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, 0);
     this->_objectList.push_back(this->_car);
+
+    this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
+    this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, 0);
+    this->_objectList.push_back(this->_aiCar);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     // this->_objectList.push_back(map);
@@ -131,71 +135,6 @@ core::vector3df rotateByAngle2(const core::vector3df &vec, const core::vector3df
 void IndieGame::OnFrame() {
     std::string str("      \nspeed: " + std::to_string(_car->getVel()) + "\nmax speed: " + std::to_string(_car->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
-
-    #ifdef AIDEBUG
-    core::matrix4 mat;
-    _driver->setTransform(video::ETS_WORLD, mat);
-
-    irr::core::vector3df rot = this->_car->getRotation();
-    irr::core::vector3df dir = rot.rotationToDirection().normalize();
-    irr::core::vector3df right  = dir.crossProduct(irr::core::vector3df(0, 1, 0));
-    irr::core::vector3df up = right.crossProduct(dir);
-    irr::core::vector3df pos = this->_car->getPosition();
-
-    irr::core::vector3df lkt = pos + dir * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-    dir = -dir;
-    lkt = pos + dir * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 112.5) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -112.5) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 90) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -90) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 78.75) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -78.75) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 67.5) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -67.5) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 56.25) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -56.25) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 45) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -45) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 33.75) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -33.75) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, 22.5) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-
-    lkt = pos + rotateByAngle2(dir, up, -22.5) * 1000;
-    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-    #endif
 
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }

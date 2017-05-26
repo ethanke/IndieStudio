@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Fri May 26 20:24:05 2017 Sousa Victor
+// Last update Fri May 26 22:52:21 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -14,6 +14,8 @@
 #include <unordered_map>
 #include <sstream>
 #include <iostream>
+#include "IndieStudioConfig.h"
+#include "Network.hpp"
 #include "Car.hpp"
 #include "Utils.hpp"
 
@@ -28,8 +30,7 @@ namespace indie {
         virtual void OnFrame();
 
     private:
-        std::stringstream _outputData;
-        irr::gui::IGUIStaticText *_rayInfo;
+        Neural::Network _neuralSystem;
         btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
         virtual void KeyboardEvent();
 

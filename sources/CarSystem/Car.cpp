@@ -5,14 +5,15 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Thu May 25 17:56:08 2017 Sousa Victor
+// Last update Fri May 26 22:58:48 2017 Sousa Victor
 //
 
 #include "Car.hpp"
 
 using namespace indie;
 
-Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
+Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no,
+         irr::core::vector3df position, bool isAI):
     AGameObject(sceneManager) {
 
     this->_gui = guiManager;
@@ -23,13 +24,16 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
 	this->_cameraHeight = 5.5f;
 	this->_baseCameraDistance = 6.0f;
 
-	this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
-    this->_camera->setFarValue(500);
+    this->_isAI = isAI;
+    if (!this->_isAI) {
+        this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
+        this->_camera->setFarValue(500);
+    }
 
     reverse = false;
 
     this->_car_no = car_no;
-    this->_carLoader.setCarPos(irr::core::vector3df(2, 38, 0));
+    this->_carLoader.setCarPos(position);
 	this->_carLoader.Init(this->_smgr, this->_bulletPhysicsSystem, this->_car_no);
 
 	this->_car = this->_carLoader.getCar();
@@ -43,7 +47,9 @@ Car::~Car() {
 
 void Car::OnFrame() {
     KeyboardEvent();
-    updateCamera();
+    if (!this->_isAI) {
+        updateCamera();
+    }
 	this->_carLoader.Update(drive_tipe);
 }
 

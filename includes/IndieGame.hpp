@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Thu May 25 02:04:24 2017 Sousa Victor
+// Last update Fri May 26 22:55:41 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -62,6 +62,7 @@ namespace indie {
 
     private:
         Car *_car;
+        Car *_aiCar;
         std::vector<GameCheckpoint> _checkpoints;
         carWatcher *_carWatch;
         Garage *_garage;
