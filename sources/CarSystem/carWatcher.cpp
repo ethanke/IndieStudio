@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Tue May 30 22:00:24 2017 Lucas Gambini
+** Last update Tue May 30 23:30:33 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -75,4 +75,8 @@ void carWatcher::OnFrame() {
 
 void carWatcher::addCheckpoint(GameCheckpoint &check) {
     this->_checkpoints.push_back(check);
+}
+
+std::vector<GameCheckpoint> carWatcher::getCheckpoints() const {
+    return this->_checkpoints;
 }

@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:21 2017 Lucas Gambini
-** Last update Tue May 30 21:18:31 2017 Lucas Gambini
+** Last update Tue May 30 23:29:33 2017 Lucas Gambini
 */
 
 #ifndef CAR_WATCHER_HPP
@@ -29,6 +29,7 @@ namespace indie {
 
         virtual void OnFrame();
         void addCheckpoint(GameCheckpoint &check);
+        std::vector<GameCheckpoint> getCheckpoints() const;
 
     private:
         bool isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df const &cpos) const;
