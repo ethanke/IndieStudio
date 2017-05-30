@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun Apr 23 19:21:31 2017 Sousa Victor
-// Last update Tue May  2 01:15:03 2017 Sousa Victor
+// Last update Tue May 30 16:05:33 2017 Sousa Victor
 //
 
 #include "Network.hpp"
@@ -120,6 +120,38 @@ void Neural::Network::backProp(const std::vector<double> &targetVals) {
         Layer &prevLayer = this->_layers[layerNum - 1];
         for (unsigned n = 0; n < layer.size() - 1; ++n) {
             layer[n].updateInputWeights(prevLayer);
+        }
+    }
+}
+
+Neural::Genome Neural::Network::toGenome() const {
+    Neural::Genome genome;
+
+    std::vector<float> weight;
+    for (auto const &layer: this->_layers) {
+        for (auto const &neuron: layer) {
+            std::vector<Neural::INeuron::Connection> connections = neuron.getConnection();
+            for (auto const &connection: connections) {
+                weight.push_back(connection.weight);
+            }
+        }
+    }
+
+    genome.setWeights(weight);
+
+    return genome;
+}
+
+void Neural::Network::fromGenome(Neural::Genome const &genome) {
+    std::vector<float> weight = genome.getWeights();
+    int i = 0;
+    for (auto const &layer: this->_layers) {
+        for (auto const &neuron: layer) {
+            std::vector<Neural::INeuron::Connection> connections = neuron.getConnection();
+            for (auto &connection: connections) {
+                connection.weight = weight[i];
+                i++;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun Apr 23 19:19:17 2017 Sousa Victor
-// Last update Tue May  2 01:04:04 2017 Sousa Victor
+// Last update Tue May 30 16:04:15 2017 Sousa Victor
 //
 
 #ifndef NETWORK_HPP_
@@ -19,6 +19,7 @@
 #include "NetworkTrainer.hpp"
 #include "ANetworkData.hpp"
 #include "Layer.hpp"
+#include "Genome.hpp"
 
 namespace Neural {
 
@@ -31,6 +32,9 @@ namespace Neural {
         virtual void feedForward(const std::vector<double> &inputVals) = 0;
         virtual std::vector<double> const getResults() const = 0;
         virtual void backProp(const std::vector<double> &targetVals) = 0;
+
+        virtual Neural::Genome toGenome() const = 0;
+        virtual void fromGenome(Genome const &genome) = 0;
 
     };
 
@@ -46,7 +50,10 @@ namespace Neural {
         void feedForward(const std::vector<double> &inputVals);
         std::vector<double> const getResults() const;
         void backProp(const std::vector<double> &targetVals);
-        
+
+        Neural::Genome toGenome() const;
+        void fromGenome(Genome const &genome);
+
     private:
         double _error;
         void showVectorVals(std::string const &label, std::vector<double> const &v) const;
