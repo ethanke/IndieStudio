@@ -234,6 +234,12 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->_guiVisible.push_back(this->_menu->getSettings()->getKeyboard());
                         this->guiVisible(this->_menu->getSettings()->getKeyboard());
                         break;
+                    case Audio::PLUS:
+                      _menu->getSettings()->getAudio()->plus();
+                      break;
+                  case Audio::MOIN:
+                      _menu->getSettings()->getAudio()->moin();
+                      break;
                     case Menu::RESUME:
                         OnLeavingMenu();
                         break;
@@ -246,6 +252,9 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case Course::CANCEL:
                         OnLeavingCourse();
+                        break;
+                    case Audio::Quit:
+                        _menu->getSettings()->getAudio()->setVisible(false);
                         break;
                     default:
                         break;
