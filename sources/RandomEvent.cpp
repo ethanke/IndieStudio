@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 01:55:01 2017 Lucas Gambini
-** Last update Sat May 20 16:42:08 2017 Lucas Gambini
+** Last update Tue May 30 21:13:47 2017 Lucas Gambini
 */
 
 #include "RandomEvent.hpp"
@@ -53,7 +53,7 @@ void RandomEvent::OnFrame() {
     if (this->_currentOffset == -1) {
         while ((this->_currentOffset = rand() % this->_IMax) < this->_IMin);
     } else if ((int)this->_elapsedTime >= this->_currentOffset) {
-        GameCheckpoint check = GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::MONEY, this->_preset[this->_index]);
+        GameCheckpoint check = GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::MONEY, 5, this->_preset[this->_index]);
         this->_watcher->addCheckpoint(check);
         this->_preset.erase(this->_preset.begin() + this->_index);
         this->_currentOffset = -1;

@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Sat May 20 16:36:52 2017 Lucas Gambini
+** Last update Tue May 30 21:16:28 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -13,7 +13,7 @@
 using namespace indie;
 
 GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id,
-                   Type type, const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
+                   Type type, const irr::f32 radius, const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
                    : AGameObject (sceneManager), IMeshSceneNode(parent, sceneManager, id, position, rotation, scale) {
 
     irr::video::SColor color;
@@ -26,8 +26,9 @@ GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32
     else if (type == MONEY)
         color = irr::video::SColor(150, 0, 255, 0);
     else
-        color = irr::video::SColor(150, 100, 100, 100);
-    irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(5, 5000, 50, color, true, 0.f);
+        color = irr::video::SColor(150, 0, 255, 255);
+    this->_radius = radius;
+    irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(this->_radius, 5000, 50, color, true, 0.f);
     this->_cylindre = this->_smgr->addMeshSceneNode(_mesh, 0, -1, position, rotation, scale);
     this->_cylindre->getMaterial(0).AmbientColor.set(255,color.getRed(),color.getGreen(),color.getBlue());
     this->_cylindre->getMaterial(0).DiffuseColor.set(255,color.getRed(),color.getGreen(),color.getBlue());
@@ -95,4 +96,16 @@ void GameCheckpoint::setReadOnlyMaterials(bool readonly) {
 
 bool GameCheckpoint::isReadOnlyMaterials() const {
     return this->_cylindre->isReadOnlyMaterials();
+}
+
+void GameCheckpoint::setLaserVisible(bool visible) {
+    this->_cylindre->setVisible(visible);
+}
+
+bool GameCheckpoint::isLaserVisible() const {
+    return this->_cylindre->isVisible();
+}
+
+float GameCheckpoint::getRadius() const {
+    return this->_radius;
 }

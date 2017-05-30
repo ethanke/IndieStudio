@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Sat May 20 16:11:20 2017 Lucas Gambini
+** Last update Tue May 30 21:16:52 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -21,12 +21,14 @@ namespace indie {
         GARAGE,
         CONCESSIONNAIRE,
         COURSE,
+        IN_COURSE,
         MONEY
     };
 
     public:
         GameCheckpoint(irr::scene::ISceneManager *sceneManager,
                  irr::f32 size, irr::f32 mass, irr::scene::ISceneNode *parent, irr::s32 id, Type type,
+                 const irr::f32 radius,
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &scale = irr::core::vector3df(1.0f, 1.0f, 1.0f));
@@ -41,7 +43,10 @@ namespace indie {
         Type getChType() const;
         bool isBusy() const;
         void setBusy(bool);
-
+        void setLaserVisible(bool);
+        bool isLaserVisible() const;
+        float getRadius() const;
+        
         //IMeshSceneNode
         void setMesh(irr::scene::IMesh* mesh);
         irr::scene::IMesh* getMesh(void);
@@ -53,6 +58,7 @@ namespace indie {
         irr::scene::IMeshSceneNode *_cylindre;
         Type _type;
         bool _isBusy;
+        irr::f32 _radius;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {

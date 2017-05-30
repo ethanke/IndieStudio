@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Mon May 22 17:33:01 2017 Lucas Gambini
+** Last update Tue May 30 22:00:24 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -25,18 +25,14 @@ carWatcher::~carWatcher()
 
 }
 
-bool carWatcher::inLine(float a, float new_a) const
+bool carWatcher::inLine(float a, float new_a, float rad) const
 {
-    return (a > new_a && a < new_a + 5);
+    return (a > new_a && a < new_a + rad);
 }
 
 bool carWatcher::isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df const &cpos) const {
-    bool xIn = inLine(cpos.X, ch.getPosition().X)
-    || inLine(ch.getPosition().X, cpos.X);
-
-    bool zIn = inLine(cpos.Z, ch.getPosition().Z)
-    || inLine(ch.getPosition().Z, cpos.Z);
-
+    bool xIn = inLine(cpos.X, ch.getPosition().X, ch.getRadius()) || inLine(ch.getPosition().X, cpos.X, ch.getRadius());
+    bool zIn = inLine(cpos.Z, ch.getPosition().Z, ch.getRadius()) || inLine(ch.getPosition().Z, cpos.Z, ch.getRadius());
     return xIn && zIn;
 }
 
@@ -47,7 +43,7 @@ void carWatcher::OnFrame() {
     int index = 0;
     irr::core::vector3df cpos = this->_car->getPosition();
     for (auto &x : this->_checkpoints) {
-        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false && (this->_car->getVel() <= 1 || x.getChType() == GameCheckpoint::MONEY))
+        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false && (this->_car->getVel() <= 1 || (x.getChType() == GameCheckpoint::MONEY || x.getChType() == GameCheckpoint::IN_COURSE))/* && x.isLaserVisible() == true*/)
         {
             x.setBusy(true);
             switch (x.getChType()) {
@@ -61,6 +57,11 @@ void carWatcher::OnFrame() {
                     x.remove();
                     this->_checkpoints.erase(this->_checkpoints.begin() + index);
                     _eventReceiver->OnEnterMoney();
+                    break;
+                case GameCheckpoint::IN_COURSE:
+                    x.remove();
+                    this->_checkpoints.erase(this->_checkpoints.begin() + index);
+                    _eventReceiver->OnEnterInCourseChPt(x);
                     break;
                 default:
                     break;

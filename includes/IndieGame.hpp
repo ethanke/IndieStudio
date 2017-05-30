@@ -58,6 +58,8 @@ namespace indie {
 
         virtual void OnEnterMoney();
 
+        virtual void OnEnterInCourseChPt(GameCheckpoint const &ch);
+
         virtual void guiVisible(IGUI*);
 
     private:

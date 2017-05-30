@@ -12,6 +12,7 @@
 #define EVENTRECEIVER_HPP_
 
 #include <irrlicht.h>
+#include "GameCheckpoint.hpp"
 
 namespace indie {
 
@@ -39,6 +40,8 @@ namespace indie {
         virtual void OnLeavingCourse() = 0;
 
         virtual void OnEnterMoney() = 0;
+
+        virtual void OnEnterInCourseChPt(GameCheckpoint const &ch) = 0;
 
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];

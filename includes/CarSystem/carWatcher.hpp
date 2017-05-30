@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:21 2017 Lucas Gambini
-** Last update Sat May 20 01:54:03 2017 Lucas Gambini
+** Last update Tue May 30 21:18:31 2017 Lucas Gambini
 */
 
 #ifndef CAR_WATCHER_HPP
@@ -32,9 +32,9 @@ namespace indie {
 
     private:
         bool isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df const &cpos) const;
-        bool inLine(float a, float new_a) const;irr::scene::ISceneManager* _smgr;
+        bool inLine(float a, float new_a, float rad) const;
 
-
+        irr::scene::ISceneManager* _smgr;
         Car *_car;
         EventReceiver *_eventReceiver;
         std::vector<GameCheckpoint> _checkpoints;
