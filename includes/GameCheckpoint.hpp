@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Tue May 30 21:16:52 2017 Lucas Gambini
+** Last update Tue May 30 23:50:57 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -46,7 +46,8 @@ namespace indie {
         void setLaserVisible(bool);
         bool isLaserVisible() const;
         float getRadius() const;
-        
+        irr::core::vector3df getChPosition() const;
+
         //IMeshSceneNode
         void setMesh(irr::scene::IMesh* mesh);
         irr::scene::IMesh* getMesh(void);
@@ -59,6 +60,7 @@ namespace indie {
         Type _type;
         bool _isBusy;
         irr::f32 _radius;
+        irr::core::vector3df _pos;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {
