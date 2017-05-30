@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun Apr 23 19:21:31 2017 Sousa Victor
-// Last update Tue May 30 16:05:33 2017 Sousa Victor
+// Last update Tue May 30 16:09:00 2017 Sousa Victor
 //
 
 #include "Network.hpp"
@@ -145,6 +145,19 @@ Neural::Genome Neural::Network::toGenome() const {
 void Neural::Network::fromGenome(Neural::Genome const &genome) {
     std::vector<float> weight = genome.getWeights();
     int i = 0;
+    for (auto const &layer: this->_layers) {
+        for (auto const &neuron: layer) {
+            std::vector<Neural::INeuron::Connection> connections = neuron.getConnection();
+            for (auto const &connection: connections) {
+                i++;
+            }
+        }
+    }
+    if (i != weight.size()) {
+        throw Neural::InvalidInput("You want to load a genome that has a different topology than your network");
+    }
+
+    i = 0;
     for (auto const &layer: this->_layers) {
         for (auto const &neuron: layer) {
             std::vector<Neural::INeuron::Connection> connections = neuron.getConnection();

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Tue May 30 14:46:14 2017 Sousa Victor
+// Last update Tue May 30 16:12:28 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -13,10 +13,12 @@
 using namespace indie;
 
 AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
-    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 38, 10), true), _neuralSystem(std::vector<unsigned> {21, 36, 21, 3}) {
+    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 38, 10), true), _neuralSystem(std::vector<unsigned> {20, 35, 20, 3}) {
+
+    // Neural::Genome gen = _neuralSystem.toGenome();
+    // _neuralSystem.fromGenome(gen);
 
     //this->_neuralSystem.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car.txt");
-
 }
 
 AICar::~AICar() {
@@ -71,11 +73,6 @@ void AICar::OnFrame() {
         } else {
             outputData.push_back(0.0);
         }
-    }
-    if(!reverse) {
-        outputData.push_back(0.0);
-    } else {
-        outputData.push_back(1.0);
     }
 
     this->_neuralSystem.feedForward(outputData);
