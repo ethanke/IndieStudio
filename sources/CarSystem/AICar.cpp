@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Fri May 26 23:16:46 2017 Sousa Victor
+// Last update Tue May 30 14:46:14 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -13,9 +13,9 @@
 using namespace indie;
 
 AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
-    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 38, 10), true), _neuralSystem(std::vector<unsigned> {}) {
+    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 38, 10), true), _neuralSystem(std::vector<unsigned> {21, 36, 21, 3}) {
 
-    this->_neuralSystem.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car.txt");
+    //this->_neuralSystem.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car.txt");
 
 }
 
@@ -43,24 +43,22 @@ void AICar::OnFrame() {
     outputData.push_back(up.Z);
     outputData.push_back(getVel());
 
-    hitMap[" " + std::to_string(0.0)] = processHit(dir);
-    hitMap[""  + std::to_string(-0.0)] = processHit((dir = -dir));
-    hitMap[" " + std::to_string(112.5)] = processHit(rotateByAngle(dir, up, 112.5));
-    hitMap[""  + std::to_string(-112.5)] = processHit(rotateByAngle(dir, up, -112.5));
-    hitMap[" " + std::to_string(90.0)] = processHit(rotateByAngle(dir, up, 90));
-    hitMap[""  + std::to_string(-90.0)] = processHit(rotateByAngle(dir, up, -90));
-    hitMap[" " + std::to_string(78.75)] = processHit(rotateByAngle(dir, up, 78.75));
-    hitMap[""  + std::to_string(-78.75)] = processHit(rotateByAngle(dir, up, -78.75));
-    hitMap[" " + std::to_string(67.5)] = processHit(rotateByAngle(dir, up, 67.5));
-    hitMap[""  + std::to_string(-67.5)] = processHit(rotateByAngle(dir, up, -67.5));
-    hitMap[" " + std::to_string(56.25)] = processHit(rotateByAngle(dir, up, 56.25));
-    hitMap[""  + std::to_string(-56.25)] = processHit(rotateByAngle(dir, up, -56.25));
-    hitMap[" " + std::to_string(45.0)] = processHit(rotateByAngle(dir, up, 45));
-    hitMap[""  + std::to_string(-45.0)] = processHit(rotateByAngle(dir, up, -45));
-    hitMap[" " + std::to_string(33.75)] = processHit(rotateByAngle(dir, up, 33.75));
-    hitMap[""  + std::to_string(-33.75)] = processHit(rotateByAngle(dir, up, -33.75));
-    hitMap[" " + std::to_string(22.5)] = processHit(rotateByAngle(dir, up, 22.5));
-    hitMap[""  + std::to_string(-22.5)] = processHit(rotateByAngle(dir, up, -22.5));
+    hitMap[std::to_string(0.0)] = processHit(dir);
+    hitMap[std::to_string(-0.0)] = processHit((dir = -dir));
+    hitMap[std::to_string(112.5)] = processHit(rotateByAngle(dir, up, 112.5));
+    hitMap[std::to_string(-112.5)] = processHit(rotateByAngle(dir, up, -112.5));
+    hitMap[std::to_string(90.0)] = processHit(rotateByAngle(dir, up, 90));
+    hitMap[std::to_string(-90.0)] = processHit(rotateByAngle(dir, up, -90));
+    hitMap[std::to_string(78.75)] = processHit(rotateByAngle(dir, up, 78.75));
+    hitMap[std::to_string(-78.75)] = processHit(rotateByAngle(dir, up, -78.75));
+    hitMap[std::to_string(67.5)] = processHit(rotateByAngle(dir, up, 67.5));
+    hitMap[std::to_string(-67.5)] = processHit(rotateByAngle(dir, up, -67.5));
+    hitMap[std::to_string(45.0)] = processHit(rotateByAngle(dir, up, 45));
+    hitMap[std::to_string(-45.0)] = processHit(rotateByAngle(dir, up, -45));
+    hitMap[std::to_string(33.75)] = processHit(rotateByAngle(dir, up, 33.75));
+    hitMap[std::to_string(-33.75)] = processHit(rotateByAngle(dir, up, -33.75));
+    hitMap[std::to_string(22.5)] = processHit(rotateByAngle(dir, up, 22.5));
+    hitMap[std::to_string(-22.5)] = processHit(rotateByAngle(dir, up, -22.5));
 
     for (auto &hit : hitMap) {
         if(hit.second->hasHit()){
@@ -86,40 +84,10 @@ void AICar::OnFrame() {
 }
 
 void AICar::KeyboardEvent() {
-    // std::vector<double> result = this->_neuralSystem.getResults();
-    // for (auto bite : result) {
-    //     std::cout << bite << " ";
-    // }
-    // std::cout << std::endl << std::endl;
-    //
-    // if(result[0] > 0.9) {
-	// 	if(!reverse)
-	// 		this->_car->goForward();
-	// 	else
-	// 		this->_car->goBackwards();
-	// } else {
-    //     this->_car->slowdown();
-    // }
-    //
-    // if (result[1] > 0.9) {
-	// 	this->_car->stop();
-	// }
-	// if (result[2] > 0.9) {
-	// 	this->_car->steerLeft();
-	// }
-	// if (result[3] > 0.9) {
-	// 	this->_car->steerRight();
-	// }
-	// if (result[4] > 0.9) {
-	// 	this->_car->handbrake();
-	// }
-	// if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R)) {      A IMPLENTER APRES!          result[5]
-	// 	reverse = true;                                     NE PAS OUBLIER VICTOR!
-	// }
-	// if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {                                  result[6]
-	// 	reverse = false;
-	// }                       FDP
-
+    std::vector<double> result = this->_neuralSystem.getResults();
+    this->_car->move(result[0]);
+    this->_car->steer(result[1]);
+    this->_car->brake(result[2]);
 }
 
 btCollisionWorld::ClosestRayResultCallback *AICar::processHit(const core::vector3df &dir) {

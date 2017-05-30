@@ -50,23 +50,29 @@ namespace irr
 					m_vehicleSteering = 0.f;
 			}
 
-
-			void steerRight(void)
+            void steer(float ratio = 0)
 			{
-                m_carParams.SteeringClamp = 75 / this->getlinVel();
-                if (m_carParams.SteeringClamp > 0.4)
-                    m_carParams.SteeringClamp = 0.4;
-				m_vehicleSteering += m_carParams.SteeringIncrement;
+                m_vehicleSteering = m_carParams.SteeringClamp * ratio;
+			}
+            void move(float ratio = 0)
+            {
+                m_engineForce = m_carParams.MaxEngineForce * (ratio < 0 ? ratio / 2 : ratio);
+            }
+            void brake(float ratio = 0)
+            {
+                m_breakingForce = (ratio > 0.9 ? m_carParams.MaxBreakingForce + 100 : m_carParams.MaxBreakingForce) * ratio;
+            }
+
+			void steerRight()
+			{
+                m_vehicleSteering += m_carParams.SteeringIncrement;
 				if (m_vehicleSteering > m_carParams.SteeringClamp) m_vehicleSteering = m_carParams.SteeringClamp;
 			}
 
 
-			void steerLeft(void)
+			void steerLeft()
 			{
-                m_carParams.SteeringClamp = 75 / this->getlinVel();
-                if (m_carParams.SteeringClamp > 0.4)
-                    m_carParams.SteeringClamp = 0.4;
-				m_vehicleSteering -= m_carParams.SteeringIncrement;
+                m_vehicleSteering -= m_carParams.SteeringIncrement;
 				if (m_vehicleSteering < -m_carParams.SteeringClamp) m_vehicleSteering = -m_carParams.SteeringClamp;
 			}
 
