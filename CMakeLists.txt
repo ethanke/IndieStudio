@@ -114,6 +114,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/GUI/Keyboard.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Concessionnaire.cpp
     ${PROJECT_SOURCE_DIR}/sources/GUI/Graphic.cpp
+    ${PROJECT_SOURCE_DIR}/sources/GUI/JoinServer.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/ANetworkData.cpp
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/Network.cpp

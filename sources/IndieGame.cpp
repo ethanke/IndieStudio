@@ -55,6 +55,7 @@ void IndieGame::addGameObject() {
     // this->_objectList.push_back(map);
 
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::ONLINE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(100, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::COURSE, 10, irr::core::vector3df(744.1, 0, 502.7)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(313.75, 0, -215.9)));
@@ -91,6 +92,7 @@ void IndieGame::addGameObject() {
     this->_garage = NULL;
     this->_menu = NULL;
     this->_course = NULL;
+    this->_onlineUI = NULL;
 
     //GUI DEBUG
     this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
@@ -257,6 +259,13 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case Audio::Quit:
                         _menu->getSettings()->getAudio()->setVisible(false);
                         break;
+                    case JoinServer::LEAVE:
+                        this->OnLeavingOnline();
+                        break;
+                    case JoinServer::JOIN:
+                        this->OnLeavingOnline();
+                        // DIRE AU SERVER QUE WESH IL FAUT SE CONNECTER
+                        break;
                     default:
                         break;
                 }
@@ -339,6 +348,25 @@ void IndieGame::OnEnterMoney() {
 
 void IndieGame::OnEnterInCourseChPt(GameCheckpoint const &ch) {
     // Dire à la class course de Jordan que la $_car a passé le checkoint $ch
+}
+
+void IndieGame::OnEnterOnline() {
+    if (!this->_onlineUI) {
+        this->_onlineUI = new JoinServer(this->_gui, this->_driver, this->_windowSize);
+        this->_onlineUI->SetupGUI();
+        this->_objectList.push_back(this->_onlineUI);
+        this->_guiVisible.push_back(this->_onlineUI);
+    }
+    this->_onlineUI->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(_onlineUI);
+}
+
+void IndieGame::OnLeavingOnline() {
+    this->_onlineUI->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::guiVisible(IGUI *obj)

@@ -39,7 +39,6 @@ void AGame::Setup() {
     irr::gui::IGUIFont* font = this->_gui->getFont("misc/try.xml");
     if (font)
         skin->setFont(font);
-    skin->setFont(this->_gui->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
 
 
     irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);

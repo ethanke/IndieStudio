@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Tue May 30 23:30:33 2017 Lucas Gambini
+** Last update Wed May 31 01:11:31 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -62,6 +62,9 @@ void carWatcher::OnFrame() {
                     x.remove();
                     this->_checkpoints.erase(this->_checkpoints.begin() + index);
                     _eventReceiver->OnEnterInCourseChPt(x);
+                    break;
+                case GameCheckpoint::ONLINE:
+                    _eventReceiver->OnEnterOnline();
                     break;
                 default:
                     break;

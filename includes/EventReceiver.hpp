@@ -43,6 +43,9 @@ namespace indie {
 
         virtual void OnEnterInCourseChPt(GameCheckpoint const &ch) = 0;
 
+        virtual void OnEnterOnline() = 0;
+        virtual void OnLeavingOnline() = 0;
+
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
 

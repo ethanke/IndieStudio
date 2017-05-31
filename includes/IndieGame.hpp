@@ -27,6 +27,7 @@
 #include "Audio.hpp"
 #include "Keyboard.hpp"
 #include "Graphic.hpp"
+#include "JoinServer.hpp"
 
 namespace indie {
 
@@ -60,6 +61,9 @@ namespace indie {
 
         virtual void OnEnterInCourseChPt(GameCheckpoint const &ch);
 
+        virtual void OnEnterOnline();
+        virtual void OnLeavingOnline();
+
         virtual void guiVisible(IGUI*);
 
     private:
@@ -72,6 +76,7 @@ namespace indie {
         Course *_course;
         RandomEvent *_events;
         Settings *_settings;
+        JoinServer *_onlineUI;
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;

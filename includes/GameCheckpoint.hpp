@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Tue May 30 23:50:57 2017 Lucas Gambini
+** Last update Wed May 31 00:53:39 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -22,7 +22,8 @@ namespace indie {
         CONCESSIONNAIRE,
         COURSE,
         IN_COURSE,
-        MONEY
+        MONEY,
+        ONLINE
     };
 
     public:
