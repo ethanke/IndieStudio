@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Thu Jun  1 03:35:27 2017 Sousa Victor
+// Last update Thu Jun  1 03:47:56 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -29,7 +29,7 @@ namespace indie {
 
         virtual void OnFrame();
 
-    private:
+    protected:
         Neural::Network _neuralSystem;
         btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
         virtual void KeyboardEvent();
