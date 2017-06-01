@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu Jun  1 17:20:32 2017 Sousa Victor
+// Last update Thu Jun  1 19:25:16 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -25,31 +25,34 @@ void IndieGame::addGameObject() {
 		printf("bullet init failed..");
 	}
 
-    // irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
-    // keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
-    // keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
-    // keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
-    // keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
-    // keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
-    // keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
-    // keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
-    // keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
-    // keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
-    // keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
-    // GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
-    // this->_objectList.push_back(cameraFps1);
-    // cameraFps1->setFarValue(1000);
-
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
+#ifndef AIDEBUG
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
     this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, 0);
     this->_objectList.push_back(this->_car);
-
+#else
     this->_genTrainer = NULL; //NE PAS ENLEVER / COMMENTER
     this->_genTrainer = new GeneticTrainer(this->_smgr, this->_gui, this, bulletPhysSys);
     this->_objectList.push_back(this->_genTrainer);
+
+    irr::SKeyMap keyMap1[5];                    // re-assigne les commandes
+    keyMap1[0].Action = irr::EKA_MOVE_FORWARD;  // avancer
+    keyMap1[0].KeyCode = irr::KEY_KEY_W;        // w
+    keyMap1[1].Action = irr::EKA_MOVE_BACKWARD; // reculer
+    keyMap1[1].KeyCode = irr::KEY_KEY_S;        // s
+    keyMap1[2].Action = irr::EKA_STRAFE_LEFT;   // a gauche
+    keyMap1[2].KeyCode = irr::KEY_KEY_A;        // a
+    keyMap1[3].Action = irr::EKA_STRAFE_RIGHT;  // a droite
+    keyMap1[3].KeyCode = irr::KEY_KEY_D;        // d
+    keyMap1[4].Action = irr::EKA_JUMP_UP;       // saut
+    keyMap1[4].KeyCode = irr::KEY_SPACE;        // barre espace
+    GameCameraFPS *cameraFps1 = new GameCameraFPS(this->_smgr, 0, 100.0f, 0.5f, -1, keyMap1, 5, true, 0.1, false, true);
+    this->_objectList.push_back(cameraFps1);
+    cameraFps1->setFarValue(1000);
+
+#endif
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     // this->_objectList.push_back(map);
@@ -136,10 +139,12 @@ core::vector3df rotateByAngle2(const core::vector3df &vec, const core::vector3df
 }
 
 void IndieGame::OnFrame() {
+#ifndef AIDEBUG
+    std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
+    this->_pos->setText(Utils::StrToWstr(str));
+#else
     std::string str("      \nspeed: " + std::to_string(this->_genTrainer->getCar()->getVel()) + "\nmax speed: " + std::to_string(this->_genTrainer->getCar()->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
-
-    #ifdef AIDEBUG
     if (this->_genTrainer->getCar()) {
         core::matrix4 mat;
         _driver->setTransform(video::ETS_WORLD, mat);
