@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue May 30 14:47:15 2017 Sousa Victor
+// Last update Thu Jun  1 04:37:54 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -47,9 +47,9 @@ void IndieGame::addGameObject() {
     this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, 0);
     this->_objectList.push_back(this->_car);
 
-    this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, 0);
-    this->_objectList.push_back(this->_aiCar);
+    this->_genTrainer = NULL; //NE PAS ENLEVER / COMMENTER
+    this->_genTrainer = new GeneticTrainer(this->_smgr, this->_gui, this, bulletPhysSys);
+    this->_objectList.push_back(this->_genTrainer);
 
     // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
     // this->_objectList.push_back(map);
@@ -143,11 +143,11 @@ void IndieGame::OnFrame() {
    core::matrix4 mat;
    _driver->setTransform(video::ETS_WORLD, mat);
 
-   irr::core::vector3df rot = this->_aiCar->getRotation();
+   irr::core::vector3df rot = this->_genTrainer->getCar()->getRotation();
    irr::core::vector3df dir = rot.rotationToDirection().normalize();
    irr::core::vector3df right  = dir.crossProduct(irr::core::vector3df(0, 1, 0));
    irr::core::vector3df up = right.crossProduct(dir);
-   irr::core::vector3df pos = this->_aiCar->getPosition();
+   irr::core::vector3df pos = this->_genTrainer->getCar()->getPosition();
 
    irr::core::vector3df lkt = pos + dir * 1000;
    this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));

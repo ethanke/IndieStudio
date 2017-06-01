@@ -123,6 +123,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/Neuron.cpp
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/Genome.cpp
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/GeneticPool.cpp
+    ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/GeneticTrainer.cpp
 
 )
 
