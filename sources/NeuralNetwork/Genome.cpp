@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 15:39:39 2017 Sousa Victor
-// Last update Tue May 30 15:47:01 2017 Sousa Victor
+// Last update Thu Jun  1 02:13:34 2017 Sousa Victor
 //
 
 #include "Genome.hpp"
@@ -43,11 +43,22 @@ void Neural::Genome::setId(int id) {
     this->_id = id;
 }
 
-
 std::vector<float> const &Neural::Genome::getWeights() const {
     return this->_weights;
 }
 
 void Neural::Genome::setWeights(std::vector<float> const &weight) {
     this->_weights = weight;
+}
+
+void Neural::Genome::push_back(float f) {
+    this->_weights.push_back(f);
+}
+
+float& Neural::Genome::operator[](size_t index) {
+    return this->_weights[index];
+}
+
+const float& Neural::Genome::operator[](size_t index) const {
+    return this->_weights[index];
 }

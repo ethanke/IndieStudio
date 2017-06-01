@@ -5,13 +5,14 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 15:39:58 2017 Sousa Victor
-// Last update Tue May 30 15:47:05 2017 Sousa Victor
+// Last update Thu Jun  1 02:19:40 2017 Sousa Victor
 //
 
 #ifndef GENOME_HPP_
 #define GENOME_HPP_
 
 #include <vector>
+#include <cstdlib>
 
 namespace Neural {
 
@@ -30,6 +31,10 @@ namespace Neural {
 
         std::vector<float> const &getWeights() const;
         void setWeights(std::vector<float> const &weight);
+
+        void push_back(float f);
+        float& operator[](size_t index);
+        const float& operator[](size_t index) const;
 
 
     private:

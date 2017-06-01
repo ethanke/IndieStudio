@@ -5,11 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 16:54:47 2017 Sousa Victor
-// Last update Tue May 30 16:57:08 2017 Sousa Victor
+// Last update Thu Jun  1 03:11:15 2017 Sousa Victor
 //
 
 #ifndef GENETICPOOL_HPP_
 #define GENETICPOOL_HPP_
+
+#include "Genome.hpp"
 
 namespace Neural {
 
@@ -18,6 +20,40 @@ namespace Neural {
     public:
         GeneticPool();
         ~GeneticPool();
+
+        Genome *GetNextGenome();
+        Genome *GetBestGenome();
+        Genome *GetWorstGenome();
+        Genome *GetGenome(int index);
+
+        int GetCurrentGenomeIndex();
+        int GetCurrentGenomeID();
+        int GetCurrentGeneration();
+        int GetTotalPopulation();
+
+        void GetBestCases(int totalGenomes, std::vector<Genome *> &output);
+        void CrossBreed(const Genome &g1, const Genome &g2, Genome &baby1, Genome &baby2);
+        Neural::Genome *CreateNewGenome(int totalWeights);
+        void GenerateNewPopulation (int totalPop, int totalWeights);
+        void BreedPopulation();
+        void ClearPopulation();
+        void Mutate(Genome &genome);
+        void SetGenomeFitness(float fitness, int index);
+
+    private:
+        int _currentGenome;
+        int _totalPopulation;
+        int _genomeID;
+        int _generation;
+        int _totalGenomeWeights;
+
+        float _MUTATION_RATE;
+        float _MAX_PERBETUATION;
+
+        std::vector<Genome*> _population;
+        std::vector<int> _crossoverSplits;
+
+        float RandomClamped() const;
 
     };
 
