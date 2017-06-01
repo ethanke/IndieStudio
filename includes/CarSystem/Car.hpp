@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Fri May 26 22:58:27 2017 Sousa Victor
+// Last update Thu Jun  1 18:35:47 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -22,7 +22,7 @@ namespace indie {
 
     public:
         Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0,
-            irr::core::vector3df position = irr::core::vector3df(2, 38, 0), bool isAI = false);
+            irr::core::vector3df position = irr::core::vector3df(-10, 36, 0), bool isAI = false);
         ~Car();
 
         virtual void OnFrame();

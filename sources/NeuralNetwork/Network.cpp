@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun Apr 23 19:21:31 2017 Sousa Victor
-// Last update Thu Jun  1 02:09:35 2017 Sousa Victor
+// Last update Thu Jun  1 14:13:45 2017 Sousa Victor
 //
 
 #include "Network.hpp"
@@ -154,7 +154,7 @@ void Neural::Network::fromGenome(Neural::Genome const &genome) {
         }
     }
     if (i != weight.size()) {
-        throw Neural::InvalidInput("You want to load a genome that has a different topology than your network");
+        throw Neural::InvalidInput("You want to load a genome which has " + std::to_string(weight.size()) + " neurons in a network that contains " + std::to_string(i) + " neurons...");
     }
 
     i = 0;

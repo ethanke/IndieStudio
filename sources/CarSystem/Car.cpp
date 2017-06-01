@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Fri May 26 22:58:48 2017 Sousa Victor
+// Last update Thu Jun  1 14:53:20 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -42,7 +42,10 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
 }
 
 Car::~Car() {
-
+    delete this->_car;
+    if (!this->_isAI) {
+        delete this->_camera;
+    }
 }
 
 void Car::OnFrame() {

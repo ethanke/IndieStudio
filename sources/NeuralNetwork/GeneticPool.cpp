@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 16:57:16 2017 Sousa Victor
-// Last update Thu Jun  1 03:11:21 2017 Sousa Victor
+// Last update Thu Jun  1 17:02:03 2017 Sousa Victor
 //
 
 #include "GeneticPool.hpp"
@@ -17,7 +17,7 @@ Neural::GeneticPool::GeneticPool() {
     this->_generation = 1;
 
     this->_MUTATION_RATE = 0.15f;
-    this->_MAX_PERBETUATION = 0.3f;
+    this->_MAX_PERBETUATION = 0.5f;
 }
 
 Neural::GeneticPool::~GeneticPool() {
@@ -139,6 +139,7 @@ void Neural::GeneticPool::CrossBreed(const Genome &g1, const Genome &g2, Genome 
         baby1[i] = g2[i];
         baby2[i] = g1[i];
     }
+
 }
 
 Neural::Genome *Neural::GeneticPool::CreateNewGenome(int totalWeights){
@@ -198,21 +199,28 @@ void Neural::GeneticPool::BreedPopulation() {
     //Mutate(best);
     children.push_back(best);
 
-    //Child genomes
-    Genome *baby1 = new Genome();
-    Genome *baby2 = new Genome();
-
     // Breed with genome 0.
+    Genome *baby1;
+    Genome *baby2;
+
+    baby1 = new Genome();
+    baby2 = new Genome();
     CrossBreed(*bestGenomes[0], *bestGenomes[1], *baby1, *baby2);
     Mutate(*baby1);
     Mutate(*baby2);
     children.push_back(baby1);
     children.push_back(baby2);
+
+    baby1 = new Genome();
+    baby2 = new Genome();
     CrossBreed(*bestGenomes[0], *bestGenomes[2], *baby1, *baby2);
     Mutate(*baby1);
     Mutate(*baby2);
     children.push_back(baby1);
     children.push_back(baby2);
+
+    baby1 = new Genome();
+    baby2 = new Genome();
     CrossBreed(*bestGenomes[0], *bestGenomes[3], *baby1, *baby2);
     Mutate(*baby1);
     Mutate(*baby2);
@@ -220,11 +228,16 @@ void Neural::GeneticPool::BreedPopulation() {
     children.push_back(baby2);
 
     // Breed with genome 1.
+    baby1 = new Genome();
+    baby2 = new Genome();
     CrossBreed(*bestGenomes[1], *bestGenomes[2], *baby1, *baby2);
     Mutate(*baby1);
     Mutate(*baby2);
     children.push_back(baby1);
     children.push_back(baby2);
+
+    baby1 = new Genome();
+    baby2 = new Genome();
     CrossBreed(*bestGenomes[1], *bestGenomes[3], *baby1, *baby2);
     Mutate(*baby1);
     Mutate(*baby2);
@@ -271,5 +284,5 @@ void Neural::GeneticPool::SetGenomeFitness(float fitness, int index){
 }
 
 float Neural::GeneticPool::RandomClamped() const {
-    return std::rand() / RAND_MAX;
+    return (static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX)) - (static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX));
 }

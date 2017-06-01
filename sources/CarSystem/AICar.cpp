@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Thu Jun  1 03:51:15 2017 Sousa Victor
+// Last update Thu Jun  1 18:35:33 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -13,10 +13,7 @@
 using namespace indie;
 
 AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
-    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 38, 10), true), _neuralSystem(std::vector<unsigned> {20, 35, 20, 3}) {
-
-    // Neural::Genome gen = _neuralSystem.toGenome();
-    // _neuralSystem.fromGenome(gen);
+    Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no, irr::core::vector3df(2, 36, 0), true), _neuralSystem(std::vector<unsigned> {26, 15, 8, 3}) {
 
     //this->_neuralSystem.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car.txt");
 }
@@ -38,11 +35,22 @@ void AICar::OnFrame() {
     core::vector3df dir = rot.rotationToDirection().normalize();
     core::vector3df right  = dir.crossProduct(core::vector3df(0, 1, 0));
     core::vector3df up = right.crossProduct(dir);
+    core::vector3df checkPointDir = (core::vector3df(100, 0, 0) - this->_car->getPosition()).normalize();
+
 
     std::vector<double> outputData;
     outputData.push_back(up.X);
     outputData.push_back(up.Y);
     outputData.push_back(up.Z);
+
+    outputData.push_back(dir.X);
+    outputData.push_back(dir.Y);
+    outputData.push_back(dir.Z);
+
+    outputData.push_back(checkPointDir.X);
+    outputData.push_back(checkPointDir.Y);
+    outputData.push_back(checkPointDir.Z);
+
     outputData.push_back(getVel());
 
     hitMap[std::to_string(0.0)] = processHit(dir);
@@ -82,6 +90,7 @@ void AICar::OnFrame() {
 
 void AICar::KeyboardEvent() {
     std::vector<double> result = this->_neuralSystem.getResults();
+    //std::cout << result[0] << " " << result[1] << " " << result[2] << std::endl;
     this->_car->move(result[0]);
     this->_car->steer(result[1]);
     this->_car->brake(result[2]);

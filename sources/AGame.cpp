@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Thu May 25 17:14:23 2017 Sousa Victor
+// Last update Thu Jun  1 17:01:13 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -16,6 +16,8 @@ irr::f32 DeltaTimer::DeltaTime;
 AGame::AGame(int width, int height) {
     this->_windowSize = irr::core::dimension2du(width, height);
     this->_minimapCamera = NULL;
+
+    std::srand(time(NULL));
 }
 
 AGame::~AGame() {

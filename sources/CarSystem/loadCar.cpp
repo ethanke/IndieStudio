@@ -10,7 +10,11 @@ CLoadCar::CLoadCar()
 //default destructor
 CLoadCar::~CLoadCar()
 {
-
+    carNode->remove();
+    tire1->remove();
+    tire2->remove();
+    tire3->remove();
+    tire4->remove();
 }
 
 void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BPS, s32 val)
@@ -28,14 +32,18 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 			drive = FWD;
 			max_speed = 150.0f;
 			carNode = loadMeshFromFile("car/SV/SV.obj");
+            tire1 = loadMeshFromFile("car/SV/SV_tire_front_left.obj");      //front left
+            tire2 = loadMeshFromFile("car/Car/SV_tire_front_right.obj");     //front right
+            tire3 = loadMeshFromFile("car/Car/SV_tire_back_left.obj");      //back left
+            tire4 = loadMeshFromFile("car/Car/SV_tire_back_right.obj");   //back right
 			carNode->setPosition(core::vector3df(0.f, 0.f, 0.f));
 			car = new physics::PhysicsCar(
 				bulletPhysSys,
 				carNode,
-                loadMeshFromFile("car/SV/SV_tire_front_left.obj"),      //front left
-                loadMeshFromFile("car/Car/SV_tire_front_right.obj"),     //front right
-                loadMeshFromFile("car/Car/SV_tire_back_left.obj"),      //back left
-                loadMeshFromFile("car/Car/SV_tire_back_right.obj")   //back right
+                tire1,
+                tire2,
+                tire3,
+                tire4
 			);
 
             carParams.CenterOfMassOffset = core::vector3df(0, -0.09, 0);
@@ -67,7 +75,7 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 
 	car->setPosition(car_pos);
     core::vector3df rot(0, 90, 0);
-	car->setRotation(rot, angle); //90
+	car->setRotation(rot, 90); //90
 
 }
 

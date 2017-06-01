@@ -37,8 +37,13 @@ namespace irr
 
 		PhysicsCar::~PhysicsCar(void)
 		{
-			if (m_vehicleRayCaster != NULL) delete m_vehicleRayCaster;
-			if (m_vehicle != NULL) delete m_vehicle;
+			if (m_vehicleRayCaster != NULL) {
+                delete m_vehicleRayCaster;
+            }
+            m_dynamicsWorld->removeAction(m_vehicle);
+            delete m_vehicle;
+
+            delete m_chassisObject;
 
 			//if (m_chassisObject != NULL) delete m_chassisObject;  // never delete - it is done by physics world
 		}

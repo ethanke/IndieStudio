@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:38:07 2017 Sousa Victor
-// Last update Thu Jun  1 04:09:14 2017 Sousa Victor
+// Last update Thu Jun  1 19:16:38 2017 Sousa Victor
 //
 
 #include "LearningCar.hpp"
@@ -17,6 +17,10 @@ LearningCar::LearningCar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUI
 
     this->_fitness = 0;
     this->_hasFailed = false;
+    this->_indicTotal = 0;
+    this->_indicSpeed = 0;
+
+    this->_startPos = this->_car->getPosition();
 }
 
 LearningCar::~LearningCar() {
@@ -24,17 +28,29 @@ LearningCar::~LearningCar() {
 }
 
 void LearningCar::OnFrame() {
+    this->_indicTotal += DeltaTimer::DeltaTime;
     if (getVel() < 1) {
-        this->_indic++;
+        this->_indicSpeed += DeltaTimer::DeltaTime;
     } else {
-        this->_indic = 0;
+        this->_indicSpeed = 0;
     }
-    this->_hasFailed = this->_indic > 90;
-    this->_fitness += getVel() * DeltaTimer::DeltaTime;
+    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 25);
+    this->_fitness = (this->_startPos - this->_car->getPosition()).getLength();
+    AICar::OnFrame();
+}
+
+void LearningCar::LoadGenome(Neural::Genome const &genome) {
+    this->_neuralSystem.fromGenome(genome);
 }
 
 void LearningCar::SaveNetwork() const {
-    this->_neuralSystem.saveTo("./car_" + std::to_string(this->_generationID) + "_" + std::to_string(this->_genomeID) + ".txt");
+    this->_neuralSystem.saveTo("/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/build/output/car_" + std::to_string(this->_generationID) + "_" + std::to_string(this->_genomeID) + ".txt");
+}
+
+void LearningCar::ClearFailure() {
+    this->_fitness = 0;
+    this->_hasFailed = false;
+    this->_indicSpeed = 0;
 }
 
 int LearningCar::getGenomeID() const {

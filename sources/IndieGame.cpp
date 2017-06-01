@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu Jun  1 04:37:54 2017 Sousa Victor
+// Last update Thu Jun  1 17:20:32 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -136,67 +136,69 @@ core::vector3df rotateByAngle2(const core::vector3df &vec, const core::vector3df
 }
 
 void IndieGame::OnFrame() {
-    std::string str("      \nspeed: " + std::to_string(_car->getVel()) + "\nmax speed: " + std::to_string(_car->getMaxSpeed()));
+    std::string str("      \nspeed: " + std::to_string(this->_genTrainer->getCar()->getVel()) + "\nmax speed: " + std::to_string(this->_genTrainer->getCar()->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
 
     #ifdef AIDEBUG
-   core::matrix4 mat;
-   _driver->setTransform(video::ETS_WORLD, mat);
+    if (this->_genTrainer->getCar()) {
+        core::matrix4 mat;
+        _driver->setTransform(video::ETS_WORLD, mat);
 
-   irr::core::vector3df rot = this->_genTrainer->getCar()->getRotation();
-   irr::core::vector3df dir = rot.rotationToDirection().normalize();
-   irr::core::vector3df right  = dir.crossProduct(irr::core::vector3df(0, 1, 0));
-   irr::core::vector3df up = right.crossProduct(dir);
-   irr::core::vector3df pos = this->_genTrainer->getCar()->getPosition();
+        irr::core::vector3df rot = this->_genTrainer->getCar()->getRotation();
+        irr::core::vector3df dir = rot.rotationToDirection().normalize();
+        irr::core::vector3df right  = dir.crossProduct(irr::core::vector3df(0, 1, 0));
+        irr::core::vector3df up = right.crossProduct(dir);
+        irr::core::vector3df pos = this->_genTrainer->getCar()->getPosition();
 
-   irr::core::vector3df lkt = pos + dir * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-   dir = -dir;
-   lkt = pos + dir * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        irr::core::vector3df lkt = pos + dir * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        dir = -dir;
+        lkt = pos + dir * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 112.5) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 112.5) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -112.5) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, -112.5) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 90) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 90) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -90) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, -90) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 78.75) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 78.75) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -78.75) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, -78.75) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 67.5) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 67.5) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -67.5) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, -67.5) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 45) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 45) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -45) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, -45) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 33.75) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 33.75) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -33.75) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, -33.75) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, 22.5) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+        lkt = pos + rotateByAngle2(dir, up, 22.5) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
 
-   lkt = pos + rotateByAngle2(dir, up, -22.5) * 1000;
-   this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
-   #endif
+        lkt = pos + rotateByAngle2(dir, up, -22.5) * 1000;
+        this->_driver->draw3DLine(pos, lkt, irr::video::SColor(255,255,0,0));
+    }
+    #endif
 
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }

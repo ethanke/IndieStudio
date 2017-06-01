@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:34:22 2017 Sousa Victor
-// Last update Thu Jun  1 04:09:23 2017 Sousa Victor
+// Last update Thu Jun  1 18:34:19 2017 Sousa Victor
 //
 
 #ifndef LEARNINGCAR_HPP_
@@ -23,7 +23,9 @@ namespace indie {
 
         virtual void OnFrame();
 
+        void LoadGenome(Neural::Genome const &genome);
         void SaveNetwork() const;
+        void ClearFailure();
 
         int getGenomeID() const;
         void setGenomeID(int genomeID);
@@ -42,7 +44,10 @@ namespace indie {
         int _generationID;
         float _fitness;
         bool _hasFailed;
-        int _indic;
+        float _indicTotal;
+        float _indicSpeed;
+
+        core::vector3df _startPos;
 
     };
 

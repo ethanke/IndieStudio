@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun Apr 23 19:12:47 2017 Sousa Victor
-// Last update Tue May  2 02:37:26 2017 Sousa Victor
+// Last update Thu Jun  1 17:38:36 2017 Sousa Victor
 //
 
 #include "Neuron.hpp"
@@ -119,7 +119,7 @@ double Neural::Neuron::transferFunctionDerivative(double x) const {
 }
 
 double Neural::Neuron::randomWeight(void) const {
-     return rand() / double(RAND_MAX);
+     return (static_cast <double> (std::rand()) / static_cast <double> (RAND_MAX)) - (static_cast <double> (std::rand()) / static_cast <double> (RAND_MAX));
 }
 
 double Neural::Neuron::sumDOW(const Neural::Layer &nextLayer) const {

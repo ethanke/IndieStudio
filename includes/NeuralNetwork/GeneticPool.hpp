@@ -5,12 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 16:54:47 2017 Sousa Victor
-// Last update Thu Jun  1 03:11:15 2017 Sousa Victor
+// Last update Thu Jun  1 17:01:25 2017 Sousa Victor
 //
 
 #ifndef GENETICPOOL_HPP_
 #define GENETICPOOL_HPP_
 
+#include <iostream>
 #include "Genome.hpp"
 
 namespace Neural {

@@ -44,6 +44,10 @@ class CLoadCar{
 		irr::scene::IAnimatedMeshSceneNode* loadMeshFromFile(const char* filename);
 		irr::scene::ISceneManager* sm;
 		irr::scene::IAnimatedMeshSceneNode* carNode;
+        irr::scene::IAnimatedMeshSceneNode* tire1;
+        irr::scene::IAnimatedMeshSceneNode* tire2;
+        irr::scene::IAnimatedMeshSceneNode* tire3;
+        irr::scene::IAnimatedMeshSceneNode* tire4;
 		core::vector3df car_pos;
 		s32 angle;
 		s32 drive, stopPos;

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:20:36 2017 Sousa Victor
-// Last update Fri May 19 21:25:16 2017 Sousa Victor
+// Last update Thu Jun  1 17:01:32 2017 Sousa Victor
 //
 
 #ifndef AGAME_HPP_
@@ -13,6 +13,7 @@
 
 #include <irrlicht.h>
 #include <exception>
+#include <time.h>
 #include <string>
 #include <vector>
 

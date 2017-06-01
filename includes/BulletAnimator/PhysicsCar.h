@@ -126,6 +126,10 @@ namespace irr
 			core::vector3df getRotation(void);
 			void setRotation(core::vector3df& axis, btScalar angle);
 
+            physics::CPhysicsObject *getChassis() const {
+                return this->m_chassisObject;
+            }
+
 
 		private:
 
