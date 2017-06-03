@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:38:07 2017 Sousa Victor
-// Last update Thu Jun  1 19:16:38 2017 Sousa Victor
+// Last update Thu Jun  1 23:24:08 2017 Sousa Victor
 //
 
 #include "LearningCar.hpp"
@@ -34,9 +34,13 @@ void LearningCar::OnFrame() {
     } else {
         this->_indicSpeed = 0;
     }
-    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 25);
+    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 50);
     this->_fitness = (this->_startPos - this->_car->getPosition()).getLength();
     AICar::OnFrame();
+}
+
+Neural::Genome const LearningCar::GetGenome() const {
+    return this->_neuralSystem.toGenome();
 }
 
 void LearningCar::LoadGenome(Neural::Genome const &genome) {

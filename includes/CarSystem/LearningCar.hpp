@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:34:22 2017 Sousa Victor
-// Last update Thu Jun  1 18:34:19 2017 Sousa Victor
+// Last update Thu Jun  1 22:41:51 2017 Sousa Victor
 //
 
 #ifndef LEARNINGCAR_HPP_
@@ -23,6 +23,7 @@ namespace indie {
 
         virtual void OnFrame();
 
+        Neural::Genome const GetGenome() const;
         void LoadGenome(Neural::Genome const &genome);
         void SaveNetwork() const;
         void ClearFailure();

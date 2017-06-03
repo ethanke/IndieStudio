@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 16:54:47 2017 Sousa Victor
-// Last update Thu Jun  1 17:01:25 2017 Sousa Victor
+// Last update Thu Jun  1 22:43:26 2017 Sousa Victor
 //
 
 #ifndef GENETICPOOL_HPP_
@@ -36,6 +36,7 @@ namespace Neural {
         void CrossBreed(const Genome &g1, const Genome &g2, Genome &baby1, Genome &baby2);
         Neural::Genome *CreateNewGenome(int totalWeights);
         void GenerateNewPopulation (int totalPop, int totalWeights);
+        void GenerateNewPopulation (int totalPop, Neural::Genome const &genome);
         void BreedPopulation();
         void ClearPopulation();
         void Mutate(Genome &genome);

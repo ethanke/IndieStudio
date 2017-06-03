@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 16:57:16 2017 Sousa Victor
-// Last update Thu Jun  1 17:02:03 2017 Sousa Victor
+// Last update Thu Jun  1 22:45:05 2017 Sousa Victor
 //
 
 #include "GeneticPool.hpp"
@@ -17,7 +17,7 @@ Neural::GeneticPool::GeneticPool() {
     this->_generation = 1;
 
     this->_MUTATION_RATE = 0.15f;
-    this->_MAX_PERBETUATION = 0.5f;
+    this->_MAX_PERBETUATION = 0.3f;
 }
 
 Neural::GeneticPool::~GeneticPool() {
@@ -179,6 +179,27 @@ void Neural::GeneticPool::GenerateNewPopulation (int totalPop, int totalWeights)
             genome->push_back(RandomClamped());
         }
 
+        this->_genomeID++;
+        this->_population[i] = genome;
+    }
+}
+
+void Neural::GeneticPool::GenerateNewPopulation (int totalPop, Neural::Genome const &gen){
+    this->_generation = 1;
+    ClearPopulation();
+    this->_currentGenome = -1;
+    this->_totalPopulation = totalPop;
+    //resize
+    if (this->_population.size() < totalPop) {
+        for (int i = this->_population.size(); i < totalPop; i++){
+            this->_population.push_back(NULL);
+        }
+    }
+
+    for(int i = 0; i < this->_population.size(); i++){
+        Neural::Genome *genome = new Genome(gen);
+        genome->setId(this->_genomeID);
+        genome->setFitness(0.0f);
         this->_genomeID++;
         this->_population[i] = genome;
     }

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 04:22:47 2017 Sousa Victor
-// Last update Thu Jun  1 17:55:39 2017 Sousa Victor
+// Last update Fri Jun  2 02:09:22 2017 Sousa Victor
 //
 
 #include "GeneticTrainer.hpp"
@@ -21,7 +21,7 @@ GeneticTrainer::GeneticTrainer(irr::scene::ISceneManager *sceneManager, irr::gui
     this->_aiCar = NULL;
     this->_aiCar = new LearningCar(this->_smgr, this->_gui, this->_eventReceiver, this->_bulletPhysicsSystem);
 
-    this->_genPool.GenerateNewPopulation (15, 560);
+    this->_genPool.GenerateNewPopulation (15, 198);
     this->_currentAgentFitness = 0.0f;
     this->_bestFitness = 0.0f;
 

@@ -5,13 +5,16 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Thu Jun  1 18:35:47 2017 Sousa Victor
+// Last update Thu Jun  1 22:38:49 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
 #define CAR_HPP_
 
 #include <string>
+#include <unordered_map>
+#include <vector>
+#include <fstream>
 #include "BasicCamera.hpp"
 #include "EventReceiver.hpp"
 #include "loadCar.h"
@@ -53,6 +56,9 @@ namespace indie {
 
         virtual void KeyboardEvent();
         virtual void updateCamera();
+
+        // std::ofstream myfile;
+        // virtual btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
 
     };
 

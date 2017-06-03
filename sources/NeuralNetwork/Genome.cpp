@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Tue May 30 15:39:39 2017 Sousa Victor
-// Last update Thu Jun  1 02:13:34 2017 Sousa Victor
+// Last update Thu Jun  1 22:46:26 2017 Sousa Victor
 //
 
 #include "Genome.hpp"
@@ -15,7 +15,9 @@ Neural::Genome::Genome() {
 }
 
 Neural::Genome::Genome(const Neural::Genome &gen) {
-
+    this->_fitness = gen._fitness;
+    this->_id = gen._id;
+    this->_weights = gen._weights;
 }
 
 Neural::Genome::~Genome() {
@@ -23,6 +25,9 @@ Neural::Genome::~Genome() {
 }
 
 Neural::Genome &Neural::Genome::operator =(const Neural::Genome &gen) {
+    this->_fitness = gen._fitness;
+    this->_id = gen._id;
+    this->_weights = gen._weights;
     return *this;
 }
 
