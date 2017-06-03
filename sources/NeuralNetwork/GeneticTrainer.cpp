@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 04:22:47 2017 Sousa Victor
-// Last update Sat Jun  3 21:48:25 2017 Sousa Victor
+// Last update Sat Jun  3 22:18:50 2017 Sousa Victor
 //
 
 #include "GeneticTrainer.hpp"
@@ -90,6 +90,7 @@ void GeneticTrainer::NextTestSubject(){
     Neural::Genome *genome = this->_genPool.GetNextGenome();
 
     delete this->_aiCar;
+    this->_circuit.reCreate();
     this->_aiCar = new LearningCar(this->_smgr, this->_gui, this->_eventReceiver, this->_bulletPhysicsSystem, this->_circuit);
     this->_aiCar->LoadGenome(*genome);
 }

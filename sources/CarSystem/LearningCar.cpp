@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:38:07 2017 Sousa Victor
-// Last update Sat Jun  3 21:52:10 2017 Sousa Victor
+// Last update Sat Jun  3 22:20:35 2017 Sousa Victor
 //
 
 #include "LearningCar.hpp"
@@ -34,7 +34,7 @@ void LearningCar::OnFrame() {
     } else {
         this->_indicSpeed = 0;
     }
-    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 10);
+    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 15);
     this->_fitness = (this->_startPos - this->_car->getPosition()).getLength();
     AICar::OnFrame();
 }

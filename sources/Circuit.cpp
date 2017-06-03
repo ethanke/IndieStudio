@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun  3 20:12:02 2017 Sousa Victor
-// Last update Sat Jun  3 21:09:34 2017 Sousa Victor
+// Last update Sat Jun  3 22:18:06 2017 Sousa Victor
 //
 
 #include "Circuit.hpp"
@@ -40,6 +40,11 @@ Circuit &Circuit::operator <<(GameCheckpoint const &point) {
     return *this;
 }
 
+void Circuit::reCreate() {
+    for (auto check : this->_checkpoints) {
+        check.reCreate();
+    }
+}
 
 std::vector<GameCheckpoint> const &Circuit::getNextCheckpoints(unsigned index) const {
     return this->_checkpoints;

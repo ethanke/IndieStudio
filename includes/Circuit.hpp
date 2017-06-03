@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun  3 20:09:08 2017 Sousa Victor
-// Last update Sat Jun  3 21:08:31 2017 Sousa Victor
+// Last update Sat Jun  3 22:18:15 2017 Sousa Victor
 //
 
 #ifndef CIRCUIT_HPP_
@@ -25,6 +25,8 @@ namespace indie {
         Circuit &operator=(const Circuit& obj);
 
         virtual void OnFrame();
+
+        void reCreate();
 
         Circuit &operator <<(GameCheckpoint const &point);
 
