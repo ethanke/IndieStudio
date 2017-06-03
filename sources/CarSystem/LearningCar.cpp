@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:38:07 2017 Sousa Victor
-// Last update Thu Jun  1 23:24:08 2017 Sousa Victor
+// Last update Sat Jun  3 20:16:08 2017 Sousa Victor
 //
 
 #include "LearningCar.hpp"
@@ -48,7 +48,7 @@ void LearningCar::LoadGenome(Neural::Genome const &genome) {
 }
 
 void LearningCar::SaveNetwork() const {
-    this->_neuralSystem.saveTo("/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/build/output/car_" + std::to_string(this->_generationID) + "_" + std::to_string(this->_genomeID) + ".txt");
+    //this->_neuralSystem.saveTo("/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/build/output/car_" + std::to_string(this->_generationID) + "_" + std::to_string(this->_genomeID) + ".txt");
 }
 
 void LearningCar::ClearFailure() {

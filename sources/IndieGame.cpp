@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sat Jun  3 17:17:05 2017 Sousa Victor
+// Last update Sat Jun  3 20:18:25 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -136,9 +136,20 @@ void IndieGame::loadMap() {
     #endif
 }
 
+core::vector3df rotateByAngle2(const core::vector3df &vec, const core::vector3df &up, float angle) {
+    core::quaternion rotation;
+    rotation.fromAngleAxis(angle, up);
+    return rotation * vec;
+}
+
 void IndieGame::OnFrame() {
+#ifndef AIDEBUG
     std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
+#else
+    std::string str("      \nspeed: " + std::to_string(this->_genTrainer->getCar()->getVel()) + "\nmax speed: " + std::to_string(this->_genTrainer->getCar()->getMaxSpeed()));
+    this->_pos->setText(Utils::StrToWstr(str));
+#endif
 
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }
