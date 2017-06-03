@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Sat Jun 03 21:21:11 2017 Lucas Gambini
+** Last update Sat Jun 03 22:13:04 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -49,6 +49,8 @@ namespace indie {
         float getRadius() const;
         irr::core::vector3df getChPosition() const;
 
+        void reCreate();
+
         //IMeshSceneNode
         void setMesh(irr::scene::IMesh* mesh);
         irr::scene::IMesh* getMesh(void);
@@ -62,6 +64,9 @@ namespace indie {
         bool _isBusy;
         irr::f32 _radius;
         irr::core::vector3df _pos;
+        irr::core::vector3df _rotation;
+        irr::core::vector3df _scale;
+        irr::video::SColor _color;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {

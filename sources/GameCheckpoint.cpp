@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Sat Jun 03 21:22:21 2017 Lucas Gambini
+** Last update Sat Jun 03 22:13:27 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -16,29 +16,15 @@ GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32
                    Type type, const irr::f32 radius, const irr::core::vector3df &position, const irr::core::vector3df &rotation, const irr::core::vector3df &scale)
                    : AGameObject (sceneManager), IMeshSceneNode(parent, sceneManager, id, position, rotation, scale) {
 
-    irr::video::SColor color;
-    if (type == GARAGE)
-        color = irr::video::SColor(150, 255, 0, 0);
-    else if (type == COURSE)
-        color = irr::video::SColor(150, 0, 0, 255);
-    else if (type == CONCESSIONNAIRE)
-        color = irr::video::SColor(150, 255, 255, 0);
-    else if (type == MONEY)
-        color = irr::video::SColor(150, 0, 255, 0);
-    else if (type == IN_COURSE)
-        color = irr::video::SColor(150, 0, 255, 255);
-    else
-        color = irr::video::SColor(150, 255, 40, 0);
-    this->_radius = radius;
-    irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(this->_radius, 5000, 50, color, true, 0.f);
-    this->_cylindre = this->_smgr->addMeshSceneNode(_mesh, 0, -1, position, rotation, scale);
-    this->_cylindre->getMaterial(0).AmbientColor.set(255,color.getRed(),color.getGreen(),color.getBlue());
-    this->_cylindre->getMaterial(0).DiffuseColor.set(255,color.getRed(),color.getGreen(),color.getBlue());
-    this->_cylindre->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
-
     this->_type = type;
     this->_isBusy = false;
     this->_pos = position;
+    this->_cylindre = NULL;
+    this->_radius = radius;
+    this->_scale = scale;
+    this->_rotation = rotation;
+
+    reCreate();
 }
 
 GameCheckpoint &GameCheckpoint::operator=(const GameCheckpoint &obj) {
@@ -52,6 +38,26 @@ GameCheckpoint &GameCheckpoint::operator=(const GameCheckpoint &obj) {
 
 GameCheckpoint::~GameCheckpoint() {
 
+}
+
+void GameCheckpoint::reCreate() {
+    if (this->_type == GARAGE)
+        this->_color = irr::video::SColor(150, 255, 0, 0);
+    else if (this->_type == COURSE)
+        this->_color = irr::video::SColor(150, 0, 0, 255);
+    else if (this->_type == CONCESSIONNAIRE)
+        this->_color = irr::video::SColor(150, 255, 255, 0);
+    else if (this->_type == MONEY)
+        this->_color = irr::video::SColor(150, 0, 255, 0);
+    else if (this->_type == IN_COURSE)
+        this->_color = irr::video::SColor(150, 0, 255, 255);
+    else
+        this->_color = irr::video::SColor(150, 255, 40, 0);
+    irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(this->_radius, 5000, 50, this->_color, true, 0.f);
+    this->_cylindre = this->_smgr->addMeshSceneNode(_mesh, 0, -1, this->_pos, this->_rotation, this->_scale);
+    this->_cylindre->getMaterial(0).AmbientColor.set(255,this->_color.getRed(),this->_color.getGreen(),this->_color.getBlue());
+    this->_cylindre->getMaterial(0).DiffuseColor.set(255,this->_color.getRed(),this->_color.getGreen(),this->_color.getBlue());
+    this->_cylindre->setMaterialType(irr::video::EMT_TRANSPARENT_ADD_COLOR);
 }
 
 void GameCheckpoint::OnFrame() {
