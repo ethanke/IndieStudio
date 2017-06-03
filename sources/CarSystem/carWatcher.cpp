@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Sat Jun 03 21:22:36 2017 Lucas Gambini
+** Last update Sat Jun 03 22:29:34 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -32,8 +32,8 @@ bool carWatcher::inLine(float a, float new_a, float rad) const
 }
 
 bool carWatcher::isCarInCheck(GameCheckpoint const &ch, irr::core::vector3df const &cpos) const {
-    bool xIn = inLine(cpos.X, ch.getPosition().X, ch.getRadius()) || inLine(ch.getPosition().X, cpos.X, ch.getRadius());
-    bool zIn = inLine(cpos.Z, ch.getPosition().Z, ch.getRadius()) || inLine(ch.getPosition().Z, cpos.Z, ch.getRadius());
+    bool xIn = inLine(cpos.X, ch.getChPosition().X, ch.getRadius()) || inLine(ch.getChPosition().X, cpos.X, ch.getRadius());
+    bool zIn = inLine(cpos.Z, ch.getChPosition().Z, ch.getRadius()) || inLine(ch.getChPosition().Z, cpos.Z, ch.getRadius());
     return xIn && zIn;
 }
 
