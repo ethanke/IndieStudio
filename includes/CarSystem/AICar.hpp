@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Thu Jun  1 03:47:56 2017 Sousa Victor
+// Last update Sat Jun  3 21:44:58 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -15,23 +15,28 @@
 #include <sstream>
 #include <iostream>
 #include "IndieStudioConfig.h"
+#include "carWatcher.hpp"
+#include "EventReceiver.hpp"
 #include "Network.hpp"
 #include "Car.hpp"
 #include "Utils.hpp"
 
 namespace indie {
 
-    class AICar : public Car {
+    class AICar : public Car, public EventReceiver{
 
     public:
-        AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0);
+        AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no = 0);
         ~AICar();
 
         virtual void OnFrame();
 
+        void OnEnterInCourseChPt(GameCheckpoint const &ch);
+
     protected:
         Neural::Network _neuralSystem;
-        btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
+        carWatcher _carWatcher;
+
         virtual void KeyboardEvent();
 
     };

@@ -5,15 +5,15 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:38:07 2017 Sousa Victor
-// Last update Sat Jun  3 20:16:08 2017 Sousa Victor
+// Last update Sat Jun  3 21:52:10 2017 Sousa Victor
 //
 
 #include "LearningCar.hpp"
 
 using namespace indie;
 
-LearningCar::LearningCar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no):
-    AICar(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, car_no) {
+LearningCar::LearningCar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no):
+    AICar(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, circuit, car_no) {
 
     this->_fitness = 0;
     this->_hasFailed = false;
@@ -34,7 +34,7 @@ void LearningCar::OnFrame() {
     } else {
         this->_indicSpeed = 0;
     }
-    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 50);
+    this->_hasFailed = (this->_indicSpeed > 3 || this->_indicTotal > 10);
     this->_fitness = (this->_startPos - this->_car->getPosition()).getLength();
     AICar::OnFrame();
 }

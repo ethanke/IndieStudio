@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 04:23:48 2017 Sousa Victor
-// Last update Thu Jun  1 14:04:59 2017 Sousa Victor
+// Last update Sat Jun  3 21:44:54 2017 Sousa Victor
 //
 
 #ifndef GENETICTRAINER_HPP_
@@ -31,7 +31,9 @@ namespace indie {
         irr::gui::IGUIEnvironment* _gui;
         EventReceiver *_eventReceiver;
         physics::CBulletPhysics *_bulletPhysicsSystem;
+
         LearningCar *_aiCar;
+        Circuit _circuit;
 
         Neural::GeneticPool _genPool;
         float _currentAgentFitness;

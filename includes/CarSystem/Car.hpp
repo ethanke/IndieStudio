@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Thu Jun  1 22:38:49 2017 Sousa Victor
+// Last update Sat Jun  3 21:43:51 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -17,6 +17,7 @@
 #include <fstream>
 #include "BasicCamera.hpp"
 #include "EventReceiver.hpp"
+#include "Circuit.hpp"
 #include "loadCar.h"
 
 namespace indie {
@@ -24,7 +25,7 @@ namespace indie {
     class Car : public AGameObject {
 
     public:
-        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0,
+        Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no = 0,
             irr::core::vector3df position = irr::core::vector3df(-10, 36, 0), bool isAI = false);
         ~Car();
 
@@ -41,6 +42,8 @@ namespace indie {
         EventReceiver *_eventReceiver;
         irr::gui::IGUIEnvironment* _gui;
 
+        Circuit const _circuit;
+
         int _car_no;
         bool _isAI;
         CLoadCar _carLoader;
@@ -56,9 +59,6 @@ namespace indie {
 
         virtual void KeyboardEvent();
         virtual void updateCamera();
-
-        // std::ofstream myfile;
-        // virtual btCollisionWorld::ClosestRayResultCallback *processHit(const core::vector3df &dir);
 
     };
 

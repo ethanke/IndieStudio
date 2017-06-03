@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:34:22 2017 Sousa Victor
-// Last update Thu Jun  1 22:41:51 2017 Sousa Victor
+// Last update Sat Jun  3 21:47:54 2017 Sousa Victor
 //
 
 #ifndef LEARNINGCAR_HPP_
@@ -18,7 +18,7 @@ namespace indie {
     class LearningCar : public AICar {
 
     public:
-        LearningCar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, int car_no = 0);
+        LearningCar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no = 0);
         ~LearningCar();
 
         virtual void OnFrame();

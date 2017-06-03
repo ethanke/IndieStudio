@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 19:54:43 2017 Sousa Victor
-// Last update Fri May 12 01:24:17 2017 Sousa Victor
+// Last update Sat Jun  3 21:13:04 2017 Sousa Victor
 //
 
 #ifndef EVENTRECEIVER_HPP_
@@ -27,24 +27,24 @@ namespace indie {
         virtual bool OnEvent(const irr::SEvent& event);
         virtual bool IsKeyDown(irr::EKEY_CODE keyCode) const;
 
-        virtual void OnEnterKey(irr::EKEY_CODE keyCode) = 0;
-        virtual void OnReleaseKey(irr::EKEY_CODE keyCode) = 0;
+        virtual void OnEnterKey(irr::EKEY_CODE keyCode) { }
+        virtual void OnReleaseKey(irr::EKEY_CODE keyCode) { }
 
-        virtual void OnEnterGarage(void) = 0;
-        virtual void OnLeavingGarage(void) = 0;
+        virtual void OnEnterGarage(void) { }
+        virtual void OnLeavingGarage(void) { }
 
-        virtual void OnOpenningMenu() = 0;
-        virtual void OnLeavingMenu() = 0;
+        virtual void OnOpenningMenu() { }
+        virtual void OnLeavingMenu() { }
 
-        virtual void OnEnterCourse() = 0;
-        virtual void OnLeavingCourse() = 0;
+        virtual void OnEnterCourse() { }
+        virtual void OnLeavingCourse() { }
 
-        virtual void OnEnterMoney() = 0;
+        virtual void OnEnterMoney() { }
 
-        virtual void OnEnterInCourseChPt(GameCheckpoint const &ch) = 0;
+        virtual void OnEnterInCourseChPt(GameCheckpoint const &ch) { }
 
-        virtual void OnEnterOnline() = 0;
-        virtual void OnLeavingOnline() = 0;
+        virtual void OnEnterOnline() { }
+        virtual void OnLeavingOnline() { }
 
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
