@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Sat Jun 03 22:13:27 2017 Lucas Gambini
+** Last update Sat Jun 03 23:20:11 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -54,6 +54,7 @@ void GameCheckpoint::reCreate() {
     else
         this->_color = irr::video::SColor(150, 255, 40, 0);
     irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(this->_radius, 5000, 50, this->_color, true, 0.f);
+    _mesh->setMaterialFlag(irr::video::EMF_WIREFRAME, 10);
     this->_cylindre = this->_smgr->addMeshSceneNode(_mesh, 0, -1, this->_pos, this->_rotation, this->_scale);
     this->_cylindre->getMaterial(0).AmbientColor.set(255,this->_color.getRed(),this->_color.getGreen(),this->_color.getBlue());
     this->_cylindre->getMaterial(0).DiffuseColor.set(255,this->_color.getRed(),this->_color.getGreen(),this->_color.getBlue());
@@ -89,6 +90,9 @@ const irr::core::aabbox3d<irr::f32> &GameCheckpoint::getBoundingBox() const {
     return this->_cylindre->getBoundingBox();
 }
 
+void GameCheckpoint::setChVisible(bool value) {
+    this->_cylindre->setVisible(value);
+}
 
 //IMeshSceneNode
 void GameCheckpoint::setMesh(irr::scene::IMesh *mesh) {
