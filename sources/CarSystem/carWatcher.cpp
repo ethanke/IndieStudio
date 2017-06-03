@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Sat Jun 03 20:44:03 2017 Lucas Gambini
+** Last update Sat Jun 03 21:22:36 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -60,7 +60,7 @@ void carWatcher::OnFrame() {
                     _eventReceiver->OnEnterMoney();
                     break;
                 case GameCheckpoint::IN_COURSE:
-                    if (x.getNeedRemove() == true) {
+                    if (this->_needRemove == true) {
                         x.remove();
                         this->_checkpoints.erase(this->_checkpoints.begin() + index);
                     }
@@ -85,4 +85,17 @@ void carWatcher::addCheckpoint(GameCheckpoint &check) {
 
 std::vector<GameCheckpoint> carWatcher::getCheckpoints() const {
     return this->_checkpoints;
+}
+
+void carWatcher::setCar(Car *car) {
+    this->_car = car;
+}
+
+
+bool carWatcher::getNeedRemove() const {
+    return this->_needRemove;
+}
+
+void carWatcher::setNeedRemove(bool value) {
+    this->_needRemove = value;
 }
