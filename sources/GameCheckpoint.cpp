@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Wed May 31 16:23:16 2017 Lucas Gambini
+** Last update Sat Jun 03 20:42:02 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -39,6 +39,7 @@ GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32
     this->_type = type;
     this->_isBusy = false;
     this->_pos = position;
+    this->_needRemove = false;
 }
 
 GameCheckpoint &GameCheckpoint::operator=(const GameCheckpoint &obj) {
@@ -72,6 +73,14 @@ void GameCheckpoint::setBusy(bool value) {
 
 irr::core::vector3df GameCheckpoint::getChPosition() const {
     return this->_pos;
+}
+
+bool GameCheckpoint::getNeedRemove() const {
+    return this->_needRemove;
+}
+
+void GameCheckpoint::setNeedRemove(bool value) {
+    this->_needRemove = value;
 }
 
 //CCubeSceneNode

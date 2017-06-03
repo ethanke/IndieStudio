@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:21 2017 Lucas Gambini
-** Last update Tue May 30 23:29:33 2017 Lucas Gambini
+** Last update Sat Jun 03 20:39:13 2017 Lucas Gambini
 */
 
 #ifndef CAR_WATCHER_HPP
@@ -39,6 +39,7 @@ namespace indie {
         Car *_car;
         EventReceiver *_eventReceiver;
         std::vector<GameCheckpoint> _checkpoints;
+        bool _needRemove;
     };
 
 }
