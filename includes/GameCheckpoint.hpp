@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Sat Jun 03 23:17:01 2017 Lucas Gambini
+** Last update Sun Jun 04 14:08:08 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -68,6 +68,7 @@ namespace indie {
         irr::core::vector3df _rotation;
         irr::core::vector3df _scale;
         irr::video::SColor _color;
+        irr::s32 _id;
 
     public: ///!\ do not ever think to touch this!   we are redirecting ISceneNode function with custom parameter
 		virtual const irr::c8* getName() const {
