@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun Apr 23 19:03:38 2017 Sousa Victor
-// Last update Tue May  2 02:02:32 2017 Sousa Victor
+// Last update Sun Jun  4 18:49:17 2017 Sousa Victor
 //
 
 #include "NetworkTrainer.hpp"

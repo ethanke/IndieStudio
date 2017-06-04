@@ -5,14 +5,14 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Sun Jun  4 16:30:04 2017 Sousa Victor
+// Last update Sun Jun  4 18:51:14 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
 #define AICAR_HPP_
 
 #include <unordered_map>
-#include <sstream>
+#include <fstream>
 #include <iostream>
 #include "IndieStudioConfig.h"
 #include "carWatcher.hpp"
@@ -44,6 +44,7 @@ namespace indie {
 
         virtual void KeyboardEvent();
 
+        std::ofstream file;
     };
 
 }
