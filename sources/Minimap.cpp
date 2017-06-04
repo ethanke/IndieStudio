@@ -5,7 +5,7 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Sat May 13 22:28:14 2017 Ethan Kerdelhue
-// Last update Sun Jun  4 14:43:30 2017 Ethan Kerdelhue
+// Last update Sun Jun  4 14:54:05 2017 Ethan Kerdelhue
 //
 
 #include "unistd.h"
@@ -53,7 +53,6 @@ void Minimap::OnFrame() {
     float angle = atan2(camDir2d.X * checkDir2d.Y - camDir2d.Y * checkDir2d.X, camDir2d.X * checkDir2d.X + camDir2d.Y * checkDir2d.Y);
 
     irr::core::vector2df center(this->_screenDim.Width / 2, this->_screenDim.Height / 2);
-    std::cout << "ChType " << checkpoint.getChType() << std::endl;
     irr::gui::IGUIImage * img = this->_gui->addImage(this->_textureMap[checkpoint.getChType()], irr::core::position2d<int>(center.X - this->_textureMap[checkpoint.getChType()]->getSize().Width / 2 - sin(angle) * 500, center.Y - this->_textureMap[checkpoint.getChType()]->getSize().Height / 2 - cos(angle) * 500));
     this->_imgVector.push_back(img);
     }

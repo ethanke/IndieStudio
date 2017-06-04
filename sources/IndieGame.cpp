@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun Jun  4 14:21:49 2017 Ethan Kerdelhue
+// Last update Sun Jun  4 14:51:25 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -58,9 +58,6 @@ void IndieGame::addGameObject() {
 
 #endif
 
-    // Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_driver, this->_device, irr::core::vector3df(0, 0, 0), irr::core::vector3df(5, 5, 5));
-    // this->_objectList.push_back(map);
-
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::ONLINE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::COURSE, 10, irr::core::vector3df(744.1, 0, 502.7)));
@@ -73,9 +70,10 @@ void IndieGame::addGameObject() {
     this->_events = new RandomEvent(this->_smgr, this->_carWatch);
     this->_objectList.push_back(this->_events);
 
-
+#ifndef AIDEBUG
     Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_carWatch, this->_driver, this->_device, this->_gui, this->getWindowSize());
     this->_objectList.push_back(map);
+#endif
 
     // Menu *_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
     // _menu->SetupGUI();
