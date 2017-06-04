@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 04:22:47 2017 Sousa Victor
-// Last update Sat Jun  3 22:18:50 2017 Sousa Victor
+// Last update Sun Jun  4 14:13:32 2017 Sousa Victor
 //
 
 #include "GeneticTrainer.hpp"
@@ -18,18 +18,18 @@ GeneticTrainer::GeneticTrainer(irr::scene::ISceneManager *sceneManager, irr::gui
     this->_eventReceiver = eventReceiver;
     this->_bulletPhysicsSystem = bulletPhysicsSystem;
 
-    this->_circuit << GameCheckpoint(this->_smgr, 10001,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(40.363483, 0, -7.120950));
-    this->_circuit << GameCheckpoint(this->_smgr, 10002,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(116.477867, 0, 4.145689));
-    this->_circuit << GameCheckpoint(this->_smgr, 10003,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(136.052933, 0, 49.592808));
-    this->_circuit << GameCheckpoint(this->_smgr, 10004,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(137.606277, 0, 117.132492));
-    this->_circuit << GameCheckpoint(this->_smgr, 10005,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(141.872253, 0, 182.362442));
-    this->_circuit << GameCheckpoint(this->_smgr, 10006,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(149.394592, 0, 252.318558));
-    this->_circuit << GameCheckpoint(this->_smgr, 10007,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(148.314362, 0, 317.658539));
-    this->_circuit << GameCheckpoint(this->_smgr, 10008,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(148.278168, 0, 400.024536));
-    this->_circuit << GameCheckpoint(this->_smgr, 10009,  0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(147.463898, 0, 486.366882));
-    this->_circuit << GameCheckpoint(this->_smgr, 100010, 0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(150.664978, 0, 516.441711));
-    this->_circuit << GameCheckpoint(this->_smgr, 100011, 0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(185.088089, 0, 530.357361));
-    this->_circuit << GameCheckpoint(this->_smgr, 100012, 0, NULL, -1, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(247.074554, 0, 527.202698));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10001, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(40.363483, 0, -7.120950));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10002, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(116.477867, 0, 4.145689));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10003, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(136.052933, 0, 49.592808));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10004, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(137.606277, 0, 117.132492));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10005, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(141.872253, 0, 182.362442));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10006, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(149.394592, 0, 252.318558));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10007, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(148.314362, 0, 317.658539));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10008, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(148.278168, 0, 400.024536));
+    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10009, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(147.463898, 0, 486.366882));
+    this->_circuit << GameCheckpoint(this->_smgr, 0, 0, NULL, 100010, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(150.664978, 0, 516.441711));
+    this->_circuit << GameCheckpoint(this->_smgr, 0, 0, NULL, 100011, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(185.088089, 0, 530.357361));
+    this->_circuit << GameCheckpoint(this->_smgr, 0, 0, NULL, 100012, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(247.074554, 0, 527.202698));
 
     this->_genPool.GenerateNewPopulation (15, 198);
     this->_currentAgentFitness = 0.0f;
@@ -90,7 +90,6 @@ void GeneticTrainer::NextTestSubject(){
     Neural::Genome *genome = this->_genPool.GetNextGenome();
 
     delete this->_aiCar;
-    this->_circuit.reCreate();
     this->_aiCar = new LearningCar(this->_smgr, this->_gui, this->_eventReceiver, this->_bulletPhysicsSystem, this->_circuit);
     this->_aiCar->LoadGenome(*genome);
 }

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sat Jun  3 20:27:26 2017 Sousa Victor
+// Last update Sun Jun  4 14:16:01 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -30,11 +30,11 @@ void IndieGame::addGameObject() {
 
 #ifndef AIDEBUG
     this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, 0);
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), 0);
     this->_objectList.push_back(this->_car);
 
     this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, 0);
+    this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), 0);
     this->_objectList.push_back(this->_aiCar);
 #else
     this->_genTrainer = NULL; //NE PAS ENLEVER / COMMENTER

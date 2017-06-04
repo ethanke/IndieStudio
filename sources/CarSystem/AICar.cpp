@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Sat Jun  3 21:49:04 2017 Sousa Victor
+// Last update Sun Jun  4 14:14:46 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -16,7 +16,9 @@ AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment*
     Car(sceneManager, guiManager, eventReceiver, bulletPhysicsSystem, circuit, car_no, irr::core::vector3df(2, 36, 0), true),
     _neuralSystem(std::vector<unsigned> {9, 15, 3}), _carWatcher(this, circuit.getCheckpoints(), this, sceneManager) {
 
-    this->_carWatcher.setNeedRemove(true);
+    for (auto check : this->_circuit.getCheckpoints()) {
+        check.setChVisible(true);
+    }
 
 }
 
@@ -44,7 +46,11 @@ void AICar::OnFrame() {
 }
 
 void AICar::OnEnterInCourseChPt(GameCheckpoint const &ch) {
-
+    for (auto check : this->_circuit.getCheckpoints()) {
+        if (check.getID() == ch.getID()) {
+            check.setChVisible(false);
+        }
+    }
 }
 
 void AICar::KeyboardEvent() {
