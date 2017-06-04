@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun Jun  4 14:16:01 2017 Sousa Victor
+// Last update Sun Jun  4 14:21:49 2017 Ethan Kerdelhue
 //
 
 #include "IndieGame.hpp"
@@ -72,6 +72,10 @@ void IndieGame::addGameObject() {
 
     this->_events = new RandomEvent(this->_smgr, this->_carWatch);
     this->_objectList.push_back(this->_events);
+
+
+    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_carWatch, this->_driver, this->_device, this->_gui, this->getWindowSize());
+    this->_objectList.push_back(map);
 
     // Menu *_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
     // _menu->SetupGUI();
