@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 04:22:47 2017 Sousa Victor
-// Last update Sun Jun  4 14:13:32 2017 Sousa Victor
+// Last update Sun Jun  4 16:44:16 2017 Sousa Victor
 //
 
 #include "GeneticTrainer.hpp"
@@ -31,7 +31,7 @@ GeneticTrainer::GeneticTrainer(irr::scene::ISceneManager *sceneManager, irr::gui
     this->_circuit << GameCheckpoint(this->_smgr, 0, 0, NULL, 100011, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(185.088089, 0, 530.357361));
     this->_circuit << GameCheckpoint(this->_smgr, 0, 0, NULL, 100012, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(247.074554, 0, 527.202698));
 
-    this->_genPool.GenerateNewPopulation (15, 198);
+    this->_genPool.GenerateNewPopulation (15, 213);
     this->_currentAgentFitness = 0.0f;
     this->_bestFitness = 0.0f;
 

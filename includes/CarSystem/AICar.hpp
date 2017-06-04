@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Sat Jun  3 21:44:58 2017 Sousa Victor
+// Last update Sun Jun  4 16:30:04 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -36,6 +36,11 @@ namespace indie {
     protected:
         Neural::Network _neuralSystem;
         carWatcher _carWatcher;
+
+        unsigned _cCheck;
+        int _n1Check;
+        int _n2Check;
+        int _n3Check;
 
         virtual void KeyboardEvent();
 

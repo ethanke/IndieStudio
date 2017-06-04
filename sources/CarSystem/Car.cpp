@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sat Jun  3 21:43:48 2017 Sousa Victor
+// Last update Sun Jun  4 16:24:12 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -19,6 +19,10 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_gui = guiManager;
     this->_eventReceiver = eventReceiver;
     this->_bulletPhysicsSystem = bulletPhysicsSystem;
+
+    for (auto check : this->_circuit.getCheckpoints()) {
+        check.setChVisible(true);
+    }
 
     this->_cameraPosition = core::vector3df(30, 30, 30);
 	this->_cameraHeight = 5.5f;
