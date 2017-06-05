@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu Jun  1 03:38:07 2017 Sousa Victor
-// Last update Sun Jun  4 16:45:41 2017 Sousa Victor
+// Last update Mon Jun  5 02:46:41 2017 Sousa Victor
 //
 
 #include "LearningCar.hpp"
@@ -40,11 +40,11 @@ void LearningCar::OnFrame() {
 }
 
 Neural::Genome const LearningCar::GetGenome() const {
-    return this->_neuralSystem.toGenome();
+    return this->_steerBrain.toGenome();
 }
 
 void LearningCar::LoadGenome(Neural::Genome const &genome) {
-    this->_neuralSystem.fromGenome(genome);
+    this->_steerBrain.fromGenome(genome);
 }
 
 void LearningCar::SaveNetwork() const {

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Sun Jun  4 18:51:14 2017 Sousa Victor
+// Last update Mon Jun  5 15:40:04 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -14,6 +14,7 @@
 #include <unordered_map>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include "IndieStudioConfig.h"
 #include "carWatcher.hpp"
 #include "EventReceiver.hpp"
@@ -34,7 +35,7 @@ namespace indie {
         void OnEnterInCourseChPt(GameCheckpoint const &ch);
 
     protected:
-        Neural::Network _neuralSystem;
+        Neural::Network _steerBrain;
         carWatcher _carWatcher;
 
         unsigned _cCheck;
