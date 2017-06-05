@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Mon Jun  5 15:47:15 2017 Sousa Victor
+// Last update Mon Jun  5 15:51:41 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -23,8 +23,7 @@ AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment*
     this->_n2Check = (this->_circuit.getCheckpoints().size() > this->_cCheck ? this->_circuit.getCheckpoints()[this->_cCheck].getID() : -9); this->_cCheck++;
     this->_n3Check = (this->_circuit.getCheckpoints().size() > this->_cCheck ? this->_circuit.getCheckpoints()[this->_cCheck].getID() : -9); this->_cCheck++;
 
-    Neural::NetworkTrainer trainer(std::string(SOURCES_PATH) + "/NetworkData/samples_input/car_steering.txt");
-    this->_steerBrain.train(trainer);
+    this->_steerBrain.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car_steering.txt");
 
     // if (manualMode == false) {
     //     this->_steerBrain.train(trainer);
