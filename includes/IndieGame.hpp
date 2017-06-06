@@ -32,6 +32,7 @@
 #include "Classement.hpp"
 #include "MainMenu.hpp"
 #include "Concessionnaire.hpp"
+#include "Client.hpp"
 
 namespace indie {
 

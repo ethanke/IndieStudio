@@ -20,6 +20,8 @@ namespace indie {
     private:
         static Client _instance;
         ClientSocket _socket;
+        std::string _ip;
+        int _port;
 
     public:
         explicit Client (std::string const &ip = "127.0.0.1", int port = 1234);
@@ -27,9 +29,9 @@ namespace indie {
         Client(const Client &obj);
         Client &operator=(const Client &obj);
         static Client &Instance();
+        void init();
 
         virtual bool OnEvent(const irr::SEvent& event);
-        void lel();
 
     };
 

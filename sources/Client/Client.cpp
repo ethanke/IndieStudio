@@ -16,7 +16,8 @@ Client Client::_instance = Client();
 
 Client::Client(std::string const &ip, int port)
 {
-    this->_socket.init(ip, port);
+    this->_ip = ip;
+    this->_port = port;
 }
 
 Client::~Client()
@@ -38,12 +39,11 @@ Client &Client::Instance() {
     return _instance;
 }
 
-bool Client::OnEvent(const irr::SEvent &event) {
-    (void)event;
-    lel();
-    return true;
+void Client::init() {
+    this->_socket.init(this->_ip, this->_port);
 }
 
-void Client::lel() {
-    exit(1);
+bool Client::OnEvent(const irr::SEvent &event) {
+    (void)event;
+    return true;
 }

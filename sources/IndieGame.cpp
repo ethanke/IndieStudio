@@ -172,7 +172,7 @@ void IndieGame::addGameObject() {
 }
 
 void IndieGame::addEventReceiver() {
-
+    Client::Instance().init();
 }
 
 void IndieGame::loadMap() {
