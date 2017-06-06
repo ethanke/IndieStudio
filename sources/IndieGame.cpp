@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue Jun  6 18:44:35 2017 Sousa Victor
+// Last update Tue Jun  6 19:24:48 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -275,13 +275,16 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         // DIRE AU SERVER QUE WESH IL FAUT SE CONNECTER
                         break;
-                        case MainMenu::PLAY:
-                            delete _mainmenu;
-                            addGameObject();
-                            addEventReceiver();
-                            this->_device->getCursorControl()->setVisible(false);
+                    case MainMenu::PLAY:
+                        this->_image = this->_driver->getTexture("misc/loading.jpg");
+                        this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
+                        delete _mainmenu;
+                        _mainmenu = NULL;
+                        addGameObject();
+                        addEventReceiver();
+                        this->_device->getCursorControl()->setVisible(false);
                         break;
-                        case MainMenu::MULTIJOUEUR:
+                    case MainMenu::MULTIJOUEUR:
                         //todo écran sein dés
                         break;
                         case MainMenu::QUIT:

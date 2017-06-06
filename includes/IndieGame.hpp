@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Tue Jun  6 18:41:40 2017 Sousa Victor
+// Last update Tue Jun  6 19:15:01 2017 John Doe
 //
 
 #ifndef INDIEGAME_HPP
@@ -91,6 +91,8 @@ namespace indie {
         physics::SPhysicsParams physicsParams;
 
         std::vector<IGUI*> _guiVisible;
+
+        irr::video::ITexture *_image;
 
         //Text debug
         irr::gui::IGUIStaticText *_pos;
