@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Tue Jun 06 15:36:48 2017 Full Name
-** Last update	Tue Jun 06 18:26:41 2017 Full Name
+** Last update	Tue Jun 06 18:31:22 2017 Full Name
 */
 
 #ifndef _MAINMENU_HPP_
@@ -19,7 +19,7 @@
 
 namespace indie {
 
-    class MainMenu : public IGUI, public EventReceiver {
+    class MainMenu : public IGUI {
 
     public: enum MAIN_MENU
     {
