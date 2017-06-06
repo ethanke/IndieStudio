@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:30:32 2017 Sousa Victor
-// Last update Mon Jun  5 15:40:04 2017 Sousa Victor
+// Last update Tue Jun  6 17:27:50 2017 Sousa Victor
 //
 
 #ifndef AICAR_HPP_
@@ -36,6 +36,7 @@ namespace indie {
 
     protected:
         Neural::Network _steerBrain;
+        Neural::Network _engineBrain;
         carWatcher _carWatcher;
 
         unsigned _cCheck;

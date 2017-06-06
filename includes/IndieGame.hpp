@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Tue Jun  6 18:18:34 2017 John Doe
+// Last update Tue Jun  6 18:41:40 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -85,6 +85,7 @@ namespace indie {
         JoinServer *_onlineUI;
         MainMenu *_mainmenu;
 
+        Circuit _circuit;
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;
