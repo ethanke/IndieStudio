@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 17:36:35 2017 Vacca_J
-** Last update Sat May 20 22:08:06 2017 Vacca_J
+** Last update Tue Jun 06 18:46:07 2017 Vacca_J
 */
 
 #ifndef KEYBOARD_HPP_
@@ -15,31 +15,83 @@
 #include <ITexture.h>
 #include <IGUIEnvironment.h>
 #include <vector>
+#include <iostream>
+#include <string>
+#include <IEventReceiver.h>
+#include <map>
+#include "EventReceiver.hpp"
 #include "IGameObject.hpp"
 #include "IGUI.hpp"
 
 namespace indie {
 
-class Keyboard : public IGUI {
+class Keyboard : public IGUI , public EventReceiver {
+
+  public: enum KEYBOARD_BTNS
+  {
+      up = 1001,
+      down,
+      left,
+      right,
+      forward,
+      backward,
+      space,
+      quit
+  };
+
+public: enum KEYCODE_TYPE
+{
+    UP = 1,
+    DOWN,
+    LEFT,
+    RIGHT,
+    FORWARD,
+    BACKWARD,
+    SPACE,
+};
 
 private:
+  int _id;
   irr::gui::IGUIWindow *_window;
   irr::gui::IGUIEnvironment *_gui;
   irr::video::IVideoDriver *_driver;
   irr::core::dimension2du _windowSize;
 
   irr::gui::IGUIStaticText *_title;
-  irr::gui::IGUIButton *_change;
+  irr::gui::IGUIButton *_up;
+  irr::gui::IGUIButton *_down;
+  irr::gui::IGUIButton *_left;
+  irr::gui::IGUIButton *_right;
+  irr::gui::IGUIButton *_space;
+
+  irr::gui::IGUIButton *_backward;
+  irr::gui::IGUIButton *_forward;
+
+
   irr::gui::IGUIButton *_exit;
-  std::vector<int> *_keyboard;
+
+  std::map<KEYCODE_TYPE, irr::EKEY_CODE> _mymap;
+
+  irr::gui::IGUIStaticText *_title2;
   bool _isVisible;
 public:
+  void OnEnterKey(irr::EKEY_CODE keyCode);
 
   Keyboard(irr::gui::IGUIEnvironment*, irr::video::IVideoDriver*, irr::core::dimension2du);
   ~Keyboard ();
   void setKeyboard();
 
-  void resetKeybord(void);
+  void resetUp(void);
+  void resetDown(void);
+  void resetLeft(void);
+  void resetRight(void);
+
+  void resetForward(void);
+  void resetBackward(void);
+
+  void resetBrake(void);
+
+
   void SetupGUI();
   void setVisible(bool visible);
   bool isVisible(void) const;

@@ -228,24 +228,48 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->_guiVisible.push_back(this->_menu->getSettings());
                         this->guiVisible(this->_menu->getSettings());
                         break;
-                    case Settings::GRAPHIC:
+                   case Settings::GRAPHIC:
                         _menu->getSettings()->OnEnterGraphic();
                         this->_objectList.push_back(this->_menu->getSettings()->getGraphic());
                         this->_guiVisible.push_back(this->_menu->getSettings()->getGraphic());
                         this->guiVisible(this->_menu->getSettings()->getGraphic());
                         break;
-                    case Settings::AUDIO:
+                   case Settings::AUDIO:
                         _menu->getSettings()->OnEnterAudio();
                         this->_objectList.push_back(this->_menu->getSettings()->getAudio());
                         this->_guiVisible.push_back(this->_menu->getSettings()->getAudio());
                         this->guiVisible(this->_menu->getSettings()->getAudio());
                         break;
-                    case Settings::KEYBOARD:
+                   case Settings::KEYBOARD:
                         _menu->getSettings()->OnEnterKeyboard();
                         this->_objectList.push_back(this->_menu->getSettings()->getKeyboard());
                         this->_guiVisible.push_back(this->_menu->getSettings()->getKeyboard());
                         this->guiVisible(this->_menu->getSettings()->getKeyboard());
                         break;
+                   case Keyboard::up:
+                       _menu->getSettings()->getKeyboard()->resetUp();
+                       break;
+                   case Keyboard::down:
+                       _menu->getSettings()->getKeyboard()->resetDown();
+                       break;
+                   case Keyboard::left:
+                       _menu->getSettings()->getKeyboard()->resetLeft();
+                       break;
+                   case Keyboard::right:
+                       _menu->getSettings()->getKeyboard()->resetRight();
+                       break;
+                   case Keyboard::forward:
+                       _menu->getSettings()->getKeyboard()->resetForward();
+                       break;
+                   case Keyboard::backward:
+                       _menu->getSettings()->getKeyboard()->resetBackward();
+                       break;
+                   case Keyboard::space:
+                       _menu->getSettings()->getKeyboard()->resetBrake();
+                       break;
+                   case Keyboard::quit:
+                       _menu->getSettings()->getKeyboard()->setVisible(false);
+                       break;
                     case Audio::PLUS:
                       _menu->getSettings()->getAudio()->plus();
                       break;
