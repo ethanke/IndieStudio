@@ -5,17 +5,13 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Sat May 13 20:33:23 2017 Ethan Kerdelhue
-// Last update Wed May 31 01:48:39 2017 Ethan Kerdelhue
+// Last update Tue Jun  6 19:23:17 2017 Ethan Kerdelhue
 //
 
 #ifndef MINIMAP_HPP
   #define MINIMAP_HPP
 
-#include <iostream>
-#include <IVideoDriver.h>
-#include <IGeometryCreator.h>
 #include <math.h>
-#include <sstream>
 #include "Utils.hpp"
 #include "AGameObject.hpp"
 #include "Car.hpp"

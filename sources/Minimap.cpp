@@ -5,10 +5,9 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Sat May 13 22:28:14 2017 Ethan Kerdelhue
-// Last update Sun Jun  4 14:54:05 2017 Ethan Kerdelhue
+// Last update Tue Jun  6 19:22:59 2017 Ethan Kerdelhue
 //
 
-#include "unistd.h"
 #include "Minimap.hpp"
 
 using namespace indie;
