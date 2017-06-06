@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Thu May 25 02:38:39 2017 Gaëtan Léandre
-// Last update Fri May 26 03:11:13 2017 Gaëtan Léandre
+// Last update Wed Jun  7 00:39:27 2017 Gaëtan Léandre
 //
 
 #include                "ServerSocket.hh"
@@ -82,9 +82,10 @@ void ServerSocket::launchLoop()
         max = this->_fd;
         FD_ZERO(&fdset);
         setListener(&fdset, max);
+        this->_game.setListener(&fdset, max);
         if (select(max + 1, &fdset, NULL, NULL, NULL) == -1)
             return;
-        else if (FD_ISSET(this->_fd, &fdset))
+        if (FD_ISSET(this->_fd, &fdset))
             this->_game.addClient(this->_fd);
         else
             this->_game.readClientByFdSet(&fdset);

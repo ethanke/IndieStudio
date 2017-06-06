@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Fri May 26 00:03:45 2017 Gaëtan Léandre
-// Last update Fri May 26 04:16:54 2017 Gaëtan Léandre
+// Last update Wed Jun  7 01:06:41 2017 Gaëtan Léandre
 //
 
 #include            "GameManager.hh"
@@ -38,13 +38,19 @@ void GameManager::addClient(int sock)
     Client tmp;
 
     if (tmp.accept(sock) != false)
+    {
         this->_clients[tmp.getSocket().getFd()] = tmp;
+        std::cout << "New Client : " << tmp.getSocket().getIp() << std::endl;
+    }
 }
 
 void GameManager::deleteClient(int fd)
 {
     if (this->_clients.count(fd) > 0)
+    {
+        std::cout << "Disconnection : " << this->getClientByFd(fd).getSocket().getIp() << std::endl;
         this->_clients.erase(fd);
+    }
 }
 
 Client &GameManager::getClientByFd(SOCKET fd)
@@ -69,18 +75,25 @@ int GameManager::getClientsSize() const
     return (this->_clients.size());
 }
 
-void GameManager::launchCommand(std::string json)
+void GameManager::launchCommand(std::string const &json)
 {
+    std::cout << json << "dd" << std::endl;
     //TODO LAUNCH COMMAND
 }
 
 void GameManager::readClientByFdSet(fd_set *fdset)
 {
+    std::string tmp;
+
     for (auto & x: this->_clients)
     {
         if (FD_ISSET(x.second.getSocket().getFd(), fdset))
         {
-            launchCommand(x.second.read());
+            tmp = x.second.read();
+            if (tmp == "-")
+                deleteClient(x.second.getSocket().getFd());
+            else
+                launchCommand(tmp);
             return;
         }
     }

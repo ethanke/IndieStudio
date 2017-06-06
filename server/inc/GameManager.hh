@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Thu May 25 23:58:59 2017 Gaëtan Léandre
-// Last update Fri May 26 04:15:48 2017 Gaëtan Léandre
+// Last update Wed Jun  7 01:00:27 2017 Gaëtan Léandre
 //
 
 #ifndef             GAMEMANAGER_HH_
@@ -29,7 +29,7 @@ public:
     Client &getClientByFd(SOCKET fd);
     Client &getClientById(int id);
     int getClientsSize() const;
-    void launchCommand(std::string json);
+    void launchCommand(std::string const &json);
     void readClientByFdSet(fd_set *fdset);
     void readClientByFd(SOCKET fd);
     void writeClientByFd(SOCKET fd, std::string const &str);

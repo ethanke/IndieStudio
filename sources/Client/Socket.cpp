@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Thu May 25 01:50:32 2017 Gaëtan Léandre
-// Last update Tue Jun  6 22:06:00 2017 Gaëtan Léandre
+// Last update Wed Jun  7 00:58:16 2017 Gaëtan Léandre
 //
 
 #include        "Socket.hpp"
@@ -62,9 +62,9 @@ std::string Socket::read()
     bzero(buffer, MAX_BUFF_SIZE);
     if (this->_started == true)
         save = ::read(this->_fd, buffer, MAX_BUFF_SIZE);
-    if (save >= 0)
+    if (save > 0)
         return (std::string(buffer));
-    return (std::string(""));
+    return (std::string("-"));
 }
 
 SOCKET Socket::getFd() const

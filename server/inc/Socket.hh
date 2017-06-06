@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Thu May 25 01:37:33 2017 Gaëtan Léandre
-// Last update Fri May 26 03:04:00 2017 Gaëtan Léandre
+// Last update Tue Jun  6 21:53:35 2017 Gaëtan Léandre
 //
 
 #ifndef         SOCKET_HH_
@@ -14,7 +14,7 @@
 #include        <string>
 #include        "SocketInclude.hh"
 
-#define         MAX_BUFF_SIZE       300
+#define         MAX_BUFF_SIZE       4096
 
 class Socket {
 protected:

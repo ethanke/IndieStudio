@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:59:27 2017 Gaëtan Léandre
-// Last update Tue Jun  6 22:28:36 2017 Gaëtan Léandre
+// Last update Wed Jun  7 01:16:43 2017 Gaëtan Léandre
 //
 
 #include                "ClientSocket.hpp"
@@ -65,5 +65,40 @@ bool ClientSocket::init(std::string const &ip, int port)
         ::close(this->_fd);
         return (false);
     }
+    this->_started = true;
+    this->_detach = false;
     return (true);
+}
+
+void ClientSocket::_launchLoop()
+{
+    fd_set		fdset;
+    std::string text;
+    struct timeval tv = {5, 0};
+
+    while (1)
+    {
+        FD_ZERO(&fdset);
+        FD_SET(this->_fd, &fdset);
+        if (select(this->_fd + 1, &fdset, NULL, NULL, &tv) == -1)
+            return;
+        if (FD_ISSET(this->_fd, &fdset))
+        {
+            text = read();
+            if (text == "-")
+                return;
+            reciveCommand(text);
+        }
+    }
+}
+
+void ClientSocket::launchLoop()
+{
+    if (this->_started == 1)
+        this->_async = std::async(std::launch::async, &ClientSocket::_launchLoop, this);
+}
+
+void ClientSocket::reciveCommand(std::string const &json)
+{
+
 }
