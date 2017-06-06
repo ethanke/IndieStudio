@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun Jun  4 23:59:41 2017 Sousa Victor
+// Last update Tue Jun  6 18:28:45 2017 John Doe
 //
 
 #include "IndieGame.hpp"
@@ -13,6 +13,9 @@
 using namespace indie;
 
 IndieGame::IndieGame(int width, int height) : AGame(width, height) {
+    _pos = NULL;
+    bulletPhysSys = NULL;
+    _mainmenu = NULL;
 }
 
 IndieGame::~IndieGame() {
@@ -29,14 +32,13 @@ void IndieGame::addGameObject() {
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
 #ifndef AIDEBUG
-    // this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    // this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), 0);
-    // this->_objectList.push_back(this->_car);
-    //
+    this->_car = NULL; //NE PAS ENLEVER / COMMENTER
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), 0);
+    this->_objectList.push_back(this->_car);
+
     // this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
     // this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), 0);
     // this->_objectList.push_back(this->_aiCar);
-
     Circuit *circuit = new Circuit();
     *circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10001, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(41.907440, 0, -1.561529));
     *circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 10002, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(98.776421, 0, -2.324740));
@@ -105,9 +107,9 @@ void IndieGame::addGameObject() {
     *circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 100066, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(192.651672, 0, 527.302551));
     *circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, 100067, GameCheckpoint::IN_COURSE, 10, irr::core::vector3df(256.374908, 0, 525.204407));
 
-    this->_car = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_car = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, *circuit, 0);
-    this->_objectList.push_back(this->_car);
+    this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
+    this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, *circuit, 0);
+    this->_objectList.push_back(this->_aiCar);
 #else
     this->_genTrainer = NULL; //NE PAS ENLEVER / COMMENTER
     this->_genTrainer = new GeneticTrainer(this->_smgr, this->_gui, this, bulletPhysSys);
@@ -173,6 +175,11 @@ void IndieGame::addGameObject() {
     this->_menu = NULL;
     this->_course = NULL;
     this->_onlineUI = NULL;
+    this->_mainmenu = NULL;
+
+    // this->_mainmenu = new MainMenu(this->_gui, this->_driver, this->_windowSize);
+    // this->_mainmenu->SetupGUI();
+    // this->_objectList.push_back(this->_mainmenu);
 
     //GUI DEBUG
     this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
@@ -216,6 +223,8 @@ core::vector3df rotateByAngle2(const core::vector3df &vec, const core::vector3df
 }
 
 void IndieGame::OnFrame() {
+    if (!_pos)
+        return;
 #ifndef AIDEBUG
     std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
     this->_pos->setText(Utils::StrToWstr(str));
@@ -224,6 +233,8 @@ void IndieGame::OnFrame() {
     this->_pos->setText(Utils::StrToWstr(str));
 #endif
 
+    if (!bulletPhysSys)
+        return;
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }
 
@@ -291,6 +302,18 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case JoinServer::JOIN:
                         this->OnLeavingOnline();
                         // DIRE AU SERVER QUE WESH IL FAUT SE CONNECTER
+                        break;
+                        case MainMenu::PLAY:
+                            delete _mainmenu;
+                            addGameObject();
+                            addEventReceiver();
+                            this->_device->getCursorControl()->setVisible(false);
+                        break;
+                        case MainMenu::MULTIJOUEUR:
+                        //todo écran sein dés
+                        break;
+                        case MainMenu::QUIT:
+                        this->_device->closeDevice();
                         break;
                     default:
                         break;
@@ -368,6 +391,13 @@ void IndieGame::OnOpenningMenu()
     this->guiVisible(_menu);
 }
 
+void IndieGame::launchMenu()
+{
+    _mainmenu = new MainMenu(_gui, _driver, _windowSize);
+    _mainmenu->SetupGUI();
+    _objectList.push_back(_mainmenu);
+}
+
 void IndieGame::OnEnterMoney() {
     //Ajouter de l'argent --> serveur
 }
@@ -405,6 +435,8 @@ void IndieGame::guiVisible(IGUI *obj)
 }
 
 void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
+    if (_mainmenu)
+        return;
     switch (keyCode) {
         case irr::KEY_ESCAPE:
             OnOpenningMenu();

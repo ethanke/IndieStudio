@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Thu Jun  1 17:01:13 2017 Sousa Victor
+// Last update Tue Jun  6 18:27:51 2017 John Doe
 //
 
 #include "AGame.hpp"
@@ -32,7 +32,7 @@ void AGame::Setup() {
     this->_driver = this->_device->getVideoDriver();
     this->_smgr = this->_device->getSceneManager();
     this->_gui = this->_device->getGUIEnvironment();
-    this->_device->getCursorControl()->setVisible(false);
+    this->_device->getCursorControl()->setVisible(true);
 
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
     this->_image = this->_driver->getTexture("misc/loading.jpg");
@@ -49,8 +49,9 @@ void AGame::Setup() {
     this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
     this->_driver->endScene();
 
-    addGameObject();
-    addEventReceiver();
+    this->launchMenu();
+    //addGameObject();
+    //addEventReceiver();
 
 }
 

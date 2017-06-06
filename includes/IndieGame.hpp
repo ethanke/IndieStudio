@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Thu Jun  1 21:27:33 2017 Sousa Victor
+// Last update Tue Jun  6 18:18:34 2017 John Doe
 //
 
 #ifndef INDIEGAME_HPP
@@ -29,6 +29,8 @@
 #include "Keyboard.hpp"
 #include "Graphic.hpp"
 #include "JoinServer.hpp"
+#include "Classement.hpp"
+#include "MainMenu.hpp"
 
 namespace indie {
 
@@ -67,6 +69,8 @@ namespace indie {
 
         virtual void guiVisible(IGUI*);
 
+        virtual void launchMenu();
+
     private:
         Car *_car;
         Car *_aiCar;
@@ -79,6 +83,8 @@ namespace indie {
         RandomEvent *_events;
         Settings *_settings;
         JoinServer *_onlineUI;
+        MainMenu *_mainmenu;
+
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;

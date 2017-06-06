@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:20:36 2017 Sousa Victor
-// Last update Thu Jun  1 17:01:32 2017 Sousa Victor
+// Last update Tue Jun  6 18:19:06 2017 John Doe
 //
 
 #ifndef AGAME_HPP_
@@ -51,6 +51,7 @@ namespace indie {
         virtual void processDeltaTime();
         virtual void loop();
         virtual void objectOnFrame();
+        virtual void launchMenu() = 0;
 
     protected:
         bool _isRunning;
