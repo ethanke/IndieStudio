@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:56:35 2017 Gaëtan Léandre
-// Last update Tue Jun  6 22:14:34 2017 Gaëtan Léandre
+// Last update Tue Jun  6 22:26:10 2017 Gaëtan Léandre
 //
 
 #ifndef CLIENTSOCKET_HPP__
@@ -19,7 +19,8 @@ public:
     virtual ~ClientSocket ();
     ClientSocket(const ClientSocket &obj);
     ClientSocket &operator=(const ClientSocket &obj);
-    bool init(std::string const &ip);
+    bool init(std::string const &ip, int port);
+    void stop();
 };
 
 #endif /* !CLIENTSOCKET_HPP__ */
