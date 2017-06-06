@@ -130,6 +130,10 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/GeneticPool.cpp
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/GeneticTrainer.cpp
 
+    ${PROJECT_SOURCE_DIR}/sources/Client/Client.cpp
+    ${PROJECT_SOURCE_DIR}/sources/Client/ClientSocket.cpp
+    ${PROJECT_SOURCE_DIR}/sources/Client/Socket.cpp
+
 )
 
 # build executable
@@ -185,6 +189,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/lib/irrBullet/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
     ${PROJECT_SOURCE_DIR}/includes/GUI/
+    ${PROJECT_SOURCE_DIR}/includes/Client/
 )
 
 
