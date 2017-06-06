@@ -10,7 +10,9 @@
 
 #include                "Client.hpp"
 
+using namespace indie;
 
+Client Client::_instance = Client();
 
 Client::Client(std::string const &ip, int port)
 {
@@ -30,4 +32,18 @@ Client &Client::operator=(const Client &obj)
 {
     this->_socket = obj._socket;
     return (*this);
+}
+
+Client &Client::Instance() {
+    return _instance;
+}
+
+bool Client::OnEvent(const irr::SEvent &event) {
+    (void)event;
+    lel();
+    return true;
+}
+
+void Client::lel() {
+    exit(1);
 }

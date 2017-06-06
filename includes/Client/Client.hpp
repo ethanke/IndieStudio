@@ -12,19 +12,27 @@
 #define             CLIENT_HPP
 
 #include            "ClientSocket.hpp"
+#include            "EventReceiver.hpp"
 
-class Client {
-private:
-    static Client &_instance;
-    ClientSocket _socket;
+namespace indie {
 
-public:
-    explicit Client (std::string const &ip, int port);
-    virtual ~Client ();
-    Client(const Client &obj);
-    Client &operator=(const Client &obj);
-    static Client &Instance();
+    class Client : public EventReceiver {
+    private:
+        static Client _instance;
+        ClientSocket _socket;
 
-};
+    public:
+        explicit Client (std::string const &ip = "127.0.0.1", int port = 1234);
+        virtual ~Client ();
+        Client(const Client &obj);
+        Client &operator=(const Client &obj);
+        static Client &Instance();
+
+        virtual bool OnEvent(const irr::SEvent& event);
+        void lel();
+
+    };
+
+}
 
 #endif /* !CLIENT_HPP */
