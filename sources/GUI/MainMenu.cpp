@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Tue Jun 06 15:36:49 2017 Full Name
-** Last update	Tue Jun 06 18:20:08 2017 Full Name
+** Last update	Tue Jun 06 18:47:51 2017 Full Name
 */
 
 #include "MainMenu.hpp"
@@ -69,7 +69,7 @@ void MainMenu::OnFrame()
 //    this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 200, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
 //    irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
 //    this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
-    this->_start->setVisible(true);
-    this->_multijoueur->setVisible(true);
-    this->_quit->setVisible(true);
+    // this->_start->setVisible(true);
+    // this->_multijoueur->setVisible(true);
+    // this->_quit->setVisible(true);
 }
