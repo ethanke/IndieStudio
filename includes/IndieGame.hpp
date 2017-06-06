@@ -31,6 +31,7 @@
 #include "JoinServer.hpp"
 #include "Classement.hpp"
 #include "MainMenu.hpp"
+#include "Concessionnaire.hpp"
 
 namespace indie {
 
@@ -67,6 +68,9 @@ namespace indie {
         virtual void OnEnterOnline();
         virtual void OnLeavingOnline();
 
+        virtual void OnEnterConcess();
+        virtual void OnLeavingConcess();
+
         virtual void guiVisible(IGUI*);
 
         virtual void launchMenu();
@@ -84,6 +88,7 @@ namespace indie {
         Settings *_settings;
         JoinServer *_onlineUI;
         MainMenu *_mainmenu;
+        Concessionnaire *_concessionnaire;
 
         Circuit _circuit;
 

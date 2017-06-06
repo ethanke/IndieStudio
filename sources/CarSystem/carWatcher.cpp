@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Sat Jun 03 22:29:34 2017 Lucas Gambini
+** Last update Tue Jun 06 19:44:28 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -68,6 +68,9 @@ void carWatcher::OnFrame() {
                     break;
                 case GameCheckpoint::ONLINE:
                     _eventReceiver->OnEnterOnline();
+                    break;
+                case GameCheckpoint::CONCESSIONNAIRE:
+                    _eventReceiver->OnEnterConcess();
                     break;
                 default:
                     break;

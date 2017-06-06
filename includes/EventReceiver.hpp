@@ -46,6 +46,9 @@ namespace indie {
         virtual void OnEnterOnline() { }
         virtual void OnLeavingOnline() { }
 
+        virtual void OnEnterConcess() {};
+        virtual void OnLeavingConcess() {};
+
     private:
         bool _keyIsDown[irr::KEY_KEY_CODES_COUNT];
 

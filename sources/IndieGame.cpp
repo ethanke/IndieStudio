@@ -163,6 +163,7 @@ void IndieGame::addGameObject() {
     this->_menu = NULL;
     this->_course = NULL;
     this->_onlineUI = NULL;
+    this->_concessionnaire = NULL;
 
     //GUI DEBUG
     this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
@@ -420,6 +421,25 @@ void IndieGame::OnEnterOnline() {
 
 void IndieGame::OnLeavingOnline() {
     this->_onlineUI->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::OnEnterConcess(void) {
+    if (!this->_concessionnaire) {
+        this->_concessionnaire = new Concessionnaire(this->_gui, this->_driver, this->_windowSize);
+        this->_concessionnaire->SetupGUI();
+        this->_objectList.push_back(this->_concessionnaire);
+        this->_guiVisible.push_back(this->_concessionnaire);
+    }
+    this->_concessionnaire->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(_concessionnaire);
+}
+
+void IndieGame::OnLeavingConcess(void) {
+    this->_concessionnaire->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }

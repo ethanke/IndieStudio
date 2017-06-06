@@ -25,7 +25,7 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     }
 
     this->_cameraPosition = core::vector3df(30, 30, 30);
-	this->_cameraHeight = 5.5f;
+	this->_cameraHeight = 3.5f;
 	this->_baseCameraDistance = 6.0f;
 
     this->_isAI = isAI;
