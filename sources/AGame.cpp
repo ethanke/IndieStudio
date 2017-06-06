@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Tue Jun  6 18:27:51 2017 John Doe
+// Last update Tue Jun  6 19:28:34 2017 John Doe
 //
 
 #include "AGame.hpp"
@@ -35,19 +35,19 @@ void AGame::Setup() {
     this->_device->getCursorControl()->setVisible(true);
 
     this->_device->getFileSystem()->addFileArchive((std::string(SOURCES_PATH) + std::string("/Assets/")).c_str());
-    this->_image = this->_driver->getTexture("misc/loading.jpg");
-
+    // this->_image = this->_driver->getTexture("misc/loading.jpg");
+    //
     irr::gui::IGUISkin* skin = this->_gui->getSkin();
     irr::gui::IGUIFont* font = this->_gui->getFont("misc/try.xml");
     if (font)
         skin->setFont(font);
-
-
-    irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
+    //
+    //
+    //irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
     this->_device->run();
-    this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
-    this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
-    this->_driver->endScene();
+    // this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
+    // this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
+//    this->_driver->endScene();
 
     this->launchMenu();
     //addGameObject();
@@ -77,8 +77,8 @@ void AGame::loop() {
             this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
             this->_smgr->drawAll(); // NE PAS
-            this->OnFrame(); // CHANGER
             objectOnFrame(); // CET
+            this->OnFrame(); // CHANGER
             this->_gui->drawAll(); // ORDRE DE CALL
             this->_driver->endScene();
             int fps = this->_driver->getFPS();

@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Tue Jun 06 15:36:48 2017 Full Name
-** Last update	Tue Jun 06 18:31:22 2017 Full Name
+** Last update	Tue Jun 06 18:58:30 2017 Full Name
 */
 
 #ifndef _MAINMENU_HPP_
@@ -54,7 +54,7 @@ namespace indie {
         irr::gui::IGUIButton *_multijoueur;
         irr::gui::IGUIButton *_quit;
 
-        irr::video::ITexture *_image;
+//        irr::video::ITexture *_image;
 
     };
 }
