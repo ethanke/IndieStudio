@@ -11,17 +11,22 @@
 #ifndef             CLIENT_HPP
 #define             CLIENT_HPP
 
-#include            "ClientSocket.hpp"
-#include            "EventReceiver.hpp"
+#include <fstream>
+#include "ClientSocket.hpp"
+#include "EventReceiver.hpp"
+#include "Message.hpp"
+#include "IndieStudioConfig.h"
+
 
 namespace indie {
 
-    class Client : public EventReceiver {
+    class Client {
     private:
         static Client _instance;
         ClientSocket _socket;
         std::string _ip;
         int _port;
+        int _id;
 
     public:
         explicit Client (std::string const &ip = "127.0.0.1", int port = 1234);
@@ -31,10 +36,19 @@ namespace indie {
         static Client &Instance();
         void init();
 
-        virtual bool OnEvent(const irr::SEvent& event);
+        ClientSocket getSocket();
+        void setId(int id);
+        int getId() const;
+
+        std::string read();
+
+        void requestId();
+        void addMoney(int nb);
 
     };
 
 }
+
+#else
 
 #endif /* !CLIENT_HPP */

@@ -18,6 +18,7 @@ Client::Client(std::string const &ip, int port)
 {
     this->_ip = ip;
     this->_port = port;
+    this->_id = -1;
 }
 
 Client::~Client()
@@ -41,9 +42,53 @@ Client &Client::Instance() {
 
 void Client::init() {
     this->_socket.init(this->_ip, this->_port);
+    this->_socket.launchLoop();
 }
 
-bool Client::OnEvent(const irr::SEvent &event) {
-    (void)event;
-    return true;
+std::string read() {
+    return std::string("lol");
+}
+
+
+
+
+void requestId() {
+    int id = -1;
+    std::ifstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
+    Message data("getid");
+
+    while (infile >> id) {
+        Client::Instance().setId(id);
+        return;
+    }
+    std::cout << data.getJSON() << std::endl;
+    Client::Instance().getSocket().write(data.getJSON());
+
+}
+
+void Client::addMoney(int nb) {
+    if (this->_id == -1) {
+        Client::Instance().getId();
+        return;
+    }
+
+    Message data("addmoney");
+    data("id") = this->_id;
+    data("value") = std::to_string(nb);
+    this->_socket.write(data.getJSON());
+}
+
+
+
+
+ClientSocket Client::getSocket() {
+    return this->_socket;
+}
+
+void Client::setId(int id) {
+    this->_id = id;
+}
+
+int Client::getId() const {
+    return this->_id;
 }

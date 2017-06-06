@@ -133,6 +133,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/Client/Client.cpp
     ${PROJECT_SOURCE_DIR}/sources/Client/ClientSocket.cpp
     ${PROJECT_SOURCE_DIR}/sources/Client/Socket.cpp
+    ${PROJECT_SOURCE_DIR}/sources/Client/Message.cpp
 
 )
 

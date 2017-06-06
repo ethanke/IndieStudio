@@ -173,6 +173,7 @@ void IndieGame::addGameObject() {
 
 void IndieGame::addEventReceiver() {
     Client::Instance().init();
+    Client::Instance().addMoney(10);
 }
 
 void IndieGame::loadMap() {
