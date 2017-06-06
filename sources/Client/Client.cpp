@@ -10,9 +10,11 @@
 
 #include                "Client.hpp"
 
-Client::Client(std::string const &ip)
+
+
+Client::Client(std::string const &ip, int port)
 {
-    this->_socket.init(ip);
+    this->_socket.init(ip, port);
 }
 
 Client::~Client()

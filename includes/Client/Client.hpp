@@ -15,12 +15,16 @@
 
 class Client {
 private:
+    static Client &_instance;
     ClientSocket _socket;
+
 public:
-    explicit Client (std::string const &ip);
+    explicit Client (std::string const &ip, int port);
     virtual ~Client ();
     Client(const Client &obj);
     Client &operator=(const Client &obj);
+    static Client &Instance();
+
 };
 
 #endif /* !CLIENT_HPP */
