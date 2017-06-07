@@ -42,7 +42,7 @@ message(STATUS "The host processor is ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 # example how to set c++ compiler flags for GNU
 if(CMAKE_CXX_COMPILER_ID MATCHES GNU)
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
-    set(CMAKE_CXX_FLAGS         "-std=c++11")
+    set(CMAKE_CXX_FLAGS         "-std=c++11 -pthread")
     set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g3 -DDEBUG")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 elseif(CMAKE_CXX_COMPILER_ID MATCHES Clang)
