@@ -59,7 +59,7 @@ namespace indie {
         virtual void OnOpenningMenu();
         virtual void OnLeavingMenu();
 
-        virtual void OnEnterCourse();
+        virtual void OnEnterCourse(GameCheckpoint const &ch);
         virtual void OnLeavingCourse();
 
         virtual void OnEnterMoney();

@@ -27,6 +27,7 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_cameraPosition = core::vector3df(30, 30, 30);
 	this->_cameraHeight = 3.5f;
 	this->_baseCameraDistance = 6.0f;
+    this->_elapsedTime = 0;
 
     this->_isAI = isAI;
     if (!this->_isAI) {
@@ -56,6 +57,12 @@ void Car::OnFrame() {
     KeyboardEvent();
     if (!this->_isAI) {
         updateCamera();
+        if (this->_elapsedTime >= 1) {
+            Client::Instance().move(this->_car->getPosition(), this->_car->getRotation());
+            this->_elapsedTime = 0;
+        } else {
+            this->_elapsedTime += DeltaTimer::DeltaTime;
+        }
     }
 	this->_carLoader.Update(drive_tipe);
 }

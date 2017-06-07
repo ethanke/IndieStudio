@@ -18,6 +18,7 @@
 #include "BasicCamera.hpp"
 #include "EventReceiver.hpp"
 #include "Circuit.hpp"
+#include "Client.hpp"
 #include "loadCar.h"
 
 namespace indie {
@@ -59,6 +60,9 @@ namespace indie {
 
         virtual void KeyboardEvent();
         virtual void updateCamera();
+
+    private:
+        irr::f32 _elapsedTime;
 
     };
 

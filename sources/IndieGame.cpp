@@ -122,11 +122,12 @@ void IndieGame::addGameObject() {
     this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
     this->_objectList.push_back(this->_aiCar);
 
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::ONLINE, 10, irr::core::vector3df(200, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::COURSE, 10, irr::core::vector3df(744.1, 0, 502.7)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(313.75, 0, -215.9)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
+    int j = 1;
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(200, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(744.1, 0, 502.7)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(313.75, 0, -215.9)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
     this->_objectList.push_back(this->_carWatch);
@@ -173,7 +174,7 @@ void IndieGame::addGameObject() {
 
 void IndieGame::addEventReceiver() {
     Client::Instance().init();
-    Client::Instance().addMoney(10);
+    Client::Instance().requestId();
 }
 
 void IndieGame::loadMap() {
@@ -327,7 +328,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
     return EventReceiver::OnEvent(event);
 }
 
-void IndieGame::OnEnterCourse(void) {
+void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
     if (!this->_course) {
         this->_course = new Course(this->_gui, this->_driver, this->_windowSize);
         this->_course->SetupGUI();
@@ -338,12 +339,14 @@ void IndieGame::OnEnterCourse(void) {
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(this->_course);
+    Client::Instance().creatingCourseLobby(ch.getID());
 }
 
-void IndieGame::OnLeavingCourse(void) {
+void IndieGame::OnLeavingCourse() {
     this->_course->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+    Client::Instance().leavingCourseLobby();
 }
 
 void IndieGame::OnEnterGarage(void) {
@@ -400,11 +403,10 @@ void IndieGame::launchMenu()
 }
 
 void IndieGame::OnEnterMoney() {
-    //Ajouter de l'argent --> serveur
+    Client::Instance().addMoney(200);
 }
 
 void IndieGame::OnEnterInCourseChPt(GameCheckpoint const &ch) {
-    // Dire à la class course de Jordan que la $_car a passé le checkoint $ch
 }
 
 void IndieGame::OnEnterOnline() {

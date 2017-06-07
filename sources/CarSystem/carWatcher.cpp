@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Tue Jun 06 19:44:28 2017 Lucas Gambini
+** Last update Wed Jun 07 10:10:01 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -52,7 +52,7 @@ void carWatcher::OnFrame() {
                     _eventReceiver->OnEnterGarage();
                     break;
                 case GameCheckpoint::COURSE:
-                    _eventReceiver->OnEnterCourse();
+                    _eventReceiver->OnEnterCourse(x);
                     break;
                 case GameCheckpoint::MONEY:
                     x.remove();

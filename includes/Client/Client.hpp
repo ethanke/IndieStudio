@@ -44,6 +44,10 @@ namespace indie {
 
         void requestId();
         void addMoney(int nb);
+        void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot);
+        void creatingCourseLobby(irr::s32 const &id);
+        void leavingCourseLobby();
+
 
     };
 
