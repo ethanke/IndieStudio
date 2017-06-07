@@ -35,6 +35,7 @@ namespace indie {
         Client &operator=(const Client &obj);
         static Client &Instance();
         void init();
+        void stop();
 
         ClientSocket getSocket();
         void setId(int id);

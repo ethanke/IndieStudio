@@ -76,8 +76,9 @@ void ClientSocket::_launchLoop()
     std::string text;
     struct timeval tv = {5, 0};
 
-    while (1)
+    while (this->_started == true)
     {
+        printf("lol\n");
         FD_ZERO(&fdset);
         FD_SET(this->_fd, &fdset);
         if (select(this->_fd + 1, &fdset, NULL, NULL, &tv) == -1)

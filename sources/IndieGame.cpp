@@ -284,7 +284,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case Menu::QUIT:
                         this->_device->closeDevice();
-                        //QUIT
+                        Client::Instance().stop();
                         break;
                     case Course::RUN:
                         //LANCER LA COURSE SA MERE
@@ -303,8 +303,8 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         // DIRE AU SERVER QUE WESH IL FAUT SE CONNECTER
                         break;
                     case MainMenu::PLAY:
-                        this->_image = this->_driver->getTexture("misc/loading.jpg");
-                        this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
+                        // this->_image = this->_driver->getTexture("misc/loading.jpg");
+                        // this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
                         delete _mainmenu;
                         _mainmenu = NULL;
                         addGameObject();
@@ -314,7 +314,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case MainMenu::MULTIJOUEUR:
                         //todo écran sein dés
                         break;
-                        case MainMenu::QUIT:
+                    case MainMenu::QUIT:
                         this->_device->closeDevice();
                         break;
                     default:

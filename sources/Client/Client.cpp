@@ -23,6 +23,7 @@ Client::Client(std::string const &ip, int port)
 
 Client::~Client()
 {
+
 }
 
 Client::Client(const Client &obj)
@@ -43,6 +44,10 @@ Client &Client::Instance() {
 void Client::init() {
     this->_socket.init(this->_ip, this->_port);
     this->_socket.launchLoop();
+}
+
+void Client::stop() {
+    this->_socket.stop();
 }
 
 std::string Client::read() {
