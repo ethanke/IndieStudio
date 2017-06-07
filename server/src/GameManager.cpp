@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Fri May 26 00:03:45 2017 Gaëtan Léandre
-// Last update Wed Jun  7 11:50:53 2017 Gaëtan Léandre
+// Last update Wed Jun  7 13:57:06 2017 Gaëtan Léandre
 //
 
 #include            "GameManager.hh"
@@ -16,6 +16,9 @@ GameManager::GameManager()
 
     tmp.setId(-1);
     this->_clients[-1] = tmp;
+    this->_operation["getid"] = 0;
+    this->_operation["setid"] = 1;
+    this->_operation["move"] = 2;
 }
 
 GameManager::~GameManager ()
@@ -25,11 +28,15 @@ GameManager::~GameManager ()
 GameManager::GameManager(const GameManager &obj)
 {
     this->_clients = obj._clients;
+    this->_servers = obj._servers;
+    this->_operation = obj._operation;
 }
 
 GameManager    &GameManager::operator=(const GameManager &obj)
 {
     this->_clients = obj._clients;
+    this->_servers = obj._servers;
+    this->_operation = obj._operation;
     return (*this);
 }
 
@@ -75,9 +82,24 @@ int GameManager::getClientsSize() const
     return (this->_clients.size());
 }
 
-void GameManager::launchCommand(std::string const &json)
+void GameManager::launchCommand(std::string const &json, SOCKET fd)
 {
-    std::cout << json << std::endl;
+    Message command("nothing");
+
+    command.parseJSON(json);
+    std::cout << command.getTitle() << " " << json << std::endl;
+    switch (this->_operation[command.getTitle()])
+    {
+        case 0:
+            getId(fd);
+            break;
+        case 1:
+            setId(fd, std::atoi(command("id").c_str()));
+            break;
+        case 2:
+
+            break;
+    }
     //TODO LAUNCH COMMAND
 }
 
@@ -93,7 +115,10 @@ void GameManager::readClientByFdSet(fd_set *fdset)
             if (tmp == "-")
                 deleteClient(x.second.getSocket().getFd());
             else
-                launchCommand(tmp);
+            {
+                //TODO LAUNCH COMMAND BY COMMAND
+                launchCommand(tmp, x.second.getSocket().getFd());
+            }
             return;
         }
     }
@@ -101,8 +126,9 @@ void GameManager::readClientByFdSet(fd_set *fdset)
 
 void GameManager::readClientByFd(int fd)
 {
+    //TODO LAUNCH COMMAND BY COMMAND
     if (this->_clients.count(fd) > 0)
-        launchCommand(this->_clients[fd].read());
+        launchCommand(this->_clients[fd].read(), this->_clients[fd].getSocket().getFd());
 }
 
 void GameManager::writeClientByFd(SOCKET fd, std::string const &str)
@@ -117,7 +143,8 @@ void GameManager::readClientById(int id)
     {
         if (x.second.getId() == id)
         {
-            launchCommand(x.second.read());
+            //TODO LAUNCH COMMAND BY COMMAND
+            launchCommand(x.second.read(), x.second.getSocket().getFd());
             return;
         }
     }
@@ -147,4 +174,20 @@ void GameManager::setListener(fd_set *fdset, int &max)
     {
         x.second.getSocket().setListener(fdset, max);
     }
+}
+
+void GameManager::getId(int fd)
+{
+    Message setid("setid");
+    //TODO USE DATABASE TO FOUND AN ID
+    setid("id") = std::to_string(_idMax);
+    this->_clients[fd].write(setid.getJSON());
+    this->_clients[fd].setId(_idMax);
+    _idMax++;
+
+}
+
+void GameManager::setId(int fd, int id)
+{
+    this->_clients[fd].setId(id);
 }
