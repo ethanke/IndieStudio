@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Fri May 26 00:03:45 2017 Gaëtan Léandre
-// Last update Wed Jun  7 01:06:41 2017 Gaëtan Léandre
+// Last update Wed Jun  7 11:50:53 2017 Gaëtan Léandre
 //
 
 #include            "GameManager.hh"
@@ -77,7 +77,7 @@ int GameManager::getClientsSize() const
 
 void GameManager::launchCommand(std::string const &json)
 {
-    std::cout << json << "dd" << std::endl;
+    std::cout << json << std::endl;
     //TODO LAUNCH COMMAND
 }
 

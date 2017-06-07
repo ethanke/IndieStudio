@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Wed May 24 13:00:34 2017 Gaëtan Léandre
-// Last update Fri May 26 00:49:19 2017 Gaëtan Léandre
+// Last update Wed Jun  7 11:57:16 2017 Gaëtan Léandre
 //
 
 #include                "Message.hh"
@@ -93,7 +93,7 @@ std::string &Message::addContent(std::string const &title, std::string const &co
     return (this->_content[title]);
 }
 
-std::string Message::getJSON() const
+std::string Message::_getJSON() const
 {
     std::string result;
     int i;
@@ -106,7 +106,7 @@ std::string Message::getJSON() const
     {
         if (i != 0)
             result += ",";
-        result += x.getJSON();
+        result += x._getJSON();
         i++;
     }
     for (auto y: this->_content)
@@ -122,6 +122,11 @@ std::string Message::getJSON() const
     }
     result += "}";
     return (result);
+}
+
+std::string Message::getJSON() const
+{
+    return (_getJSON() + "|");
 }
 
 std::string Message::getFirstComment(std::string &str) const

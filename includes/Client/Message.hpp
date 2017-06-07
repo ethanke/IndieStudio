@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Wed May 24 12:45:26 2017 Gaëtan Léandre
-// Last update Wed May 24 15:36:01 2017 Gaëtan Léandre
+// Last update Wed Jun  7 11:58:17 2017 Gaëtan Léandre
 //
 
 #ifndef             MESSAGE_HH_
@@ -42,6 +42,7 @@ public:
     Message &addSubSession(Message const &subSession);
     std::string &addContent(std::string const &title, std::string const &content);
     std::string getJSON() const;
+    std::string _getJSON() const;
     void parseJSON(std::string const &str);
     bool empty() const;
 };
