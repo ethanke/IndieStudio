@@ -77,6 +77,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/AGame.cpp
     ${PROJECT_SOURCE_DIR}/sources/IndieGame.cpp
     ${PROJECT_SOURCE_DIR}/sources/EventReceiver.cpp
+    ${PROJECT_SOURCE_DIR}/sources/NetworkEventBridge.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/Vector2.cpp
     ${PROJECT_SOURCE_DIR}/sources/Vector3.cpp

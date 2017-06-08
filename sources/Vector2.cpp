@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May 15 00:48:15 2017 Sousa Victor
-// Last update Thu May 18 03:14:45 2017 Sousa Victor
+// Last update Thu Jun  8 16:23:46 2017 Sousa Victor
 //
 
 #include "Vector2.hpp"
@@ -145,7 +145,11 @@ Vector2 Vector2::LerpUnclamped(Vector2 a, Vector2 b, float t) {
 }
 
 Vector2 Vector2::SmoothDamp(Vector2 current, Vector2 target, Vector2 &currentVelocity, float smoothTime, float maxSpeed, float deltaTime) {
-	smoothTime = std::max(0.0001f, smoothTime);
+#ifdef _WIN32
+    smoothTime = max(0.0001f, smoothTime);
+#else
+    smoothTime = std::max(0.0001f, smoothTime);
+#endif
 	float num = 2.0f / smoothTime;
 	float num2 = num * deltaTime;
 	float d = 1.0f / (1.0f + num2 + 0.48f * num2 * num2 + 0.235f * num2 * num2 * num2);
@@ -225,9 +229,17 @@ float Vector2::SqrMagnitude() {
 }
 
 Vector2 Vector2::Min(Vector2 lhs, Vector2 rhs) {
-	return Vector2(std::min(lhs.x, rhs.x), std::min(lhs.y, rhs.y));
+#ifdef _WIN32
+    return Vector2(min(lhs.x, rhs.x), min(lhs.y, rhs.y));
+#else
+    return Vector2(std::min(lhs.x, rhs.x), std::min(lhs.y, rhs.y));
+#endif
 }
 
 Vector2 Vector2::Max(Vector2 lhs, Vector2 rhs) {
-	return Vector2(std::max(lhs.x, rhs.x), std::max(lhs.y, rhs.y));
+#ifdef _WIN32
+    return Vector2(max(lhs.x, rhs.x), max(lhs.y, rhs.y));
+#else
+    return Vector2(std::max(lhs.x, rhs.x), std::max(lhs.y, rhs.y));
+#endif
 }

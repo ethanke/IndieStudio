@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 22:05:46 2017 Sousa Victor
-// Last update Mon May 15 18:46:03 2017 Sousa Victor
+// Last update Tue Jun  6 19:15:29 2017 Sousa Victor
 //
 
 #ifndef VECTOR3_HPP_
@@ -18,6 +18,10 @@
 #include <vector>
 #include <limits>
 #include <stdexcept>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 #include "DeltaTimer.hpp"
 

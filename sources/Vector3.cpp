@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May 14 22:44:53 2017 Sousa Victor
-// Last update Mon May 15 18:46:23 2017 Sousa Victor
+// Last update Thu Jun  8 16:23:20 2017 Sousa Victor
 //
 
 #include "Vector3.hpp"
@@ -193,7 +193,11 @@ Vector3 Vector3::SmoothDamp(Vector3 current, Vector3 target, Vector3 &currentVel
 }
 
 Vector3 Vector3::SmoothDamp(Vector3 current, Vector3 target, Vector3 &currentVelocity, float smoothTime, float maxSpeed, float deltaTime) {
-	smoothTime = std::max(0.0001f, smoothTime);
+#ifdef _WIN32
+    smoothTime = max(0.0001f, smoothTime);
+#else
+    smoothTime = std::max(0.0001f, smoothTime);
+#endif
 	float num = 2.0f / smoothTime;
 	float num2 = num * deltaTime;
 	float d = 1.0f / (1.0f + num2 + 0.48f * num2 * num2 + 0.235f * num2 * num2 * num2);
@@ -313,11 +317,19 @@ float Vector3::SqrMagnitude(Vector3 a) {
 }
 
 Vector3 Vector3::Min(Vector3 lhs, Vector3 rhs) {
-	return Vector3(std::min(lhs.x, rhs.x), std::min(lhs.y, rhs.y), std::min(lhs.z, rhs.z));
+#ifdef _WIN32
+    return Vector3(min(lhs.x, rhs.x), min(lhs.y, rhs.y), min(lhs.z, rhs.z));
+#else
+    return Vector3(std::min(lhs.x, rhs.x), std::min(lhs.y, rhs.y), std::min(lhs.z, rhs.z));
+#endif
 }
 
 Vector3 Vector3::Max(Vector3 lhs, Vector3 rhs) {
-	return Vector3(std::max(lhs.x, rhs.x), std::max(lhs.y, rhs.y), std::max(lhs.z, rhs.z));
+#ifdef _WIN32
+    return Vector3(max(lhs.x, rhs.x), max(lhs.y, rhs.y), max(lhs.z, rhs.z));
+#else
+    return Vector3(std::max(lhs.x, rhs.x), std::max(lhs.y, rhs.y), std::max(lhs.z, rhs.z));
+#endif
 }
 
 float Vector3::AngleBetween(Vector3 from, Vector3 to) {

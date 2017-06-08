@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:56:35 2017 Gaëtan Léandre
-// Last update Wed Jun  7 00:59:58 2017 Gaëtan Léandre
+// Last update Thu Jun  8 16:49:40 2017 Sousa Victor
 //
 
 #ifndef CLIENTSOCKET_HPP__
@@ -14,24 +14,23 @@
 #include                <future>
 #include                <vector>
 #include                "Socket.hpp"
+#include "NetworkEventBridge.hpp"
 
 class ClientSocket : public Socket {
 private:
     std::future<void> _async;
     void _launchLoop();
-    std::vector<std::string> _buffer;
+    indie::NetworkEventBridge *_bridge;
 
 public:
     ClientSocket ();
     virtual ~ClientSocket ();
     ClientSocket(const ClientSocket &obj);
     ClientSocket &operator=(const ClientSocket &obj);
-    bool init(std::string const &ip, int port);
+    bool init(std::string const &ip, int port, indie::NetworkEventBridge *bridge);
     void stop();
     void launchLoop();
     void reciveCommand(std::string const &json);
-    std::vector<std::string> const &getBuffer() const;
-    void resetBuffer();
 };
 
 #endif /* !CLIENTSOCKET_HPP__ */

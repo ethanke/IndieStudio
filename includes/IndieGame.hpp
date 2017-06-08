@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Tue Jun  6 19:15:01 2017 John Doe
+// Last update Thu Jun  8 16:36:57 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -29,6 +29,7 @@
 #include "Keyboard.hpp"
 #include "Graphic.hpp"
 #include "JoinServer.hpp"
+#include "NetworkEventBridge.hpp"
 #include "Classement.hpp"
 #include "MainMenu.hpp"
 #include "Concessionnaire.hpp"
@@ -36,7 +37,7 @@
 
 namespace indie {
 
-    class IndieGame: public AGame {
+    class IndieGame: public AGame, public NetworkEventBridge {
 
     public:
         IndieGame(int width = 1920, int height = 1080);

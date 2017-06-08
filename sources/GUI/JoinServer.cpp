@@ -26,7 +26,7 @@ JoinServer::~JoinServer()
 }
 
 void JoinServer::SetupGUI() {
-    this->_leave = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), 0, LEAVE,
+    this->_leave_ = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 140), 0, LEAVE,
             L"Leave", L"");
 
     this->_join = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 80, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 80, this->_windowSize.Height / 2 + 40), 0, JOIN,
@@ -51,13 +51,13 @@ void JoinServer::OnFrame(void) {
     if (this->_isVisible == true) {
         this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 200, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
         this->_title->setVisible(true);
-        this->_leave->setVisible(true);
+        this->_leave_->setVisible(true);
         this->_join->setVisible(true);
         this->_editBox->setVisible(true);
     }
     else {
         this->_title->setVisible(false);
-        this->_leave->setVisible(false);
+        this->_leave_->setVisible(false);
         this->_join->setVisible(false);
         this->_editBox->setVisible(false);
     }

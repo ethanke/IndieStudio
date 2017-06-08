@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue Jun  6 19:24:48 2017 John Doe
+// Last update Thu Jun  8 16:47:27 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -173,7 +173,7 @@ void IndieGame::addGameObject() {
 }
 
 void IndieGame::addEventReceiver() {
-    Client::Instance().init();
+    Client::Instance().init(this);
     Client::Instance().requestId();
 }
 
@@ -203,7 +203,15 @@ void IndieGame::loadMap() {
 }
 
 void IndieGame::OnFrame() {
-    Client::Instance().read();
+
+    this->lockEventBuffer();
+    for (auto const &str: this->_cmdBuffer)
+        std::cout << str << std::endl;
+    std::cout << std::endl;
+    this->_cmdBuffer.clear();
+    this->unlockEventBuffer();
+
+
     if (!_pos)
         return;
     std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));

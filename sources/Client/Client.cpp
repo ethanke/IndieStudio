@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:50:28 2017 Gaëtan Léandre
-// Last update Tue Jun  6 22:12:54 2017 Gaëtan Léandre
+// Last update Thu Jun  8 16:43:27 2017 Sousa Victor
 //
 
 #include                "Client.hpp"
@@ -41,26 +41,14 @@ Client &Client::Instance() {
     return _instance;
 }
 
-void Client::init() {
-    this->_socket.init(this->_ip, this->_port);
+void Client::init(NetworkEventBridge *bridge) {
+    this->_socket.init(this->_ip, this->_port, bridge);
     this->_socket.launchLoop();
 }
 
 void Client::stop() {
     this->_socket.stop();
 }
-
-void Client::read() {
-    std::vector<std::string> _buffer = this->_socket.getBuffer();
-
-    for (auto const &x : _buffer) {
-        std::cout << x << std::endl;
-    }
-    this->_socket.resetBuffer();
-}
-
-
-
 
 void Client::requestId() {
     int id = -1;

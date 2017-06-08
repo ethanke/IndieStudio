@@ -45,7 +45,7 @@ namespace indie {
 
             irr::gui::IGUIStaticText *_title;
             irr::gui::IGUIButton *_repair;
-            irr::gui::IGUIButton *_leave;
+            irr::gui::IGUIButton *_leave_;
 
         };
 

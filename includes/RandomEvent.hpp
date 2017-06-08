@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 01:48:12 2017 Lucas Gambini
-** Last update Sat May 20 16:41:37 2017 Lucas Gambini
+** Last update Tue Jun  6 19:30:59 2017 Sousa Victor
 */
 
 #ifndef RANDOM_EVENT_HPP
@@ -14,6 +14,9 @@
 #include "carWatcher.hpp"
 #include "IGameObject.hpp"
 #include <random>
+#ifdef _WIN32
+#include <time.h>
+#endif
 
 namespace indie {
 

@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:59:27 2017 Gaëtan Léandre
-// Last update Wed Jun  7 01:23:48 2017 Gaëtan Léandre
+// Last update Thu Jun  8 16:49:34 2017 Sousa Victor
 //
 
 #include                "ClientSocket.hpp"
@@ -46,9 +46,10 @@ void ClientSocket::stop()
     }
 }
 
-bool ClientSocket::init(std::string const &ip, int port)
+bool ClientSocket::init(std::string const &ip, int port, indie::NetworkEventBridge *bridge)
 {
     SOCKADDR_IN             s_in;
+    this->_bridge = bridge;
 
     stop();
     #if defined (WIN32)
@@ -100,13 +101,7 @@ void ClientSocket::launchLoop()
 
 void ClientSocket::reciveCommand(std::string const &json)
 {
-    this->_buffer.push_back(json);
-}
-
-std::vector<std::string> const &ClientSocket::getBuffer() const {
-    return this->_buffer;
-}
-
-void ClientSocket::resetBuffer() {
-    this->_buffer.clear();
+    this->_bridge->lockEventBuffer();
+    this->_bridge->addEvent(json);
+    this->_bridge->unlockEventBuffer();
 }

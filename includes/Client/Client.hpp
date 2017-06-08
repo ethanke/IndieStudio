@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:51:52 2017 Gaëtan Léandre
-// Last update Tue Jun  6 22:08:37 2017 Gaëtan Léandre
+// Last update Thu Jun  8 16:43:33 2017 Sousa Victor
 //
 
 #ifndef             CLIENT_HPP
@@ -36,14 +36,12 @@ namespace indie {
         Client(const Client &obj);
         Client &operator=(const Client &obj);
         static Client &Instance();
-        void init();
+        void init(NetworkEventBridge *bridge);
         void stop();
 
         ClientSocket getSocket();
         void setId(int id);
         int getId() const;
-
-        void read();
 
         void requestId();
         void giveId();

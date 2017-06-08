@@ -46,7 +46,7 @@ namespace indie {
             irr::core::dimension2du _windowSize;
 
             irr::gui::IGUIStaticText *_title;
-            irr::gui::IGUIButton *_leave;
+            irr::gui::IGUIButton *_leave_;
             irr::gui::IGUIButton *_join;
             irr::gui::IGUIEditBox *_editBox;
 
