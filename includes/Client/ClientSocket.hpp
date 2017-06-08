@@ -11,26 +11,31 @@
 #ifndef CLIENTSOCKET_HPP__
 #define CLIENTSOCKET_HPP__
 
-#include                <future>
-#include                <vector>
-#include                "Socket.hpp"
+#include <future>
+#include <vector>
+#include "Socket.hpp"
 #include "NetworkEventBridge.hpp"
 
-class ClientSocket : public Socket {
-private:
-    std::future<void> _async;
-    void _launchLoop();
-    indie::NetworkEventBridge *_bridge;
+ namespace indie {
 
-public:
-    ClientSocket ();
-    virtual ~ClientSocket ();
-    ClientSocket(const ClientSocket &obj);
-    ClientSocket &operator=(const ClientSocket &obj);
-    bool init(std::string const &ip, int port, indie::NetworkEventBridge *bridge);
-    void stop();
-    void launchLoop();
-    void reciveCommand(std::string const &json);
-};
+    class ClientSocket : public Socket {
+    private:
+        std::future<void> _async;
+        void _launchLoop();
+        NetworkEventBridge *_bridge;
+
+    public:
+        ClientSocket ();
+        virtual ~ClientSocket ();
+        ClientSocket(const ClientSocket &obj);
+        ClientSocket &operator=(const ClientSocket &obj);
+        bool init(std::string const &ip, int port, indie::NetworkEventBridge *bridge);
+        void stop();
+        void launchLoop();
+        void reciveCommand(std::string const &json);
+    };
+
+
+}
 
 #endif /* !CLIENTSOCKET_HPP__ */

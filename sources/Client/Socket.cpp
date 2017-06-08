@@ -10,6 +10,8 @@
 
 #include        "Socket.hpp"
 
+using namespace indie;
+
 Socket::Socket()
 {
     this->_fd = -1;

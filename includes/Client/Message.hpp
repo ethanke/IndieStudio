@@ -16,35 +16,38 @@
 #include            <iostream>
 #include            <unordered_map>
 
-class Message {
-private:
-    std::string _title;
-    std::vector<Message> _subSession;
-    std::unordered_map<std::string, std::string> _content;
-    std::string getFirstComment(std::string &str) const;
-    std::string getFirstParam(std::string &str) const;
-    bool isObject(std::string const &str) const;
-    void parseContent(std::string str);
+namespace indie {
 
-public:
-    explicit Message (std::string const &title);
-    virtual ~Message ();
-    Message(const Message &obj);
-    Message     &operator=(const Message &obj);
-    Message     &operator[](std::string const &pos);
-    std::string &operator()(std::string const &pos);
-    std::vector<std::string> getSubSessions();
-    std::vector<std::string> getContents();
-    void deleteContent(std::string const &pos);
-    void deleteSubSession(std::string const &pos);
-    std::string const &getTitle() const;
-    void setTitle(std::string const &title);
-    Message &addSubSession(Message const &subSession);
-    std::string &addContent(std::string const &title, std::string const &content);
-    std::string getJSON() const;
-    std::string _getJSON() const;
-    void parseJSON(std::string const &str);
-    bool empty() const;
-};
+    class Message {
+    private:
+        std::string _title;
+        std::vector<Message> _subSession;
+        std::unordered_map<std::string, std::string> _content;
+        std::string getFirstComment(std::string &str) const;
+        std::string getFirstParam(std::string &str) const;
+        bool isObject(std::string const &str) const;
+        void parseContent(std::string str);
+
+    public:
+        explicit Message (std::string const &title);
+        virtual ~Message ();
+        Message(const Message &obj);
+        Message     &operator=(const Message &obj);
+        Message     &operator[](std::string const &pos);
+        std::string &operator()(std::string const &pos);
+        std::vector<std::string> getSubSessions();
+        std::vector<std::string> getContents();
+        void deleteContent(std::string const &pos);
+        void deleteSubSession(std::string const &pos);
+        std::string const &getTitle() const;
+        void setTitle(std::string const &title);
+        Message &addSubSession(Message const &subSession);
+        std::string &addContent(std::string const &title, std::string const &content);
+        std::string getJSON() const;
+        std::string _getJSON() const;
+        void parseJSON(std::string const &str);
+        bool empty() const;
+    };
+}
 
 #endif /* !MESSAGE_HH_ */

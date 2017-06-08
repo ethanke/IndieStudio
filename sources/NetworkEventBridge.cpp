@@ -25,9 +25,9 @@ void NetworkEventBridge::addEvent(std::string const &json) {
 }
 
 void NetworkEventBridge::lockEventBuffer() {
-    //TODO lock mutex
+    while (this->_mutex.try_lock() == false);
 }
 
 void NetworkEventBridge::unlockEventBuffer() {
-    //TODO unlock mutex
+    this->_mutex.unlock();
 }

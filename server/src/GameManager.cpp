@@ -16,9 +16,13 @@ GameManager::GameManager()
 
     tmp.setId(-1);
     this->_clients[-1] = tmp;
-    this->_operation["getid"] = 0;
-    this->_operation["setid"] = 1;
-    this->_operation["move"] = 2;
+    int i = 0;
+    this->_operation["getid"] = i++;
+    this->_operation["setid"] = i++;
+    this->_operation["move"] = i++;
+    this->_operation["addmoney"] = i++;
+    this->_operation["getmoney"] = i++;
+    this->_operation["join"] = i++;
 }
 
 GameManager::~GameManager ()
@@ -99,8 +103,15 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
         case 2:
 
             break;
+        case 3:
+            addMoney(fd, std::atoi(command("id").c_str()), std::atoi(command("value").c_str()));
+            break;
+        case 4:
+            getMoney(fd, std::atoi(command("id").c_str()));
+            break;
+        case 5:
+            joinServer(fd, std::atoi(command("id").c_str()), std::atoi(command("value").c_str()));
     }
-    //TODO LAUNCH COMMAND
 }
 
 void GameManager::readClientByFdSet(fd_set *fdset)
@@ -190,4 +201,22 @@ void GameManager::getId(int fd)
 void GameManager::setId(int fd, int id)
 {
     this->_clients[fd].setId(id);
+}
+
+void GameManager::addMoney(int fd, int id, int value) {
+    this->_clients[fd].setMoney(this->_clients[fd].getMoney() + value);
+}
+
+void GameManager::getMoney(int fd, int id) {
+    Message data("getmoney");
+    data("value") = std::to_string(this->_clients[fd].getMoney());
+    this->_clients[fd].write(data.getJSON());
+}
+
+void GameManager::move(int fd) {
+    
+}
+
+void GameManager::joinServer(int fd, int id, int value) {
+
 }

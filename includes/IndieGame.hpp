@@ -34,6 +34,7 @@
 #include "MainMenu.hpp"
 #include "Concessionnaire.hpp"
 #include "Client.hpp"
+#include "Message.hpp"
 
 namespace indie {
 

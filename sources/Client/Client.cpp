@@ -85,6 +85,17 @@ void Client::addMoney(int nb) {
     this->_socket.write(data.getJSON());
 }
 
+void Client::requestMoney() {
+    if (this->_id == -1) {
+        this->requestId();
+        return;
+    }
+
+    Message data("getmoney");
+    data("id") = std::to_string(this->_id);
+    this->_socket.write(data.getJSON());
+}
+
 void Client::joinId(std::string const &dest_id) {
     if (this->_id == -1) {
         this->requestId();
@@ -97,24 +108,20 @@ void Client::joinId(std::string const &dest_id) {
     this->_socket.write(data.getJSON());
 }
 
-void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
+void Client::move(std::string const &vel, std::string const &x, std::string const &y, std::string const &z) {
     if (this->_id == -1) {
         this->requestId();
         return;
     }
 
     Message data("move");
-    Message position("position");
-    data["position"] = position;
-    data["position"]("Z") = std::to_string(pos.Z);
-    data["position"]("Y") = std::to_string(pos.Y);
-    data["position"]("X") = std::to_string(pos.X);
-    Message rotation("rotation");
-    data["rotation"] = rotation;
-    data["rotation"]("Z") = std::to_string(rot.Z);
-    data["rotation"]("Y") = std::to_string(rot.Y);
-    data["rotation"]("X") = std::to_string(rot.X);
+    Message angularvel("angularvel");
+    data["angularvel"] = angularvel;
+    data["angularvel"]("Z") = z;
+    data["angularvel"]("Y") = y;
+    data["angularvel"]("X") = x;
     data("id") = std::to_string(this->_id);
+    data("linvelocity") = vel;
     this->_socket.write(data.getJSON());
 }
 
@@ -150,6 +157,9 @@ ClientSocket Client::getSocket() {
 }
 
 void Client::setId(int id) {
+    std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
+
+    infile << id;
     this->_id = id;
 }
 

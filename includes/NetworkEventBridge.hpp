@@ -13,6 +13,8 @@
 
 #include <vector>
 #include <string>
+#include <mutex>
+#include <unordered_map>
 
 namespace indie {
 
@@ -29,6 +31,8 @@ namespace indie {
 
     protected:
         std::vector<std::string> _cmdBuffer;
+        std::mutex _mutex;
+        std::unordered_map<std::string, int> _operation;
 
     private:
 

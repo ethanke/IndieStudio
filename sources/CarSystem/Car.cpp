@@ -58,12 +58,14 @@ void Car::OnFrame() {
     if (!this->_isAI) {
         updateCamera();
         if (this->_elapsedTime >= 1) {
-            Client::Instance().move(this->_car->getPosition(), this->_car->getRotation());
+            //Client::Instance().move();
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
+    //Client::Instance().sendVelocity();
+
 	this->_carLoader.Update(drive_tipe);
 }
 

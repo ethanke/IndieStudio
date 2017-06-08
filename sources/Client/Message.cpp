@@ -10,6 +10,8 @@
 
 #include                "Message.hpp"
 
+using namespace indie;
+
 Message::Message(std::string const &title)
 {
     this->_title = title;

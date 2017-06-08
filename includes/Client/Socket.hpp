@@ -16,29 +16,32 @@
 
 #define         MAX_BUFF_SIZE       4096
 
-class Socket {
-protected:
-    SOCKET _fd;
-    std::string _ip;
-    bool _started;
-    bool _detach;
+namespace indie {
 
-public:
-    Socket ();
-    virtual ~Socket ();
-    Socket(Socket &obj);
-    Socket    &operator=(Socket &obj);
-    std::string const &getIp() const;
-    void write(std::string const &str);
-    std::string read();
-    void close();
-    SOCKET getFd() const;
-    void setFd(SOCKET fd);
-    bool isStarted() const;
-    bool isDetach() const;
-    void detach();
-    void join();
-    void setListener(fd_set *fdset, int &max) const;
-};
+    class Socket {
+    protected:
+        SOCKET _fd;
+        std::string _ip;
+        bool _started;
+        bool _detach;
+
+    public:
+        Socket ();
+        virtual ~Socket ();
+        Socket(Socket &obj);
+        Socket    &operator=(Socket &obj);
+        std::string const &getIp() const;
+        void write(std::string const &str);
+        std::string read();
+        void close();
+        SOCKET getFd() const;
+        void setFd(SOCKET fd);
+        bool isStarted() const;
+        bool isDetach() const;
+        void detach();
+        void join();
+        void setListener(fd_set *fdset, int &max) const;
+    };
+}
 
 #endif /* !SOCKET_HH_ */

@@ -42,6 +42,10 @@ public:
 
     void getId(int fd);
     void setId(int fd, int id);
+    void move(int fd);
+    void addMoney(int fd, int id, int value);
+    void getMoney(int fd, int id);
+    void joinServer(int fd, int id, int value);
 };
 
 #endif /* !GAMEMANAGER_HH_ */

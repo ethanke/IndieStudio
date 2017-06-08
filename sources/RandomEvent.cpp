@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 01:55:01 2017 Lucas Gambini
-** Last update Wed Jun 07 12:14:25 2017 Lucas Gambini
+** Last update Thu Jun 08 20:23:14 2017 Lucas Gambini
 */
 
 #include "RandomEvent.hpp"
@@ -21,12 +21,11 @@ RandomEvent::RandomEvent(irr::scene::ISceneManager* smgr, carWatcher *watcher) {
         this->_IMin = 60;
         this->_IMax = 600;
     #else
-        this->_IMin = 10;
-        this->_IMax = 60;
+        this->_IMin = 5;
+        this->_IMax = 10;
     #endif
     srand(time(NULL));
 
-    // DON'T JUDGE ME PLZ
     this->_preset.push_back(irr::core::vector3df(-164.332672, 0, 5.319206));
     this->_preset.push_back(irr::core::vector3df(-1861.654175, 0, -686.144226));
     this->_preset.push_back(irr::core::vector3df(-238.138550, 0, -927.903687));
@@ -58,7 +57,7 @@ void RandomEvent::OnFrame() {
     if (this->_currentOffset == -1) {
         while ((this->_currentOffset = rand() % this->_IMax) < this->_IMin);
     } else if ((int)this->_elapsedTime >= this->_currentOffset) {
-        GameCheckpoint check = GameCheckpoint(this->_smgr, 3, 0, NULL, -1, GameCheckpoint::MONEY, 5, this->_preset[this->_index]);
+        GameCheckpoint check = GameCheckpoint(this->_smgr, 3, 0, NULL, 54324324, GameCheckpoint::MONEY, 5, this->_preset[this->_index]);
         this->_watcher->addCheckpoint(check);
         this->_preset.erase(this->_preset.begin() + this->_index);
         this->_currentOffset = -1;

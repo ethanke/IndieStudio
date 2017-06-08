@@ -10,6 +10,9 @@
 
 #include                "ClientSocket.hpp"
 
+using namespace indie;
+
+
 ClientSocket::ClientSocket()
 {
 }

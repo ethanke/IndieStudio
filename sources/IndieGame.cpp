@@ -173,6 +173,9 @@ void IndieGame::addGameObject() {
 }
 
 void IndieGame::addEventReceiver() {
+    int i = 0;
+    this->_operation["setid"] = i++;
+    this->_operation["getmoney"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
 }
@@ -205,12 +208,21 @@ void IndieGame::loadMap() {
 void IndieGame::OnFrame() {
 
     this->lockEventBuffer();
-    for (auto const &str: this->_cmdBuffer)
+    Message data("void");
+    for (auto const &str: this->_cmdBuffer) {
         std::cout << str << std::endl;
-    std::cout << std::endl;
+        data.parseJSON(str);
+        switch (this->_operation[data.getTitle()]) {
+            case 0:
+                Client::Instance().setId(atoi(data("id").c_str()));
+                break;
+            case 1:
+                std::cout << data("value") << std::endl;
+                break;
+        }
+    }
     this->_cmdBuffer.clear();
     this->unlockEventBuffer();
-
 
     if (!_pos)
         return;
