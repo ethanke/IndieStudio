@@ -124,9 +124,9 @@ void IndieGame::addGameObject() {
 
     int j = 1;
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(200, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(744.1, 0, 502.7)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(313.75, 0, -215.9)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(744.1, 0, 502.7)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(313.75, 0, -215.9)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
 
     this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
@@ -203,6 +203,7 @@ void IndieGame::loadMap() {
 }
 
 void IndieGame::OnFrame() {
+    Client::Instance().read();
     if (!_pos)
         return;
     std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
@@ -299,8 +300,9 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         break;
                     case JoinServer::JOIN:
+                        // std::wstring ws(this->_onlineUI->getText());
+                        // Client::Instance().joinId(std::string(ws.begin(), ws.end()));
                         this->OnLeavingOnline();
-                        // DIRE AU SERVER QUE WESH IL FAUT SE CONNECTER
                         break;
                     case MainMenu::PLAY:
                         // this->_image = this->_driver->getTexture("misc/loading.jpg");

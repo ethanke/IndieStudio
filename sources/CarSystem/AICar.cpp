@@ -112,7 +112,7 @@ void AICar::OnEnterInCourseChPt(GameCheckpoint const &ch) {
 
 void AICar::KeyboardEvent() {
     std::vector<double> engineResult = this->_engineBrain.getResults();
-    std::cout << engineResult[0] << "  " << std::abs(engineResult[1]) << std::endl;
+    // std::cout << engineResult[0] << "  " << std::abs(engineResult[1]) << std::endl;
     this->_car->move(engineResult[0]);
     this->_car->brake(std::abs(engineResult[1]));
 

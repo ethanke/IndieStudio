@@ -29,6 +29,8 @@ namespace indie {
         int _id;
 
     public:
+        //93.9.51.53
+        //10.16.252.77
         explicit Client (std::string const &ip = "127.0.0.1", int port = 1234);
         virtual ~Client ();
         Client(const Client &obj);
@@ -41,10 +43,12 @@ namespace indie {
         void setId(int id);
         int getId() const;
 
-        std::string read();
+        void read();
 
         void requestId();
+        void giveId();
         void addMoney(int nb);
+        void joinId(std::string const &dest_id);
         void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot);
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();

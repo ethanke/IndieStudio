@@ -12,12 +12,14 @@
 #define CLIENTSOCKET_HPP__
 
 #include                <future>
+#include                <vector>
 #include                "Socket.hpp"
 
 class ClientSocket : public Socket {
 private:
     std::future<void> _async;
     void _launchLoop();
+    std::vector<std::string> _buffer;
 
 public:
     ClientSocket ();
@@ -28,6 +30,8 @@ public:
     void stop();
     void launchLoop();
     void reciveCommand(std::string const &json);
+    std::vector<std::string> const &getBuffer() const;
+    void resetBuffer();
 };
 
 #endif /* !CLIENTSOCKET_HPP__ */

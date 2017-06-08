@@ -78,7 +78,6 @@ void ClientSocket::_launchLoop()
 
     while (this->_started == true)
     {
-        printf("lol\n");
         FD_ZERO(&fdset);
         FD_SET(this->_fd, &fdset);
         if (select(this->_fd + 1, &fdset, NULL, NULL, &tv) == -1)
@@ -101,5 +100,13 @@ void ClientSocket::launchLoop()
 
 void ClientSocket::reciveCommand(std::string const &json)
 {
+    this->_buffer.push_back(json);
+}
 
+std::vector<std::string> const &ClientSocket::getBuffer() const {
+    return this->_buffer;
+}
+
+void ClientSocket::resetBuffer() {
+    this->_buffer.clear();
 }

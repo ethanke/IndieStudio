@@ -50,8 +50,13 @@ void Client::stop() {
     this->_socket.stop();
 }
 
-std::string Client::read() {
-    return std::string("lol");
+void Client::read() {
+    std::vector<std::string> _buffer = this->_socket.getBuffer();
+
+    for (auto const &x : _buffer) {
+        std::cout << x << std::endl;
+    }
+    this->_socket.resetBuffer();
 }
 
 
@@ -62,32 +67,51 @@ void Client::requestId() {
     std::ifstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
 
     if (infile >> id) {
-        Client::Instance().setId(id);
-        return;
+        if (id != -1) {
+            this->_id = id;
+            this->giveId();
+            return;
+        }
     }
 
     Message data("getid");
-    std::cout << data.getJSON() << std::endl;
-    Client::Instance().getSocket().write(data.getJSON());
+    this->_socket.write(data.getJSON());
 
+}
+
+void Client::giveId() {
+    Message data("setid");
+    data("id") = std::to_string(this->_id);
+    this->_socket.write(data.getJSON());
 }
 
 void Client::addMoney(int nb) {
     if (this->_id == -1) {
-        Client::Instance().requestId();
+        this->requestId();
         return;
     }
 
     Message data("addmoney");
     data("id") = std::to_string(this->_id);
     data("value") = std::to_string(nb);
-    std::cout << data.getJSON() << std::endl;
+    this->_socket.write(data.getJSON());
+}
+
+void Client::joinId(std::string const &dest_id) {
+    if (this->_id == -1) {
+        this->requestId();
+        return;
+    }
+
+    Message data("join");
+    data("id") = std::to_string(this->_id);
+    data("value") = dest_id;
     this->_socket.write(data.getJSON());
 }
 
 void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
     if (this->_id == -1) {
-        Client::Instance().requestId();
+        this->requestId();
         return;
     }
 
@@ -103,32 +127,29 @@ void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &r
     data["rotation"]("Y") = std::to_string(rot.Y);
     data["rotation"]("X") = std::to_string(rot.X);
     data("id") = std::to_string(this->_id);
-    std::cout << data.getJSON() << std::endl;
     this->_socket.write(data.getJSON());
 }
 
 void Client::creatingCourseLobby(irr::s32 const &id) {
     if (this->_id == -1) {
-        Client::Instance().requestId();
+        this->requestId();
         return;
     }
 
     Message data("creatinglobby");
     data("id") = std::to_string(this->_id);
     data("course") = std::to_string(id);
-    std::cout << data.getJSON() << std::endl;
     this->_socket.write(data.getJSON());
 }
 
 void Client::leavingCourseLobby() {
     if (this->_id == -1) {
-        Client::Instance().requestId();
+        this->requestId();
         return;
     }
 
     Message data("leavinglobby");
     data("id") = std::to_string(this->_id);
-    std::cout << data.getJSON() << std::endl;
     this->_socket.write(data.getJSON());
 }
 
