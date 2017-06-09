@@ -16,6 +16,7 @@ Server::Server ()
 
 Server::~Server ()
 {
+
 }
 
 Server::Server(const Server &obj)
@@ -82,4 +83,9 @@ bool Server::deleteClientByFd(int fd)
         return (true);
     }
     return (false);
+}
+
+void Server::shutdown() {
+    Message data("disconnect");
+    writeAll(data.getJSON());
 }

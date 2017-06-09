@@ -16,6 +16,9 @@ Group::Group()
 
 Group::~Group()
 {
+    for (auto &client : this->_clients) {
+        deleteClientByFd(client.first);
+    }
 }
 
 Group::Group(const Group &obj)
@@ -98,4 +101,8 @@ bool Group::deleteClientByFd(int fd)
         return (true);
     }
     return (false);
+}
+
+int Group::getClientNumber() const {
+    return this->_clients.size();
 }

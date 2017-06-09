@@ -29,6 +29,7 @@ public:
     virtual bool foundClientById(int id);
     virtual bool foundClientByFd(int fd);
     virtual void addClient(Client *client);
+    virtual int getClientNumber() const;
     virtual bool deleteClientById(int id);
     virtual bool deleteClientByFd(int fd);
 };

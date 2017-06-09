@@ -27,6 +27,7 @@ public:
     void endRace(int id);
     bool deleteClientFromRaceById(int id);
     bool deleteClientFromRaceByFd(int fd);
+    void shutdown();
     virtual bool deleteClientById(int id);
     virtual bool deleteClientByFd(int fd);
 };

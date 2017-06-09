@@ -180,6 +180,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["getmoney"] = i++;
     this->_operation["connected"] = i++;
     this->_operation["move"] = i++;
+    this->_operation["disconnect"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
 }
@@ -228,6 +229,10 @@ void IndieGame::OnFrame() {
                 this->_car->mustSendData(true);
                 break;
             case 3:
+                break;
+            case 4:
+                this->_connectedTo = -1;
+                this->_car->mustSendData(false);
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
