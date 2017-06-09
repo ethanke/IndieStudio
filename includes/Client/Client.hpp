@@ -43,12 +43,14 @@ namespace indie {
         void setId(int id);
         int getId() const;
 
+        void debug(std::string const &debug);
         void requestId();
         void giveId();
         void addMoney(int nb);
         void requestMoney();
-        void joinId(std::string const &dest_id);
-        void move(std::string const &vel, std::string const &x, std::string const &y, std::string const &z);
+        void joinId(const wchar_t *dest_id);
+        void move(irr::core::vector3df const &pos);
+        void sendVelocity();
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();
 

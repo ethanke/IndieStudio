@@ -320,8 +320,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         break;
                     case JoinServer::JOIN:
-                        // std::wstring ws(this->_onlineUI->getText());
-                        // Client::Instance().joinId(std::string(ws.begin(), ws.end()));
+                        Client::Instance().joinId(this->_onlineUI->getText());
                         this->OnLeavingOnline();
                         break;
                     case MainMenu::PLAY:

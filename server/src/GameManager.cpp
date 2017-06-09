@@ -101,7 +101,7 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
             setId(fd, std::atoi(command("id").c_str()));
             break;
         case 2:
-
+            move(command);
             break;
         case 3:
             addMoney(fd, std::atoi(command("id").c_str()), std::atoi(command("value").c_str()));
@@ -213,10 +213,24 @@ void GameManager::getMoney(int fd, int id) {
     this->_clients[fd].write(data.getJSON());
 }
 
-void GameManager::move(int fd) {
-    
+void GameManager::move(Message &data) {
+    for (auto &server : this->_servers) {
+        if (server.foundClientById(std::atoi(data("id").c_str()))) {
+            server.writeAllExeptById(data.getJSON(), std::atoi(data("id").c_str()));
+            break;
+        }
+    }
 }
 
 void GameManager::joinServer(int fd, int id, int value) {
-
+    for (auto &server : this->_servers) {
+        if (server.foundClientById(value)) {
+            server.addClient(&this->_clients[fd]);
+            return;
+        }
+    }
+    Server serv;
+    serv.addClient(&getClientById(value));
+    serv.addClient(&getClientById(id));
+    this->_servers.push_back(serv);
 }

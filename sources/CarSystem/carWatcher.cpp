@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Wed Jun 07 10:10:01 2017 Lucas Gambini
+** Last update Fri Jun 09 16:43:09 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -44,7 +44,7 @@ void carWatcher::OnFrame() {
     int index = 0;
     irr::core::vector3df cpos = this->_car->getPosition();
     for (auto &x : this->_checkpoints) {
-        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false && (this->_car->getVel() <= 1 || (x.getChType() == GameCheckpoint::MONEY || x.getChType() == GameCheckpoint::IN_COURSE))/* && x.isLaserVisible() == true*/)
+        if ((check = isCarInCheck(x, cpos)) == true && x.isBusy() == false && (this->_car->getVel() <= 1 || (x.getChType() == GameCheckpoint::MONEY || x.getChType() == GameCheckpoint::IN_COURSE)))
         {
             x.setBusy(true);
             switch (x.getChType()) {
@@ -56,13 +56,13 @@ void carWatcher::OnFrame() {
                     break;
                 case GameCheckpoint::MONEY:
                     x.remove();
-                    this->_checkpoints.erase(this->_checkpoints.begin() + index);
+                    this->_checkpoints.erase(this->_checkpoints.begin() + index - 1);
                     _eventReceiver->OnEnterMoney();
                     break;
                 case GameCheckpoint::IN_COURSE:
                     if (this->_needRemove == true) {
                         x.remove();
-                        this->_checkpoints.erase(this->_checkpoints.begin() + index);
+                        this->_checkpoints.erase(this->_checkpoints.begin() + index - 1);
                     }
                     _eventReceiver->OnEnterInCourseChPt(x);
                     break;

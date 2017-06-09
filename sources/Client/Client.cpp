@@ -96,7 +96,7 @@ void Client::requestMoney() {
     this->_socket.write(data.getJSON());
 }
 
-void Client::joinId(std::string const &dest_id) {
+void Client::joinId(const wchar_t *dest_id) {
     if (this->_id == -1) {
         this->requestId();
         return;
@@ -104,25 +104,42 @@ void Client::joinId(std::string const &dest_id) {
 
     Message data("join");
     data("id") = std::to_string(this->_id);
-    data("value") = dest_id;
+    std::wstring ws(dest_id);
+    std::string dest(ws.begin(), ws.end());
+    data("value") = dest;
     this->_socket.write(data.getJSON());
 }
 
-void Client::move(std::string const &vel, std::string const &x, std::string const &y, std::string const &z) {
+void Client::move(irr::core::vector3df const &pos) {
     if (this->_id == -1) {
         this->requestId();
         return;
     }
 
     Message data("move");
-    Message angularvel("angularvel");
-    data["angularvel"] = angularvel;
-    data["angularvel"]("Z") = z;
-    data["angularvel"]("Y") = y;
-    data["angularvel"]("X") = x;
+    Message position("position");
+    data["position"] = position;
+    data["position"]("Z") = std::to_string(pos.Z);
+    data["position"]("Y") = std::to_string(pos.Y);
+    data["position"]("X") = std::to_string(pos.X);
     data("id") = std::to_string(this->_id);
-    data("linvelocity") = vel;
     this->_socket.write(data.getJSON());
+}
+
+void Client::sendVelocity() {
+    // if (this->_id == -1) {
+    //     this->requestId();
+    //     return;
+    // }
+    //
+    // Message data("velocity");
+    // Message position("position");
+    // data["position"] = position;
+    // data["position"]("Z") = std::to_string(pos.Z);
+    // data["position"]("Y") = std::to_string(pos.Y);
+    // data["position"]("X") = std::to_string(pos.X);
+    // data("id") = std::to_string(this->_id);
+    // this->_socket.write(data.getJSON());
 }
 
 void Client::creatingCourseLobby(irr::s32 const &id) {
@@ -148,6 +165,12 @@ void Client::leavingCourseLobby() {
     this->_socket.write(data.getJSON());
 }
 
+void Client::debug(std::string const &debug)
+{
+    Message data(debug);
+
+    this->_socket.write(data.getJSON());
+}
 
 
 

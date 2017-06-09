@@ -27,7 +27,7 @@ namespace indie {
 
     public:
         Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no = 0,
-            irr::core::vector3df position = irr::core::vector3df(-10, 36, 0), bool isAI = false);
+            irr::core::vector3df position = irr::core::vector3df(-164.3, 60, 5.3), bool isAI = false);
         ~Car();
 
         virtual void OnFrame();
@@ -52,6 +52,7 @@ namespace indie {
         irr::s32 drive_tipe;
 
         bool reverse;
+        bool _lookback;
 
         BasicCamera *_camera;
         core::vector3df _cameraPosition;

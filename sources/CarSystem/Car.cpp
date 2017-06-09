@@ -36,6 +36,7 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     }
 
     reverse = false;
+    this->_lookback = false;
 
     this->_car_no = car_no;
     this->_carLoader.setCarPos(position);
@@ -58,7 +59,7 @@ void Car::OnFrame() {
     if (!this->_isAI) {
         updateCamera();
         if (this->_elapsedTime >= 1) {
-            //Client::Instance().move();
+            Client::Instance().move(this->getPosition());
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
@@ -74,7 +75,10 @@ void Car::updateCamera() {
     core::vector3df targetRot = this->_car->getRotation();
     core::vector3df targetdir = targetRot.rotationToDirection().normalize();
 
-    this->_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + this->_cameraHeight + this->_car->getlinVel() / 70, targetPos.Z) + -targetdir * (this->_baseCameraDistance + this->_car->getlinVel() / 35);
+    if (this->_lookback == false)
+        this->_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + this->_cameraHeight + this->_car->getlinVel() / 70, targetPos.Z) + -targetdir * (this->_baseCameraDistance + this->_car->getlinVel() / 35);
+    else
+        this->_cameraPosition = irr::core::vector3df(targetPos.X, targetPos.Y + this->_cameraHeight + this->_car->getlinVel() / 70, targetPos.Z) + targetdir * (this->_baseCameraDistance + this->_car->getlinVel() / 35);
 
 	this->_camera->setPosition(this->_cameraPosition);
 	this->_camera->setTarget(targetPos);
@@ -112,6 +116,11 @@ void Car::KeyboardEvent() {
 	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {
 		reverse = false;
 	}
+    if(_eventReceiver->IsKeyDown(irr::KEY_KEY_C)) {
+		this->_lookback = true;
+	} else {
+        this->_lookback = false;
+    }
 	if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
 	{
 		this->_carLoader.resetCar(0); // 90
