@@ -102,6 +102,8 @@ namespace indie {
 
         irr::video::ITexture *_image;
 
+        int _connectedTo;
+
         //Text debug
         irr::gui::IGUIStaticText *_pos;
     };

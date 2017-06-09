@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Fri Jun 09 16:43:09 2017 Lucas Gambini
+** Last update Fri Jun 09 20:55:31 2017 Lucas Gambini
 */
 
 #include "carWatcher.hpp"
@@ -56,13 +56,14 @@ void carWatcher::OnFrame() {
                     break;
                 case GameCheckpoint::MONEY:
                     x.remove();
-                    this->_checkpoints.erase(this->_checkpoints.begin() + index - 1);
-                    _eventReceiver->OnEnterMoney();
+                    this->_checkpoints.erase(this->_checkpoints.begin() + index);
+                    Client::Instance().debug(std::to_string(this->_checkpoints.size()));
+                    // _eventReceiver->OnEnterMoney();
                     break;
                 case GameCheckpoint::IN_COURSE:
                     if (this->_needRemove == true) {
                         x.remove();
-                        this->_checkpoints.erase(this->_checkpoints.begin() + index - 1);
+                        this->_checkpoints.erase(this->_checkpoints.begin() + index);
                     }
                     _eventReceiver->OnEnterInCourseChPt(x);
                     break;

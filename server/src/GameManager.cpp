@@ -23,6 +23,7 @@ GameManager::GameManager()
     this->_operation["addmoney"] = i++;
     this->_operation["getmoney"] = i++;
     this->_operation["join"] = i++;
+    this->_operation["debug"] = i++;
 }
 
 GameManager::~GameManager ()
@@ -111,6 +112,13 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
             break;
         case 5:
             joinServer(fd, std::atoi(command("id").c_str()), std::atoi(command("value").c_str()));
+            break;
+        case 6:
+            debugMessage(command("msg"));
+            break;
+        default:
+            std::cerr << "Command not found" << std::endl;
+            break;
     }
 }
 
@@ -223,14 +231,32 @@ void GameManager::move(Message &data) {
 }
 
 void GameManager::joinServer(int fd, int id, int value) {
+    if (value == id)
+        return;
+    for (auto &server : this->_servers) {
+        if (server.foundClientById(id)) {
+            std::cout << id << " already connected" << std::endl;
+            return;
+        }
+    }
+    Message data("connected");
+    data("value") = std::to_string(value);
     for (auto &server : this->_servers) {
         if (server.foundClientById(value)) {
             server.addClient(&this->_clients[fd]);
+            server.writeAll(data.getJSON());
+            std::cout << "client " << id << " joined " << value << std::endl;
             return;
         }
     }
     Server serv;
     serv.addClient(&getClientById(value));
     serv.addClient(&getClientById(id));
+    std::cout << "server created for " << value << " and client " << id << " joined" << std::endl;
     this->_servers.push_back(serv);
+    serv.writeAll(data.getJSON());
+}
+
+void GameManager::debugMessage(std::string const &msg) {
+    std::cout << "Debug message: " << msg << std::endl;
 }

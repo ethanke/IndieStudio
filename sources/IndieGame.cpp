@@ -16,6 +16,7 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     _pos = NULL;
     bulletPhysSys = NULL;
     _mainmenu = NULL;
+    this->_connectedTo = -1;
 }
 
 IndieGame::~IndieGame() {
@@ -176,6 +177,8 @@ void IndieGame::addEventReceiver() {
     int i = 0;
     this->_operation["setid"] = i++;
     this->_operation["getmoney"] = i++;
+    this->_operation["connected"] = i++;
+    this->_operation["move"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
 }
@@ -219,6 +222,15 @@ void IndieGame::OnFrame() {
             case 1:
                 std::cout << data("value") << std::endl;
                 break;
+            case 2:
+                this->_connectedTo = std::atoi(data("value").c_str());
+                this->_car->mustSendData(true);
+                break;
+            case 3:
+                break;
+            default:
+                std::cerr << "Command not found" << std::endl;
+                break;
         }
     }
     this->_cmdBuffer.clear();
@@ -226,7 +238,10 @@ void IndieGame::OnFrame() {
 
     if (!_pos)
         return;
-    std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
+    // std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
+    // std::string str("            \nOnline id: " + std::to_string(Client::Instance().getId()));
+    std::string str("            \nonline id: " + std::to_string(Client::Instance().getId()) + "\nconnected to id: " + std::to_string(this->_connectedTo));
+
     this->_pos->setText(Utils::StrToWstr(str));
 
     if (!bulletPhysSys)

@@ -75,7 +75,9 @@ std::string Client::read()
     return (this->_sock.read());
 }
 
+#include <iostream>
 void Client::write(std::string const &str)
 {
+    std::cout << "SENDING: " << str << std::endl;
     this->_sock.write(str);
 }

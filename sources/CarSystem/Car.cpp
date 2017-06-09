@@ -35,8 +35,9 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
         this->_camera->setFarValue(500);
     }
 
-    reverse = false;
+    this->reverse = false;
     this->_lookback = false;
+    this->_mustSendData = false;
 
     this->_car_no = car_no;
     this->_carLoader.setCarPos(position);
@@ -59,13 +60,15 @@ void Car::OnFrame() {
     if (!this->_isAI) {
         updateCamera();
         if (this->_elapsedTime >= 1) {
-            Client::Instance().move(this->getPosition());
+            if (this->_mustSendData == true)
+                Client::Instance().move(this->getPosition());
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
-    //Client::Instance().sendVelocity();
+    // if (this->_mustSendData == true)
+        //Client::Instance().sendVelocity();
 
 	this->_carLoader.Update(drive_tipe);
 }
@@ -147,4 +150,8 @@ irr::f32 Car::getVel() const {
 
 irr::f32 Car::getMaxSpeed() const {
     return this->_carLoader.getMaxSpeed();
+}
+
+void Car::mustSendData(bool value) {
+    this->_mustSendData = value;
 }

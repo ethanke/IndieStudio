@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 01:55:01 2017 Lucas Gambini
-** Last update Fri Jun 09 15:51:59 2017 Lucas Gambini
+** Last update Fri Jun 09 21:27:51 2017 Lucas Gambini
 */
 
 #include "RandomEvent.hpp"

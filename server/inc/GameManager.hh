@@ -46,6 +46,7 @@ public:
     void addMoney(int fd, int id, int value);
     void getMoney(int fd, int id);
     void joinServer(int fd, int id, int value);
+    void debugMessage(std::string const &msg);
 };
 
 #endif /* !GAMEMANAGER_HH_ */

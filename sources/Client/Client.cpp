@@ -61,7 +61,6 @@ void Client::requestId() {
             return;
         }
     }
-
     Message data("getid");
     this->_socket.write(data.getJSON());
 
@@ -167,8 +166,12 @@ void Client::leavingCourseLobby() {
 
 void Client::debug(std::string const &debug)
 {
-    Message data(debug);
-
+    if (this->_id == -1) {
+        this->requestId();
+        return;
+    }
+    Message data("debug");
+    data("msg") = debug;
     this->_socket.write(data.getJSON());
 }
 
