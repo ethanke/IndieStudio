@@ -87,12 +87,7 @@ int GameManager::getClientsSize() const
     return (this->_clients.size());
 }
 
-void GameManager::launchCommand(std::string const &json, SOCKET fd)
-{
-    Message command("nothing");
-
-    command.parseJSON(json);
-    std::cout << command.getTitle() << " " << json << std::endl;
+void GameManager::foundCommand(Message &command, SOCKET fd) {
     switch (this->_operation[command.getTitle()])
     {
         case 0:
@@ -119,6 +114,22 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
         default:
             std::cerr << "Command not found" << std::endl;
             break;
+    }
+}
+
+void GameManager::launchCommand(std::string const &json, SOCKET fd)
+{
+    Message command("nothing");
+    std::string delimiter("|");
+
+    size_t pos = 0;
+    std::string token;
+    while ((pos = json.find(delimiter)) != std::string::npos) {
+        token = json.substr(0, pos);
+        command.parseJSON(token);
+        std::cout << command.getTitle() << " " << token << std::endl;
+        this->foundCommand(command, fd);
+        const_cast<std::string&>(json).erase(0, pos + delimiter.length());
     }
 }
 

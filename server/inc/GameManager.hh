@@ -32,6 +32,7 @@ public:
     Client &getClientById(int id);
     int getClientsSize() const;
     void launchCommand(std::string const &json, SOCKET fd);
+    void foundCommand(Message &command, SOCKET fd);
     void readClientByFdSet(fd_set *fdset);
     void readClientByFd(SOCKET fd);
     void writeClientByFd(SOCKET fd, std::string const &str);
