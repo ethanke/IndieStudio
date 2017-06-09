@@ -124,6 +124,7 @@ void IndieGame::addGameObject() {
     this->_objectList.push_back(this->_aiCar);
 
     int j = 1;
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(5, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(744.1, 0, 502.7)));
@@ -335,7 +336,8 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         break;
                     case JoinServer::JOIN:
-                        Client::Instance().joinId(this->_onlineUI->getText());
+                        if (this->_connectedTo == -1)
+                            Client::Instance().joinId(this->_onlineUI->getText());
                         this->OnLeavingOnline();
                         break;
                     case MainMenu::PLAY:
