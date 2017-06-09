@@ -61,16 +61,17 @@ void GameManager::deleteClient(int fd)
     if (this->_clients.count(fd) > 0)
     {
         std::cout << "Disconnection : " << this->getClientByFd(fd).getSocket().getIp() << std::endl;
-        this->_clients.erase(fd);
         for (auto &server : this->_servers) {
             if (server.foundClientByFd(fd)) {
                 server.deleteClientByFd(fd);
-                if (server.getClientNumber() == 1)
+                if (server.getClientNumber() == 1) {
                     server.shutdown();
                     this->_servers.pop_back();
-                    break;
+                }
+                break;
             }
         }
+        this->_clients.erase(fd);
     }
 }
 
