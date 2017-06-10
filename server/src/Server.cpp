@@ -95,7 +95,6 @@ bool Server::raceExist(int id) const {
         if (race.getId() == id)
             return true;
     }
-    throw std::runtime_error("raceExist: race not found.");
     return false;
 }
 
