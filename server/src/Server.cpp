@@ -95,13 +95,16 @@ bool Server::raceExist(int id) const {
         if (race.getId() == id)
             return true;
     }
+    throw std::runtime_error("raceExist: race not found.");
     return false;
 }
 
 Race &Server::getRaceById(int id) {
     for (auto &race : this->_races) {
-        if (race.getId() == id)
+        if (race.getId() == id) {
             return race;
+        }
     }
+    throw std::runtime_error("getRaceById: race not found.");
     return this->_races[-1];
 }

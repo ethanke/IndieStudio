@@ -11,6 +11,7 @@
 #ifndef             SERVER_HH_
 #define             SERVER_HH_
 
+#include            <exception>
 #include            "Race.hh"
 #include            "Message.hh"
 

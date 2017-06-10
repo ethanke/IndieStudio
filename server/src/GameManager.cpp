@@ -69,7 +69,6 @@ void GameManager::deleteClient(int fd)
                 server.deleteClientByFd(fd);
                 if (server.getClientNumber() == 1) {
                     server.shutdown();
-                    this->_servers.pop_back();
                 }
                 break;
             }
@@ -153,7 +152,6 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
         this->foundCommand(command, fd);
         const_cast<std::string&>(json).erase(0, pos + delimiter.length());
     }
-    this->foundCommand(command, fd);
 }
 
 void GameManager::readClientByFdSet(fd_set *fdset)
@@ -296,21 +294,25 @@ void GameManager::debugMessage(std::string const &msg) {
 }
 
 void GameManager::creatingCourseLobby(int fd, int id, int courseId) {
-    // for (auto &server : this->_servers) {
-    //     if (server.foundClientById(id)) {
-    //         Message data("newcourseplayer");
-    //         if (server.raceExist(courseId) == false) {
-    //             server.startRace(courseId);
-    //             server.getRaceById(courseId).addClient(&this->getClientById(id));
-    //             data("id") = std::to_string(id);
-    //         } else {
-    //             server.getRaceById(courseId).addClient(&this->getClientById(id));
-    //             data("id") = std::to_string(server.getRaceById(courseId).getLeader());
-    //         }
-    //         this->writeClientById(id, data.getJSON());
-    //         return;
-    //     }
-    // }
+    try {
+        for (auto &server : this->_servers) {
+            if (server.foundClientById(id)) {
+                Message data("newcourseplayer");
+                if (server.raceExist(courseId) == false) {
+                    server.startRace(courseId);
+                    server.getRaceById(courseId).addClient(&this->getClientById(id));
+                } else {
+                    server.getRaceById(courseId).addClient(&this->getClientById(id));
+                }
+                data("id") = std::to_string(id);
+                server.getRaceById(courseId).writeAll(data.getJSON());
+                return;
+            }
+        }
+    } catch (std::runtime_error const &er) {
+        std::cerr << er.what() << std::endl;
+    }
+
 }
 
 void GameManager::leavingCourseLobby(int fd, int id) {
