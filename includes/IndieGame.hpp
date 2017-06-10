@@ -36,6 +36,7 @@
 #include "Concessionnaire.hpp"
 #include "Client.hpp"
 #include "Message.hpp"
+#include "NetworkCar.hpp"
 
 namespace indie {
 
@@ -79,7 +80,8 @@ namespace indie {
 
         virtual void launchMenu();
 
-        void updateCars(Message &msg);
+        void updateCarsVelocity(Message &msg);
+        void updateCarsPosition(Message &msg);
 
     private:
         Car *_car;

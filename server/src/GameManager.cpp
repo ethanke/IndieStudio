@@ -24,6 +24,7 @@ GameManager::GameManager()
     this->_operation["getmoney"] = i++;
     this->_operation["join"] = i++;
     this->_operation["debug"] = i++;
+    this->_operation["velocity"] = i++;
 }
 
 GameManager::~GameManager ()
@@ -120,6 +121,9 @@ void GameManager::foundCommand(Message &command, SOCKET fd) {
             break;
         case 6:
             debugMessage(command("msg"));
+            break;
+        case 7:
+            move(command);
             break;
         default:
             std::cerr << "Command not found" << std::endl;

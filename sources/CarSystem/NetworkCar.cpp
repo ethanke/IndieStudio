@@ -22,5 +22,5 @@ NetworkCar::~NetworkCar() {
 }
 
 void NetworkCar::OnFrame() {
-
+    
 }

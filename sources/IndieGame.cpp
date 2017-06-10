@@ -203,7 +203,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["setid"] = i++;
     this->_operation["getmoney"] = i++;
     this->_operation["connected"] = i++;
-    this->_operation["move"] = i++;
+    this->_operation["velocity"] = i++;
     this->_operation["disconnect"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
@@ -228,11 +228,14 @@ void IndieGame::OnFrame() {
                 this->_car->mustSendData(true);
                 break;
             case 3:
-                updateCars(data);
+                updateCarsVelocity(data);
                 break;
             case 4:
                 this->_connectedTo = -1;
                 this->_car->mustSendData(false);
+                break;
+            case 5:
+                updateCarsPosition(data);
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
@@ -255,13 +258,35 @@ void IndieGame::OnFrame() {
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }
 
-void IndieGame::updateCars(Message &msg) {
+void IndieGame::updateCarsVelocity(Message &msg) {
     if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
-        Car *nc = new Car(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0, irr::core::vector3df(0, 100, 0), true);
+        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
         this->_cars[std::atoi(msg("id").c_str())] = nc;
         this->_objectList.push_back(nc);
     } else {
-        // this->_cars[std::atoi(msg("id").c_str())]
+        irr::core::vector3df velocity(0, 0, 0);
+        velocity.X = std::atoi(msg["linear"]("X").c_str());
+        velocity.Y = std::atoi(msg["linear"]("Y").c_str());
+        velocity.Z = std::atoi(msg["linear"]("Z").c_str());
+        this->_cars[std::atoi(msg("id").c_str())]->setLinearVelocity(velocity);
+        velocity.X = std::atoi(msg["angular"]("X").c_str());
+        velocity.Y = std::atoi(msg["angular"]("Y").c_str());
+        velocity.Z = std::atoi(msg["angular"]("Z").c_str());
+        this->_cars[std::atoi(msg("id").c_str())]->setAngularVelocity(velocity);
+    }
+}
+
+void IndieGame::updateCarsPosition(Message &msg) {
+    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
+        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
+        this->_cars[std::atoi(msg("id").c_str())] = nc;
+        this->_objectList.push_back(nc);
+    } else {
+        irr::core::vector3df pos(0, 0, 0);
+        pos.X = std::atoi(msg["position"]("X").c_str());
+        pos.Y = std::atoi(msg["position"]("Y").c_str());
+        pos.Z = std::atoi(msg["position"]("Z").c_str());
+        this->_cars[std::atoi(msg("id").c_str())]->setPosition(pos);
     }
 }
 

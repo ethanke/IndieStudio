@@ -67,8 +67,8 @@ void Car::OnFrame() {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
-    // if (this->_mustSendData == true)
-        //Client::Instance().sendVelocity();
+    if (this->_mustSendData == true)
+        Client::Instance().sendVelocity(this->getLinearVelocity(), this->getAngularVelocity());
 
 	this->_carLoader.Update(drive_tipe);
 }
@@ -133,6 +133,10 @@ void Car::KeyboardEvent() {
 
 irr::core::vector3d<float>	Car::getPosition() const {
     return this->_car->getPosition();
+}
+
+void Car::setPosition(irr::core::vector3df &pos) {
+    this->_car->setPosition(pos);
 }
 
 irr::core::vector3d<float>	Car::getRotation() const {

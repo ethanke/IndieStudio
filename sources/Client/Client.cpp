@@ -125,20 +125,25 @@ void Client::move(irr::core::vector3df const &pos) {
     this->_socket.write(data.getJSON());
 }
 
-void Client::sendVelocity() {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("velocity");
-    // Message position("position");
-    // data["position"] = position;
-    // data["position"]("Z") = std::to_string(pos.Z);
-    // data["position"]("Y") = std::to_string(pos.Y);
-    // data["position"]("X") = std::to_string(pos.X);
-    // data("id") = std::to_string(this->_id);
-    // this->_socket.write(data.getJSON());
+void Client::sendVelocity(irr::core::vector3df const &linear, irr::core::vector3df const &angular) {
+    if (this->_id == -1) {
+        this->requestId();
+        return;
+    }
+
+    Message data("velocity");
+    Message _linear("linear");
+    data["linear"] = _linear;
+    data["linear"]("Z") = std::to_string(linear.Z);
+    data["linear"]("Y") = std::to_string(linear.Y);
+    data["linear"]("X") = std::to_string(linear.X);
+    Message _angular("angular");
+    data["angular"] = _angular;
+    data["angular"]("Z") = std::to_string(angular.Z);
+    data["angular"]("Y") = std::to_string(angular.Y);
+    data["angular"]("X") = std::to_string(angular.X);
+    data("id") = std::to_string(this->_id);
+    this->_socket.write(data.getJSON());
 }
 
 void Client::creatingCourseLobby(irr::s32 const &id) {

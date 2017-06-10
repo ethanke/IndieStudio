@@ -50,7 +50,7 @@ namespace indie {
         void requestMoney();
         void joinId(const wchar_t *dest_id);
         void move(irr::core::vector3df const &pos);
-        void sendVelocity();
+        void sendVelocity(irr::core::vector3df const &linear, irr::core::vector3df const &angular);
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();
 

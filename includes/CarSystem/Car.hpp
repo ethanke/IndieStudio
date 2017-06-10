@@ -34,6 +34,7 @@ namespace indie {
 
         virtual AGameCamera *getCamera() const;
         virtual irr::core::vector3d<float> getPosition() const;
+        void setPosition(irr::core::vector3df &pos);
         virtual irr::core::vector3d<float> getRotation() const;
         virtual irr::f32 getVel() const;
         virtual irr::f32 getMaxSpeed() const;
@@ -60,6 +61,7 @@ namespace indie {
         bool reverse;
         bool _lookback;
         bool _mustSendData;
+        irr::f32 _elapsedTime;
 
         BasicCamera *_camera;
         core::vector3df _cameraPosition;
@@ -68,9 +70,6 @@ namespace indie {
 
         virtual void KeyboardEvent();
         virtual void updateCamera();
-
-    private:
-        irr::f32 _elapsedTime;
 
     };
 
