@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Tue Jun  6 19:28:34 2017 John Doe
+// Last update Sat Jun 10 23:31:55 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -17,7 +17,7 @@ AGame::AGame(int width, int height) {
     this->_windowSize = irr::core::dimension2du(width, height);
     this->_minimapCamera = NULL;
 
-    std::srand(time(NULL));
+    std::srand(std::time(NULL));
 }
 
 AGame::~AGame() {
