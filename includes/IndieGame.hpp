@@ -13,6 +13,7 @@
 
 #include <thread>
 #include <vector>
+#include <unordered_map>
 #include "AGame.hpp"
 #include "GameCameraFPS.hpp"
 #include "GameCheckpoint.hpp"
@@ -78,8 +79,11 @@ namespace indie {
 
         virtual void launchMenu();
 
+        void updateCars(Message &msg);
+
     private:
         Car *_car;
+        std::unordered_map<int, Car *> _cars;
         Car *_aiCar;
         GeneticTrainer *_genTrainer;
         std::vector<GameCheckpoint> _checkpoints;
