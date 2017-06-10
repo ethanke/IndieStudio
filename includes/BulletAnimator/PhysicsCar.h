@@ -42,6 +42,9 @@ namespace irr
 			float getBreakingForce(void) { return m_breakingForce; }
 			void setBreakingForce(float newForce) { m_breakingForce = newForce; }
 
+            float getSteeringValue(void) { return m_vehicleSteering; }
+			void setSteeringValue(float newForce) { m_vehicleSteering = newForce; }
+
 
 			void resetSteering(void)
 			{
