@@ -36,13 +36,13 @@ namespace irr
 			void reset(void);
 			void update(s32 car_drive, f32 max_speed);
 
-			float getEngineForce(void) { return m_engineForce; }
+			float getEngineForce(void) const { return m_engineForce; }
 			void setEngineForce(float newForce) { m_engineForce = newForce; }
 
-			float getBreakingForce(void) { return m_breakingForce; }
+			float getBreakingForce(void) const { return m_breakingForce; }
 			void setBreakingForce(float newForce) { m_breakingForce = newForce; }
 
-            float getSteeringValue(void) { return m_vehicleSteering; }
+            float getSteeringValue(void) const { return m_vehicleSteering; }
 			void setSteeringValue(float newForce) { m_vehicleSteering = newForce; }
 
 

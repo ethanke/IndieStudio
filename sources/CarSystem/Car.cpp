@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sat Jun 10 16:36:01 2017 Sousa Victor
+// Last update Sat Jun 10 20:18:25 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -174,4 +174,22 @@ void Car::setAngularVelocity(irr::core::vector3df const &vec) {
 }
 void Car::setLinearVelocity(irr::core::vector3df const &vec) {
     this->_car->setLinearVelocity(vec);
+}
+float Car::getEngineForce(void) const {
+    return this->_car->getEngineForce();
+}
+void Car::setEngineForce(float newForce) {
+    this->_car->setEngineForce(newForce);
+}
+float Car::getBreakingForce(void) const {
+    return this->_car->getBreakingForce();
+}
+void Car::setBreakingForce(float newForce) {
+    this->_car->setBreakingForce(newForce);
+}
+float Car::getSteeringValue(void) const {
+    return this->_car->getSteeringValue();
+}
+void Car::setSteeringValue(float newForce) {
+    this->_car->setSteeringValue(newForce);
 }

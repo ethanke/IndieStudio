@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sat Jun 10 16:35:08 2017 Sousa Victor
+// Last update Sat Jun 10 20:17:30 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -45,6 +45,13 @@ namespace indie {
         void setAngularVelocity(irr::core::vector3df const &vec);
         virtual irr::core::vector3df const getLinearVelocity() const;
         void setLinearVelocity(irr::core::vector3df const &vec);
+        float getEngineForce(void) const;
+        void setEngineForce(float newForce);
+        float getBreakingForce(void) const;
+        void setBreakingForce(float newForce);
+        float getSteeringValue(void) const;
+        void setSteeringValue(float newForce);
+
 
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;
