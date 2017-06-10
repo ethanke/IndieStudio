@@ -21,11 +21,13 @@ Race::~Race()
 
 Race::Race(const Race &obj)
 {
+    this->_id = obj._id;
     this->_clients = obj._clients;
 }
 
 Race    &Race::operator=(const Race &obj)
 {
+    this->_id = obj._id;
     this->_clients = obj._clients;
     return (*this);
 }

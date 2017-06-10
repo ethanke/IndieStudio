@@ -83,6 +83,8 @@ namespace indie {
         void updateCarsData(Message &msg);
         void updateCarsPosition(Message &msg);
 
+        void addNetworkCar(Message &msg);
+
     private:
         Car *_car;
         std::unordered_map<int, Car *> _cars;

@@ -118,7 +118,7 @@ void GameManager::foundCommand(Message &command, SOCKET fd) {
             getMoney(fd, std::atoi(command("id").c_str()));
             break;
         case 5:
-            joinServer(fd, std::atoi(command("id").c_str()), std::atoi(command("value").c_str()));
+            joinServer(fd, std::atoi(command("id").c_str()), std::atoi(command("value").c_str()), std::atoi(command("car_no").c_str()));
             break;
         case 6:
             debugMessage(command("msg"));
@@ -262,7 +262,7 @@ void GameManager::move(Message &data) {
     }
 }
 
-void GameManager::joinServer(int fd, int id, int value) {
+void GameManager::joinServer(int fd, int id, int value, int car_no) {
     if (value == id)
         return;
     for (auto &server : this->_servers) {
@@ -273,6 +273,7 @@ void GameManager::joinServer(int fd, int id, int value) {
     }
     Message data("connected");
     data("value") = std::to_string(value);
+    data("car_no") = std::to_string(car_no);
     for (auto &server : this->_servers) {
         if (server.foundClientById(value)) {
             server.addClient(&this->_clients[fd]);

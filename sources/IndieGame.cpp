@@ -228,6 +228,7 @@ void IndieGame::OnFrame() {
                 break;
             case 2:
                 this->_connectedTo = std::atoi(data("value").c_str());
+                this->addNetworkCar(data);
                 this->_car->mustSendData(true);
                 break;
             case 3:
@@ -265,33 +266,25 @@ void IndieGame::OnFrame() {
 }
 
 void IndieGame::updateCarsData(Message &msg) {
-    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
-        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
-        this->_cars[std::atoi(msg("id").c_str())] = nc;
-        this->_objectList.push_back(nc);
-    } else {
-        this->_cars[std::atoi(msg("id").c_str())]->setEngineForce(std::atof(msg("engine").c_str()));
-        this->_cars[std::atoi(msg("id").c_str())]->setBreakingForce(std::atof(msg("breaking").c_str()));
-        this->_cars[std::atoi(msg("id").c_str())]->setSteeringValue(std::atof(msg("steering").c_str()));
-    }
+    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0)
+        return;
+    this->_cars[std::atoi(msg("id").c_str())]->setEngineForce(std::atof(msg("engine").c_str()));
+    this->_cars[std::atoi(msg("id").c_str())]->setBreakingForce(std::atof(msg("breaking").c_str()));
+    this->_cars[std::atoi(msg("id").c_str())]->setSteeringValue(std::atof(msg("steering").c_str()));
 }
 
 void IndieGame::updateCarsPosition(Message &msg) {
-    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
-        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
-        this->_cars[std::atoi(msg("id").c_str())] = nc;
-        this->_objectList.push_back(nc);
-    } else {
-        irr::core::vector3df pos(0, 0, 0);
-        pos.X = std::atof(msg["position"]("X").c_str());
-        pos.Y = std::atof(msg["position"]("Y").c_str());
-        pos.Z = std::atof(msg["position"]("Z").c_str());
-        this->_cars[std::atoi(msg("id").c_str())]->setPosition(pos);
-        pos.X = std::atof(msg["rotation"]("X").c_str());
-        pos.Y = std::atof(msg["rotation"]("Y").c_str());
-        pos.Z = std::atof(msg["rotation"]("Z").c_str());
-        this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos);
-    }
+    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0)
+        return;
+    irr::core::vector3df pos(0, 0, 0);
+    pos.X = std::atof(msg["position"]("X").c_str());
+    pos.Y = std::atof(msg["position"]("Y").c_str());
+    pos.Z = std::atof(msg["position"]("Z").c_str());
+    this->_cars[std::atoi(msg("id").c_str())]->setPosition(pos);
+    pos.X = std::atof(msg["rotation"]("X").c_str());
+    pos.Y = std::atof(msg["rotation"]("Y").c_str());
+    pos.Z = std::atof(msg["rotation"]("Z").c_str());
+    this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos);
 }
 
 bool IndieGame::OnEvent(const irr::SEvent& event){
@@ -381,7 +374,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case JoinServer::JOIN:
                         if (this->_connectedTo == -1)
-                            Client::Instance().joinId(this->_onlineUI->getText());
+                            Client::Instance().joinId(this->_onlineUI->getText(), this->_car->getCarNo());
                         this->OnLeavingOnline();
                         break;
                     case MainMenu::PLAY:
@@ -559,4 +552,10 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
 
 void IndieGame::OnReleaseKey(irr::EKEY_CODE keyCode) {
     (void)keyCode;
+}
+
+void IndieGame::addNetworkCar(Message &msg) {
+    Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, std::atoi(msg("car_no").c_str()));
+    this->_cars[std::atoi(msg("id").c_str())] = nc;
+    this->_objectList.push_back(nc);
 }

@@ -46,7 +46,7 @@ public:
     void move(Message &data);
     void addMoney(int fd, int id, int value);
     void getMoney(int fd, int id);
-    void joinServer(int fd, int id, int value);
+    void joinServer(int fd, int id, int value, int car_no);
     void debugMessage(std::string const &msg);
     void creatingCourseLobby(int fd, int id, int courseId);
     void leavingCourseLobby(int fd, int id);
