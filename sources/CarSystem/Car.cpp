@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sun Jun  4 18:17:07 2017 Sousa Victor
+// Last update Sat Jun 10 16:36:01 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -154,4 +154,17 @@ irr::f32 Car::getMaxSpeed() const {
 
 void Car::mustSendData(bool value) {
     this->_mustSendData = value;
+}
+
+irr::core::vector3df const Car::getAngularVelocity() const {
+    return this->_car->getAngularVelocity();
+}
+irr::core::vector3df const Car::getLinearVelocity() const {
+    return this->_car->getLinearVelocity();
+}
+void Car::setAngularVelocity(irr::core::vector3df const &vec) {
+    this->_car->setAngularVelocity(vec);
+}
+void Car::setLinearVelocity(irr::core::vector3df const &vec) {
+    this->_car->setLinearVelocity(vec);
 }

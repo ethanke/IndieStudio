@@ -466,6 +466,25 @@ namespace irr
 			}
 		}
 
+        irr::core::vector3df const PhysicsCar::getAngularVelocity() const {
+            btRigidBody* chassisBody = m_chassisObject->getRigidBody();
+            return irr::core::vector3df(chassisBody->getAngularVelocity().getX(), chassisBody->getAngularVelocity().getY(), chassisBody->getAngularVelocity().getZ());
+        }
+
+        irr::core::vector3df const PhysicsCar::getLinearVelocity() const {
+            btRigidBody* chassisBody = m_chassisObject->getRigidBody();
+            return irr::core::vector3df(chassisBody->getLinearVelocity().getX(), chassisBody->getLinearVelocity().getY(), chassisBody->getLinearVelocity().getZ());
+        }
+
+        void PhysicsCar::setAngularVelocity(irr::core::vector3df const &vec) {
+            btRigidBody* chassisBody = m_chassisObject->getRigidBody();
+            chassisBody->setAngularVelocity(btVector3(vec.X, vec.Y, vec.Z));
+        }
+
+        void PhysicsCar::setLinearVelocity(irr::core::vector3df const &vec) {
+            btRigidBody* chassisBody = m_chassisObject->getRigidBody();
+            chassisBody->setLinearVelocity(btVector3(vec.X, vec.Y, vec.Z));
+        }
 
 	} // end of namespace physics
 } // end of namespace irr

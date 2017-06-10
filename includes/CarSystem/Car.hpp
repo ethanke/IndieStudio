@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sun Jun  4 18:17:02 2017 Sousa Victor
+// Last update Sat Jun 10 16:35:08 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -38,6 +38,11 @@ namespace indie {
         virtual irr::f32 getVel() const;
         virtual irr::f32 getMaxSpeed() const;
         void mustSendData(bool value);
+
+        virtual irr::core::vector3df const getAngularVelocity() const;
+        void setAngularVelocity(irr::core::vector3df const &vec);
+        virtual irr::core::vector3df const getLinearVelocity() const;
+        void setLinearVelocity(irr::core::vector3df const &vec);
 
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;

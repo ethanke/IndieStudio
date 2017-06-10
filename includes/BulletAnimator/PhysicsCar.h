@@ -130,6 +130,11 @@ namespace irr
                 return this->m_chassisObject;
             }
 
+            virtual irr::core::vector3df const getAngularVelocity() const;
+            void setAngularVelocity(irr::core::vector3df const &vec);
+            virtual irr::core::vector3df const getLinearVelocity() const;
+            void setLinearVelocity(irr::core::vector3df const &vec);
+
 
 		private:
 
