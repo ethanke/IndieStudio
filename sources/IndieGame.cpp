@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sat Jun 10 22:24:41 2017 Sousa Victor
+// Last update Sat Jun 10 23:07:25 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -115,7 +115,7 @@ void IndieGame::addGameObject() {
     this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-354.914978, 0, -246.522232));
     this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-393.625824, 0, -244.262512));
 
-    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, std::rand() % 7);
     this->_objectList.push_back(this->_car);
 
     this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
