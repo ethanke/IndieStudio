@@ -107,6 +107,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/GroundMaterial.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/Car.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/AICar.cpp
+    ${PROJECT_SOURCE_DIR}/sources/CarSystem/NetworkCar.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/LearningCar.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/loadCar.cpp
     ${PROJECT_SOURCE_DIR}/sources/CarSystem/carWatcher.cpp
