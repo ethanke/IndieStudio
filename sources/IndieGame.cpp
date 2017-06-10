@@ -205,6 +205,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["connected"] = i++;
     this->_operation["velocity"] = i++;
     this->_operation["disconnect"] = i++;
+    this->_operation["move"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
 }
@@ -259,6 +260,8 @@ void IndieGame::OnFrame() {
 }
 
 void IndieGame::updateCarsVelocity(Message &msg) {
+    if (std::atoi(msg("id").c_str()) == Client::Instance().getId())
+        Client::Instance().debug("ID = ID");
     if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
         Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
         this->_cars[std::atoi(msg("id").c_str())] = nc;

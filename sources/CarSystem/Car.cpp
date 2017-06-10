@@ -59,7 +59,7 @@ void Car::OnFrame() {
     KeyboardEvent();
     if (!this->_isAI) {
         updateCamera();
-        if (this->_elapsedTime >= 1) {
+        if (this->_elapsedTime >= 0.0005) {
             if (this->_mustSendData == true)
                 Client::Instance().move(this->getPosition());
             this->_elapsedTime = 0;

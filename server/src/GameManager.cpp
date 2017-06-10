@@ -141,7 +141,7 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
     while ((pos = json.find(delimiter)) != std::string::npos) {
         token = json.substr(0, pos);
         command.parseJSON(token);
-        std::cout << command.getTitle() << " " << token << std::endl;
+        // std::cout << command.getTitle() << " " << token << std::endl;
         this->foundCommand(command, fd);
         const_cast<std::string&>(json).erase(0, pos + delimiter.length());
     }
