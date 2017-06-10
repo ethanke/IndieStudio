@@ -24,8 +24,8 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 
     if (val < 0) {
         val = 0;
-    } else if (val > 5) {
-        val = 5;
+    } else if (val > 6) {
+        val = 6;
     }
 
     drive = FWD;
