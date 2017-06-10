@@ -101,6 +101,12 @@ int GameManager::getClientsSize() const
 }
 
 void GameManager::foundCommand(Message &command, SOCKET fd) {
+    std::unordered_map<std::string, int>::const_iterator got = this->_operation.find(command.getTitle());
+
+    if (got == this->_operation.end()) {
+        std::cerr << "command not found." << std::endl;
+        return;
+    }
     switch (this->_operation[command.getTitle()])
     {
         case 0:
