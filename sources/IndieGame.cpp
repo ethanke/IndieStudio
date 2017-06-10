@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Thu Jun  8 16:47:27 2017 Sousa Victor
+// Last update Sat Jun 10 22:24:41 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -290,7 +290,7 @@ void IndieGame::updateCarsPosition(Message &msg) {
         pos.X = std::atof(msg["rotation"]("X").c_str());
         pos.Y = std::atof(msg["rotation"]("Y").c_str());
         pos.Z = std::atof(msg["rotation"]("Z").c_str());
-        this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos, std::atof(msg("angle").c_str()));
+        this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos);
     }
 }
 

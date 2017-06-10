@@ -75,7 +75,7 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 
 	car->setPosition(car_pos);
     core::vector3df rot(0, 90, 0);
-	car->setRotation(rot, 90); //90
+	car->setRotation(rot);
 
 }
 
@@ -87,11 +87,11 @@ void CLoadCar::Update(s32 drivetype)
 void CLoadCar::resetCar(s32 newangle)
 {
 	core::vector3df pos = car->getPosition();
+    core::vector3df rot = car->getRotation(false);
 	car->reset();
     core::vector3df position(pos.X, pos.Y+2, pos.Z);
 	car->setPosition(position);
-    core::vector3df rotation(0, 90, 0);
-	car->setRotation(rotation, newangle);
+	car->setRotation(rot);
 }
 
 irr::scene::IAnimatedMeshSceneNode* CLoadCar::loadMeshFromFile(const char* filename)

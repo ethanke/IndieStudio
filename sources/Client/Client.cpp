@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:50:28 2017 Gaëtan Léandre
-// Last update Thu Jun  8 16:43:27 2017 Sousa Victor
+// Last update Sat Jun 10 22:22:35 2017 Sousa Victor
 //
 
 #include                "Client.hpp"
@@ -109,7 +109,7 @@ void Client::joinId(const wchar_t *dest_id) {
     this->_socket.write(data.getJSON());
 }
 
-void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot, irr::f32 angle) {
+void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
     if (this->_id == -1) {
         this->requestId();
         return;
@@ -123,11 +123,10 @@ void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &r
     data["position"]("X") = std::to_string(pos.X);
     Message rotation("rotation");
     data["rotation"] = rotation;
-    data["rotation"]("Z") = std::to_string(pos.Z);
-    data["rotation"]("Y") = std::to_string(pos.Y);
-    data["rotation"]("X") = std::to_string(pos.X);
+    data["rotation"]("Z") = std::to_string(rot.Z);
+    data["rotation"]("Y") = std::to_string(rot.Y);
+    data["rotation"]("X") = std::to_string(rot.X);
     data("id") = std::to_string(this->_id);
-    data("angle") = std::to_string(angle);
     this->_socket.write(data.getJSON());
 }
 

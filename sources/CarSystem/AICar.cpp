@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Tue Jun  6 18:12:44 2017 Sousa Victor
+// Last update Sat Jun 10 22:43:23 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -55,7 +55,7 @@ void AICar::OnFrame() {
 
     std::vector<double> steerInput;
     if (c1 != NULL) {
-        irr::core::vector3df camDir = (this->getRotation().rotationToDirection()).normalize();
+        irr::core::vector3df camDir = (this->_car->getRotation().rotationToDirection()).normalize();
         irr::core::vector2df camDir2d(camDir.X, camDir.Z);
         irr::core::vector3df checkDir = (c1->getChPosition() - this->getPosition()).normalize();
         irr::core::vector2df checkDir2d(checkDir.X, checkDir.Z);

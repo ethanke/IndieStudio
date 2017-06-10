@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sat Jun 10 20:18:25 2017 Sousa Victor
+// Last update Sat Jun 10 22:34:09 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -59,9 +59,9 @@ void Car::OnFrame() {
     KeyboardEvent();
     if (!this->_isAI) {
         updateCamera();
-        if (this->_elapsedTime >= 0.1) {
+        if (this->_elapsedTime >= 1) {
             if (this->_mustSendData == true)
-                Client::Instance().move(this->getPosition(), this->getRotation(), this->_car->getAngle());
+                Client::Instance().move(this->getPosition(), this->getRotation());
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
@@ -140,11 +140,11 @@ void Car::setPosition(irr::core::vector3df &pos) {
 }
 
 irr::core::vector3d<float>	Car::getRotation() const {
-    return this->_car->getRotation();
+    return this->_car->getRotation(false);
 }
 
-void Car::setRotation(irr::core::vector3df &rot, irr::f32 angle) {
-    this->_car->setRotation(rot, angle);
+void Car::setRotation(irr::core::vector3df &rot) {
+    this->_car->setRotation(rot);
 }
 
 AGameCamera *Car::getCamera() const {

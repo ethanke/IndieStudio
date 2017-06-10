@@ -126,8 +126,8 @@ namespace irr
 			core::vector3df getPosition(void);
 			void setPosition(core::vector3df& v);
 
-			core::vector3df getRotation(void);
-			void setRotation(core::vector3df& axis, btScalar angle);
+            core::vector3df getRotation(bool mult = true) const;
+			void setRotation(irr::core::vector3df const &rot);
 
             physics::CPhysicsObject *getChassis() const {
                 return this->m_chassisObject;

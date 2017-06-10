@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:51:52 2017 Gaëtan Léandre
-// Last update Thu Jun  8 16:43:33 2017 Sousa Victor
+// Last update Sat Jun 10 22:22:45 2017 Sousa Victor
 //
 
 #ifndef             CLIENT_HPP
@@ -49,7 +49,7 @@ namespace indie {
         void addMoney(int nb);
         void requestMoney();
         void joinId(const wchar_t *dest_id);
-        void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot, irr::f32 angle);
+        void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot);
         void sendEngine(float engine, float breaking, float steering);
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();
