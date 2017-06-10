@@ -109,7 +109,7 @@ void Client::joinId(const wchar_t *dest_id) {
     this->_socket.write(data.getJSON());
 }
 
-void Client::move(irr::core::vector3df const &pos) {
+void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
     if (this->_id == -1) {
         this->requestId();
         return;
@@ -121,6 +121,11 @@ void Client::move(irr::core::vector3df const &pos) {
     data["position"]("Z") = std::to_string(pos.Z);
     data["position"]("Y") = std::to_string(pos.Y);
     data["position"]("X") = std::to_string(pos.X);
+    Message rotation("rotation");
+    data["rotation"] = rotation;
+    data["rotation"]("Z") = std::to_string(pos.Z);
+    data["rotation"]("Y") = std::to_string(pos.Y);
+    data["rotation"]("X") = std::to_string(pos.X);
     data("id") = std::to_string(this->_id);
     this->_socket.write(data.getJSON());
 }

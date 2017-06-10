@@ -25,6 +25,8 @@ GameManager::GameManager()
     this->_operation["join"] = i++;
     this->_operation["debug"] = i++;
     this->_operation["velocity"] = i++;
+    this->_operation["creatinglobby"] = i++;
+    this->_operation["leavinglobby"] = i++;
 }
 
 GameManager::~GameManager ()
@@ -125,6 +127,12 @@ void GameManager::foundCommand(Message &command, SOCKET fd) {
         case 7:
             move(command);
             break;
+        case 8:
+            creatingCourseLobby(fd, std::atoi(command("id").c_str()), std::atoi(command("course").c_str()));
+            break;
+        case 9:
+            leavingCourseLobby(fd, std::atoi(command("id").c_str()));
+            break;
         default:
             std::cerr << "Command not found" << std::endl;
             break;
@@ -141,7 +149,7 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
     while ((pos = json.find(delimiter)) != std::string::npos) {
         token = json.substr(0, pos);
         command.parseJSON(token);
-        // std::cout << command.getTitle() << " " << token << std::endl;
+        std::cout << command.getTitle() << " " << token << std::endl;
         this->foundCommand(command, fd);
         const_cast<std::string&>(json).erase(0, pos + delimiter.length());
     }
@@ -285,4 +293,26 @@ void GameManager::joinServer(int fd, int id, int value) {
 
 void GameManager::debugMessage(std::string const &msg) {
     std::cout << "Debug message: " << msg << std::endl;
+}
+
+void GameManager::creatingCourseLobby(int fd, int id, int courseId) {
+    for (auto &server : this->_servers) {
+        if (server.foundClientById(id)) {
+            Message data("newcourseplayer");
+            if (server.raceExist(courseId) == false) {
+                server.startRace(courseId);
+                server.getRaceById(courseId).addClient(&this->getClientById(id));
+                data("id") = std::to_string(id);
+            } else {
+                server.getRaceById(courseId).addClient(&this->getClientById(id));
+                data("id") = std::to_string(server.getRaceById(courseId).getLeader());
+            }
+            this->writeClientById(id, data.getJSON());
+            return;
+        }
+    }
+}
+
+void GameManager::leavingCourseLobby(int fd, int id) {
+
 }

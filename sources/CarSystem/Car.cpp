@@ -59,9 +59,9 @@ void Car::OnFrame() {
     KeyboardEvent();
     if (!this->_isAI) {
         updateCamera();
-        if (this->_elapsedTime >= 0.0005) {
+        if (this->_elapsedTime >= 0.1) {
             if (this->_mustSendData == true)
-                Client::Instance().move(this->getPosition());
+                Client::Instance().move(this->getPosition(), this->getRotation());
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
@@ -143,6 +143,9 @@ irr::core::vector3d<float>	Car::getRotation() const {
     return this->_car->getRotation();
 }
 
+void Car::setRotation(irr::core::vector3df &rot) {
+    this->_car->setRotation(rot, this->_car->getAngle());
+}
 
 AGameCamera *Car::getCamera() const {
     return this->_camera;

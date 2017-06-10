@@ -36,6 +36,7 @@ namespace indie {
         virtual irr::core::vector3d<float> getPosition() const;
         void setPosition(irr::core::vector3df &pos);
         virtual irr::core::vector3d<float> getRotation() const;
+        void setRotation(irr::core::vector3df &rot);
         virtual irr::f32 getVel() const;
         virtual irr::f32 getMaxSpeed() const;
         void mustSendData(bool value);

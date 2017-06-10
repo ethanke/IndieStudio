@@ -14,7 +14,7 @@
 #include            "Race.hh"
 #include            "Message.hh"
 
-class Server : public Group{
+class Server : public Group {
 private:
     std::vector<Race> _races;
 
@@ -23,8 +23,10 @@ public:
     virtual ~Server ();
     Server(const Server &obj);
     Server    &operator=(const Server &obj);
-    void startRace(Message const &message);
+    void startRace(int id);
     void endRace(int id);
+    bool raceExist(int id) const;
+    Race &getRaceById(int id);
     bool deleteClientFromRaceById(int id);
     bool deleteClientFromRaceByFd(int fd);
     void shutdown();

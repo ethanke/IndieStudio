@@ -13,7 +13,7 @@
 
 #include            "Group.hh"
 
-class Race : public Group{
+class Race : public Group {
 private:
     int _id;
 
@@ -24,6 +24,7 @@ public:
     Race    &operator=(const Race &obj);
     int getId() const;
     void setId(int id);
+    int getLeader() const;
 };
 
 #endif /* !RACE_HH_ */

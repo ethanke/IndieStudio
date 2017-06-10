@@ -123,7 +123,8 @@ void IndieGame::addGameObject() {
     this->_objectList.push_back(this->_aiCar);
 
     int j = 1;
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(5, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 3, irr::core::vector3df(20, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 3, irr::core::vector3df(40, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(744.1, 0, 502.7)));
@@ -206,6 +207,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["velocity"] = i++;
     this->_operation["disconnect"] = i++;
     this->_operation["move"] = i++;
+    this->_operation["newcourseplayer"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
 }
@@ -238,6 +240,9 @@ void IndieGame::OnFrame() {
             case 5:
                 updateCarsPosition(data);
                 break;
+            case 6:
+                if (this->_course)
+                    this->_course->addPlayer(std::atoi(data("id").c_str()));
             default:
                 std::cerr << "Command not found" << std::endl;
                 break;
@@ -290,6 +295,10 @@ void IndieGame::updateCarsPosition(Message &msg) {
         pos.Y = std::atof(msg["position"]("Y").c_str());
         pos.Z = std::atof(msg["position"]("Z").c_str());
         this->_cars[std::atoi(msg("id").c_str())]->setPosition(pos);
+        pos.X = std::atof(msg["rotation"]("X").c_str());
+        pos.Y = std::atof(msg["rotation"]("Y").c_str());
+        pos.Z = std::atof(msg["rotation"]("Z").c_str());
+        this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos);
     }
 }
 

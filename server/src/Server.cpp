@@ -30,9 +30,9 @@ Server    &Server::operator=(const Server &obj)
     return (*this);
 }
 
-void Server::startRace(Message const &message)
+void Server::startRace(int id)
 {
-    //TODO Create race
+    this->_races.push_back(Race(id));
 }
 
 void Server::endRace(int id)
@@ -88,4 +88,20 @@ bool Server::deleteClientByFd(int fd)
 void Server::shutdown() {
     Message data("disconnect");
     writeAll(data.getJSON());
+}
+
+bool Server::raceExist(int id) const {
+    for (auto const &race : this->_races) {
+        if (race.getId() == id)
+            return true;
+    }
+    return false;
+}
+
+Race &Server::getRaceById(int id) {
+    for (auto &race : this->_races) {
+        if (race.getId() == id)
+            return race;
+    }
+    return this->_races[-1];
 }

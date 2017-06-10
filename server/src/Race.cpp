@@ -39,3 +39,7 @@ void Race::setId(int id)
 {
     this->_id = id;
 }
+
+int Race::getLeader() const {
+    return this->_clients.begin()->first;
+}
