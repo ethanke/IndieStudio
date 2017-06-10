@@ -265,13 +265,13 @@ void IndieGame::updateCarsVelocity(Message &msg) {
         this->_objectList.push_back(nc);
     } else {
         irr::core::vector3df velocity(0, 0, 0);
-        velocity.X = std::atoi(msg["linear"]("X").c_str());
-        velocity.Y = std::atoi(msg["linear"]("Y").c_str());
-        velocity.Z = std::atoi(msg["linear"]("Z").c_str());
+        velocity.X = std::atof(msg["linear"]("X").c_str());
+        velocity.Y = std::atof(msg["linear"]("Y").c_str());
+        velocity.Z = std::atof(msg["linear"]("Z").c_str());
         this->_cars[std::atoi(msg("id").c_str())]->setLinearVelocity(velocity);
-        velocity.X = std::atoi(msg["angular"]("X").c_str());
-        velocity.Y = std::atoi(msg["angular"]("Y").c_str());
-        velocity.Z = std::atoi(msg["angular"]("Z").c_str());
+        velocity.X = std::atof(msg["angular"]("X").c_str());
+        velocity.Y = std::atof(msg["angular"]("Y").c_str());
+        velocity.Z = std::atof(msg["angular"]("Z").c_str());
         this->_cars[std::atoi(msg("id").c_str())]->setAngularVelocity(velocity);
     }
 }
@@ -283,9 +283,9 @@ void IndieGame::updateCarsPosition(Message &msg) {
         this->_objectList.push_back(nc);
     } else {
         irr::core::vector3df pos(0, 0, 0);
-        pos.X = std::atoi(msg["position"]("X").c_str());
-        pos.Y = std::atoi(msg["position"]("Y").c_str());
-        pos.Z = std::atoi(msg["position"]("Z").c_str());
+        pos.X = std::atof(msg["position"]("X").c_str());
+        pos.Y = std::atof(msg["position"]("Y").c_str());
+        pos.Z = std::atof(msg["position"]("Z").c_str());
         this->_cars[std::atoi(msg("id").c_str())]->setPosition(pos);
     }
 }

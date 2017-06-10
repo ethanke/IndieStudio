@@ -145,6 +145,7 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
         this->foundCommand(command, fd);
         const_cast<std::string&>(json).erase(0, pos + delimiter.length());
     }
+    this->foundCommand(command, fd);
 }
 
 void GameManager::readClientByFdSet(fd_set *fdset)

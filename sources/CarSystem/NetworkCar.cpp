@@ -22,5 +22,5 @@ NetworkCar::~NetworkCar() {
 }
 
 void NetworkCar::OnFrame() {
-    
+    this->_carLoader.Update(drive_tipe);
 }
