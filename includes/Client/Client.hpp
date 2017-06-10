@@ -49,8 +49,8 @@ namespace indie {
         void addMoney(int nb);
         void requestMoney();
         void joinId(const wchar_t *dest_id);
-        void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot);
-        void sendVelocity(irr::core::vector3df const &linear, irr::core::vector3df const &angular);
+        void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot, irr::f32 angle);
+        void sendEngine(float engine, float breaking, float steering);
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();
 

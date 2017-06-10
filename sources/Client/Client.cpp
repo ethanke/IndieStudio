@@ -109,7 +109,7 @@ void Client::joinId(const wchar_t *dest_id) {
     this->_socket.write(data.getJSON());
 }
 
-void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
+void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot, irr::f32 angle) {
     if (this->_id == -1) {
         this->requestId();
         return;
@@ -127,26 +127,20 @@ void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &r
     data["rotation"]("Y") = std::to_string(pos.Y);
     data["rotation"]("X") = std::to_string(pos.X);
     data("id") = std::to_string(this->_id);
+    data("angle") = std::to_string(angle);
     this->_socket.write(data.getJSON());
 }
 
-void Client::sendVelocity(irr::core::vector3df const &linear, irr::core::vector3df const &angular) {
+void Client::sendEngine(float engine, float breaking, float steering) {
     if (this->_id == -1) {
         this->requestId();
         return;
     }
 
-    Message data("velocity");
-    Message _linear("linear");
-    data["linear"] = _linear;
-    data["linear"]("Z") = std::to_string(linear.Z);
-    data["linear"]("Y") = std::to_string(linear.Y);
-    data["linear"]("X") = std::to_string(linear.X);
-    Message _angular("angular");
-    data["angular"] = _angular;
-    data["angular"]("Z") = std::to_string(angular.Z);
-    data["angular"]("Y") = std::to_string(angular.Y);
-    data["angular"]("X") = std::to_string(angular.X);
+    Message data("cardata");
+    data("steering") = std::to_string(steering);
+    data("breaking") = std::to_string(breaking);
+    data("engine") = std::to_string(engine);
     data("id") = std::to_string(this->_id);
     this->_socket.write(data.getJSON());
 }

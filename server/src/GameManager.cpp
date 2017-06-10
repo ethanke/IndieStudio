@@ -24,7 +24,7 @@ GameManager::GameManager()
     this->_operation["getmoney"] = i++;
     this->_operation["join"] = i++;
     this->_operation["debug"] = i++;
-    this->_operation["velocity"] = i++;
+    this->_operation["cardata"] = i++;
     this->_operation["creatinglobby"] = i++;
     this->_operation["leavinglobby"] = i++;
 }
@@ -296,21 +296,21 @@ void GameManager::debugMessage(std::string const &msg) {
 }
 
 void GameManager::creatingCourseLobby(int fd, int id, int courseId) {
-    for (auto &server : this->_servers) {
-        if (server.foundClientById(id)) {
-            Message data("newcourseplayer");
-            if (server.raceExist(courseId) == false) {
-                server.startRace(courseId);
-                server.getRaceById(courseId).addClient(&this->getClientById(id));
-                data("id") = std::to_string(id);
-            } else {
-                server.getRaceById(courseId).addClient(&this->getClientById(id));
-                data("id") = std::to_string(server.getRaceById(courseId).getLeader());
-            }
-            this->writeClientById(id, data.getJSON());
-            return;
-        }
-    }
+    // for (auto &server : this->_servers) {
+    //     if (server.foundClientById(id)) {
+    //         Message data("newcourseplayer");
+    //         if (server.raceExist(courseId) == false) {
+    //             server.startRace(courseId);
+    //             server.getRaceById(courseId).addClient(&this->getClientById(id));
+    //             data("id") = std::to_string(id);
+    //         } else {
+    //             server.getRaceById(courseId).addClient(&this->getClientById(id));
+    //             data("id") = std::to_string(server.getRaceById(courseId).getLeader());
+    //         }
+    //         this->writeClientById(id, data.getJSON());
+    //         return;
+    //     }
+    // }
 }
 
 void GameManager::leavingCourseLobby(int fd, int id) {

@@ -204,7 +204,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["setid"] = i++;
     this->_operation["getmoney"] = i++;
     this->_operation["connected"] = i++;
-    this->_operation["velocity"] = i++;
+    this->_operation["cardata"] = i++;
     this->_operation["disconnect"] = i++;
     this->_operation["move"] = i++;
     this->_operation["newcourseplayer"] = i++;
@@ -231,7 +231,7 @@ void IndieGame::OnFrame() {
                 this->_car->mustSendData(true);
                 break;
             case 3:
-                updateCarsVelocity(data);
+                updateCarsData(data);
                 break;
             case 4:
                 this->_connectedTo = -1;
@@ -264,23 +264,15 @@ void IndieGame::OnFrame() {
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 }
 
-void IndieGame::updateCarsVelocity(Message &msg) {
-    if (std::atoi(msg("id").c_str()) == Client::Instance().getId())
-        Client::Instance().debug("ID = ID");
+void IndieGame::updateCarsData(Message &msg) {
     if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
         Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
         this->_cars[std::atoi(msg("id").c_str())] = nc;
         this->_objectList.push_back(nc);
     } else {
-        irr::core::vector3df velocity(0, 0, 0);
-        velocity.X = std::atof(msg["linear"]("X").c_str());
-        velocity.Y = std::atof(msg["linear"]("Y").c_str());
-        velocity.Z = std::atof(msg["linear"]("Z").c_str());
-        this->_cars[std::atoi(msg("id").c_str())]->setLinearVelocity(velocity);
-        velocity.X = std::atof(msg["angular"]("X").c_str());
-        velocity.Y = std::atof(msg["angular"]("Y").c_str());
-        velocity.Z = std::atof(msg["angular"]("Z").c_str());
-        this->_cars[std::atoi(msg("id").c_str())]->setAngularVelocity(velocity);
+        this->_cars[std::atoi(msg("id").c_str())]->setEngineForce(std::atof(msg("engine").c_str()));
+        this->_cars[std::atoi(msg("id").c_str())]->setBreakingForce(std::atof(msg("breaking").c_str()));
+        this->_cars[std::atoi(msg("id").c_str())]->setSteeringValue(std::atof(msg("steering").c_str()));
     }
 }
 
@@ -298,7 +290,7 @@ void IndieGame::updateCarsPosition(Message &msg) {
         pos.X = std::atof(msg["rotation"]("X").c_str());
         pos.Y = std::atof(msg["rotation"]("Y").c_str());
         pos.Z = std::atof(msg["rotation"]("Z").c_str());
-        this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos);
+        this->_cars[std::atoi(msg("id").c_str())]->setRotation(pos, std::atof(msg("angle").c_str()));
     }
 }
 

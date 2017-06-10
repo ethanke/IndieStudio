@@ -80,7 +80,7 @@ namespace indie {
 
         virtual void launchMenu();
 
-        void updateCarsVelocity(Message &msg);
+        void updateCarsData(Message &msg);
         void updateCarsPosition(Message &msg);
 
     private:

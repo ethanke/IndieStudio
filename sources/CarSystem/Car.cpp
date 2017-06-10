@@ -61,14 +61,14 @@ void Car::OnFrame() {
         updateCamera();
         if (this->_elapsedTime >= 0.1) {
             if (this->_mustSendData == true)
-                Client::Instance().move(this->getPosition(), this->getRotation());
+                Client::Instance().move(this->getPosition(), this->getRotation(), this->_car->getAngle());
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
     if (this->_mustSendData == true)
-        Client::Instance().sendVelocity(this->getLinearVelocity(), this->getAngularVelocity());
+        Client::Instance().sendEngine(this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
 
 	this->_carLoader.Update(drive_tipe);
 }
@@ -143,8 +143,8 @@ irr::core::vector3d<float>	Car::getRotation() const {
     return this->_car->getRotation();
 }
 
-void Car::setRotation(irr::core::vector3df &rot) {
-    this->_car->setRotation(rot, this->_car->getAngle());
+void Car::setRotation(irr::core::vector3df &rot, irr::f32 angle) {
+    this->_car->setRotation(rot, angle);
 }
 
 AGameCamera *Car::getCamera() const {
