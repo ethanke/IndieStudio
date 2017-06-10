@@ -40,6 +40,8 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->_mustSendData = false;
 
     this->_car_no = car_no;
+    if (this->_isAI == false)
+        Client::Instance().setCarNo(car_no);
     this->_carLoader.setCarPos(position);
 	this->_carLoader.Init(this->_smgr, this->_bulletPhysicsSystem, this->_car_no);
 

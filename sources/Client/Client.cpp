@@ -95,7 +95,7 @@ void Client::requestMoney() {
     this->_socket.write(data.getJSON());
 }
 
-void Client::joinId(const wchar_t *dest_id, int car_no) {
+void Client::joinId(const wchar_t *dest_id) {
     if (this->_id == -1) {
         this->requestId();
         return;
@@ -106,7 +106,6 @@ void Client::joinId(const wchar_t *dest_id, int car_no) {
     std::wstring ws(dest_id);
     std::string dest(ws.begin(), ws.end());
     data("value") = dest;
-    data("car_no") = std::to_string(car_no);
     this->_socket.write(data.getJSON());
 }
 
@@ -205,4 +204,15 @@ void Client::setId(int id) {
 
 int Client::getId() const {
     return this->_id;
+}
+
+void Client::setCarNo(int no) {
+    if (this->_id == -1) {
+        this->requestId();
+        return;
+    }
+    Message data("setcarno");
+    data("id") = std::to_string(this->_id);
+    data("value") = std::to_string(no);
+    this->_socket.write(data.getJSON());
 }

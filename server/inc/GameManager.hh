@@ -20,6 +20,7 @@ private:
     std::unordered_map<std::string, int> _operation;
     std::vector<Server> _servers;
     int _idMax = 1;
+    void addCar(Server &server, int id, int car_no);
 
 public:
     GameManager();
@@ -50,6 +51,8 @@ public:
     void debugMessage(std::string const &msg);
     void creatingCourseLobby(int fd, int id, int courseId);
     void leavingCourseLobby(int fd, int id);
+    void setCarNo(int fd, int value);
+
 
 };
 

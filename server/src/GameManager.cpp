@@ -27,6 +27,7 @@ GameManager::GameManager()
     this->_operation["cardata"] = i++;
     this->_operation["creatinglobby"] = i++;
     this->_operation["leavinglobby"] = i++;
+    this->_operation["setcarno"] = i++;
 }
 
 GameManager::~GameManager ()
@@ -132,6 +133,9 @@ void GameManager::foundCommand(Message &command, SOCKET fd) {
         case 9:
             leavingCourseLobby(fd, std::atoi(command("id").c_str()));
             break;
+        case 10:
+            setCarNo(fd, std::atoi(command("value").c_str()));
+            break;
         default:
             std::cerr << "Command not found" << std::endl;
             break;
@@ -148,7 +152,8 @@ void GameManager::launchCommand(std::string const &json, SOCKET fd)
     while ((pos = json.find(delimiter)) != std::string::npos) {
         token = json.substr(0, pos);
         command.parseJSON(token);
-        std::cout << command.getTitle() << " " << token << std::endl;
+        if (command.getTitle() != "cardata")
+            std::cout << command.getTitle() << " " << token << std::endl;
         this->foundCommand(command, fd);
         const_cast<std::string&>(json).erase(0, pos + delimiter.length());
     }
@@ -273,12 +278,12 @@ void GameManager::joinServer(int fd, int id, int value, int car_no) {
     }
     Message data("connected");
     data("value") = std::to_string(value);
-    data("car_no") = std::to_string(car_no);
     for (auto &server : this->_servers) {
         if (server.foundClientById(value)) {
             server.addClient(&this->_clients[fd]);
             server.writeAll(data.getJSON());
             std::cout << "client " << id << " joined " << value << std::endl;
+            this->addCar(server, id, car_no);
             return;
         }
     }
@@ -288,6 +293,15 @@ void GameManager::joinServer(int fd, int id, int value, int car_no) {
     std::cout << "server created for " << value << " and client " << id << " joined" << std::endl;
     this->_servers.push_back(serv);
     serv.writeAll(data.getJSON());
+    this->addCar(serv, value, this->getClientById(value).getCarNo());
+    this->addCar(serv, id, this->getClientById(id).getCarNo());
+}
+
+void GameManager::addCar(Server &server, int id, int car_no) {
+    Message data("addcars");
+    data("car_no") = std::to_string(car_no);
+    data("id") = std::to_string(id);
+    server.writeAllExeptById(data.getJSON(), id);
 }
 
 void GameManager::debugMessage(std::string const &msg) {
@@ -318,4 +332,8 @@ void GameManager::creatingCourseLobby(int fd, int id, int courseId) {
 
 void GameManager::leavingCourseLobby(int fd, int id) {
 
+}
+
+void GameManager::setCarNo(int fd, int value) {
+    this->_clients[fd].setCarNo(value);
 }

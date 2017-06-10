@@ -48,11 +48,12 @@ namespace indie {
         void giveId();
         void addMoney(int nb);
         void requestMoney();
-        void joinId(const wchar_t *dest_id, int car_no);
+        void joinId(const wchar_t *dest_id);
         void move(irr::core::vector3df const &pos, irr::core::vector3df const &rot);
         void sendEngine(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering);
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();
+        void setCarNo(int no);
 
 
     };

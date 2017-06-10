@@ -18,6 +18,7 @@ private:
     ClientSocket _sock;
     int _money;
     int _id;
+    int _car_no;
 
 public:
     Client ();
@@ -30,6 +31,8 @@ public:
     void setMoney(int money);
     int getId() const;
     void setId(int id);
+    int getCarNo() const;
+    void setCarNo(int no);
     bool accept(SOCKET fd);
     std::string read();
     void write(std::string const &str);

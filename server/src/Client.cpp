@@ -65,6 +65,14 @@ void Client::setId(int id)
     this->_id = id;
 }
 
+int Client::getCarNo() const {
+    return this->_car_no;
+}
+
+void Client::setCarNo(int no) {
+    this->_car_no = no;
+}
+
 bool Client::accept(SOCKET fd)
 {
     return (this->_sock.accept(fd));
@@ -76,8 +84,12 @@ std::string Client::read()
 }
 
 #include <iostream>
+#include "Message.hh"
 void Client::write(std::string const &str)
 {
-    std::cout << "SENDING: " << str << std::endl;
+    Message lol("no");
+    lol.parseJSON(str);
+    if (lol.getTitle() != "cardata")
+        std::cout << "SENDING: " << str << std::endl;
     this->_sock.write(str);
 }
