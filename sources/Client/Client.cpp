@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:50:28 2017 Gaëtan Léandre
-// Last update Sat Jun 10 22:22:35 2017 Sousa Victor
+// Last update Sun Jun 11 00:05:04 2017 Sousa Victor
 //
 
 #include                "Client.hpp"
@@ -131,7 +131,7 @@ void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &r
     this->_socket.write(data.getJSON());
 }
 
-void Client::sendEngine(float engine, float breaking, float steering) {
+void Client::sendEngine(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
     if (this->_id == -1) {
         this->requestId();
         return;
@@ -141,6 +141,16 @@ void Client::sendEngine(float engine, float breaking, float steering) {
     data("steering") = std::to_string(steering);
     data("breaking") = std::to_string(breaking);
     data("engine") = std::to_string(engine);
+    Message velocity("velocity");
+    data["velocity"] = velocity;
+    data["velocity"]("Z") = std::to_string(vel.Z);
+    data["velocity"]("Y") = std::to_string(vel.Y);
+    data["velocity"]("X") = std::to_string(vel.X);
+    Message angular("angular");
+    data["angular"] = angular;
+    data["angular"]("Z") = std::to_string(ang.Z);
+    data["angular"]("Y") = std::to_string(ang.Y);
+    data["angular"]("X") = std::to_string(ang.X);
     data("id") = std::to_string(this->_id);
     this->_socket.write(data.getJSON());
 }

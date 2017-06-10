@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sat Jun 10 22:34:09 2017 Sousa Victor
+// Last update Sun Jun 11 00:09:31 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -68,7 +68,7 @@ void Car::OnFrame() {
         }
     }
     if (this->_mustSendData == true)
-        Client::Instance().sendEngine(this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
+        Client::Instance().sendEngine(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
 
 	this->_carLoader.Update(drive_tipe);
 }
@@ -192,4 +192,7 @@ float Car::getSteeringValue(void) const {
 }
 void Car::setSteeringValue(float newForce) {
     this->_car->setSteeringValue(newForce);
+}
+int Car::getCarNo() const {
+    return this->_car_no;
 }

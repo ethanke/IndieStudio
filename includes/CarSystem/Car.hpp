@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sat Jun 10 22:24:24 2017 Sousa Victor
+// Last update Sun Jun 11 00:08:59 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -51,6 +51,8 @@ namespace indie {
         void setBreakingForce(float newForce);
         float getSteeringValue(void) const;
         void setSteeringValue(float newForce);
+
+        int getCarNo() const;
 
 
     protected:

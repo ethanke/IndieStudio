@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sat Jun 10 23:40:55 2017 Sousa Victor
+// Last update Sun Jun 11 00:07:51 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -269,11 +269,24 @@ void IndieGame::OnFrame() {
 }
 
 void IndieGame::updateCarsData(Message &msg) {
-    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0)
-        return;
-    this->_cars[std::atoi(msg("id").c_str())]->setEngineForce(std::atof(msg("engine").c_str()));
-    this->_cars[std::atoi(msg("id").c_str())]->setBreakingForce(std::atof(msg("breaking").c_str()));
-    this->_cars[std::atoi(msg("id").c_str())]->setSteeringValue(std::atof(msg("steering").c_str()));
+    if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
+        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
+        this->_cars[std::atoi(msg("id").c_str())] = nc;
+        this->_objectList.push_back(nc);
+    } else {
+        this->_cars[std::atoi(msg("id").c_str())]->setEngineForce(std::atof(msg("engine").c_str()));
+        this->_cars[std::atoi(msg("id").c_str())]->setBreakingForce(std::atof(msg("breaking").c_str()));
+        this->_cars[std::atoi(msg("id").c_str())]->setSteeringValue(std::atof(msg("steering").c_str()));
+        irr::core::vector3df pos(0, 0, 0);
+        pos.X = std::atof(msg["velocity"]("X").c_str());
+        pos.Y = std::atof(msg["velocity"]("Y").c_str());
+        pos.Z = std::atof(msg["velocity"]("Z").c_str());
+        this->_cars[std::atoi(msg("id").c_str())]->setLinearVelocity(pos);
+        pos.X = std::atof(msg["angular"]("X").c_str());
+        pos.Y = std::atof(msg["angular"]("Y").c_str());
+        pos.Z = std::atof(msg["angular"]("Z").c_str());
+        this->_cars[std::atoi(msg("id").c_str())]->setAngularVelocity(pos);
+    }
 }
 
 void IndieGame::updateCarsPosition(Message &msg) {
