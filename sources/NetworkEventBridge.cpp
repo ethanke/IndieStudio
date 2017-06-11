@@ -21,7 +21,9 @@ NetworkEventBridge::~NetworkEventBridge() {
 }
 
 void NetworkEventBridge::addEvent(std::string const &name, sio::message::ptr const &msg) {
+    this->lockEventBuffer();
     this->_cmdBuffer.push_back(std::make_pair(name, msg));
+    this->unlockEventBuffer();
 }
 
 void NetworkEventBridge::lockEventBuffer() {
