@@ -230,12 +230,5 @@ std::string const & Client::getId() const {
 }
 
 void Client::setCarNo(int no) {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    // Message data("setcarno");
-    // data("id") = std::to_string(this->_id);
-    // data("value") = std::to_string(no);
-    // this->_socket.write(data.getJSON());
+    this->_client.socket()->emit("carNum changed", "{\"id\": \"" + this->_id + "\", \"nbr\": \"" + std::to_string(no) + "\"}");
 }
