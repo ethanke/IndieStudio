@@ -69,7 +69,7 @@ void Car::OnFrame() {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
-    if (this->_mustSendData == true)
+    if (this->_mustSendData == true && this->_elapsedTime >= 0.01)
         Client::Instance().sendEngineData(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
 
 	this->_carLoader.Update(drive_tipe);

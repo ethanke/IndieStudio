@@ -241,35 +241,6 @@ void IndieGame::OnFrame() {
             default:
                 std::cerr << "Command not found" << std::endl;
                 break;
-            // case 0:
-            //     Client::Instance().setId(data("id"));
-            //     break;
-            // case 1:
-            //     std::cout << data("value") << std::endl;
-            //     break;
-            // case 2:
-            //     this->_connectedTo = std::atoi(data("value").c_str());
-            //     this->_car->mustSendData(true);
-            //     break;
-            // case 3:
-            //     updateCarsData(data);
-            //     break;
-            // case 4:
-            //     this->_connectedTo = -1;
-            //     this->_car->mustSendData(false);
-            //     break;
-            // case 5:
-            //     updateCarsPosition(data);
-            //     break;
-            // case 6:
-            //     if (this->_course)
-            //         this->_course->addPlayer(std::atoi(data("id").c_str()));
-            // case 7:
-            //     this->addNetworkCar(data);
-            //     break;
-            // default:
-            //     std::cerr << "Command not found" << std::endl;
-            //     break;
         }
     }
     this->_cmdBuffer.clear();
