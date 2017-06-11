@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var clientsSchema = new Schema({
+    shortID: String,
     socketID: String,
     carNumber: {type: Number, default: 0},
     money: {type: Number, default: 0}
