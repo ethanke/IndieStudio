@@ -69,8 +69,11 @@ void Car::OnFrame() {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
-    if (this->_mustSendData == true && this->_elapsedTime >= 0.01)
+    if (!this->_isAI && this->_mustSendData == true && this->_elapsedTime >= 0.01) {
         Client::Instance().sendEngineData(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
+        this->_elapsedTime1 = 0;
+    } else if (this->_elapsedTime1 < 0.01)
+        this->_elapsedTime1 += DeltaTimer::DeltaTime;
 
 	this->_carLoader.Update(drive_tipe);
 }

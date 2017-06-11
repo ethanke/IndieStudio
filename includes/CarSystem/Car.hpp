@@ -72,6 +72,7 @@ namespace indie {
         bool _lookback;
         bool _mustSendData;
         irr::f32 _elapsedTime;
+        irr::f32 _elapsedTime1;
 
         BasicCamera *_camera;
         core::vector3df _cameraPosition;
