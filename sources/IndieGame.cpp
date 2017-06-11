@@ -303,15 +303,15 @@ void IndieGame::updateCarsData(sio::message::ptr const &msg) {
 void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
     if (this->_cars.count(msg->get_map()["id"]->get_int()) == 0)
         return;
-    // irr::core::vector3df pos(0, 0, 0);
-    // pos.X = msg->get_map()["id"]->get_float();
-    // pos.Y = std::atof(msg["position"]("Y").c_str());
-    // pos.Z = std::atof(msg["position"]("Z").c_str());
-    // this->_cars[msg->get_map()["id"]->get_int()]->setPosition(pos);
-    // pos.X = std::atof(msg["rotation"]("X").c_str());
-    // pos.Y = std::atof(msg["rotation"]("Y").c_str());
-    // pos.Z = std::atof(msg["rotation"]("Z").c_str());
-    // this->_cars[msg->get_map()["id"]->get_int()]->setRotation(pos);
+    irr::core::vector3df pos(0, 0, 0);
+    pos.X = msg->get_map()["posX"]->get_double();
+    pos.Y = msg->get_map()["posY"]->get_double();
+    pos.Z = msg->get_map()["posZ"]->get_double();
+    this->_cars[msg->get_map()["id"]->get_int()]->setPosition(pos);
+    pos.X = msg->get_map()["rotX"]->get_double();
+    pos.Y = msg->get_map()["rotY"]->get_double();
+    pos.Z = msg->get_map()["rotZ"]->get_double();
+    this->_cars[msg->get_map()["id"]->get_int()]->setRotation(pos);
 }
 
 // void IndieGame::addNetworkCar(Message &msg) {

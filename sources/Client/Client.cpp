@@ -140,24 +140,28 @@ void Client::joinId(const wchar_t *dest_id) {
 }
 
 void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("move");
-    // Message position("position");
-    // data["position"] = position;
-    // data["position"]("Z") = std::to_string(pos.Z);
-    // data["position"]("Y") = std::to_string(pos.Y);
-    // data["position"]("X") = std::to_string(pos.X);
-    // Message rotation("rotation");
-    // data["rotation"] = rotation;
-    // data["rotation"]("Z") = std::to_string(rot.Z);
-    // data["rotation"]("Y") = std::to_string(rot.Y);
-    // data["rotation"]("X") = std::to_string(rot.X);
-    // data("id") = std::to_string(this->_id);
-    // this->_socket.write(data.getJSON());
+    rapidjson::Document d;
+    d.SetObject();
+    rapidjson::Value v(rapidjson::kObjectType);
+
+    v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("id", v, d.GetAllocator());
+
+    v.SetString(std::to_string(pos.X).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("posX", v, d.GetAllocator());
+    v.SetString(std::to_string(pos.Y).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("posY", v, d.GetAllocator());
+    v.SetString(std::to_string(pos.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("posZ", v, d.GetAllocator());
+
+    v.SetString(std::to_string(rot.X).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("rotX", v, d.GetAllocator());
+    v.SetString(std::to_string(rot.Y).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("rotY", v, d.GetAllocator());
+    v.SetString(std::to_string(rot.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("rotZ", v, d.GetAllocator());
+    
+    this->_client.socket()->emit("joining someone", this->getString(d));
 }
 
 void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
