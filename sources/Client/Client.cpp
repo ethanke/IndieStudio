@@ -163,7 +163,7 @@ void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3d
     d.AddMember("short_id", v, d.GetAllocator());
 
     v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("short_id", v, d.GetAllocator());
+    d.AddMember("id", v, d.GetAllocator());
 
     rapidjson::Value v1(pos.X);
 

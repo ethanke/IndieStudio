@@ -288,34 +288,34 @@ void IndieGame::OnFrame() {
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["id"]->get_string()) == 0)
+    if (this->_cars.count(msg->get_map()["short_id"]->get_string()) == 0)
         return;
-    this->_cars[msg->get_map()["id"]->get_string()]->setEngineForce(msg->get_map()["engine"]->get_double());
-    this->_cars[msg->get_map()["id"]->get_string()]->setBreakingForce(msg->get_map()["breaking"]->get_double());
-    this->_cars[msg->get_map()["id"]->get_string()]->setSteeringValue(msg->get_map()["steering"]->get_double());
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setEngineForce(msg->get_map()["engine"]->get_double());
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setBreakingForce(msg->get_map()["breaking"]->get_double());
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setSteeringValue(msg->get_map()["steering"]->get_double());
     irr::core::vector3df pos(0, 0, 0);
     pos.X = msg->get_map()["LinearX"]->get_double();
     pos.Y = msg->get_map()["LinearY"]->get_double();
     pos.Z = msg->get_map()["LinearZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_string()]->setLinearVelocity(pos);
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setLinearVelocity(pos);
     pos.X = msg->get_map()["AngularX"]->get_double();
     pos.Y = msg->get_map()["AngularY"]->get_double();
     pos.Z = msg->get_map()["AngularZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_string()]->setAngularVelocity(pos);
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setAngularVelocity(pos);
 }
 
 void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["id"]->get_string()) == 0)
+    if (this->_cars.count(msg->get_map()["short_id"]->get_string()) == 0)
         return;
     irr::core::vector3df pos(0, 0, 0);
     pos.X = msg->get_map()["posX"]->get_double();
     pos.Y = msg->get_map()["posY"]->get_double();
     pos.Z = msg->get_map()["posZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_string()]->setPosition(pos);
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setPosition(pos);
     pos.X = msg->get_map()["rotX"]->get_double();
     pos.Y = msg->get_map()["rotY"]->get_double();
     pos.Z = msg->get_map()["rotZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_string()]->setRotation(pos);
+    this->_cars[msg->get_map()["short_id"]->get_string()]->setRotation(pos);
 }
 
 void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
