@@ -260,7 +260,7 @@ void IndieGame::OnFrame() {
     if (!_pos)
         return;
     // std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
-    std::string str("            \nonline id: " + Client::Instance().getId() + "\nconnected to id: " + std::to_string(this->_connectedTo));
+    std::string str("            \nonline id: " + Client::Instance().getShortId() + "\nconnected to id: " + std::to_string(this->_connectedTo));
 
     this->_pos->setText(Utils::StrToWstr(str));
 

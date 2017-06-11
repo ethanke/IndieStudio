@@ -60,7 +60,7 @@ void Client::SetupCallback() {
         this->_shortId = data->get_map()["short_id"]->get_string();
     }));
 
-    this->_client.socket()->on("change id", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    this->_client.socket()->on("bite", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
     {
         this->_bridge->addEvent(data);
     }));
@@ -234,6 +234,10 @@ void Client::setId(std::string const & id) {
 
 std::string const & Client::getId() const {
     return this->_id;
+}
+
+std::string const & Client::getShortId() const {
+    return this->_shortId;
 }
 
 void Client::setCarNo(int no) {

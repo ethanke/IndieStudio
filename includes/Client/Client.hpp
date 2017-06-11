@@ -53,6 +53,7 @@ namespace indie {
         // ClientSocket getSocket();
         void setId(std::string const & id);
         std::string const & getId() const;
+        std::string const & getShortId() const;
 
         void debug(std::string const &debug);
         void requestId();
