@@ -256,13 +256,12 @@ std::string const & Client::getShortId() const {
 void Client::setCarNo(int no) {
     this->_client.socket()->emit("carNum changed", "{\"id\": \"" + this->_id + "\", \"nbr\": \"" + std::to_string(no) + "\"}");
 }
-#include <iostream>
+
 std::string const Client::getString(rapidjson::Document const &d) {
     rapidjson::StringBuffer buffer;
     buffer.Clear();
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     d.Accept(writer);
     std::string json = buffer.GetString();
-    std::cout << json << std::endl;
     return json;
 }
