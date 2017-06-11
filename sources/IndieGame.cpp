@@ -205,8 +205,9 @@ void IndieGame::loadMap() {
 void IndieGame::addEventReceiver() {
     int i = 0;
     this->_operation["connected_to"] = i++;
-    this->_operation["truc velocity"] = i++;
-    this->_operation["truc engine"] = i++;
+    this->_operation["send engine"] = i++;
+    this->_operation["send pos"] = i++;
+    this->_operation["add car"] = i++;
     // this->_operation["setid"] = i++;
     // this->_operation["getmoney"] = i++;
     // this->_operation["connected"] = i++;
@@ -233,6 +234,9 @@ void IndieGame::OnFrame() {
                 break;
             case 2:
                 this->updateCarsPosition(str.second);
+                break;
+            case 3:
+                this->addNetworkCar(str.second);
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
@@ -284,43 +288,43 @@ void IndieGame::OnFrame() {
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["id"]->get_int()) == 0)
+    if (this->_cars.count(msg->get_map()["id"]->get_string()) == 0)
         return;
-    this->_cars[msg->get_map()["id"]->get_int()]->setEngineForce(msg->get_map()["engine"]->get_double());
-    this->_cars[msg->get_map()["id"]->get_int()]->setBreakingForce(msg->get_map()["breaking"]->get_double());
-    this->_cars[msg->get_map()["id"]->get_int()]->setSteeringValue(msg->get_map()["steering"]->get_double());
+    this->_cars[msg->get_map()["id"]->get_string()]->setEngineForce(msg->get_map()["engine"]->get_double());
+    this->_cars[msg->get_map()["id"]->get_string()]->setBreakingForce(msg->get_map()["breaking"]->get_double());
+    this->_cars[msg->get_map()["id"]->get_string()]->setSteeringValue(msg->get_map()["steering"]->get_double());
     irr::core::vector3df pos(0, 0, 0);
     pos.X = msg->get_map()["LinearX"]->get_double();
     pos.Y = msg->get_map()["LinearY"]->get_double();
     pos.Z = msg->get_map()["LinearZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_int()]->setLinearVelocity(pos);
+    this->_cars[msg->get_map()["id"]->get_string()]->setLinearVelocity(pos);
     pos.X = msg->get_map()["AngularX"]->get_double();
     pos.Y = msg->get_map()["AngularY"]->get_double();
     pos.Z = msg->get_map()["AngularZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_int()]->setAngularVelocity(pos);
+    this->_cars[msg->get_map()["id"]->get_string()]->setAngularVelocity(pos);
 }
 
 void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["id"]->get_int()) == 0)
+    if (this->_cars.count(msg->get_map()["id"]->get_string()) == 0)
         return;
     irr::core::vector3df pos(0, 0, 0);
     pos.X = msg->get_map()["posX"]->get_double();
     pos.Y = msg->get_map()["posY"]->get_double();
     pos.Z = msg->get_map()["posZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_int()]->setPosition(pos);
+    this->_cars[msg->get_map()["id"]->get_string()]->setPosition(pos);
     pos.X = msg->get_map()["rotX"]->get_double();
     pos.Y = msg->get_map()["rotY"]->get_double();
     pos.Z = msg->get_map()["rotZ"]->get_double();
-    this->_cars[msg->get_map()["id"]->get_int()]->setRotation(pos);
+    this->_cars[msg->get_map()["id"]->get_string()]->setRotation(pos);
 }
 
-// void IndieGame::addNetworkCar(Message &msg) {
-//     if (this->_cars.count(std::atoi(msg("id").c_str())) == 0) {
-//         Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, std::atoi(msg("car_no").c_str()));
-//         this->_cars[std::atoi(msg("id").c_str())] = nc;
-//         this->_objectList.push_back(nc);
-//     }
-// }
+void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
+    if (this->_cars.count(msg->get_map()["id"]->get_string()) == 0) {
+        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, msg->get_map()["id"]->get_int());
+        this->_cars[msg->get_map()["id"]->get_string()] = nc;
+        this->_objectList.push_back(nc);
+    }
+}
 
 bool IndieGame::OnEvent(const irr::SEvent& event){
     if (event.EventType == irr::EET_GUI_EVENT) {

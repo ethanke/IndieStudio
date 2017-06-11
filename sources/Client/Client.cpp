@@ -64,6 +64,21 @@ void Client::SetupCallback() {
     {
         this->_bridge->addEvent(name, data);
     }));
+
+    this->_client.socket()->on("send pos", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
+
+    this->_client.socket()->on("send engine", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
+
+    this->_client.socket()->on("add car", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
 }
 
 void Client::stop() {
@@ -144,59 +159,53 @@ void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3d
     d.SetObject();
     rapidjson::Value v(rapidjson::kObjectType);
 
+
     v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
     d.AddMember("id", v, d.GetAllocator());
+    rapidjson::Value v1(pos.X);
 
-    v.SetString(std::to_string(pos.X).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("posX", v, d.GetAllocator());
-    v.SetString(std::to_string(pos.Y).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("posY", v, d.GetAllocator());
-    v.SetString(std::to_string(pos.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("posZ", v, d.GetAllocator());
+    d.AddMember("posX", v1, d.GetAllocator());
+    v1 = rapidjson::Value(pos.Y);
+    d.AddMember("posY", v1, d.GetAllocator());
+    v1 = rapidjson::Value(pos.Z);
+    d.AddMember("posZ", v1, d.GetAllocator());
 
-    v.SetString(std::to_string(rot.X).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("rotX", v, d.GetAllocator());
-    v.SetString(std::to_string(rot.Y).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("rotY", v, d.GetAllocator());
-    v.SetString(std::to_string(rot.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("rotZ", v, d.GetAllocator());
-    this->_client.socket()->emit("send pos", this->getString(d));
+    v1 = rapidjson::Value(rot.X);
+    d.AddMember("rotX", v1, d.GetAllocator());
+    v1 = rapidjson::Value(rot.Y);
+    d.AddMember("rotY", v1, d.GetAllocator());
+    v1 = rapidjson::Value(rot.Z);
+    d.AddMember("rotZ", v1, d.GetAllocator());
+
+    this->_client.socket()->emit("send oppos", this->getString(d));
 }
 
 void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
     rapidjson::Document d;
     d.SetObject();
     rapidjson::Value v(rapidjson::kObjectType);
+    rapidjson::Value v1(engine);
 
     v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
     d.AddMember("id", v, d.GetAllocator());
-
-    v.SetString(std::to_string(engine).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("engine", v, d.GetAllocator());
-
-    v.SetString(std::to_string(breaking).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("breaking", v, d.GetAllocator());
-
-    v.SetString(std::to_string(steering).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("steering", v, d.GetAllocator());
-
-    v.SetString(std::to_string(vel.X).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("LinearX", v, d.GetAllocator());
-
-    v.SetString(std::to_string(vel.Y).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("LinearY", v, d.GetAllocator());
-
-    v.SetString(std::to_string(vel.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("LinearZ", v, d.GetAllocator());
-
-    v.SetString(std::to_string(ang.X).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("AngularX", v, d.GetAllocator());
-
-    v.SetString(std::to_string(ang.Y).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("AngularY", v, d.GetAllocator());
-
-    v.SetString(std::to_string(ang.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
-    d.AddMember("AngularZ", v, d.GetAllocator());
+    v1 = rapidjson::Value(engine);
+    d.AddMember("engine", v1, d.GetAllocator());
+    v1 = rapidjson::Value(breaking);
+    d.AddMember("breaking", v1, d.GetAllocator());
+    v1 = rapidjson::Value(steering);
+    d.AddMember("steering", v1, d.GetAllocator());
+    v1 = rapidjson::Value(vel.X);
+    d.AddMember("LinearX", v1, d.GetAllocator());
+    v1 = rapidjson::Value(vel.Y);
+    d.AddMember("LinearY", v1, d.GetAllocator());
+    v1 = rapidjson::Value(vel.Z);
+    d.AddMember("LinearZ", v1, d.GetAllocator());
+    v1 = rapidjson::Value(ang.X);
+    d.AddMember("AngularX", v1, d.GetAllocator());
+    v1 = rapidjson::Value(ang.Y);
+    d.AddMember("AngularY", v1, d.GetAllocator());
+    v1 = rapidjson::Value(ang.Z);
+    d.AddMember("AngularZ", v1, d.GetAllocator());
 
     this->_client.socket()->emit("send engine", this->getString(d));
 }
@@ -242,12 +251,13 @@ std::string const & Client::getShortId() const {
 void Client::setCarNo(int no) {
     this->_client.socket()->emit("carNum changed", "{\"id\": \"" + this->_id + "\", \"nbr\": \"" + std::to_string(no) + "\"}");
 }
-
+#include <iostream>
 std::string const Client::getString(rapidjson::Document const &d) {
     rapidjson::StringBuffer buffer;
     buffer.Clear();
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     d.Accept(writer);
     std::string json = buffer.GetString();
+    std::cout << json << std::endl;
     return json;
 }

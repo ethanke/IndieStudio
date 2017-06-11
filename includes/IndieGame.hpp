@@ -83,11 +83,11 @@ namespace indie {
         void updateCarsData(sio::message::ptr const &msg);
         void updateCarsPosition(sio::message::ptr const &msg);
 
-        // void addNetworkCar(Message &msg);
+        void addNetworkCar(sio::message::ptr const &msg);
 
     private:
         Car *_car;
-        std::unordered_map<int, Car *> _cars;
+        std::unordered_map<std::string, Car *> _cars;
         Car *_aiCar;
         GeneticTrainer *_genTrainer;
         std::vector<GameCheckpoint> _checkpoints;
