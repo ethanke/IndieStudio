@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:50:28 2017 Gaëtan Léandre
-// Last update Sun Jun 11 17:28:17 2017 Sousa Victor
+// Last update Sun Jun 11 18:15:01 2017 Sousa Victor
 //
 
 #include                "Client.hpp"
@@ -18,7 +18,7 @@ Client::Client(std::string const &ip, int port)
 {
     this->_ip = ip;
     this->_port = port;
-    this->_id = -1;
+    this->_id = "-1";
 }
 
 Client::~Client()
@@ -43,24 +43,38 @@ Client &Client::Instance() {
 
 void Client::init(NetworkEventBridge *bridge) {
     this->_client.connect("http://" + this->_ip + ":" + std::to_string(this->_port));
+    this->parseID();
     this->SetupCallback();
 }
 
 void Client::SetupCallback() {
-    this->_client.socket()->on("welcome", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    this->_client.socket()->on("give your id", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
     {
-        std::cout  << "server said: " << data->get_map()["message"]->get_string() << std::endl;
+        this->_client.socket()->emit("id client is", "{\"id\": \"" + this->_id + "\"}");
     }));
 
-    this->_client.socket()->on("time", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    this->_client.socket()->on("change id", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
     {
-        std::cout << "server sent his timestamp: " << data->get_map()["time"]->get_string() << std::endl;
+        this->setId(data->get_map()["new_id"]->get_string());
     }));
+
 }
 
 void Client::stop() {
     //TODO stop _client;
 }
+
+void Client::parseID() {
+    std::string id = "-1";
+    std::ifstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
+
+    if (infile >> id) {
+        if (id != "-1") {
+            this->_id = id;
+        }
+    }
+}
+
 
 void Client::requestId() {
     // int id = -1;
@@ -73,9 +87,6 @@ void Client::requestId() {
     //         return;
     //     }
     // }
-    // Message data("getid");
-    // this->_socket.write(data.getJSON());
-
 }
 
 void Client::giveId() {
@@ -207,16 +218,15 @@ ClientSocket Client::getSocket() {
     return ClientSocket();
 }
 
-void Client::setId(int id) {
-    // std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
-    //
-    // infile << id;
-    // this->_id = id;
+void Client::setId(std::string const & id) {
+    std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
+
+    infile << id;
+    this->_id = id;
 }
 
-int Client::getId() const {
-    // return this->_id;
-    return (0);
+std::string const & Client::getId() const {
+    return this->_id;
 }
 
 void Client::setCarNo(int no) {

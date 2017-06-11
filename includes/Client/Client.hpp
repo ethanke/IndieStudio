@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:51:52 2017 Gaëtan Léandre
-// Last update Sun Jun 11 17:39:31 2017 Sousa Victor
+// Last update Sun Jun 11 18:14:28 2017 Sousa Victor
 //
 
 #ifndef             CLIENT_HPP
@@ -30,9 +30,10 @@ namespace indie {
         sio::client _client;
         std::string _ip;
         int _port;
-        int _id;
+        std::string _id;
 
         void SetupCallback();
+        void parseID();
 
     public:
         explicit Client (std::string const &ip = "37.187.8.132", int port = 3000);
@@ -44,8 +45,8 @@ namespace indie {
         void stop();
 
         ClientSocket getSocket();
-        void setId(int id);
-        int getId() const;
+        void setId(std::string const & id);
+        std::string const & getId() const;
 
         void debug(std::string const &debug);
         void requestId();

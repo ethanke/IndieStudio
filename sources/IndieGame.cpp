@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun Jun 11 00:07:51 2017 Sousa Victor
+// Last update Sun Jun 11 18:10:47 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -225,7 +225,7 @@ void IndieGame::OnFrame() {
         data.parseJSON(str);
         switch (this->_operation[data.getTitle()]) {
             case 0:
-                Client::Instance().setId(atoi(data("id").c_str()));
+                Client::Instance().setId(data("id"));
                 break;
             case 1:
                 std::cout << data("value") << std::endl;
@@ -261,7 +261,7 @@ void IndieGame::OnFrame() {
     if (!_pos)
         return;
     // std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
-    std::string str("            \nonline id: " + std::to_string(Client::Instance().getId()) + "\nconnected to id: " + std::to_string(this->_connectedTo));
+    std::string str("            \nonline id: " + Client::Instance().getId() + "\nconnected to id: " + std::to_string(this->_connectedTo));
 
     this->_pos->setText(Utils::StrToWstr(str));
 
