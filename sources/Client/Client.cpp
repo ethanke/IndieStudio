@@ -160,7 +160,6 @@ void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3d
     d.AddMember("rotY", v, d.GetAllocator());
     v.SetString(std::to_string(rot.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
     d.AddMember("rotZ", v, d.GetAllocator());
-
     this->_client.socket()->emit("send pos", this->getString(d));
 }
 
@@ -199,7 +198,7 @@ void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3d
     v.SetString(std::to_string(ang.Z).c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
     d.AddMember("AngularZ", v, d.GetAllocator());
 
-    this->_client.socket()->emit("sent engine", this->getString(d));
+    this->_client.socket()->emit("send engine", this->getString(d));
 }
 
 // void Client::creatingCourseLobby(irr::s32 const &id) {
