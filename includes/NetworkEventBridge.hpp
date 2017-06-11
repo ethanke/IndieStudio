@@ -15,6 +15,9 @@
 #include <string>
 #include <mutex>
 #include <unordered_map>
+#include "document.h"
+#include "sio_socket.h"
+#include "sio_client.h"
 
 namespace indie {
 
@@ -24,13 +27,13 @@ namespace indie {
         NetworkEventBridge();
         ~NetworkEventBridge();
 
-        void addEvent(std::string const &json);
+        void addEvent(sio::message::ptr const &msg);
 
         void lockEventBuffer();
         void unlockEventBuffer();
 
     protected:
-        std::vector<std::string> _cmdBuffer;
+        std::vector<sio::message::ptr> _cmdBuffer;
         std::mutex _mutex;
         std::unordered_map<std::string, int> _operation;
 

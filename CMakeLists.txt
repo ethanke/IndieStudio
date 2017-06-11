@@ -134,9 +134,6 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/GeneticTrainer.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/Client/Client.cpp
-    ${PROJECT_SOURCE_DIR}/sources/Client/ClientSocket.cpp
-    ${PROJECT_SOURCE_DIR}/sources/Client/Socket.cpp
-    ${PROJECT_SOURCE_DIR}/sources/Client/Message.cpp
 
 )
 
@@ -196,6 +193,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
     ${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/include/
+    ${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/lib/rapidjson/include/rapidjson/
 )
 
 

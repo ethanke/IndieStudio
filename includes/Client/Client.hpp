@@ -12,13 +12,16 @@
 #define             CLIENT_HPP
 
 #include <fstream>
+#include <sstream>
 #include "sio_socket.h"
 #include "sio_client.h"
+#include "rapidjson.h"
+#include "document.h"
+#include "stringbuffer.h"
+#include "writer.h"
 
 #include "NetworkEventBridge.hpp"
 #include "EventReceiver.hpp"
-#include "Message.hpp"
-#include "ClientSocket.hpp"
 #include "IndieStudioConfig.h"
 
 
@@ -31,6 +34,9 @@ namespace indie {
         std::string _ip;
         int _port;
         std::string _id;
+        std::string _shortId;
+        NetworkEventBridge *_bridge;
+
 
         void SetupCallback();
         void parseID();
@@ -44,7 +50,7 @@ namespace indie {
         void init(NetworkEventBridge *bridge);
         void stop();
 
-        ClientSocket getSocket();
+        // ClientSocket getSocket();
         void setId(std::string const & id);
         std::string const & getId() const;
 
@@ -60,6 +66,7 @@ namespace indie {
         void leavingCourseLobby();
         void setCarNo(int no);
 
+        std::string const getString(rapidjson::Document const &d);
 
     };
 

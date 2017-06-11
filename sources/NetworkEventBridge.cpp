@@ -20,8 +20,8 @@ NetworkEventBridge::~NetworkEventBridge() {
 
 }
 
-void NetworkEventBridge::addEvent(std::string const &json) {
-    this->_cmdBuffer.push_back(json);
+void NetworkEventBridge::addEvent(sio::message::ptr const &msg) {
+    this->_cmdBuffer.push_back(msg);
 }
 
 void NetworkEventBridge::lockEventBuffer() {

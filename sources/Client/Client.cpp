@@ -42,6 +42,7 @@ Client &Client::Instance() {
 }
 
 void Client::init(NetworkEventBridge *bridge) {
+    this->_bridge = bridge;
     this->_client.connect("http://" + this->_ip + ":" + std::to_string(this->_port));
     this->parseID();
     this->SetupCallback();
@@ -56,8 +57,13 @@ void Client::SetupCallback() {
     this->_client.socket()->on("change id", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
     {
         this->setId(data->get_map()["new_id"]->get_string());
+        this->_shortId = data->get_map()["short_id"]->get_string();
     }));
 
+    this->_client.socket()->on("change id", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(data);
+    }));
 }
 
 void Client::stop() {
@@ -74,7 +80,6 @@ void Client::parseID() {
         }
     }
 }
-
 
 void Client::requestId() {
     // int id = -1;
@@ -119,17 +124,19 @@ void Client::requestMoney() {
 }
 
 void Client::joinId(const wchar_t *dest_id) {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("join");
-    // data("id") = std::to_string(this->_id);
-    // std::wstring ws(dest_id);
-    // std::string dest(ws.begin(), ws.end());
-    // data("value") = dest;
-    // this->_socket.write(data.getJSON());
+    rapidjson::Document d;
+    d.SetObject();
+    rapidjson::Value v(rapidjson::kObjectType);
+
+    v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("id", v, d.GetAllocator());
+
+    std::wstring ws(dest_id);
+    std::string dest(ws.begin(), ws.end());
+    v.SetString(dest.c_str(), static_cast<rapidjson::SizeType>(dest.length()), d.GetAllocator());
+    d.AddMember("dest", v, d.GetAllocator());
+
+    this->_client.socket()->emit("joining someone", this->getString(d));
 }
 
 void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
@@ -214,9 +221,9 @@ void Client::debug(std::string const &debug)
 
 
 
-ClientSocket Client::getSocket() {
-    return ClientSocket();
-}
+// ClientSocket Client::getSocket() {
+//     return ClientSocket();
+// }
 
 void Client::setId(std::string const & id) {
     std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
@@ -231,4 +238,13 @@ std::string const & Client::getId() const {
 
 void Client::setCarNo(int no) {
     this->_client.socket()->emit("carNum changed", "{\"id\": \"" + this->_id + "\", \"nbr\": \"" + std::to_string(no) + "\"}");
+}
+
+std::string const Client::getString(rapidjson::Document const &d) {
+    rapidjson::StringBuffer buffer;
+    buffer.Clear();
+    rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+    d.Accept(writer);
+    std::string json = buffer.GetString();
+    return json;
 }
