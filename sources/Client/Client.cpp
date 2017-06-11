@@ -62,7 +62,7 @@ void Client::SetupCallback() {
 
     this->_client.socket()->on("bite", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
     {
-        this->_bridge->addEvent(data);
+        this->_bridge->addEvent(name, data);
     }));
 }
 
@@ -100,7 +100,7 @@ void Client::giveId() {
     // this->_socket.write(data.getJSON());
 }
 
-void Client::addMoney(int nb) {
+// void Client::addMoney(int nb) {
     // if (this->_id == -1) {
     //     this->requestId();
     //     return;
@@ -110,9 +110,9 @@ void Client::addMoney(int nb) {
     // data("id") = std::to_string(this->_id);
     // data("value") = std::to_string(nb);
     // this->_socket.write(data.getJSON());
-}
+// }
 
-void Client::requestMoney() {
+// void Client::requestMoney() {
     // if (this->_id == -1) {
     //     this->requestId();
     //     return;
@@ -121,7 +121,7 @@ void Client::requestMoney() {
     // Message data("getmoney");
     // data("id") = std::to_string(this->_id);
     // this->_socket.write(data.getJSON());
-}
+// }
 
 void Client::joinId(const wchar_t *dest_id) {
     rapidjson::Document d;
@@ -139,7 +139,7 @@ void Client::joinId(const wchar_t *dest_id) {
     this->_client.socket()->emit("joining someone", this->getString(d));
 }
 
-void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
+void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
     // if (this->_id == -1) {
     //     this->requestId();
     //     return;
@@ -160,7 +160,7 @@ void Client::move(irr::core::vector3df const &pos, irr::core::vector3df const &r
     // this->_socket.write(data.getJSON());
 }
 
-void Client::sendEngine(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
+void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
     // if (this->_id == -1) {
     //     this->requestId();
     //     return;
@@ -184,7 +184,7 @@ void Client::sendEngine(irr::core::vector3df const &vel, irr::core::vector3df co
     // this->_socket.write(data.getJSON());
 }
 
-void Client::creatingCourseLobby(irr::s32 const &id) {
+// void Client::creatingCourseLobby(irr::s32 const &id) {
     // if (this->_id == -1) {
     //     this->requestId();
     //     return;
@@ -194,9 +194,9 @@ void Client::creatingCourseLobby(irr::s32 const &id) {
     // data("id") = std::to_string(this->_id);
     // data("course") = std::to_string(id);
     // this->_socket.write(data.getJSON());
-}
+// }
 
-void Client::leavingCourseLobby() {
+// void Client::leavingCourseLobby() {
     // if (this->_id == -1) {
     //     this->requestId();
     //     return;
@@ -205,24 +205,6 @@ void Client::leavingCourseLobby() {
     // Message data("leavinglobby");
     // data("id") = std::to_string(this->_id);
     // this->_socket.write(data.getJSON());
-}
-
-void Client::debug(std::string const &debug)
-{
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    // Message data("debug");
-    // data("msg") = debug;
-    // this->_socket.write(data.getJSON());
-}
-
-
-
-
-// ClientSocket Client::getSocket() {
-//     return ClientSocket();
 // }
 
 void Client::setId(std::string const & id) {

@@ -80,8 +80,8 @@ namespace indie {
 
         virtual void launchMenu();
 
-        // void updateCarsData(Message &msg);
-        // void updateCarsPosition(Message &msg);
+        void updateCarsData(sio::message::ptr const &msg);
+        void updateCarsPosition(sio::message::ptr const &msg);
 
         // void addNetworkCar(Message &msg);
 

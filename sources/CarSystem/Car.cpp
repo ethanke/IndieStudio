@@ -63,14 +63,14 @@ void Car::OnFrame() {
         updateCamera();
         if (this->_elapsedTime >= 1) {
             if (this->_mustSendData == true)
-                Client::Instance().move(this->getPosition(), this->getRotation());
+                Client::Instance().sendPosAndRota(this->getPosition(), this->getRotation());
             this->_elapsedTime = 0;
         } else {
             this->_elapsedTime += DeltaTimer::DeltaTime;
         }
     }
     if (this->_mustSendData == true)
-        Client::Instance().sendEngine(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
+        Client::Instance().sendEngineData(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
 
 	this->_carLoader.Update(drive_tipe);
 }

@@ -11,6 +11,7 @@
 #ifndef NETWORKEVENTBRIDGE_HPP_
 #define NETWORKEVENTBRIDGE_HPP_
 
+#include <utility>
 #include <vector>
 #include <string>
 #include <mutex>
@@ -27,13 +28,13 @@ namespace indie {
         NetworkEventBridge();
         ~NetworkEventBridge();
 
-        void addEvent(sio::message::ptr const &msg);
+        void addEvent(std::string const &name, sio::message::ptr const &msg);
 
         void lockEventBuffer();
         void unlockEventBuffer();
 
     protected:
-        std::vector<sio::message::ptr> _cmdBuffer;
+        std::vector<std::pair<std::string, sio::message::ptr>> _cmdBuffer;
         std::mutex _mutex;
         std::unordered_map<std::string, int> _operation;
 

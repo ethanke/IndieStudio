@@ -20,8 +20,8 @@ NetworkEventBridge::~NetworkEventBridge() {
 
 }
 
-void NetworkEventBridge::addEvent(sio::message::ptr const &msg) {
-    this->_cmdBuffer.push_back(msg);
+void NetworkEventBridge::addEvent(std::string const &name, sio::message::ptr const &msg) {
+    this->_cmdBuffer.push_back(std::make_pair(name, msg));
 }
 
 void NetworkEventBridge::lockEventBuffer() {
