@@ -177,7 +177,7 @@ void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3d
     v1 = rapidjson::Value(rot.Z);
     d.AddMember("rotZ", v1, d.GetAllocator());
 
-    this->_client.socket()->emit("send oppos", this->getString(d));
+    this->_client.socket()->emit("send pos", this->getString(d));
 }
 
 void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
