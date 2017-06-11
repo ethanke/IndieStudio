@@ -5,16 +5,20 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:51:52 2017 Gaëtan Léandre
-// Last update Sun Jun 11 02:38:17 2017 Sousa Victor
+// Last update Sun Jun 11 18:14:28 2017 Sousa Victor
 //
 
 #ifndef             CLIENT_HPP
 #define             CLIENT_HPP
 
 #include <fstream>
-#include "ClientSocket.hpp"
+#include "sio_socket.h"
+#include "sio_client.h"
+
+#include "NetworkEventBridge.hpp"
 #include "EventReceiver.hpp"
 #include "Message.hpp"
+#include "ClientSocket.hpp"
 #include "IndieStudioConfig.h"
 
 
@@ -23,15 +27,16 @@ namespace indie {
     class Client {
     private:
         static Client _instance;
-        ClientSocket _socket;
+        sio::client _client;
         std::string _ip;
         int _port;
-        int _id;
+        std::string _id;
+
+        void SetupCallback();
+        void parseID();
 
     public:
-        //93.9.51.53
-        //10.16.252.77
-        explicit Client (std::string const &ip = "127.0.0.1", int port = 1234);
+        explicit Client (std::string const &ip = "37.187.8.132", int port = 3000);
         virtual ~Client ();
         Client(const Client &obj);
         Client &operator=(const Client &obj);
@@ -40,8 +45,8 @@ namespace indie {
         void stop();
 
         ClientSocket getSocket();
-        void setId(int id);
-        int getId() const;
+        void setId(std::string const & id);
+        std::string const & getId() const;
 
         void debug(std::string const &debug);
         void requestId();
