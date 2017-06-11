@@ -5,8 +5,10 @@ var Schema = mongoose.Schema;
 var clientsSchema = new Schema({
     shortID: String,
     socketID: String,
+    connected: Boolean,
     carNumber: {type: Number, default: 0},
-    money: {type: Number, default: 0}
+    money: {type: Number, default: 0},
+    roomID: {type: mongoose.Schema.Types.ObjectId, ref: 'Room'}
 });
 
 module.exports = mongoose.model('Client', clientsSchema);
