@@ -319,9 +319,9 @@ void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
 }
 
 void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["id"]->get_string()) == 0) {
-        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, msg->get_map()["id"]->get_int());
-        this->_cars[msg->get_map()["id"]->get_string()] = nc;
+    if (this->_cars.count(msg->get_map()["car_id"]->get_string()) == 0) {
+        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, msg->get_map()["car_no"]->get_int());
+        this->_cars[msg->get_map()["car_id"]->get_string()] = nc;
         this->_objectList.push_back(nc);
     }
 }
