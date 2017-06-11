@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Sun Jun 04 14:08:41 2017 Lucas Gambini
+** Last update Sun Jun 11 17:04:28 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -53,7 +53,7 @@ void GameCheckpoint::reCreate() {
     else if (this->_type == IN_COURSE)
         this->_color = irr::video::SColor(150, 0, 255, 255);
     else
-        this->_color = irr::video::SColor(150, 255, 40, 0);
+        this->_color = irr::video::SColor(150, 100, 100, 100);
     irr::scene::IMesh *_mesh = this->_smgr->getGeometryCreator()->createCylinderMesh(this->_radius, 5000, 50, this->_color, true, 0.f);
     _mesh->setMaterialFlag(irr::video::EMF_WIREFRAME, 10);
     this->_cylindre = this->_smgr->addMeshSceneNode(_mesh, 0, this->_id, this->_pos, this->_rotation, this->_scale);
