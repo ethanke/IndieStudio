@@ -417,8 +417,8 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         break;
                     case JoinServer::JOIN:
-                        // if (this->_connectedTo == -1)
-                        //     Client::Instance().joinId(this->_onlineUI->getText());
+                        if (this->_connectedTo == -1)
+                            Client::Instance().joinId(this->_onlineUI->getText());
                         this->OnLeavingOnline();
                         break;
                     case MainMenu::PLAY:
