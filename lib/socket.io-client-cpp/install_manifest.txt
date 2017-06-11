@@ -1,0 +1,8 @@
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/include/sio_client.h
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/include/sio_message.h
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/include/sio_socket.h
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/lib/Release/libsioclient.a
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/lib/Release/libsioclient_tls.a
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/lib/Release/libboost_system-mt.a
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/lib/Release/libboost_date_time-mt.a
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/build/lib/Release/libboost_random-mt.a

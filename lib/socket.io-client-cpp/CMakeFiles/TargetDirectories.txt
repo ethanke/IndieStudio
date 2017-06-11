@@ -1,0 +1,8 @@
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/install/local.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/install/strip.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/install.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/sioclient.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/list_install_components.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/rebuild_cache.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/edit_cache.dir
+/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/sioclient_tls.dir

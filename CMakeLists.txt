@@ -65,6 +65,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     link_directories(/usr/local/lib/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/OSX/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/lib/OSX/)
+    link_directories(${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/lib/OSX/)
 endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/Win64-visualStudio/)
@@ -171,6 +172,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         "-framework OpenGL"
         "-framework IOKit"
         "-framework Carbon"
+        sioclient
+        boost_system
     )
 endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -188,11 +191,11 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/includes/CarSystem
     ${PROJECT_SOURCE_DIR}/includes/BulletAnimator
     ${PROJECT_SOURCE_DIR}/includes/NeuralNetwork
-    ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
-    ${PROJECT_SOURCE_DIR}/lib/irrBullet/include/
-    ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
     ${PROJECT_SOURCE_DIR}/includes/GUI/
     ${PROJECT_SOURCE_DIR}/includes/Client/
+    ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
+    ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
+    ${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/include/
 )
 
 
