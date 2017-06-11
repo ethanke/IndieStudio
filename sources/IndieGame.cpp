@@ -130,7 +130,7 @@ void IndieGame::addGameObject() {
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 3, irr::core::vector3df(40, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(744.1, 0, 502.7)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(313.75, 0, -215.9)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
 
@@ -381,6 +381,15 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case Menu::QUIT:
                         this->_device->closeDevice();
                         Client::Instance().stop();
+                        break;
+                    case Concessionnaire::LEAVE:
+                         this->_concessionnaire->setVisible(false);
+                         break;
+                    case Concessionnaire::NEXTC:
+                        this->_concessionnaire->colorManager(1);
+                        break;
+                    case Concessionnaire::PREVC:
+                        this->_concessionnaire->colorManager(0);
                         break;
                     case Course::RUN:
                         //LANCER LA COURSE SA MERE
