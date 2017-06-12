@@ -35,6 +35,7 @@ namespace indie {
         int _port;
         std::string _id;
         std::string _shortId;
+        int _money;
         NetworkEventBridge *_bridge;
 
 
@@ -54,10 +55,8 @@ namespace indie {
         std::string const & getId() const;
         std::string const & getShortId() const;
 
-        void requestId();
-        void giveId();
-        // void addMoney(int nb);
-        // void requestMoney();
+        void addMoney(int nb);
+        void requestMoney();
         void joinId(const wchar_t *dest_id);
         void sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3df const &rot);
         void sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering);

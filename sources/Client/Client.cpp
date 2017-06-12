@@ -94,6 +94,16 @@ void Client::SetupCallback() {
     {
         this->_bridge->addEvent(name, data);
     }));
+
+    this->_client.socket()->on("error", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
+
+    this->_client.socket()->on("get money", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_money = data->get_map()["money"]->get_int();
+    }));
 }
 
 void Client::stop() {
@@ -110,48 +120,6 @@ void Client::parseID() {
         }
     }
 }
-
-void Client::requestId() {
-    // int id = -1;
-    // std::ifstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
-    //
-    // if (infile >> id) {
-    //     if (id != -1) {
-    //         this->_id = id;
-    //         this->giveId();
-    //         return;
-    //     }
-    // }
-}
-
-void Client::giveId() {
-    // Message data("setid");
-    // data("id") = std::to_string(this->_id);
-    // this->_socket.write(data.getJSON());
-}
-
-// void Client::addMoney(int nb) {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("addmoney");
-    // data("id") = std::to_string(this->_id);
-    // data("value") = std::to_string(nb);
-    // this->_socket.write(data.getJSON());
-// }
-
-// void Client::requestMoney() {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("getmoney");
-    // data("id") = std::to_string(this->_id);
-    // this->_socket.write(data.getJSON());
-// }
 
 void Client::joinId(const wchar_t *dest_id) {
     rapidjson::Document d;
@@ -270,6 +238,14 @@ std::string const & Client::getShortId() const {
 
 void Client::setCarNo(int no) {
     this->_client.socket()->emit("carNum changed", "{\"id\": \"" + this->_id + "\", \"nbr\": \"" + std::to_string(no) + "\"}");
+}
+
+void Client::addMoney(int nb) {
+    this->_client.socket()->emit("add money", "{\"id\": \"" + this->_id + "\", \"nbr\": \"" + std::to_string(nb) + "\"}");
+}
+
+void Client::requestMoney() {
+    this->_client.socket()->emit("get money", "{\"id\": \"" + this->_id + "\"}");
 }
 
 std::string const Client::getString(rapidjson::Document const &d) {

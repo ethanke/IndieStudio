@@ -16,6 +16,7 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     _pos = NULL;
     bulletPhysSys = NULL;
     _mainmenu = NULL;
+    this->_error = NULL;
     this->_connectedTo = "-1";
 }
 
@@ -174,7 +175,15 @@ void IndieGame::addGameObject() {
     //GUI DEBUG
     this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
     this->_pos->setTextAlignment(irr::gui::EGUIA_SCALE , irr::gui::EGUIA_SCALE);
+    this->_pos->setOverrideColor(irr::video::SColor(255, 180, 180, 180));
 
+    this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
+    irr::gui::IGUIFont* font = this->_gui->getFont("misc/error.xml");
+    if (font)
+        this->_error->setOverrideFont(font);
+    this->_error->setOverrideColor(irr::video::SColor(255, 255, 0, 0));
+    this->_error->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_CENTER);
+    this->_error->setVisible(false);
 }
 
 void IndieGame::loadMap() {
@@ -211,8 +220,8 @@ void IndieGame::addEventReceiver() {
     this->_operation["delete car"] = i++;
     this->_operation["join race"] = i++;
     this->_operation["leave race"] = i++;
+    this->_operation["error"] = i++;
     Client::Instance().init(this);
-    Client::Instance().requestId();
 }
 
 void IndieGame::OnFrame() {
@@ -246,6 +255,10 @@ void IndieGame::OnFrame() {
                 else if (this->_course)
                     this->_course->ripPlayer(str.second->get_map()["short_id"]->get_string());
                 break;
+            case 7:
+                this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string()));
+                this->_error->setVisible(true);
+                break;
             default:
                 std::cerr << "Command not found" << std::endl;
                 break;
@@ -258,7 +271,7 @@ void IndieGame::OnFrame() {
         return;
     std::wstring ws(this->_pos->getText());
     std::string get(ws.begin(), ws.end());
-    std::string str("online id: " + Client::Instance().getShortId() + "\nconnected to: " + this->_connectedTo);
+    std::string str("online id: " + Client::Instance().getShortId() + " && connected to: " + this->_connectedTo);
     if (str != get) {
         this->_pos->setText(Utils::StrToWstr(str));
     }
@@ -266,6 +279,17 @@ void IndieGame::OnFrame() {
     if (!bulletPhysSys)
         return;
     bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
+
+    if (!this->_error)
+        return;
+    if (this->_error->isVisible() == true) {
+        this->_errorTimer += DeltaTimer::DeltaTime;
+        if (this->_errorTimer >= 3) {
+            this->_error->setVisible(false);
+            this->_errorTimer = 0;
+        }
+
+    }
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {

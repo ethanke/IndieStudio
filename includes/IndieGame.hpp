@@ -113,6 +113,9 @@ namespace indie {
 
         std::string _connectedTo;
 
+        irr::gui::IGUIStaticText *_error;
+        irr::f32 _errorTimer;
+
         //Text debug
         irr::gui::IGUIStaticText *_pos;
     };
