@@ -8,7 +8,8 @@ var clientsSchema = new Schema({
     connected: Boolean,
     carNumber: {type: Number, default: 0},
     money: {type: Number, default: 0},
-    roomID: {type: mongoose.Schema.Types.ObjectId, ref: 'Room'}
+    roomID: {type: mongoose.Schema.Types.ObjectId, ref: 'Room'},
+    raceID: {type: mongoose.Schema.Types.ObjectId, ref: 'Race'}
 });
 
 module.exports = mongoose.model('Client', clientsSchema);

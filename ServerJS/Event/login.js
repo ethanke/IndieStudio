@@ -10,8 +10,10 @@ exports.disconnect = function(socket, io) {
 		    for (var i = 0; i < roomResultF[0].clients.length; i++) {
 			if (roomResultF[0].clients[i].socketID != socket.id) {
 			    var json_res = {'short_id': clientList[0].shortID};
-			    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'delete car\': " + JSON.stringify(json_res));
-			    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('delete car', json_res);
+			    if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
+				console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'delete car\': " + JSON.stringify(json_res));
+				io.sockets.connected[roomResultF[0].clients[i].socketID].emit('delete car', json_res);
+			    }
 			}
 		    }
 		    Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
@@ -34,7 +36,8 @@ exports.login = function(socket, msg) {
 		'socketID': socket.id,
 		'connected': true,
 		'shortID': "-1",
-		"roomID": null
+		"roomID": null,
+		"raceID": null
 	    });
 	    newClient.save(function(err, result) {
 		if (result) {

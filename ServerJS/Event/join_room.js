@@ -33,15 +33,19 @@ exports.join = function(socket, io, msg_str) {
 									if (roomResultF.length != 0) {
 									    for (var i = 0; i < roomResultF[0].clients.length; i++) {
 										var json_res = {'connected_to': target.shortID};
-										console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'connected_to\': " + JSON.stringify(json_res));
-										io.sockets.connected[roomResultF[0].clients[i].socketID].emit('connected_to', json_res);
+										if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
+										    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'connected_to\': " + JSON.stringify(json_res));
+										    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('connected_to', json_res);
+										}
 									    }
 
 									    for (var i = 0; i < roomResultF[0].clients.length; i++) {
 										if (roomResultF[0].clients[i].socketID != socket.id) {
 										    var json_res = {'car_id': self.shortID, 'car_no': self.carNumber};
-										    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'add car\': " + JSON.stringify(json_res));
-										    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('add car', json_res);
+										    if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
+											console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'add car\': " + JSON.stringify(json_res));
+											io.sockets.connected[roomResultF[0].clients[i].socketID].emit('add car', json_res);
+										    }
 										}
 									    }
 
@@ -72,15 +76,19 @@ exports.join = function(socket, io, msg_str) {
 						    if (roomResultF.length != 0) {
 							for (var i = 0; i < roomResultF[0].clients.length; i++) {
 							    var json_res = {'connected_to': target.shortID};
-							    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'connected_to\': " + JSON.stringify(json_res));
-							    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('connected_to', json_res);
+							    if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
+								console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'connected_to\': " + JSON.stringify(json_res));
+								io.sockets.connected[roomResultF[0].clients[i].socketID].emit('connected_to', json_res);
+							    }
 							}
 
 							for (var i = 0; i < roomResultF[0].clients.length; i++) {
 							    if (roomResultF[0].clients[i].socketID != socket.id) {
 								var json_res = {'car_id': self.shortID, 'car_no': self.carNumber};
-								console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'add car\': " + JSON.stringify(json_res));
-								io.sockets.connected[roomResultF[0].clients[i].socketID].emit('add car', json_res);
+								if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
+								    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'add car\': " + JSON.stringify(json_res));
+								    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('add car', json_res);
+								}
 							    }
 							}
 
