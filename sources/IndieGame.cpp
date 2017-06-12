@@ -211,14 +211,6 @@ void IndieGame::addEventReceiver() {
     this->_operation["delete car"] = i++;
     this->_operation["join race"] = i++;
     this->_operation["leave race"] = i++;
-    // this->_operation["setid"] = i++;
-    // this->_operation["getmoney"] = i++;
-    // this->_operation["connected"] = i++;
-    // this->_operation["cardata"] = i++;
-    // this->_operation["disconnect"] = i++;
-    // this->_operation["move"] = i++;
-    // this->_operation["newcourseplayer"] = i++;
-    // this->_operation["addcars"] = i++;
     Client::Instance().init(this);
     Client::Instance().requestId();
 }
@@ -243,14 +235,17 @@ void IndieGame::OnFrame() {
                 break;
             case 4:
                 this->deleteNetworkCar(str.second);
+                break;
             case 5:
                 if (this->_course)
                     this->_course->addPlayer(str.second->get_map()["short_id"]->get_string());
+                break;
             case 6:
                 if (this->_course && str.second->get_map()["is_leader"]->get_bool() == true)
                     this->_course->ripPlayers();
                 else if (this->_course)
                     this->_course->ripPlayer(str.second->get_map()["short_id"]->get_string());
+                break;
             default:
                 std::cerr << "Command not found" << std::endl;
                 break;
@@ -261,10 +256,12 @@ void IndieGame::OnFrame() {
 
     if (!_pos)
         return;
-    // std::string str("      \nspeed: " + std::to_string(this->_car->getVel()) + "\nmax speed: " + std::to_string(this->_car->getMaxSpeed()));
-    std::string str("            \nonline id: " + Client::Instance().getShortId() + "\nconnected to id: " + this->_connectedTo);
-
-    this->_pos->setText(Utils::StrToWstr(str));
+    std::wstring ws(this->_pos->getText());
+    std::string get(ws.begin(), ws.end());
+    std::string str("online id: " + Client::Instance().getShortId() + "\nconnected to: " + this->_connectedTo);
+    if (str != get) {
+        this->_pos->setText(Utils::StrToWstr(str));
+    }
 
     if (!bulletPhysSys)
         return;
@@ -420,8 +417,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         break;
                     case JoinServer::JOIN:
-                        if (this->_connectedTo == "-1")
-                            Client::Instance().joinId(this->_onlineUI->getText());
+                        Client::Instance().joinId(this->_onlineUI->getText());
                         this->OnLeavingOnline();
                         break;
                     case MainMenu::PLAY:
@@ -461,6 +457,7 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(this->_course);
+    this->_course->addPlayer(Client::Instance().getShortId());
     Client::Instance().creatingCourseLobby(ch.getID());
 }
 
