@@ -24,8 +24,8 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 
     if (val < 0) {
         val = 0;
-    } else if (val > 6) {
-        val = 6;
+    } else if (val > 7) {
+        val = 7;
     }
 
     drive = FWD;
@@ -53,7 +53,7 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
         case 6:
             carNode = loadMeshFromFile("car/SV/SV_yellow.obj");
 		    break;
-	}
+    }
 
     tire1 = loadMeshFromFile("car/SV/SV_tire_front_left.obj");      //front left
     tire2 = loadMeshFromFile("car/Car/SV_tire_front_right.obj");     //front right

@@ -5,13 +5,13 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May  4 17:46:24 2017 Sousa Victor
-// Last update Sun Jun 11 17:24:25 2017 Sousa Victor
+// Last update Mon Jun 12 19:20:35 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
 
 int main(int argc, char* argv[]) {
-    indie::IndieGame game(2048, 1080);
+    indie::IndieGame game(1920, 1080);
 
     game.Setup();
     game.Start();
