@@ -1,12 +1,23 @@
 var Clients = require('../schema/Clients.js');
 var Room    = require('../schema/Rooms.js');
 
-exports.disconnect = function(socket) {
+exports.disconnect = function(socket, io) {
     console.log("Client         " + socket.id + " disconnected.");
     Clients.find({'socketID': socket.id}, function(err, clientList) {
 	if (clientList.length != 0) {
-	    Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
-		Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null}}, function(err, result) {});
+	    Room.find({'_id': clientList[0].roomID}).populate('clients').exec(function(err, roomResultF) {
+		if (roomResultF.length != 0) {
+		    for (var i = 0; i < roomResultF[0].clients.length; i++) {
+			if (roomResultF[0].clients[i].socketID != socket.id) {
+			    var json_res = {'short_id': clientList[0].shortID};
+			    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'delete car\': " + JSON.stringify(json_res));
+			    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('delete car', json_res);
+			}
+		    }
+		    Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
+			Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null}}, function(err, result) {});
+		    });
+		}
 	    });
 	} else {
 	    Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null}}, function(err, result) {});
