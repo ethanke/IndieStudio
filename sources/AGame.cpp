@@ -94,7 +94,8 @@ void AGame::loop() {
 
 void AGame::objectOnFrame() {
     for (auto &obj: this->_objectList)
-        obj->OnFrame();
+        if (obj)
+            obj->OnFrame();
     if (this->_minimapCamera)
         this->_minimapCamera->OnFrame();
 }

@@ -79,6 +79,21 @@ void Client::SetupCallback() {
     {
         this->_bridge->addEvent(name, data);
     }));
+
+    this->_client.socket()->on("delete car", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
+
+    this->_client.socket()->on("join race", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
+
+    this->_client.socket()->on("leave race", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
 }
 
 void Client::stop() {
@@ -215,28 +230,28 @@ void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3d
     this->_client.socket()->emit("send engine", this->getString(d));
 }
 
-// void Client::creatingCourseLobby(irr::s32 const &id) {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("creatinglobby");
-    // data("id") = std::to_string(this->_id);
-    // data("course") = std::to_string(id);
-    // this->_socket.write(data.getJSON());
-// }
+void Client::creatingCourseLobby(irr::s32 const &id) {
+    rapidjson::Document d;
+    d.SetObject();
+    rapidjson::Value v(rapidjson::kObjectType);
+    rapidjson::Value v1(id);
 
-// void Client::leavingCourseLobby() {
-    // if (this->_id == -1) {
-    //     this->requestId();
-    //     return;
-    // }
-    //
-    // Message data("leavinglobby");
-    // data("id") = std::to_string(this->_id);
-    // this->_socket.write(data.getJSON());
-// }
+    v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("id", v, d.GetAllocator());
+    d.AddMember("race_id", v1, d.GetAllocator());
+    this->_client.socket()->emit("create race", this->getString(d));
+
+}
+
+void Client::leavingCourseLobby() {
+    rapidjson::Document d;
+    d.SetObject();
+    rapidjson::Value v(rapidjson::kObjectType);
+
+    v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
+    d.AddMember("id", v, d.GetAllocator());
+    this->_client.socket()->emit("leave race", this->getString(d));
+}
 
 void Client::setId(std::string const & id) {
     std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());

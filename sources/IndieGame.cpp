@@ -208,6 +208,9 @@ void IndieGame::addEventReceiver() {
     this->_operation["send engine"] = i++;
     this->_operation["send pos"] = i++;
     this->_operation["add car"] = i++;
+    this->_operation["delete car"] = i++;
+    this->_operation["join race"] = i++;
+    this->_operation["leave race"] = i++;
     // this->_operation["setid"] = i++;
     // this->_operation["getmoney"] = i++;
     // this->_operation["connected"] = i++;
@@ -238,6 +241,16 @@ void IndieGame::OnFrame() {
             case 3:
                 this->addNetworkCar(str.second);
                 break;
+            case 4:
+                this->deleteNetworkCar(str.second);
+            case 5:
+                if (this->_course)
+                    this->_course->addPlayer(str.second->get_map()["short_id"]->get_string());
+            case 6:
+                if (this->_course && str.second->get_map()["is_leader"]->get_bool() == true)
+                    this->_course->ripPlayers();
+                else if (this->_course)
+                    this->_course->ripPlayer(str.second->get_map()["short_id"]->get_string());
             default:
                 std::cerr << "Command not found" << std::endl;
                 break;
@@ -294,6 +307,21 @@ void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
         Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, msg->get_map()["car_no"]->get_int());
         this->_cars[msg->get_map()["car_id"]->get_string()] = nc;
         this->_objectList.push_back(nc);
+    }
+}
+
+void IndieGame::deleteNetworkCar(sio::message::ptr const &msg) {
+    for (std::unordered_map<std::string, Car *>::iterator it = this->_cars.begin(); it != this->_cars.end(); it++) {
+        if ((it->first) == msg->get_map()["short_id"]->get_string()) {
+            for (auto &obj : this->_objectList) {
+                if (obj == it->second) {
+                    this->_cars.erase(it);
+                    delete obj;
+                    obj = NULL;
+        		    return;
+                }
+            }
+        }
     }
 }
 
@@ -433,14 +461,14 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(this->_course);
-    // Client::Instance().creatingCourseLobby(ch.getID());
+    Client::Instance().creatingCourseLobby(ch.getID());
 }
 
 void IndieGame::OnLeavingCourse() {
     this->_course->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-    // Client::Instance().leavingCourseLobby();
+    Client::Instance().leavingCourseLobby();
 }
 
 void IndieGame::OnEnterGarage(void) {
@@ -556,10 +584,6 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
     switch (keyCode) {
         case irr::KEY_ESCAPE:
             OnOpenningMenu();
-            break;
-        case irr::KEY_KEY_Q: // TMP POUR DEBUG LE GUI COURSE
-            if (this->_course)
-                this->_course->addPlayer(10);
             break;
         case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
             system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + " >> pos").c_str());

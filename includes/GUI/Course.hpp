@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 00:37:46 2017 Lucas Gambini
-** Last update Sat May 20 01:26:12 2017 Lucas Gambini
+** Last update Mon Jun 12 01:36:59 2017 Lucas Gambini
 */
 
 #ifndef COURSE_HPP
@@ -36,8 +36,9 @@ namespace indie {
             bool isVisible(void) const;
             void OnFrame();
 
-            void addPlayer(int);
+            void addPlayer(std::string const &);
             void ripPlayers();
+            void ripPlayer(std::string const &);
 
         private:
             irr::gui::IGUIEnvironment *_gui;

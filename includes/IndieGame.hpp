@@ -84,6 +84,7 @@ namespace indie {
         void updateCarsPosition(sio::message::ptr const &msg);
 
         void addNetworkCar(sio::message::ptr const &msg);
+        void deleteNetworkCar(sio::message::ptr const &msg);
 
     private:
         Car *_car;
