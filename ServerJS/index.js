@@ -26,7 +26,7 @@ io.on('connection', function(socket) {
 
     // CLIENT DISCONNECTED
     socket.on('disconnect', function() {
-	Login.disconnect(socket);
+	Login.disconnect(socket, io);
     })
         
     // REGISTER NEW USER / LOGIN KNOWN USERS
