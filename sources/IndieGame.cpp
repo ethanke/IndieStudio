@@ -174,21 +174,21 @@ void IndieGame::addGameObject() {
     this->_concessionnaire = NULL;
 
     //GUI DEBUG
-    this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
-    this->_pos->setTextAlignment(irr::gui::EGUIA_SCALE , irr::gui::EGUIA_SCALE);
-    this->_pos->setOverrideColor(irr::video::SColor(255, 180, 180, 180));
+    // this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
+    // this->_pos->setTextAlignment(irr::gui::EGUIA_SCALE , irr::gui::EGUIA_SCALE);
+    // this->_pos->setOverrideColor(irr::video::SColor(255, 180, 180, 180));
 
-    this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
-    irr::gui::IGUIFont* font = this->_gui->getFont("misc/error.xml");
-    if (font)
-        this->_error->setOverrideFont(font);
-    this->_error->setOverrideColor(irr::video::SColor(255, 255, 0, 0));
-    this->_error->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_CENTER);
-    this->_error->setVisible(false);
-
-    this->_money = this->_gui->addStaticText(L"0 $", irr::core::rect<irr::s32>(this->getWindowSize().Width - 100, 0, this->getWindowSize().Width, 50));
-    this->_money->setOverrideColor(irr::video::SColor(255, 133, 187, 101));
-    this->_money->setTextAlignment(irr::gui::EGUIA_UPPERLEFT, irr::gui::EGUIA_LOWERRIGHT);
+//     this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
+//     irr::gui::IGUIFont* font = this->_gui->getFont("misc/error.xml");
+//     if (font)
+//         this->_error->setOverrideFont(font);
+//     this->_error->setOverrideColor(irr::video::SColor(255, 255, 0, 0));
+//     this->_error->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_CENTER);
+//     this->_error->setVisible(false);
+//
+//     this->_money = this->_gui->addStaticText(L"0 $", irr::core::rect<irr::s32>(this->getWindowSize().Width - 100, 0, this->getWindowSize().Width, 50));
+//     this->_money->setOverrideColor(irr::video::SColor(255, 133, 187, 101));
+//     this->_money->setTextAlignment(irr::gui::EGUIA_UPPERLEFT, irr::gui::EGUIA_LOWERRIGHT);
 }
 
 void IndieGame::loadMap() {
@@ -255,14 +255,17 @@ void IndieGame::OnFrame() {
                     this->_course->addPlayer(str.second->get_map()["short_id"]->get_string());
                 break;
             case 6:
-                if (this->_course && str.second->get_map()["is_leader"]->get_bool() == true)
-                    this->_course->ripPlayers();
+                if (this->_course && str.second->get_map()["is_leader"]->get_bool() == true) {
+                    this->_course->setVisible(false);
+                }
                 else if (this->_course)
                     this->_course->ripPlayer(str.second->get_map()["short_id"]->get_string());
                 break;
             case 7:
-                this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string()));
-                this->_error->setVisible(true);
+                if (this->_error) {
+                    this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string()));
+                    this->_error->setVisible(true);
+                }
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
@@ -271,39 +274,39 @@ void IndieGame::OnFrame() {
     }
     this->_cmdBuffer.clear();
     this->unlockEventBuffer();
-
-    if (_pos) {
-        std::wstring ws(this->_pos->getText());
-        std::string get(ws.begin(), ws.end());
-        std::string str("online id: " + Client::Instance().getShortId() + " && connected to: " + this->_connectedTo);
-        if (str != get) {
-            this->_pos->setText(Utils::StrToWstr(str));
-        }
-    }
+    //
+    // if (_pos) {
+    //     std::wstring ws(this->_pos->getText());
+    //     std::string get(ws.begin(), ws.end());
+    //     std::string str("online id: " + Client::Instance().getShortId() + " && connected to: " + this->_connectedTo);
+    //     if (get != str) {
+    //         this->_pos->setText(Utils::StrToWstr(str));
+    //     }
+    // }
 
 
     if (bulletPhysSys)
         bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 
-    if (this->_error) {
-        if (this->_error->isVisible() == true) {
-            this->_errorTimer += DeltaTimer::DeltaTime;
-            if (this->_errorTimer >= 3) {
-                this->_error->setVisible(false);
-                this->_errorTimer = 0;
-            }
-        }
-    }
-
-    if (this->_money) {
-        std::wstring ws(this->_money->getText());
-        std::string get(ws.begin(), ws.end());
-        std::string money = std::to_string(Client::Instance().getMoney());
-        std::string str(money + "$");
-        if (str != get) {
-            this->_money->setText(Utils::StrToWstr(str));
-        }
-    }
+    // if (this->_error) {
+    //     if (this->_error->isVisible() == true) {
+    //         this->_errorTimer += DeltaTimer::DeltaTime;
+    //         if (this->_errorTimer >= 3) {
+    //             this->_error->setVisible(false);
+    //             this->_errorTimer = 0;
+    //         }
+    //     }
+    // }
+    //
+    // if (this->_money) {
+    //     std::wstring ws(this->_money->getText());
+    //     std::string get(ws.begin(), ws.end());
+    //     std::string money = std::to_string(Client::Instance().getMoney());
+    //     std::string str(money + "$");
+    //     if (str != get) {
+    //         this->_money->setText(Utils::StrToWstr(str));
+    //     }
+    // }
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {
