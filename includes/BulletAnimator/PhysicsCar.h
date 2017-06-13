@@ -124,7 +124,7 @@ namespace irr
 			btScalar getAngle(void);
 
 			core::vector3df getPosition(void);
-			void setPosition(core::vector3df& v);
+			void setPosition(core::vector3df const& v);
 
             core::vector3df getRotation(bool mult = true) const;
 			void setRotation(irr::core::vector3df const &rot);

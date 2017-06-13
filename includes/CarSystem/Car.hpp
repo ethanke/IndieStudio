@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sun Jun 11 00:08:59 2017 Sousa Victor
+// Last update Tue Jun 13 04:57:43 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -34,9 +34,9 @@ namespace indie {
 
         virtual AGameCamera *getCamera() const;
         virtual irr::core::vector3d<float> getPosition() const;
-        void setPosition(irr::core::vector3df &pos);
+        void setPosition(irr::core::vector3df const &pos);
         virtual irr::core::vector3d<float> getRotation() const;
-        void setRotation(irr::core::vector3df &rot);
+        void setRotation(irr::core::vector3df const &rot);
         virtual irr::f32 getVel() const;
         virtual irr::f32 getMaxSpeed() const;
         void mustSendData(bool value);

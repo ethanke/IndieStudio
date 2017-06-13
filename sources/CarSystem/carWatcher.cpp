@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 13 20:18:24 2017 Lucas Gambini
-** Last update Sun Jun 11 21:39:20 2017 Lucas Gambini
+** Last update Tue Jun 13 05:24:04 2017 Sousa Victor
 */
 
 #include "carWatcher.hpp"
@@ -88,6 +88,10 @@ void carWatcher::addCheckpoint(GameCheckpoint &check) {
 
 std::vector<GameCheckpoint> carWatcher::getCheckpoints() const {
     return this->_checkpoints;
+}
+
+void carWatcher::setCheckpoints(std::vector<GameCheckpoint> const &checkpoints) {
+    this->_checkpoints = checkpoints;
 }
 
 void carWatcher::setCar(Car *car) {

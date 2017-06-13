@@ -405,7 +405,7 @@ namespace irr
 
 		}
 
-		void PhysicsCar::setPosition(core::vector3df& v)
+		void PhysicsCar::setPosition(core::vector3df const& v)
 		{
 			btTransform t = m_vehicle->getRigidBody()->getWorldTransform();
 
@@ -414,15 +414,15 @@ namespace irr
 
 			m_vehicle->getRigidBody()->setWorldTransform(t);
 
-			// if (m_vehicle)
-			// {
-			// 	m_vehicle->resetSuspension();
-			// 	for (int i = 0; i < m_vehicle->getNumWheels(); i++)
-			// 	{
-			// 		//synchronize the wheels with the (interpolated) chassis worldtransform
-			// 		m_vehicle->updateWheelTransform(i, true);
-			// 	}
-			// }
+			if (m_vehicle)
+			{
+				m_vehicle->resetSuspension();
+				for (int i = 0; i < m_vehicle->getNumWheels(); i++)
+				{
+					//synchronize the wheels with the (interpolated) chassis worldtransform
+					m_vehicle->updateWheelTransform(i, true);
+				}
+			}
 		}
 
         core::vector3df PhysicsCar::getRotation(bool mult) const
@@ -454,15 +454,15 @@ namespace irr
 
 			m_vehicle->getRigidBody()->setWorldTransform(tr);
 
-			// if (m_vehicle)
-			// {
-			// 	m_vehicle->resetSuspension();
-			// 	for (int i = 0; i < m_vehicle->getNumWheels(); i++)
-			// 	{
-			// 		//synchronize the wheels with the (interpolated) chassis worldtransform
-			// 		m_vehicle->updateWheelTransform(i, true);
-			// 	}
-			// }
+			if (m_vehicle)
+			{
+				m_vehicle->resetSuspension();
+				for (int i = 0; i < m_vehicle->getNumWheels(); i++)
+				{
+					//synchronize the wheels with the (interpolated) chassis worldtransform
+					m_vehicle->updateWheelTransform(i, true);
+				}
+			}
 		}
 
         irr::core::vector3df const PhysicsCar::getAngularVelocity() const {

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun  3 20:12:02 2017 Sousa Victor
-// Last update Sat Jun  3 22:18:06 2017 Sousa Victor
+// Last update Tue Jun 13 05:11:20 2017 Sousa Victor
 //
 
 #include "Circuit.hpp"
@@ -40,6 +40,11 @@ Circuit &Circuit::operator <<(GameCheckpoint const &point) {
     return *this;
 }
 
+Circuit &Circuit::operator <<(std::pair<irr::core::vector3df, irr::core::vector3df> const &point) {
+    this->_startingBlock.push_back(point);
+    return *this;
+}
+
 void Circuit::reCreate() {
     for (auto check : this->_checkpoints) {
         check.reCreate();
@@ -52,4 +57,12 @@ std::vector<GameCheckpoint> const &Circuit::getNextCheckpoints(unsigned index) c
 
 std::vector<GameCheckpoint> const &Circuit::getCheckpoints() const {
     return this->_checkpoints;
+}
+
+std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> const> const &Circuit::getStartingBlock() const {
+    return this->_startingBlock;
+}
+
+std::pair<irr::core::vector3df, irr::core::vector3df> const &Circuit::getStartingBlock(int index) const {
+    return this->_startingBlock[index];
 }

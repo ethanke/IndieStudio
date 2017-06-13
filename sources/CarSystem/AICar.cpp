@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Sat Jun 10 22:43:23 2017 Sousa Victor
+// Last update Tue Jun 13 05:17:52 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -40,15 +40,11 @@ void AICar::OnFrame() {
     for (auto check : this->_circuit.getCheckpoints()) {
         if (check.getID() == this->_n1Check) {
             c1 = &this->_circuit.getCheckpoints()[i];
-            check.setChVisible(true);
         } else if (check.getID() == this->_n2Check) {
             c2 = &this->_circuit.getCheckpoints()[i];
-            check.setChVisible(true);
         } else if (check.getID() == this->_n3Check) {
             c3 = &this->_circuit.getCheckpoints()[i];
-            check.setChVisible(true);
         } else {
-            check.setChVisible(false);
         }
         i++;
     }

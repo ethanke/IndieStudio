@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun Jun 11 18:10:47 2017 Sousa Victor
+// Last update Tue Jun 13 05:27:40 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -34,102 +34,15 @@ void IndieGame::addGameObject() {
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
 
-    int i = 10000;
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(6.177781, 0, 0.647438));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(63.486103, 0, -5.896246));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(83.421402, 0, -8.153623));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(103.780258, 0, -4.346308));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(117.091095, 0, 0.646901));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(129.799805, 0, 12.325266));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(132.167374, 0, 33.860195));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(135.678467, 0, 78.331772));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(140.261765, 0, 136.372253));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(143.539978, 0, 188.870239));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(139.341476, 0, 217.380295));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(143.606552, 0, 249.585281));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(146.530106, 0, 263.688538));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(159.904831, 0, 275.473022));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(194.594681, 0, 276.970428));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(227.457291, 0, 272.408752));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(286.860657, 0, 269.559174));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(337.511597, 0, 265.320282));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(366.841309, 0, 262.207062));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(388.477966, 0, 275.413361));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(408.151947, 0, 318.007263));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(405.803436, 0, 354.118866));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(405.372467, 0, 394.978577));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(406.589203, 0, 421.466553));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(407.966980, 0, 450.357971));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(409.532684, 0, 477.916809));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(412.378174, 0, 496.950195));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(420.129150, 0, 511.525970));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(440.441132, 0, 525.009827));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(479.404510, 0, 527.982361));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(527.555176, 0, 525.911987));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(574.259888, 0, 524.090576));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(634.141296, 0, 523.805786));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(666.241150, 0, 523.996155));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(706.453674, 0, 523.822998));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(726.961914, 0, 514.574341));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(735.036560, 0, 504.552551));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(738.810181, 0, 481.175812));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(737.958313, 0, 456.548767));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(728.770203, 0, 416.022400));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(713.151611, 0, 369.307831));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(700.085449, 0, 325.505737));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(692.661987, 0, 297.762451));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(687.266174, 0, 281.147156));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(676.669128, 0, 266.840881));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(667.162537, 0, 260.871033));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(646.274170, 0, 259.757843));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(593.791443, 0, 261.339325));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(550.205383, 0, 263.714233));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(508.175751, 0, 265.748474));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(472.080719, 0, 266.535278));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(443.345337, 0, 267.192657));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(416.587402, 0, 269.082153));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(400.853699, 0, 266.147614));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(386.692749, 0, 245.961014));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(384.536346, 0, 207.959595));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(386.878021, 0, 149.068710));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(388.694550, 0, 80.970871));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(386.202728, 0, 31.856476));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(378.023193, 0, -29.353628));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(358.023438, 0, -103.111282));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(347.834900, 0, -137.843857));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(337.904327, 0, -170.417084));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(325.340729, 0, -199.539398));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(306.709930, 0, -219.287170));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(275.988922, 0, -233.497040));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(220.008545, 0, -244.003342));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(177.677887, 0, -244.838318));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(130.724564, 0, -243.030945));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(70.278206, 0, -245.716583));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(21.070351, 0, -247.1000));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-33.524269, 0, -248.633591));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-83.354424, 0, -250.032669));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-124.888290, 0, -251.198944));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-166.455521, 0, -252.366257));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-204.735199, 0, -252.385742));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-253.507446, 0, -249.289093));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-294.208771, 0, -248.186111));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-328.857666, 0, -247.247849));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-354.914978, 0, -246.522232));
-    this->_circuit << GameCheckpoint(this->_smgr, 0,  0, NULL, i++, GameCheckpoint::IN_COURSE, 3, irr::core::vector3df(-393.625824, 0, -244.262512));
-
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_real_distribution<double> dist(0.0, 7.0);
-    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, dist(mt));
+    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), dist(mt));
     this->_objectList.push_back(this->_car);
-
-    this->_aiCar = NULL; //NE PAS ENLEVER / COMMENTER
-    this->_aiCar = new AICar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, 0);
-    this->_objectList.push_back(this->_aiCar);
 
     int j = 1;
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 3, irr::core::vector3df(20, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 3, irr::core::vector3df(40, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 3, irr::core::vector3df(-5, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
@@ -172,6 +85,14 @@ void IndieGame::addGameObject() {
     this->_course = NULL;
     this->_onlineUI = NULL;
     this->_concessionnaire = NULL;
+
+    this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
+    this->_race->InitCircuit();
+    this->_race->setPlayer(this->_car);
+    this->_race->addAICar();
+    this->_race->addAICar();
+    this->_race->addAICar();
+    this->_objectList.push_back(this->_race);
 
     //GUI DEBUG
     // this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
@@ -342,7 +263,7 @@ void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
 
 void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
     if (this->_cars.count(msg->get_map()["car_id"]->get_string()) == 0) {
-        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, this->_circuit, msg->get_map()["car_no"]->get_int());
+        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), msg->get_map()["car_no"]->get_int());
         this->_cars[msg->get_map()["car_id"]->get_string()] = nc;
         this->_objectList.push_back(nc);
     }
@@ -624,7 +545,7 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
             OnOpenningMenu();
             break;
         case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
-            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + " >> pos").c_str());
+            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + "    " + std::to_string(this->_car->getRotation().X) + ", " + std::to_string(this->_car->getRotation().Y) + ", " + std::to_string(this->_car->getRotation().Z) + " >> pos").c_str());
             break;
         default:
             break;

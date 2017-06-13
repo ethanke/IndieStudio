@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Sat Jun 10 23:33:59 2017 Sousa Victor
+// Last update Tue Jun 13 04:13:23 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -20,6 +20,7 @@
 #include "GameCheckpoint.hpp"
 #include "Minimap.hpp"
 #include "Car.hpp"
+#include "Race.hpp"
 #include "GeneticTrainer.hpp"
 #include "carWatcher.hpp"
 #include "Settings.hpp"
@@ -96,13 +97,12 @@ namespace indie {
         Garage *_garage;
         Menu *_menu;
         Course *_course;
+        Race *_race;
         RandomEvent *_events;
         Settings *_settings;
         JoinServer *_onlineUI;
         MainMenu *_mainmenu;
         Concessionnaire *_concessionnaire;
-
-        Circuit _circuit;
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;

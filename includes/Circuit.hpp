@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun  3 20:09:08 2017 Sousa Victor
-// Last update Sat Jun  3 22:18:15 2017 Sousa Victor
+// Last update Tue Jun 13 05:07:47 2017 Sousa Victor
 //
 
 #ifndef CIRCUIT_HPP_
@@ -29,11 +29,16 @@ namespace indie {
         void reCreate();
 
         Circuit &operator <<(GameCheckpoint const &point);
+        Circuit &operator <<(std::pair<irr::core::vector3df, irr::core::vector3df> const &point);
 
         std::vector<GameCheckpoint> const &getNextCheckpoints(unsigned index) const;
         std::vector<GameCheckpoint> const &getCheckpoints() const;
 
+        std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> const> const &getStartingBlock() const;
+        std::pair<irr::core::vector3df, irr::core::vector3df> const &getStartingBlock(int index) const;
+
     private:
+        std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> const>_startingBlock;
         std::vector<GameCheckpoint> _checkpoints;
 
     };

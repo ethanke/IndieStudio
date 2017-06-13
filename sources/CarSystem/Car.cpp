@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Mon Jun 12 04:48:29 2017 Sousa Victor
+// Last update Tue Jun 13 04:57:47 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -140,7 +140,7 @@ irr::core::vector3d<float>	Car::getPosition() const {
     return this->_car->getPosition();
 }
 
-void Car::setPosition(irr::core::vector3df &pos) {
+void Car::setPosition(irr::core::vector3df const &pos) {
     this->_car->setPosition(pos);
 }
 
@@ -148,7 +148,7 @@ irr::core::vector3d<float>	Car::getRotation() const {
     return this->_car->getRotation(false);
 }
 
-void Car::setRotation(irr::core::vector3df &rot) {
+void Car::setRotation(irr::core::vector3df const &rot) {
     this->_car->setRotation(rot);
 }
 
