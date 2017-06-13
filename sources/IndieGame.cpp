@@ -13,11 +13,10 @@
 using namespace indie;
 
 IndieGame::IndieGame(int width, int height) : AGame(width, height) {
-    _pos = NULL;
-    bulletPhysSys = NULL;
-    _mainmenu = NULL;
+    this->bulletPhysSys = NULL;
+    this->_mainmenu = NULL;
     this->_error = NULL;
-    this->_money = NULL;
+    this->_car = NULL;
     this->_connectedTo = "-1";
 }
 
@@ -33,6 +32,8 @@ void IndieGame::addGameObject() {
 
     irr::scene::ISceneNode* skydome = this->_smgr->addSkyDomeSceneNode(this->_driver->getTexture("skybox/Skydome1.png"),16,8,0.95f,2.0f);
     this->_driver->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS, true);
+
+    loadMap();
 
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -64,7 +65,6 @@ void IndieGame::addGameObject() {
 
     // Settings *settings = new Settings(this->_gui);
 
-    loadMap();
 
     irr::scene::ILightSceneNode *sun_node;
     irr::video::SLight sun_data;
@@ -94,22 +94,13 @@ void IndieGame::addGameObject() {
     this->_race->addAICar();
     this->_objectList.push_back(this->_race);
 
-    //GUI DEBUG
-    // this->_pos = this->_gui->addStaticText(L"", irr::core::rect<irr::s32>(20, 20, 400, 400));
-    // this->_pos->setTextAlignment(irr::gui::EGUIA_SCALE , irr::gui::EGUIA_SCALE);
-    // this->_pos->setOverrideColor(irr::video::SColor(255, 180, 180, 180));
-
-//     this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
-//     irr::gui::IGUIFont* font = this->_gui->getFont("misc/error.xml");
-//     if (font)
-//         this->_error->setOverrideFont(font);
-//     this->_error->setOverrideColor(irr::video::SColor(255, 255, 0, 0));
-//     this->_error->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_CENTER);
-//     this->_error->setVisible(false);
-//
-//     this->_money = this->_gui->addStaticText(L"0 $", irr::core::rect<irr::s32>(this->getWindowSize().Width - 100, 0, this->getWindowSize().Width, 50));
-//     this->_money->setOverrideColor(irr::video::SColor(255, 133, 187, 101));
-//     this->_money->setTextAlignment(irr::gui::EGUIA_UPPERLEFT, irr::gui::EGUIA_LOWERRIGHT);
+    this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
+    irr::gui::IGUIFont* font = this->_gui->getFont("misc/error.xml");
+    if (font)
+        this->_error->setOverrideFont(font);
+    this->_error->setOverrideColor(irr::video::SColor(255, 255, 0, 0));
+    this->_error->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_CENTER);
+    this->_error->setVisible(false);
 }
 
 void IndieGame::loadMap() {
@@ -195,39 +186,29 @@ void IndieGame::OnFrame() {
     }
     this->_cmdBuffer.clear();
     this->unlockEventBuffer();
-    //
-    // if (_pos) {
-    //     std::wstring ws(this->_pos->getText());
-    //     std::string get(ws.begin(), ws.end());
-    //     std::string str("online id: " + Client::Instance().getShortId() + " && connected to: " + this->_connectedTo);
-    //     if (get != str) {
-    //         this->_pos->setText(Utils::StrToWstr(str));
-    //     }
-    // }
+
+    if (this->_car) {
+        std::string str("online id: #" + Client::Instance().getShortId() + ". Connected to: " + this->_connectedTo);
+        // this->_gui->getSkin()->getFont()->setInvisibleCharacters(L"! ");
+        this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(20, 20, 300, 75), irr::video::SColor(255, 180, 180, 180) );
+        str = std::to_string(Client::Instance().getMoney()) + "$";
+        this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );    
+    }
+
 
 
     if (bulletPhysSys)
         bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 
-    // if (this->_error) {
-    //     if (this->_error->isVisible() == true) {
-    //         this->_errorTimer += DeltaTimer::DeltaTime;
-    //         if (this->_errorTimer >= 3) {
-    //             this->_error->setVisible(false);
-    //             this->_errorTimer = 0;
-    //         }
-    //     }
-    // }
-    //
-    // if (this->_money) {
-    //     std::wstring ws(this->_money->getText());
-    //     std::string get(ws.begin(), ws.end());
-    //     std::string money = std::to_string(Client::Instance().getMoney());
-    //     std::string str(money + "$");
-    //     if (str != get) {
-    //         this->_money->setText(Utils::StrToWstr(str));
-    //     }
-    // }
+    if (this->_error) {
+        if (this->_error->isVisible() == true) {
+            this->_errorTimer += DeltaTimer::DeltaTime;
+            if (this->_errorTimer >= 3) {
+                this->_error->setVisible(false);
+                this->_errorTimer = 0;
+            }
+        }
+    }
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {
@@ -383,8 +364,6 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->OnLeavingOnline();
                         break;
                     case MainMenu::PLAY:
-                        // this->_image = this->_driver->getTexture("misc/loading.jpg");
-                        // this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
                         delete _mainmenu;
                         _mainmenu = NULL;
                         addEventReceiver();
@@ -419,7 +398,14 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(this->_course);
-    this->_course->addPlayer(Client::Instance().getShortId());
+    if (this->_connectedTo == "-1") {
+        this->_course->addPlayer("You");
+        this->_course->addPlayer("IA");
+        this->_course->addPlayer("IA");
+        this->_course->addPlayer("IA");
+    }
+    else
+        this->_course->addPlayer("#" + Client::Instance().getShortId());
     Client::Instance().creatingCourseLobby(ch.getID());
 }
 
