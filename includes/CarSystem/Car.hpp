@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Tue Jun 13 04:57:43 2017 Sousa Victor
+// Last update Tue Jun 13 15:00:10 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -36,6 +36,7 @@ namespace indie {
         virtual irr::core::vector3d<float> getPosition() const;
         void setPosition(irr::core::vector3df const &pos);
         virtual irr::core::vector3d<float> getRotation() const;
+        virtual irr::core::vector3d<float>	getRealRotation() const;
         void setRotation(irr::core::vector3df const &rot);
         virtual irr::f32 getVel() const;
         virtual irr::f32 getMaxSpeed() const;

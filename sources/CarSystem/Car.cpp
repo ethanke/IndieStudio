@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Tue Jun 13 04:57:47 2017 Sousa Victor
+// Last update Tue Jun 13 14:59:50 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -146,6 +146,10 @@ void Car::setPosition(irr::core::vector3df const &pos) {
 
 irr::core::vector3d<float>	Car::getRotation() const {
     return this->_car->getRotation(false);
+}
+
+irr::core::vector3d<float>	Car::getRealRotation() const {
+    return this->_car->getRotation(true);
 }
 
 void Car::setRotation(irr::core::vector3df const &rot) {

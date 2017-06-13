@@ -5,7 +5,7 @@
 // Login   <ethan.kerdelhue@epitech.eu@epitech.eu>
 //
 // Started on  Sat May 13 22:28:14 2017 Ethan Kerdelhue
-// Last update Tue Jun  6 19:22:59 2017 Ethan Kerdelhue
+// Last update Tue Jun 13 15:00:43 2017 Sousa Victor
 //
 
 #include "Minimap.hpp"
@@ -43,7 +43,7 @@ void Minimap::OnFrame() {
      this->_imgVector.pop_back();
   }
    for (auto const &checkpoint : checkpoints) {
-    irr::core::vector3df camDir = (this->_car->getRotation().rotationToDirection()).normalize();
+    irr::core::vector3df camDir = (this->_car->getRealRotation().rotationToDirection()).normalize();
     irr::core::vector2df camDir2d(camDir.X, camDir.Z);
 
     irr::core::vector3df checkDir = (checkpoint.getChPosition() - this->_car->getPosition()).normalize();
