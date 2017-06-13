@@ -17,6 +17,7 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     bulletPhysSys = NULL;
     _mainmenu = NULL;
     this->_error = NULL;
+    this->_money = NULL;
     this->_connectedTo = "-1";
 }
 
@@ -184,6 +185,10 @@ void IndieGame::addGameObject() {
     this->_error->setOverrideColor(irr::video::SColor(255, 255, 0, 0));
     this->_error->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_CENTER);
     this->_error->setVisible(false);
+
+    this->_money = this->_gui->addStaticText(L"0 $", irr::core::rect<irr::s32>(this->getWindowSize().Width - 100, 0, this->getWindowSize().Width, 50));
+    this->_money->setOverrideColor(irr::video::SColor(255, 133, 187, 101));
+    this->_money->setTextAlignment(irr::gui::EGUIA_UPPERLEFT, irr::gui::EGUIA_LOWERRIGHT);
 }
 
 void IndieGame::loadMap() {
@@ -267,28 +272,37 @@ void IndieGame::OnFrame() {
     this->_cmdBuffer.clear();
     this->unlockEventBuffer();
 
-    if (!_pos)
-        return;
-    std::wstring ws(this->_pos->getText());
-    std::string get(ws.begin(), ws.end());
-    std::string str("online id: " + Client::Instance().getShortId() + " && connected to: " + this->_connectedTo);
-    if (str != get) {
-        this->_pos->setText(Utils::StrToWstr(str));
+    if (_pos) {
+        std::wstring ws(this->_pos->getText());
+        std::string get(ws.begin(), ws.end());
+        std::string str("online id: " + Client::Instance().getShortId() + " && connected to: " + this->_connectedTo);
+        if (str != get) {
+            this->_pos->setText(Utils::StrToWstr(str));
+        }
     }
 
-    if (!bulletPhysSys)
-        return;
-    bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
 
-    if (!this->_error)
-        return;
-    if (this->_error->isVisible() == true) {
-        this->_errorTimer += DeltaTimer::DeltaTime;
-        if (this->_errorTimer >= 3) {
-            this->_error->setVisible(false);
-            this->_errorTimer = 0;
+    if (bulletPhysSys)
+        bulletPhysSys->OnUpdate(DeltaTimer::DeltaTime * 1000);
+
+    if (this->_error) {
+        if (this->_error->isVisible() == true) {
+            this->_errorTimer += DeltaTimer::DeltaTime;
+            if (this->_errorTimer >= 3) {
+                this->_error->setVisible(false);
+                this->_errorTimer = 0;
+            }
         }
+    }
 
+    if (this->_money) {
+        std::wstring ws(this->_money->getText());
+        std::string get(ws.begin(), ws.end());
+        std::string money = std::to_string(Client::Instance().getMoney());
+        std::string str(money + "$");
+        if (str != get) {
+            this->_pos->setText(Utils::StrToWstr(str));
+        }
     }
 }
 

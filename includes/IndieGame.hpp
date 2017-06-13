@@ -116,6 +116,8 @@ namespace indie {
         irr::gui::IGUIStaticText *_error;
         irr::f32 _errorTimer;
 
+        irr::gui::IGUIStaticText *_money;
+
         //Text debug
         irr::gui::IGUIStaticText *_pos;
     };

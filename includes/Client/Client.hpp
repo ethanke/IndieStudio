@@ -54,6 +54,7 @@ namespace indie {
         void setId(std::string const & id);
         std::string const & getId() const;
         std::string const & getShortId() const;
+        int getMoney() const;
 
         void addMoney(int nb);
         void requestMoney();

@@ -46,6 +46,7 @@ void Client::init(NetworkEventBridge *bridge) {
     this->_client.connect("http://" + this->_ip + ":" + std::to_string(this->_port));
     this->parseID();
     this->SetupCallback();
+    this->requestMoney();
 }
 
 void Client::SetupCallback() {
@@ -58,6 +59,7 @@ void Client::SetupCallback() {
     {
         this->setId(data->get_map()["new_id"]->get_string());
         this->_shortId = data->get_map()["short_id"]->get_string();
+        this->requestMoney();
     }));
 
     this->_client.socket()->on("connected_to", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
@@ -234,6 +236,10 @@ std::string const & Client::getId() const {
 
 std::string const & Client::getShortId() const {
     return this->_shortId;
+}
+
+int Client::getMoney() const {
+    return this->_money;
 }
 
 void Client::setCarNo(int no) {
