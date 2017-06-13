@@ -42,8 +42,8 @@ void IndieGame::addGameObject() {
     this->_objectList.push_back(this->_car);
 
     int j = 1;
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 3, irr::core::vector3df(20, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 3, irr::core::vector3df(-5, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(20, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(-5, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
@@ -58,13 +58,6 @@ void IndieGame::addGameObject() {
 
     Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_carWatch, this->_driver, this->_device, this->_gui, this->getWindowSize());
     this->_objectList.push_back(map);
-
-    // Menu *_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
-    // _menu->SetupGUI();
-    // this->_objectList.push_back(_menu);
-
-    // Settings *settings = new Settings(this->_gui);
-
 
     irr::scene::ILightSceneNode *sun_node;
     irr::video::SLight sun_data;
@@ -336,7 +329,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case Menu::QUIT:
                         this->_device->closeDevice();
-                        // Client::Instance().stop();
+                        Client::Instance().stop();
                         break;
                     case Concessionnaire::LEAVE:
                          this->_concessionnaire->setVisible(false);

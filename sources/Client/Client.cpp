@@ -109,7 +109,8 @@ void Client::SetupCallback() {
 }
 
 void Client::stop() {
-    //TODO stop _client;
+    this->_client.sync_close();
+    this->_client.clear_con_listeners();
 }
 
 void Client::parseID() {
