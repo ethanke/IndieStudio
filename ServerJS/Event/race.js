@@ -26,6 +26,35 @@ exports.createRace = function(socket, io, msg_str) {
     });
 }
 
+exports.leaveRace = function(socket, io, msg_str) {
+    console.log("RECEIVING from " + socket.id + ": \'leave race\': " + msg_str);
+    var msg = JSON.parse(msg_str);
+    Clients.find({'_id': msg.id.toObjectId()}, function(err, clientList) {
+	if (clientList.length != 0) {
+	    Race.find({'_id': clientList[0].raceID}).populate('clients').populate('leader').exec(function(err, raceResultF) {
+		if (raceResultF.length != 0) {
+		    for (var i = 0; i < raceResultF[0].clients.length; i++) {
+			if (raceResultF[0].clients[i].socketID != socket.id) {
+			    var isLeader = false;
+			    if (clientList[0].shortID == raceResultF[0].leader.shortID) {
+				isLeader = true;
+			    }
+			    var json_res = {'short_id': clientList[0].shortID, 'is_leader': isLeader};
+			    if (io.sockets.connected[raceResultF[0].clients[i].socketID] != undefined) {
+				console.log("EMITING   to   " + raceResultF[0].clients[i].socketID + ": \'leave race\': " + JSON.stringify(json_res));
+				io.sockets.connected[raceResultF[0].clients[i].socketID].emit('leave race', json_res);
+			    }
+			}
+		    }
+		    Race.update({"_id": clientList[0].raceID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
+			Clients.update({"socketID": msg.id.toObjectId()}, {$set: {'raceID': null}}, function(err, result) {});
+		    });
+		}
+	    });
+	}
+    });
+}
+
 function joinRace(socket, io, msg, self, race) {
     Race.update({"_id": race._id}, {$push: {'clients': self._id}}, function(err, result) {
 	if (result) {

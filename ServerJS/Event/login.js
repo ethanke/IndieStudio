@@ -1,28 +1,47 @@
 var Clients = require('../schema/Clients.js');
 var Room    = require('../schema/Rooms.js');
+var Race    = require('../schema/Races.js');
 
 exports.disconnect = function(socket, io) {
     console.log("Client         " + socket.id + " disconnected.");
     Clients.find({'socketID': socket.id}, function(err, clientList) {
 	if (clientList.length != 0) {
-	    Room.find({'_id': clientList[0].roomID}).populate('clients').exec(function(err, roomResultF) {
-		if (roomResultF.length != 0) {
-		    for (var i = 0; i < roomResultF[0].clients.length; i++) {
-			if (roomResultF[0].clients[i].socketID != socket.id) {
-			    var json_res = {'short_id': clientList[0].shortID};
-			    if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
-				console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'delete car\': " + JSON.stringify(json_res));
-				io.sockets.connected[roomResultF[0].clients[i].socketID].emit('delete car', json_res);
+	    Race.find({'_id': clientList[0].raceID}).populate('clients').populate('leader').exec(function(err, raceResultF) {
+		if (raceResultF.length != 0) {
+		    for (var i = 0; i < raceResultF[0].clients.length; i++) {
+			if (raceResultF[0].clients[i].socketID != socket.id) {
+			    var isLeader = false;
+			    if (clientList[0].shortID == raceResultF[0].leader.shortID) {
+				isLeader = true;
+			    }
+			    var json_res = {'short_id': clientList[0].shortID, 'is_leader': isLeader};
+			    if (io.sockets.connected[raceResultF[0].clients[i].socketID] != undefined) {
+				console.log("EMITING   to   " + raceResultF[0].clients[i].socketID + ": \'leave race\': " + JSON.stringify(json_res));
+				io.sockets.connected[raceResultF[0].clients[i].socketID].emit('leave race', json_res);
 			    }
 			}
 		    }
-		    Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
-			Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null}}, function(err, result) {});
-		    });
+		    Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {});
 		}
+		Room.find({'_id': clientList[0].roomID}).populate('clients').exec(function(err, roomResultF) {
+		    if (roomResultF.length != 0) {
+			for (var i = 0; i < roomResultF[0].clients.length; i++) {
+			    if (roomResultF[0].clients[i].socketID != socket.id) {
+				var json_res = {'short_id': clientList[0].shortID};
+				if (io.sockets.connected[roomResultF[0].clients[i].socketID] != undefined) {
+				    console.log("EMITING   to   " + roomResultF[0].clients[i].socketID + ": \'delete car\': " + JSON.stringify(json_res));
+				    io.sockets.connected[roomResultF[0].clients[i].socketID].emit('delete car', json_res);
+				}
+			    }
+			}
+			Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
+			    Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null, 'raceID': null}}, function(err, result) {});
+			});
+		    } else {
+			Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null, 'raceID': null}}, function(err, result) {});
+		    }
+		});
 	    });
-	} else {
-	    Clients.update({"socketID": socket.id}, {$set: {'connected': false, 'roomID': null}}, function(err, result) {});
 	}
     });
 }

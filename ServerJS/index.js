@@ -24,6 +24,10 @@ io.on('connection', function(socket) {
     console.log("Client         " + socket.id + " connected.");
     socket.emit('give your id', { message: 'Welcome!' });
 
+    setTimeout(function () {
+	socket.emit('error message', { error: "Hellllloooo"});
+    }, 5000);
+    
     // CLIENT DISCONNECTED
     socket.on('disconnect', function() {
 	Login.disconnect(socket, io);
@@ -58,7 +62,12 @@ io.on('connection', function(socket) {
     socket.on('create race', function(msg) {
 	RaceManager.createRace(socket, io, msg);
     });
-    
+
+    // CLIENT IS LEAVING A COURSE LOBBY
+    socket.on('leave race', function(msg) {
+	RaceManager.leaveRace(socket, io, msg);
+    });
+
 });
 
 app.listen(3000);
