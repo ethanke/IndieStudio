@@ -43,7 +43,8 @@ namespace indie {
         void parseID();
 
     public:
-        explicit Client (std::string const &ip = "37.187.8.132", int port = 3000);
+        //37.187.8.132
+        explicit Client (std::string const &ip = "10.16.253.166", int port = 3000);
         virtual ~Client ();
         Client(const Client &obj);
         Client &operator=(const Client &obj);
