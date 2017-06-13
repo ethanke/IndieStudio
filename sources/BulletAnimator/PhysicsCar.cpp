@@ -9,6 +9,7 @@ namespace irr
 		PhysicsCar::PhysicsCar(
 			CBulletPhysics* bulletPhysicsSystem,
 			scene::IAnimatedMeshSceneNode* carNode,
+            scene::IAnimatedMeshSceneNode* carCollision,
 			scene::IAnimatedMeshSceneNode* wheelNode_FL,
 			scene::IAnimatedMeshSceneNode* wheelNode_FR,
 			scene::IAnimatedMeshSceneNode* wheelNode_RL,
@@ -27,6 +28,8 @@ namespace irr
 
 			m_chassisObject = NULL;
 			m_chassisNode = carNode;
+
+            m_chassisCollision = carCollision;
 
 			m_wheelNode_FL = wheelNode_FL;
 			m_wheelNode_FR = wheelNode_FR;
@@ -55,14 +58,25 @@ namespace irr
 
 			m_carParams = *carParams;
 
+            CPhysicsGeometry chassi_geom;
+            chassi_geom.type = CPhysicsGeometryTypes::CBPAGT_CONVEX_MESH;
+			chassi_geom.node = m_chassisNode;
+			chassi_geom.AutoCalculate = true;
+            chassi_geom.mesh.irrMesh = m_chassisCollision->getMesh();
+
             core::vector3df halfExtends(1, 1, 1);
-			m_chassisObject = m_bulletPhysicsSystem->addBox(
-				m_chassisNode,
-				halfExtends,
-				&m_carParams,
-				true,						// we need the collision shape calculated authomaticaly
-				false						// this is not a static object, so the irr. animator will be created
+            m_chassisObject = m_bulletPhysicsSystem->createWorldObject(
+                m_chassisCollision,
+                &chassi_geom,
+				&m_carParams
 			);
+			// m_chassisObject = m_bulletPhysicsSystem->addBox(
+			// 	m_chassisNode,
+			// 	halfExtends,
+			// 	&m_carParams,
+			// 	true,						// we need the collision shape calculated authomaticaly
+			// 	false						// this is not a static object, so the irr. animator will be created
+			// );
 
 			// we are using our own animator
 			m_chassisObject->removeAnimator();

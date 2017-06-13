@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:32:46 2017 Vacca_J
-** Last update Tue Jun 13 05:27:32 2017 Sousa Victor
+** Last update Wed Jun 14 01:30:41 2017 Sousa Victor
 */
 
 #include "Race.hpp"
@@ -18,7 +18,7 @@ Race::Race(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* g
     this->_eventReceiver = eventReceiver;
     this->_bulletPhysSys = bulletPhysicsSystem;
     this->_player = NULL;
-    this->_currentPlayerAmount = 3;
+    this->_currentPlayerAmount = 0;
 }
 
 Race::~Race() {
@@ -136,7 +136,7 @@ void Race::setPlayer(Car *player) {
     this->_player = player;
     this->_player->setPosition(this->_circuit.getStartingBlock(this->_currentPlayerAmount).first);
     this->_player->setRotation(this->_circuit.getStartingBlock(this->_currentPlayerAmount).second);
-    this->_currentPlayerAmount--;
+    this->_currentPlayerAmount++;
 
     this->_carWatcher.setCar(this->_player);
 
@@ -158,7 +158,7 @@ void Race::addAICar() {
     car->setPosition(this->_circuit.getStartingBlock(this->_currentPlayerAmount).first);
     car->setRotation(this->_circuit.getStartingBlock(this->_currentPlayerAmount).second);
     this->_aiCars.push_back(car);
-    this->_currentPlayerAmount--;
+    this->_currentPlayerAmount++;
 }
 
 void Race::OnEnterInCourseChPt(GameCheckpoint const &ch) {

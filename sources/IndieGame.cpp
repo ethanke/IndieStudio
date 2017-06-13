@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Tue Jun 13 05:27:40 2017 Sousa Victor
+// Last update Wed Jun 14 01:30:23 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -82,9 +82,9 @@ void IndieGame::addGameObject() {
     this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
     this->_race->InitCircuit();
     this->_race->setPlayer(this->_car);
-    // this->_race->addAICar();
-    //this->_race->addAICar();
-    //this->_race->addAICar();
+    this->_race->addAICar();
+    this->_race->addAICar();
+    this->_race->addAICar();
     this->_objectList.push_back(this->_race);
 
     this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));

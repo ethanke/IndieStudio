@@ -24,6 +24,7 @@ namespace irr
 			PhysicsCar(
 				CBulletPhysics* bulletPhysicsSystem,
 				scene::IAnimatedMeshSceneNode* carNode,
+                scene::IAnimatedMeshSceneNode* carCollision,
 				scene::IAnimatedMeshSceneNode* wheelNode_FL,
 				scene::IAnimatedMeshSceneNode* wheelNode_FR,
 				scene::IAnimatedMeshSceneNode* wheelNode_RL,
@@ -169,6 +170,7 @@ namespace irr
 
 			// scene nodes (visual objects)
 			scene::IAnimatedMeshSceneNode* m_chassisNode;
+            scene::IAnimatedMeshSceneNode* m_chassisCollision;
 			scene::IAnimatedMeshSceneNode* m_wheelNode_FL;
 			scene::IAnimatedMeshSceneNode* m_wheelNode_FR;
 			scene::IAnimatedMeshSceneNode* m_wheelNode_RL;
