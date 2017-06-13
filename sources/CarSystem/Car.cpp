@@ -61,7 +61,7 @@ void Car::OnFrame() {
     KeyboardEvent();
     if (!this->_isAI) {
         updateCamera();
-        if (this->_elapsedTime >= 1) {
+        if (this->_elapsedTime >= 0.1) {
             if (this->_mustSendData == true)
                 Client::Instance().sendPosAndRota(this->getPosition(), this->getRotation());
             this->_elapsedTime = 0;
@@ -72,7 +72,7 @@ void Car::OnFrame() {
     if (!this->_isAI && this->_mustSendData == true && this->_elapsedTime >= 0.1) {
         Client::Instance().sendEngineData(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
         this->_elapsedTime1 = 0;
-    } else if (this->_elapsedTime1 < 0.01)
+    } else if (this->_elapsedTime1 < 0.1)
         this->_elapsedTime1 += DeltaTimer::DeltaTime;
 
 	this->_carLoader.Update(drive_tipe);

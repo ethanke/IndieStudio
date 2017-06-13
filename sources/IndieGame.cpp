@@ -82,9 +82,9 @@ void IndieGame::addGameObject() {
     this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
     this->_race->InitCircuit();
     this->_race->setPlayer(this->_car);
-    this->_race->addAICar();
-    this->_race->addAICar();
-    this->_race->addAICar();
+    // this->_race->addAICar();
+    //this->_race->addAICar();
+    //this->_race->addAICar();
     this->_objectList.push_back(this->_race);
 
     this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
@@ -205,34 +205,40 @@ void IndieGame::OnFrame() {
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["short_id"]->get_string()) == 0)
-        return;
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setEngineForce(msg->get_map()["engine"]->get_double());
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setBreakingForce(msg->get_map()["breaking"]->get_double());
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setSteeringValue(msg->get_map()["steering"]->get_double());
     irr::core::vector3df pos(0, 0, 0);
-    pos.X = msg->get_map()["LinearX"]->get_double();
-    pos.Y = msg->get_map()["LinearY"]->get_double();
-    pos.Z = msg->get_map()["LinearZ"]->get_double();
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setLinearVelocity(pos);
-    pos.X = msg->get_map()["AngularX"]->get_double();
-    pos.Y = msg->get_map()["AngularY"]->get_double();
-    pos.Z = msg->get_map()["AngularZ"]->get_double();
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setAngularVelocity(pos);
+    auto vec = msg->get_map()["ennemy_info"]->get_vector();
+    for (auto const &x : vec) {
+        if (this->_cars.count(x->get_map()["short_id"]->get_string()) == 0)
+            continue;
+        this->_cars[x->get_map()["short_id"]->get_string()]->setEngineForce(x->get_map()["engine"]->get_double());
+        this->_cars[x->get_map()["short_id"]->get_string()]->setBreakingForce(x->get_map()["breaking"]->get_double());
+        this->_cars[x->get_map()["short_id"]->get_string()]->setSteeringValue(x->get_map()["steering"]->get_double());
+        pos.X = x->get_map()["LinearX"]->get_double();
+        pos.Y = x->get_map()["LinearY"]->get_double();
+        pos.Z = x->get_map()["LinearZ"]->get_double();
+        this->_cars[x->get_map()["short_id"]->get_string()]->setLinearVelocity(pos);
+        pos.X = x->get_map()["AngularX"]->get_double();
+        pos.Y = x->get_map()["AngularY"]->get_double();
+        pos.Z = x->get_map()["AngularZ"]->get_double();
+        this->_cars[x->get_map()["short_id"]->get_string()]->setAngularVelocity(pos);
+    }
 }
 
 void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
-    if (this->_cars.count(msg->get_map()["short_id"]->get_string()) == 0)
-        return;
     irr::core::vector3df pos(0, 0, 0);
-    pos.X = msg->get_map()["posX"]->get_double();
-    pos.Y = msg->get_map()["posY"]->get_double();
-    pos.Z = msg->get_map()["posZ"]->get_double();
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setPosition(pos);
-    pos.X = msg->get_map()["rotX"]->get_double();
-    pos.Y = msg->get_map()["rotY"]->get_double();
-    pos.Z = msg->get_map()["rotZ"]->get_double();
-    this->_cars[msg->get_map()["short_id"]->get_string()]->setRotation(pos);
+    auto vec = msg->get_map()["ennemy_pos"]->get_vector();
+    for (auto const &x : vec) {
+        if (this->_cars.count(x->get_map()["short_id"]->get_string()) == 0)
+            return;
+            pos.X = x->get_map()["posX"]->get_double();
+            pos.Y = x->get_map()["posY"]->get_double();
+            pos.Z = x->get_map()["posZ"]->get_double();
+            this->_cars[x->get_map()["short_id"]->get_string()]->setPosition(pos);
+            pos.X = x->get_map()["rotX"]->get_double();
+            pos.Y = x->get_map()["rotY"]->get_double();
+            pos.Z = x->get_map()["rotZ"]->get_double();
+            this->_cars[x->get_map()["short_id"]->get_string()]->setRotation(pos);
+        }
 }
 
 void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
@@ -465,7 +471,6 @@ void IndieGame::launchMenu()
 {
     _mainmenu = new MainMenu(_gui, _driver, _windowSize);
     _mainmenu->SetupGUI();
-    //_objectList.push_back(_mainmenu);
 }
 
 void IndieGame::OnEnterMoney() {
