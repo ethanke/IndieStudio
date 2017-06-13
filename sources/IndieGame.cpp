@@ -225,7 +225,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["delete car"] = i++;
     this->_operation["join race"] = i++;
     this->_operation["leave race"] = i++;
-    this->_operation["error"] = i++;
+    this->_operation["error message"] = i++;
     Client::Instance().init(this);
 }
 
@@ -301,7 +301,7 @@ void IndieGame::OnFrame() {
         std::string money = std::to_string(Client::Instance().getMoney());
         std::string str(money + "$");
         if (str != get) {
-            this->_pos->setText(Utils::StrToWstr(str));
+            this->_money->setText(Utils::StrToWstr(str));
         }
     }
 }
