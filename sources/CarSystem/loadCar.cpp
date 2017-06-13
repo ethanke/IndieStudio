@@ -77,7 +77,7 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
     carParams.RearAxeHalfWidth = 0.85f;	//0.8f
     carParams.Mass = 1600.0f;
     carParams.MaxEngineForce = 4000.0f;
-    carParams.MaxBreakingForce = 100.0f;	//100.0f
+    carParams.MaxBreakingForce = 200.0f;	//100.0f
     carParams.SteeringIncrement = 0.025f;	//0.04f
     carParams.SteeringClamp = 0.4f;
     carParams.WheelRadius = 0.35f;	//0.35f

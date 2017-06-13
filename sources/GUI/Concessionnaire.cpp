@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 23:55:02 2017 Vacca_J
-** Last update Tue Jun 13 15:11:56 2017 Lucas Gambini
+** Last update Tue Jun 13 15:53:36 2017 Lucas Gambini
 */
 
 #include "Concessionnaire.hpp"
@@ -27,13 +27,19 @@ Concessionnaire::Concessionnaire(irr::gui::IGUIEnvironment *gui, irr::video::IVi
   this->_tgreen = this->_driver->getTexture("../../Assets/gui/igreen.png");
   this->_tyellow = this->_driver->getTexture("../../Assets/gui/yellow.png");
   this->_torange = this->_driver->getTexture("../../Assets/gui/orange.png");
+  this->_twhite = this->_driver->getTexture("../../Assets/gui/white.png");
 
   this->_mycolor.push_back(this->_tred);
-  this->_mycolor.push_back(this->_tpink);
   this->_mycolor.push_back(this->_tblue);
   this->_mycolor.push_back(this->_tgreen);
-  this->_mycolor.push_back(this->_tyellow);
   this->_mycolor.push_back(this->_torange);
+  this->_mycolor.push_back(this->_tpink);
+  this->_mycolor.push_back(this->_twhite);
+  this->_mycolor.push_back(this->_tyellow);
+
+  this->_prevPressed = false;
+  this->_nextPressed = false;
+  this->_compt = 0;
 }
 
 Concessionnaire::~Concessionnaire()
@@ -76,16 +82,17 @@ void Concessionnaire::SetupCOLOR()
 
 void Concessionnaire::colorMenu()
 {
-  if (this->_exit1->isPressed() == true)
-    {
-      this->_isVisible1 = false;
-      this->_isVisible = true;
-    }
-  else if (this->_enter1->isPressed() == true)
-  {
-    this->_isVisible1 = false;
-    this->_isVisible = true;
+  if (this->_previous1->isPressed() && this->_prevPressed == false) {
+      this->_prevPressed = true;
+      this->colorManager(0);
+  } else if (this->_next1->isPressed() && this->_nextPressed == false) {
+      this->_nextPressed = true;
+      this->colorManager(1);
   }
+  if (this->_previous1->isPressed() == false)
+    this->_prevPressed = false;
+if (this->_next1->isPressed() == false)
+    this->_nextPressed = false;
 }
 
 
@@ -165,4 +172,8 @@ void Concessionnaire::OnFrame()
       this->_title1->setVisible(false);
       this->_enter1->setVisible(false);
     }
+}
+
+int Concessionnaire::getColorIndex() const {
+    return this->_compt;
 }

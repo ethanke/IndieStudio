@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 23:54:13 2017 Vacca_J
-** Last update Mon Jun 12 19:29:15 2017 Vacca_J
+** Last update Tue Jun 13 15:54:20 2017 Lucas Gambini
 */
 
 #ifndef CONCESSIONNAIRE_HPP_
@@ -63,13 +63,17 @@ private:
   irr::video::ITexture *_tgreen;
   irr::video::ITexture *_tyellow;
   irr::video::ITexture *_torange;
+  irr::video::ITexture *_twhite;
   std::vector<irr::video::ITexture *> _mycolor;
 
 
   // OTHER
   bool _isVisible;
   bool _isVisible1;
-  int _compt = 0;
+  int _compt;
+
+  bool _prevPressed;
+  bool _nextPressed;
 public:
 
   Concessionnaire(irr::gui::IGUIEnvironment*, irr::video::IVideoDriver*, irr::core::dimension2du);
@@ -83,6 +87,7 @@ public:
   void setVisible(bool visible);
   bool isVisible(void) const;
   void OnFrame();
+  int getColorIndex() const;
 
   };
 

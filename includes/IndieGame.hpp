@@ -87,6 +87,8 @@ namespace indie {
         void addNetworkCar(sio::message::ptr const &msg);
         void deleteNetworkCar(sio::message::ptr const &msg);
 
+        void changeCarColor();
+
     private:
         Car *_car;
         std::unordered_map<std::string, Car *> _cars;

@@ -192,7 +192,7 @@ void IndieGame::OnFrame() {
         // this->_gui->getSkin()->getFont()->setInvisibleCharacters(L"! ");
         this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(20, 20, 300, 75), irr::video::SColor(255, 180, 180, 180) );
         str = std::to_string(Client::Instance().getMoney()) + "$";
-        this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );    
+        this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
     }
 
 
@@ -341,11 +341,12 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case Concessionnaire::LEAVE:
                          this->_concessionnaire->setVisible(false);
                          break;
-                    case Concessionnaire::NEXTC:
-                        this->_concessionnaire->colorManager(1);
+                    case Concessionnaire::CHANGEC:
+                        this->_concessionnaire->setVisible(false);
+                        this->changeCarColor();
                         break;
-                    case Concessionnaire::PREVC:
-                        this->_concessionnaire->colorManager(0);
+                    case Concessionnaire::QUITC:
+                        this->_concessionnaire->setVisible(false);
                         break;
                     case Course::RUN:
                         //LANCER LA COURSE SA MERE
@@ -414,6 +415,11 @@ void IndieGame::OnLeavingCourse() {
     this->_device->getCursorControl()->setVisible(false);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
     Client::Instance().leavingCourseLobby();
+}
+
+void IndieGame::changeCarColor() {
+    // update car mesh
+    Client::Instance().setCarNo(this->_concessionnaire->getColorIndex());
 }
 
 void IndieGame::OnEnterGarage(void) {
