@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:30:32 2017 Vacca_J
-** Last update Wed Jun 14 01:49:51 2017 Lucas Gambini
+** Last update Wed Jun 14 19:07:39 2017 Lucas Gambini
 */
 
 #ifndef RACE_HPP_
@@ -33,6 +33,8 @@ namespace indie {
         void push_ennemy(Car *ennemy);
         void addAICar();
         int getCurrentPlayerAmount() const;
+        void FreezePlayers();
+        void UnFreezePlayers();
 
         void OnEnterInCourseChPt(GameCheckpoint const &ch);
 

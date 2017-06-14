@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:44:22 2017 Lucas Gambini
-** Last update Sun Jun 11 17:04:28 2017 Lucas Gambini
+** Last update Wed Jun 14 19:41:44 2017 Lucas Gambini
 */
 
 #include "GameCheckpoint.hpp"
@@ -28,13 +28,13 @@ GameCheckpoint::GameCheckpoint(irr::scene::ISceneManager *sceneManager, irr::f32
     reCreate();
 }
 
-GameCheckpoint &GameCheckpoint::operator=(const GameCheckpoint &obj) {
-    AGameObject::operator=(obj);
-    this->_cylindre = obj._cylindre;
-    this->_type = obj._type;
-    this->_isBusy = obj._isBusy;
-    return *this;
-}
+// GameCheckpoint &GameCheckpoint::operator=(const GameCheckpoint &obj) {
+//     AGameObject::operator=(obj);
+//     this->_cylindre = obj._cylindre;
+//     this->_type = obj._type;
+//     this->_isBusy = obj._isBusy;
+//     return *this;
+// }
 
 
 GameCheckpoint::~GameCheckpoint() {

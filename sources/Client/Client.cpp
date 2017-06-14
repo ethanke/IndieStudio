@@ -111,6 +111,11 @@ void Client::SetupCallback() {
     {
         this->_bridge->addEvent(name, data);
     }));
+
+    this->_client.socket()->on("start race", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
 }
 
 void Client::stop() {
@@ -262,6 +267,10 @@ void Client::requestMoney() {
 
 void Client::startingRace() {
     this->_client.socket()->emit("starting race", "{\"id\": \"" + this->_id + "\"}");
+}
+
+void Client::debug(std::string const &msg) {
+    this->_client.socket()->emit("debug", "{\"msg\": \"" + msg + "\"}");
 }
 
 std::string const Client::getString(rapidjson::Document const &d) {

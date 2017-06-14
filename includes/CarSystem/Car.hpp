@@ -54,6 +54,7 @@ namespace indie {
         void setSteeringValue(float newForce);
 
         int getCarNo() const;
+        void setFreeze(bool value);
 
 
     protected:
@@ -79,6 +80,8 @@ namespace indie {
         core::vector3df _cameraPosition;
         float _cameraHeight;
         float _baseCameraDistance;
+
+        bool _freeze;
 
         virtual void KeyboardEvent();
         virtual void updateCamera();

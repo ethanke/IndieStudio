@@ -21,7 +21,8 @@ Circuit::Circuit(const Circuit& obj) {
 }
 
 Circuit::~Circuit() {
-
+    for (auto &x: this->_checkpoints)
+        x.setChVisible(false);
 }
 
 Circuit &Circuit::operator=(const Circuit& obj) {
@@ -35,8 +36,12 @@ void Circuit::OnFrame() {
     }
 }
 
+void Circuit::push(irr::scene::ISceneManager *sceneManager, irr::core::vector3df const &point) {
+    this->_checkpoints.push_back(GameCheckpoint(sceneManager, 0,  0, NULL, 10000 + this->_checkpoints.size(), GameCheckpoint::IN_COURSE, 3, point));
+}
+
 Circuit &Circuit::operator <<(GameCheckpoint const &point) {
-    this->_checkpoints.push_back(GameCheckpoint(point));
+    this->_checkpoints.push_back(point);
     return *this;
 }
 

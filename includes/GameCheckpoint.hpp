@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Tue May 16 12:41:22 2017 Lucas Gambini
-** Last update Sun Jun 04 14:08:08 2017 Lucas Gambini
+** Last update Wed Jun 14 19:33:09 2017 Lucas Gambini
 */
 
 #ifndef GAMECHECKPOINT_HPP
@@ -33,7 +33,7 @@ namespace indie {
                  const irr::core::vector3df &position = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &rotation = irr::core::vector3df(0,0,0),
                  const irr::core::vector3df &scale = irr::core::vector3df(1.0f, 1.0f, 1.0f));
-         GameCheckpoint &operator=(const GameCheckpoint &obj);
+         //GameCheckpoint &operator=(const GameCheckpoint &obj);
         ~GameCheckpoint();
 
         virtual void OnFrame();

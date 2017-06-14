@@ -38,6 +38,7 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     this->reverse = false;
     this->_lookback = false;
     this->_mustSendData = false;
+    this->_freeze = false;
 
     this->_car_no = car_no;
     if (this->_isAI == false)
@@ -75,6 +76,10 @@ void Car::OnFrame() {
     } else if (this->_elapsedTime1 < 0.1)
         this->_elapsedTime1 += DeltaTimer::DeltaTime;
 
+    if (this->_freeze == true) {
+        this->setBreakingForce(1000.0f);
+        this->setEngineForce(0.0f);
+    }
 	this->_carLoader.Update(drive_tipe);
 }
 
@@ -204,4 +209,8 @@ void Car::setSteeringValue(float newForce) {
 }
 int Car::getCarNo() const {
     return this->_car_no;
+}
+
+void Car::setFreeze(bool value) {
+    this->_freeze = value;
 }

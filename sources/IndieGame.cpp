@@ -126,6 +126,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["leave race"] = i++;
     this->_operation["error message"] = i++;
     this->_operation["add checkpoint"] = i++;
+    this->_operation["start race"] = i++;
     Client::Instance().init(this);
 }
 
@@ -165,6 +166,9 @@ void IndieGame::OnFrame() {
                 break;
             case 8:
                 //Add checkpoint
+                break;
+            case 9:
+                this->_race->UnFreezePlayers();
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
@@ -295,45 +299,45 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->guiVisible(this->_menu->getSettings()->getKeyboard());
                         break;
                    case Keyboard::up:
-                       _menu->getSettings()->getKeyboard()->resetUp();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetUp();
+                        break;
                    case Keyboard::down:
-                       _menu->getSettings()->getKeyboard()->resetDown();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetDown();
+                        break;
                    case Keyboard::left:
-                       _menu->getSettings()->getKeyboard()->resetLeft();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetLeft();
+                        break;
                    case Keyboard::right:
-                       _menu->getSettings()->getKeyboard()->resetRight();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetRight();
+                        break;
                    case Keyboard::forward:
-                       _menu->getSettings()->getKeyboard()->resetForward();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetForward();
+                        break;
                    case Keyboard::backward:
-                       _menu->getSettings()->getKeyboard()->resetBackward();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetBackward();
+                        break;
                    case Keyboard::space:
-                       _menu->getSettings()->getKeyboard()->resetBrake();
-                       break;
+                        _menu->getSettings()->getKeyboard()->resetBrake();
+                        break;
                    case Keyboard::quit:
-                       _menu->getSettings()->getKeyboard()->setVisible(false);
-                       break;
-                    case Audio::PLUS:
-                      _menu->getSettings()->getAudio()->plus();
-                      break;
-                  case Audio::MOIN:
-                      _menu->getSettings()->getAudio()->moin();
-                      break;
+                        _menu->getSettings()->getKeyboard()->setVisible(false);
+                        break;
+                   case Audio::PLUS:
+                        _menu->getSettings()->getAudio()->plus();
+                        break;
+                    case Audio::MOIN:
+                        _menu->getSettings()->getAudio()->moin();
+                        break;
                     case Menu::RESUME:
-                        OnLeavingMenu();
+                        this->OnLeavingMenu();
                         break;
                     case Menu::QUIT:
                         this->_device->closeDevice();
                         Client::Instance().stop();
                         break;
                     case Concessionnaire::LEAVE:
-                         this->_concessionnaire->setVisible(false);
-                         break;
+                        this->_concessionnaire->setVisible(false);
+                        break;
                     case Concessionnaire::CHANGEC:
                         this->_concessionnaire->setVisible(false);
                         this->changeCarColor();
@@ -347,6 +351,14 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case Course::CANCEL:
                         this->OnLeavingCourse();
+                        this->_race->UnFreezePlayers();
+                        for (auto &race : this->_objectList) {
+                            if (this->_race == race) {
+                                race = NULL;
+                                break;
+                            }
+                        }
+                        delete this->_race;
                         break;
                     case Audio::Quit:
                         this->_menu->getSettings()->getAudio()->setVisible(false);
@@ -406,6 +418,7 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
         this->_race->setPlayer(this->_car);
     }
     this->_objectList.push_back(this->_race);
+    this->_race->FreezePlayers();
     Client::Instance().creatingCourseLobby(ch.getID());
 }
 
@@ -562,6 +575,13 @@ void IndieGame::joinRace(sio::message::ptr const &msg) {
 void IndieGame::leaveRace(sio::message::ptr const &msg) {
     if (this->_course && msg->get_map()["is_leader"]->get_bool() == true) {
         this->_course->setVisible(false);
+        for (auto &race : this->_objectList) {
+            if (this->_race == race) {
+                race = NULL;
+                break;
+            }
+        }
+        delete this->_race;
     }
     else if (this->_course)
         this->_course->ripPlayer(msg->get_map()["short_id"]->get_string());

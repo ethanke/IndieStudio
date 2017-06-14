@@ -28,6 +28,7 @@ namespace indie {
 
         void reCreate();
 
+        void push(irr::scene::ISceneManager *sceneManager, irr::core::vector3df const &point);
         Circuit &operator <<(GameCheckpoint const &point);
         Circuit &operator <<(std::pair<irr::core::vector3df, irr::core::vector3df> const &point);
 
