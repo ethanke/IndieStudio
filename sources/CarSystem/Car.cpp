@@ -134,10 +134,10 @@ void Car::KeyboardEvent() {
 	} else {
         this->_lookback = false;
     }
-	if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
-	{
-		this->_carLoader.resetCar(0); // 90
-	}
+	// if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
+	// {
+	// 	this->_carLoader.resetCar(0); // 90
+	// }
 
 }
 
