@@ -2,7 +2,7 @@ var Clients = require('../schema/Clients.js');
 var Room    = require('../schema/Rooms.js');
 
 exports.forwardPosition = function(socket, io, msg_str) {
-    console.log("RECEIVING from " + socket.id + ": \'send pos\': " + msg_str);
+//    console.log("RECEIVING from " + socket.id + ": \'send pos\': " + msg_str);
     var msg = JSON.parse(msg_str);
     Clients.update({'_id': msg.id.toObjectId()}, {$set: {
 	'posX': msg.posX,
@@ -33,7 +33,7 @@ exports.forwardPosition = function(socket, io, msg_str) {
 				}
 			    }
 			    var json_res = {'ennemy_pos': ennemy_pos};
-			    console.log("EMITING   to   " + socket.id + ": \'send pos\': " + JSON.stringify(json_res));
+//			    console.log("EMITING   to   " + socket.id + ": \'send pos\': " + JSON.stringify(json_res));
 			    socket.emit('send pos', json_res);
 			}
 		    });
@@ -44,7 +44,7 @@ exports.forwardPosition = function(socket, io, msg_str) {
 }
 
 exports.forwardEngine = function(socket, io, msg_str) {
-    console.log("RECEIVING from " + socket.id + ": \'send engine\': " + msg_str);
+  //  console.log("RECEIVING from " + socket.id + ": \'send engine\': " + msg_str);
     var msg = JSON.parse(msg_str);
     Clients.update({'_id': msg.id.toObjectId()}, {$set: {
 	'LinearX': msg.LinearX,
@@ -82,7 +82,7 @@ exports.forwardEngine = function(socket, io, msg_str) {
 				}
 			    }
 			    var json_res = {'ennemy_info': ennemy_info};
-			    console.log("EMITING   to   " + socket.id + ": \'send engine\': " + JSON.stringify(json_res));
+//			    console.log("EMITING   to   " + socket.id + ": \'send engine\': " + JSON.stringify(json_res));
 			    socket.emit('send engine', json_res);
 			}
 		    });

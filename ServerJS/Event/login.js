@@ -21,7 +21,16 @@ exports.disconnect = function(socket, io) {
 			    }
 			}
 		    }
-		    Room.update({"_id": clientList[0].roomID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {});
+		    if (clientList[0].shortID == raceResultF[0].leader.shortID) {
+			for (var i = 0; i < raceResultF[0].clients.length; i++) {
+			    Clients.update({"_id": raceResultF[0].clients[i]._id}, {$set: {'raceID': null}}, function(err, result) {});
+			}
+			Race.update({"_id": clientList[0].raceID}, {$set: {'clients': [], 'raceID': -1}}, function(err, result) {});
+		    } else {
+			Race.update({"_id": clientList[0].raceID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
+			    Clients.update({"_id": msg.id.toObjectId()}, {$set: {'raceID': null}}, function(err, result) {});
+			});
+		    }
 		}
 		Room.find({'_id': clientList[0].roomID}).populate('clients').exec(function(err, roomResultF) {
 		    if (roomResultF.length != 0) {
@@ -55,6 +64,7 @@ exports.login = function(socket, msg) {
 		'socketID': socket.id,
 		'connected': true,
 		'shortID': "-1",
+		'money': 200,
 		"roomID": null,
 		"raceID": null
 	    });
