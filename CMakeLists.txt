@@ -60,6 +60,7 @@ ENDIF()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/Linux/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/lib/Linux/)
+    link_directories(${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/lib/LINUX/)
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     link_directories(/usr/local/lib/)
@@ -145,10 +146,10 @@ add_executable(IndieStudio ${SRC_FILES})
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     target_link_libraries(${PROJECT_NAME}
         Irrlicht
-        BulletSoftBody
-        BulletDynamics
-        BulletCollision
-        LinearMath
+        BulletSoftBody_gmake_x64_release
+        BulletDynamics_gmake_x64_release
+        BulletCollision_gmake_x64_release
+        LinearMath_gmake_x64_release
         "-lm"
         GL
         GLU
@@ -156,6 +157,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         Xext
         Xxf86vm
         X11
+	sioclient
+	boost_system
     )
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")

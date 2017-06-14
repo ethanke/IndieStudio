@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.7.2/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.7.2/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp
+CMAKE_SOURCE_DIR = /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp
+CMAKE_BINARY_DIR = /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sioclient_tls.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/sioclient_tls.dir/flags.make
 
 CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o: CMakeFiles/sioclient_tls.dir/flags.make
 CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o: src/sio_client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/sio_client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/sio_client.cpp
 
 CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/sio_client.cpp > CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/sio_client.cpp > CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.i
 
 CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/sio_client.cpp -o CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/sio_client.cpp -o CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.s
 
 CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/sioclient_tls.dir/src/sio_client.cpp.o.provides.build: CMakeFiles/sio
 
 CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o: CMakeFiles/sioclient_tls.dir/flags.make
 CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o: src/sio_socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/sio_socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/sio_socket.cpp
 
 CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/sio_socket.cpp > CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/sio_socket.cpp > CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.i
 
 CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/sio_socket.cpp -o CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/sio_socket.cpp -o CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.s
 
 CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/sioclient_tls.dir/src/sio_socket.cpp.o.provides.build: CMakeFiles/sio
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o: CMakeFiles/sioclient_tls.dir/flags.make
 CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o: src/internal/sio_client_impl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_client_impl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_client_impl.cpp
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_client_impl.cpp > CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_client_impl.cpp > CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.i
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_client_impl.cpp -o CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_client_impl.cpp -o CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.s
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cpp.o.provides.build: 
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o: CMakeFiles/sioclient_tls.dir/flags.make
 CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o: src/internal/sio_packet.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_packet.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_packet.cpp
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_packet.cpp > CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_packet.cpp > CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.i
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_packet.cpp -o CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/src/internal/sio_packet.cpp -o CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.s
 
 CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o.requires:
 
@@ -169,7 +169,7 @@ libsioclient_tls.a: CMakeFiles/sioclient_tls.dir/src/internal/sio_client_impl.cp
 libsioclient_tls.a: CMakeFiles/sioclient_tls.dir/src/internal/sio_packet.cpp.o
 libsioclient_tls.a: CMakeFiles/sioclient_tls.dir/build.make
 libsioclient_tls.a: CMakeFiles/sioclient_tls.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libsioclient_tls.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libsioclient_tls.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/sioclient_tls.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sioclient_tls.dir/link.txt --verbose=$(VERBOSE)
 
@@ -190,6 +190,6 @@ CMakeFiles/sioclient_tls.dir/clean:
 .PHONY : CMakeFiles/sioclient_tls.dir/clean
 
 CMakeFiles/sioclient_tls.dir/depend:
-	cd /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/sioclient_tls.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/sioclient_tls.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/sioclient_tls.dir/depend
 
