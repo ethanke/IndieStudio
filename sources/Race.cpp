@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:32:46 2017 Vacca_J
-** Last update Wed Jun 14 19:58:07 2017 Lucas Gambini
+** Last update Wed Jun 14 21:12:08 2017 Lucas Gambini
 */
 
 #include "Race.hpp"
@@ -184,21 +184,21 @@ int Race::getCurrentPlayerAmount() const {
 void Race::FreezePlayers() {
     if (this->_player != NULL)
         this->_player->setFreeze(true);
-    for (auto &ennemy : this->_ennemies) {
-        ennemy->setFreeze(true);
-    }
-    for (auto &ia : this->_aiCars) {
-        ia->setFreeze(true);
-    }
+    // for (auto &ennemy : this->_ennemies) {
+    //     ennemy->setFreeze(true);
+    // }
+    // for (auto &ia : this->_aiCars) {
+    //     ia->setFreeze(true);
+    // }
 }
 
 void Race::UnFreezePlayers() {
     if (this->_player != NULL)
         this->_player->setFreeze(false);
-    for (auto &ennemy : this->_ennemies) {
-        ennemy->setFreeze(false);
-    }
-    for (auto &ia : this->_aiCars) {
-        ia->setFreeze(false);
-    }
+    // for (auto &ennemy : this->_ennemies) {
+    //     ennemy->setFreeze(false);
+    // }
+    // for (auto &ia : this->_aiCars) {
+    //     ia->setFreeze(false);
+    // }
 }
