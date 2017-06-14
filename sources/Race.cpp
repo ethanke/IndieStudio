@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:32:46 2017 Vacca_J
-** Last update Wed Jun 14 21:29:43 2017 Lucas Gambini
+** Last update Thu Jun 15 00:52:09 2017 Lucas Gambini
 */
 
 #include "Race.hpp"
@@ -149,6 +149,8 @@ void Race::setPlayer(Car *player) {
 }
 
 void Race::push_ennemy(Car *ennemy) {
+    ennemy->setPosition(this->_circuit.getStartingBlock(this->_currentPlayerAmount).first);
+    ennemy->setRotation(this->_circuit.getStartingBlock(this->_currentPlayerAmount).second);
     this->_ennemies.push_back(ennemy);
     this->_currentPlayerAmount++;
 }
