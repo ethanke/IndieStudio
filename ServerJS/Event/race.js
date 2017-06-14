@@ -39,6 +39,9 @@ exports.leaveRace = function(socket, io, msg_str) {
 			    if (clientList[0].shortID == raceResultF[0].leader.shortID) {
 				isLeader = true;
 			    }
+			    if (isLeader == true) {
+				
+			    }
 			    var json_res = {'short_id': clientList[0].shortID, 'is_leader': isLeader};
 			    if (io.sockets.connected[raceResultF[0].clients[i].socketID] != undefined) {
 				console.log("EMITING   to   " + raceResultF[0].clients[i].socketID + ": \'leave race\': " + JSON.stringify(json_res));
@@ -46,9 +49,16 @@ exports.leaveRace = function(socket, io, msg_str) {
 			    }
 			}
 		    }
-		    Race.update({"_id": clientList[0].raceID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
-			Clients.update({"socketID": msg.id.toObjectId()}, {$set: {'raceID': null}}, function(err, result) {});
-		    });
+		    if (clientList[0].shortID == raceResultF[0].leader.shortID) {
+			for (var i = 0; i < raceResultF[0].clients.length; i++) {
+			    Clients.update({"_id": raceResultF[0].clients[i]._id}, {$set: {'raceID': null}}, function(err, result) {});
+			}
+			Race.update({"_id": clientList[0].raceID}, {$set: {'clients': [], 'raceID': -1}}, function(err, result) {});
+		    } else {
+			Race.update({"_id": clientList[0].raceID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
+			    Clients.update({"_id": msg.id.toObjectId()}, {$set: {'raceID': null}}, function(err, result) {});
+			});
+		    }
 		}
 	    });
 	}
@@ -58,13 +68,26 @@ exports.leaveRace = function(socket, io, msg_str) {
 exports.startRace = function(socket, io, msg_str) {
     console.log("RECEIVING from " + socket.id + ": \'starting race\': " + msg_str);
     var msg = JSON.parse(msg_str);
+    Clients.find({'_id': msg.id.toObjectId()}, function(err, clientList) {
+	if (clientList.length != 0) {
+	    var self = clientList[0];
+	    if (self.roomID == null) {
+		startRaceCounterOffline(socket, io, msg);
+	    } else {
+		
+	    }
+	}
+    });
+}
+
     
+function startRaceCounterOffline(socket, io, msg) {
     setTimeout(function () {
 	var json_res = {error: "!!!!  3  !!!!"};
 	console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
 	socket.emit('error message', json_res);
     }, 1000);
-
+    
     setTimeout(function () {
 	var json_res = {error: "!!!!  2  !!!!"};
 	console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
@@ -81,6 +104,10 @@ exports.startRace = function(socket, io, msg_str) {
 	var json_res = {error: "!!!!  GOOOO  !!!!"};
 	console.log("EMITING   to   " + socket.id + ": \'join race\': " + JSON.stringify(json_res));
 	socket.emit('error message', json_res);
+
+	var json_res = {};
+	console.log("EMITING   to   " + socket.id + ": \'start race\': " + JSON.stringify(json_res));
+	socket.emit('start race', json_res);
     }, 4000);
 }
 

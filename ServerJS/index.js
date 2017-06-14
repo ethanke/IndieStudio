@@ -17,6 +17,7 @@ var Login       = require('./Event/login.js');
 var JoinRoom    = require('./Event/join_room.js');
 var Forward     = require('./Event/forward.js');
 var RaceManager = require('./Event/race.js');
+var Utils       = require('./Event/utils.js');
 
 mongoose.connect('mongodb://localhost:27017/IDC_db');
 
@@ -28,7 +29,11 @@ io.on('connection', function(socket) {
     socket.on('disconnect', function() {
 	Login.disconnect(socket, io);
     });
-        
+
+    socket.on('debug', function (msg) {
+	console.log("RECEIVING from " + socket.id + ": \'debug\': " + msg);
+    });
+    
     // REGISTER NEW USER / LOGIN KNOWN USERS
     socket.on('id client is', function(msg) {
 	Login.login(socket, msg);
@@ -64,8 +69,14 @@ io.on('connection', function(socket) {
 	RaceManager.leaveRace(socket, io, msg);
     });
 
+    //CLIENT WANT TO START RACE BEEING LEADER
     socket.on('starting race', function(msg) {
 	RaceManager.startRace(socket, io, msg);
+    });
+
+    // CLIENT WANT TO GET HIS OWN MONEY
+    socket.on('get money', function(msg) {
+	Utils.getMoney(socket, io, msg);
     });
     
 });
