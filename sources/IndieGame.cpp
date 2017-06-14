@@ -262,6 +262,37 @@ void IndieGame::deleteNetworkCar(sio::message::ptr const &msg) {
     }
 }
 
+void IndieGame::joinRace(sio::message::ptr const &msg) {
+    if (this->_course) {
+        if (msg->get_map()["short_id"]->get_string() != "null") {
+            this->_course->addPlayer(msg->get_map()["short_id"]->get_string());
+            this->_race->push_ennemy(this->_cars[msg->get_map()["short_id"]->get_string()]);
+            this->_race->FreezePlayers();
+        }
+        if (this->_race->getCurrentPlayerAmount() == msg->get_map()["nb_total"]->get_int()) {
+            this->_race->setPlayer(this->_car);
+            this->_course->addPlayer(Client::Instance().getShortId());
+            this->_race->FreezePlayers();
+        }
+    }
+}
+
+void IndieGame::leaveRace(sio::message::ptr const &msg) {
+    if (this->_course && msg->get_map()["is_leader"]->get_bool() == true) {
+        this->_race->UnFreezePlayers();
+        this->_course->setVisible(false);
+        for (auto &race : this->_objectList) {
+            if (this->_race == race) {
+                race = NULL;
+                break;
+            }
+        }
+        delete this->_race;
+    }
+    else if (this->_course)
+        this->_course->ripPlayer(msg->get_map()["short_id"]->get_string());
+}
+
 bool IndieGame::OnEvent(const irr::SEvent& event){
     if (event.EventType == irr::EET_GUI_EVENT) {
         irr::s32 id = event.GUIEvent.Caller->getID();
@@ -558,34 +589,4 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
 
 void IndieGame::OnReleaseKey(irr::EKEY_CODE keyCode) {
     (void)keyCode;
-}
-
-void IndieGame::joinRace(sio::message::ptr const &msg) {
-    if (this->_course) {
-        if (msg->get_map()["short_id"]->get_string() != "null") {
-            this->_course->addPlayer(msg->get_map()["short_id"]->get_string());
-            this->_race->push_ennemy(this->_cars[msg->get_map()["short_id"]->get_string()]);
-            this->_race->FreezePlayers();
-        }
-        if (this->_race->getCurrentPlayerAmount() == msg->get_map()["nb_total"]->get_int()) {
-            this->_race->setPlayer(this->_car);
-            this->_course->addPlayer(Client::Instance().getShortId());
-            this->_race->FreezePlayers();
-        }
-    }
-}
-
-void IndieGame::leaveRace(sio::message::ptr const &msg) {
-    if (this->_course && msg->get_map()["is_leader"]->get_bool() == true) {
-        this->_course->setVisible(false);
-        for (auto &race : this->_objectList) {
-            if (this->_race == race) {
-                race = NULL;
-                break;
-            }
-        }
-        delete this->_race;
-    }
-    else if (this->_course)
-        this->_course->ripPlayer(msg->get_map()["short_id"]->get_string());
 }
