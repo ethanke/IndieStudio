@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun  3 20:09:08 2017 Sousa Victor
-// Last update Tue Jun 13 05:07:47 2017 Sousa Victor
+// Last update Wed Jun 14 20:50:27 2017 Lucas Gambini
 //
 
 #ifndef CIRCUIT_HPP_
@@ -35,11 +35,11 @@ namespace indie {
         std::vector<GameCheckpoint> const &getNextCheckpoints(unsigned index) const;
         std::vector<GameCheckpoint> const &getCheckpoints() const;
 
-        std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> const> const &getStartingBlock() const;
+        std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> > const &getStartingBlock() const;
         std::pair<irr::core::vector3df, irr::core::vector3df> const &getStartingBlock(int index) const;
 
     private:
-        std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> const>_startingBlock;
+        std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> >_startingBlock;
         std::vector<GameCheckpoint> _checkpoints;
 
     };

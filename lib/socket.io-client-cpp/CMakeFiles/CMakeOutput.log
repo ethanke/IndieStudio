@@ -1,6 +1,6 @@
-The system is: Darwin - 16.3.0 - x86_64
+The system is: Linux - 4.9.0-2-default - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+Compiler: /usr/bin/cc 
 Build flags: 
 Id flags: 
 
@@ -10,10 +10,10 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is AppleClang, found in "/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/3.7.2/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/3.7.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
+Compiler: /usr/bin/c++ 
 Build flags: 
 Id flags: 
 
@@ -23,101 +23,140 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is AppleClang, found in "/Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/3.7.2/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/3.7.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_cc732/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_cc732.dir/build.make CMakeFiles/cmTC_cc732.dir/build
-Building C object CMakeFiles/cmTC_cc732.dir/testCCompiler.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc     -o CMakeFiles/cmTC_cc732.dir/testCCompiler.c.o   -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_cc732
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cc732.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_cc732.dir/testCCompiler.c.o  -o cmTC_cc732  
+Run Build Command:"/usr/bin/gmake" "cmTC_5abd1/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_5abd1.dir/build.make CMakeFiles/cmTC_5abd1.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5abd1.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_5abd1.dir/testCCompiler.c.o   -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_5abd1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5abd1.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_5abd1.dir/testCCompiler.c.o  -o cmTC_5abd1 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_fd897/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_fd897.dir/build.make CMakeFiles/cmTC_fd897.dir/build
-Building C object CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc     -o CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_fd897
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fd897.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o  -o cmTC_fd897   
-Apple LLVM version 8.0.0 (clang-800.0.42.1)
-Target: x86_64-apple-darwin16.3.0
+Run Build Command:"/usr/bin/gmake" "cmTC_06de7/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_06de7.dir/build.make CMakeFiles/cmTC_06de7.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_06de7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_06de7.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o  -o cmTC_06de7 -rdynamic  
+Using built-in specs.
+COLLECT_GCC=/usr/bin/cc
+COLLECT_LTO_WRAPPER=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../configure --prefix=/usr --infodir=/usr/share/info --mandir=/usr/share/man --libdir=/usr/lib64 --libexecdir=/usr/lib64 --enable-languages=c,c++,objc,fortran,obj-c++,java,ada,go --enable-offload-targets=hsa --enable-checking=release --with-gxx-include-dir=/usr/include/c++/6 --enable-ssp --disable-libssp --disable-libvtv --disable-libcc1 --enable-plugin --with-bugurl=http://bugs.opensuse.org/ --with-pkgversion='SUSE Linux' --disable-libgcj --with-slibdir=/lib64 --with-system-zlib --enable-__cxa_atexit --enable-libstdcxx-allocator=new --disable-libstdcxx-pch --enable-version-specific-runtime-libs --enable-linker-build-id --enable-linux-futex --enable-gnu-indirect-function --program-suffix=-6 --without-system-libunwind --enable-multilib --with-arch-32=x86-64 --with-tune=generic --build=x86_64-suse-linux --host=x86_64-suse-linux
 Thread model: posix
-InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_fd897 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a
-@(#)PROGRAM:ld  PROJECT:ld64-274.1
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
-Library search paths:
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
+gcc version 6.2.1 20161209 [gcc-6-branch revision 243481] (SUSE Linux) 
+COMPILER_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/bin/
+LIBRARY_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_06de7' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib64/gcc/x86_64-suse-linux/6/collect2 -plugin /usr/lib64/gcc/x86_64-suse-linux/6/liblto_plugin.so -plugin-opt=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper -plugin-opt=-fresolution=/var/tmp/cccZyCLH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_06de7 /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crt1.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crti.o /usr/lib64/gcc/x86_64-suse-linux/6/crtbegin.o -L/usr/lib64/gcc/x86_64-suse-linux/6 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib -L/usr/lib64/gcc/x86_64-suse-linux/6/../../.. CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib64/gcc/x86_64-suse-linux/6/crtend.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_06de7' '-rdynamic' '-mtune=generic' '-march=x86-64'
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_fd897/fast"]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_fd897.dir/build.make CMakeFiles/cmTC_fd897.dir/build]
-  ignore line: [Building C object CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc     -o CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o   -c /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_fd897]
-  ignore line: [/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fd897.dir/link.txt --verbose=1]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o  -o cmTC_fd897   ]
-  ignore line: [Apple LLVM version 8.0.0 (clang-800.0.42.1)]
-  ignore line: [Target: x86_64-apple-darwin16.3.0]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_06de7/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_06de7.dir/build.make CMakeFiles/cmTC_06de7.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_06de7]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_06de7.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o  -o cmTC_06de7 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/cc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper]
+  ignore line: [Target: x86_64-suse-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --infodir=/usr/share/info --mandir=/usr/share/man --libdir=/usr/lib64 --libexecdir=/usr/lib64 --enable-languages=c,c++,objc,fortran,obj-c++,java,ada,go --enable-offload-targets=hsa --enable-checking=release --with-gxx-include-dir=/usr/include/c++/6 --enable-ssp --disable-libssp --disable-libvtv --disable-libcc1 --enable-plugin --with-bugurl=http://bugs.opensuse.org/ --with-pkgversion='SUSE Linux' --disable-libgcj --with-slibdir=/lib64 --with-system-zlib --enable-__cxa_atexit --enable-libstdcxx-allocator=new --disable-libstdcxx-pch --enable-version-specific-runtime-libs --enable-linker-build-id --enable-linux-futex --enable-gnu-indirect-function --program-suffix=-6 --without-system-libunwind --enable-multilib --with-arch-32=x86-64 --with-tune=generic --build=x86_64-suse-linux --host=x86_64-suse-linux]
   ignore line: [Thread model: posix]
-  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_fd897 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
-    arg [-demangle] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.12.0] ==> ignore
+  ignore line: [gcc version 6.2.1 20161209 [gcc-6-branch revision 243481] (SUSE Linux) ]
+  ignore line: [COMPILER_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_06de7' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib64/gcc/x86_64-suse-linux/6/collect2 -plugin /usr/lib64/gcc/x86_64-suse-linux/6/liblto_plugin.so -plugin-opt=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper -plugin-opt=-fresolution=/var/tmp/cccZyCLH.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_06de7 /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crt1.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crti.o /usr/lib64/gcc/x86_64-suse-linux/6/crtbegin.o -L/usr/lib64/gcc/x86_64-suse-linux/6 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib -L/usr/lib64/gcc/x86_64-suse-linux/6/../../.. CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib64/gcc/x86_64-suse-linux/6/crtend.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crtn.o]
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/var/tmp/cccZyCLH.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_fd897] ==> ignore
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_fd897.dir/CMakeCCompilerABI.c.o] ==> ignore
-    arg [-lSystem] ==> lib [System]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a]
-  Library search paths: [;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
-  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: []
-  implicit dirs: [/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+    arg [cmTC_06de7] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/crtbegin.o] ==> ignore
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6]
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib]
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6/../../..] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../..]
+    arg [CMakeFiles/cmTC_06de7.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/crtend.o] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6] ==> [/usr/lib64/gcc/x86_64-suse-linux/6]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib] ==> [/usr/x86_64-suse-linux/lib]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../..] ==> [/usr/lib64]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib64/gcc/x86_64-suse-linux/6;/usr/lib64;/lib64;/usr/x86_64-suse-linux/lib]
+  implicit fwks: []
 
 
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ef828/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_ef828.dir/build.make CMakeFiles/cmTC_ef828.dir/build
-Building C object CMakeFiles/cmTC_ef828.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_ef828.dir/feature_tests.c.o   -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.c
-Linking C executable cmTC_ef828
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ef828.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ef828.dir/feature_tests.c.o  -o cmTC_ef828  
+Run Build Command:"/usr/bin/gmake" "cmTC_c58f5/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_c58f5.dir/build.make CMakeFiles/cmTC_c58f5.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c58f5.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_c58f5.dir/feature_tests.c.o   -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.c
+Linking C executable cmTC_c58f5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c58f5.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_c58f5.dir/feature_tests.c.o  -o cmTC_c58f5 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -127,15 +166,17 @@ Linking C executable cmTC_ef828
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ce7bc/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_ce7bc.dir/build.make CMakeFiles/cmTC_ce7bc.dir/build
-Building C object CMakeFiles/cmTC_ce7bc.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_ce7bc.dir/feature_tests.c.o   -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.c
-Linking C executable cmTC_ce7bc
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ce7bc.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_ce7bc.dir/feature_tests.c.o  -o cmTC_ce7bc  
+Run Build Command:"/usr/bin/gmake" "cmTC_118f8/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_118f8.dir/build.make CMakeFiles/cmTC_118f8.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_118f8.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_118f8.dir/feature_tests.c.o   -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.c
+Linking C executable cmTC_118f8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_118f8.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_118f8.dir/feature_tests.c.o  -o cmTC_118f8 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -145,15 +186,17 @@ Linking C executable cmTC_ce7bc
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d22d0/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d22d0.dir/build.make CMakeFiles/cmTC_d22d0.dir/build
-Building C object CMakeFiles/cmTC_d22d0.dir/feature_tests.c.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_d22d0.dir/feature_tests.c.o   -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.c
-Linking C executable cmTC_d22d0
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d22d0.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d22d0.dir/feature_tests.c.o  -o cmTC_d22d0  
+Run Build Command:"/usr/bin/gmake" "cmTC_47e89/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_47e89.dir/build.make CMakeFiles/cmTC_47e89.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_47e89.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_47e89.dir/feature_tests.c.o   -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.c
+Linking C executable cmTC_47e89
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_47e89.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_47e89.dir/feature_tests.c.o  -o cmTC_47e89 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -161,99 +204,135 @@ Linking C executable cmTC_d22d0
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_359ae/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_359ae.dir/build.make CMakeFiles/cmTC_359ae.dir/build
-Building CXX object CMakeFiles/cmTC_359ae.dir/testCXXCompiler.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++      -o CMakeFiles/cmTC_359ae.dir/testCXXCompiler.cxx.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_359ae
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_359ae.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_359ae.dir/testCXXCompiler.cxx.o  -o cmTC_359ae  
+Run Build Command:"/usr/bin/gmake" "cmTC_4d6c9/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_4d6c9.dir/build.make CMakeFiles/cmTC_4d6c9.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4d6c9.dir/testCXXCompiler.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_4d6c9.dir/testCXXCompiler.cxx.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_4d6c9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d6c9.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_4d6c9.dir/testCXXCompiler.cxx.o  -o cmTC_4d6c9 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8fc00/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_8fc00.dir/build.make CMakeFiles/cmTC_8fc00.dir/build
-Building CXX object CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++      -o CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_8fc00
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8fc00.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8fc00   
-Apple LLVM version 8.0.0 (clang-800.0.42.1)
-Target: x86_64-apple-darwin16.3.0
+Run Build Command:"/usr/bin/gmake" "cmTC_48d6a/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_48d6a.dir/build.make CMakeFiles/cmTC_48d6a.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++      -o CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_48d6a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_48d6a.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_48d6a -rdynamic  
+Using built-in specs.
+COLLECT_GCC=/usr/bin/c++
+COLLECT_LTO_WRAPPER=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper
+Target: x86_64-suse-linux
+Configured with: ../configure --prefix=/usr --infodir=/usr/share/info --mandir=/usr/share/man --libdir=/usr/lib64 --libexecdir=/usr/lib64 --enable-languages=c,c++,objc,fortran,obj-c++,java,ada,go --enable-offload-targets=hsa --enable-checking=release --with-gxx-include-dir=/usr/include/c++/6 --enable-ssp --disable-libssp --disable-libvtv --disable-libcc1 --enable-plugin --with-bugurl=http://bugs.opensuse.org/ --with-pkgversion='SUSE Linux' --disable-libgcj --with-slibdir=/lib64 --with-system-zlib --enable-__cxa_atexit --enable-libstdcxx-allocator=new --disable-libstdcxx-pch --enable-version-specific-runtime-libs --enable-linker-build-id --enable-linux-futex --enable-gnu-indirect-function --program-suffix=-6 --without-system-libunwind --enable-multilib --with-arch-32=x86-64 --with-tune=generic --build=x86_64-suse-linux --host=x86_64-suse-linux
 Thread model: posix
-InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_8fc00 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a
-@(#)PROGRAM:ld  PROJECT:ld64-274.1
-configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
-Library search paths:
-	/usr/lib
-	/usr/local/lib
-Framework search paths:
-	/Library/Frameworks/
-	/System/Library/Frameworks/
+gcc version 6.2.1 20161209 [gcc-6-branch revision 243481] (SUSE Linux) 
+COMPILER_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/bin/
+LIBRARY_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_48d6a' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib64/gcc/x86_64-suse-linux/6/collect2 -plugin /usr/lib64/gcc/x86_64-suse-linux/6/liblto_plugin.so -plugin-opt=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper -plugin-opt=-fresolution=/var/tmp/ccGwZDt9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_48d6a /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crt1.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crti.o /usr/lib64/gcc/x86_64-suse-linux/6/crtbegin.o -L/usr/lib64/gcc/x86_64-suse-linux/6 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib -L/usr/lib64/gcc/x86_64-suse-linux/6/../../.. CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib64/gcc/x86_64-suse-linux/6/crtend.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_48d6a' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_8fc00/fast"]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_8fc00.dir/build.make CMakeFiles/cmTC_8fc00.dir/build]
-  ignore line: [Building CXX object CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++      -o CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/Cellar/cmake/3.7.2/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_8fc00]
-  ignore line: [/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8fc00.dir/link.txt --verbose=1]
-  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8fc00   ]
-  ignore line: [Apple LLVM version 8.0.0 (clang-800.0.42.1)]
-  ignore line: [Target: x86_64-apple-darwin16.3.0]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_48d6a/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_48d6a.dir/build.make CMakeFiles/cmTC_48d6a.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_48d6a]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_48d6a.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_48d6a -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper]
+  ignore line: [Target: x86_64-suse-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --infodir=/usr/share/info --mandir=/usr/share/man --libdir=/usr/lib64 --libexecdir=/usr/lib64 --enable-languages=c,c++,objc,fortran,obj-c++,java,ada,go --enable-offload-targets=hsa --enable-checking=release --with-gxx-include-dir=/usr/include/c++/6 --enable-ssp --disable-libssp --disable-libvtv --disable-libcc1 --enable-plugin --with-bugurl=http://bugs.opensuse.org/ --with-pkgversion='SUSE Linux' --disable-libgcj --with-slibdir=/lib64 --with-system-zlib --enable-__cxa_atexit --enable-libstdcxx-allocator=new --disable-libstdcxx-pch --enable-version-specific-runtime-libs --enable-linker-build-id --enable-linux-futex --enable-gnu-indirect-function --program-suffix=-6 --without-system-libunwind --enable-multilib --with-arch-32=x86-64 --with-tune=generic --build=x86_64-suse-linux --host=x86_64-suse-linux]
   ignore line: [Thread model: posix]
-  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
-  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -dynamic -arch x86_64 -macosx_version_min 10.12.0 -o cmTC_8fc00 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
-    arg [-demangle] ==> ignore
-    arg [-dynamic] ==> ignore
-    arg [-arch] ==> ignore
-    arg [x86_64] ==> ignore
-    arg [-macosx_version_min] ==> ignore
-    arg [10.12.0] ==> ignore
+  ignore line: [gcc version 6.2.1 20161209 [gcc-6-branch revision 243481] (SUSE Linux) ]
+  ignore line: [COMPILER_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/bin/]
+  ignore line: [LIBRARY_PATH=/usr/lib64/gcc/x86_64-suse-linux/6/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib/:/usr/lib64/gcc/x86_64-suse-linux/6/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_48d6a' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib64/gcc/x86_64-suse-linux/6/collect2 -plugin /usr/lib64/gcc/x86_64-suse-linux/6/liblto_plugin.so -plugin-opt=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper -plugin-opt=-fresolution=/var/tmp/ccGwZDt9.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_48d6a /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crt1.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crti.o /usr/lib64/gcc/x86_64-suse-linux/6/crtbegin.o -L/usr/lib64/gcc/x86_64-suse-linux/6 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib -L/usr/lib64/gcc/x86_64-suse-linux/6/../../.. CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib64/gcc/x86_64-suse-linux/6/crtend.o /usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crtn.o]
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/lib64/gcc/x86_64-suse-linux/6/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/var/tmp/ccGwZDt9.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_8fc00] ==> ignore
-    arg [-search_paths_first] ==> ignore
-    arg [-headerpad_max_install_names] ==> ignore
-    arg [-v] ==> ignore
-    arg [CMakeFiles/cmTC_8fc00.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
-    arg [-lc++] ==> lib [c++]
-    arg [-lSystem] ==> lib [System]
-    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a]
-  Library search paths: [;/usr/lib;/usr/local/lib]
-  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
-  remove lib [System]
-  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/lib/darwin/libclang_rt.osx.a]
-  collapse library dir [/usr/lib] ==> [/usr/lib]
-  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
-  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
-  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
-  implicit libs: [c++]
-  implicit dirs: [/usr/lib;/usr/local/lib]
-  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
+    arg [cmTC_48d6a] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/crtbegin.o] ==> ignore
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6]
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib]
+    arg [-L/usr/lib64/gcc/x86_64-suse-linux/6/../../..] ==> dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../..]
+    arg [CMakeFiles/cmTC_48d6a.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/crtend.o] ==> ignore
+    arg [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6] ==> [/usr/lib64/gcc/x86_64-suse-linux/6]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../../../x86_64-suse-linux/lib] ==> [/usr/x86_64-suse-linux/lib]
+  collapse library dir [/usr/lib64/gcc/x86_64-suse-linux/6/../../..] ==> [/usr/lib64]
+  implicit libs: [stdc++;m;c]
+  implicit dirs: [/usr/lib64/gcc/x86_64-suse-linux/6;/usr/lib64;/lib64;/usr/x86_64-suse-linux/lib]
+  implicit fwks: []
 
 
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1db36/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_1db36.dir/build.make CMakeFiles/cmTC_1db36.dir/build
-Building CXX object CMakeFiles/cmTC_1db36.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_1db36.dir/feature_tests.cxx.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_1db36
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1db36.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_1db36.dir/feature_tests.cxx.o  -o cmTC_1db36  
+Run Build Command:"/usr/bin/gmake" "cmTC_78b3e/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_78b3e.dir/build.make CMakeFiles/cmTC_78b3e.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_78b3e.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_78b3e.dir/feature_tests.cxx.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_78b3e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_78b3e.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_78b3e.dir/feature_tests.cxx.o  -o cmTC_78b3e -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -316,15 +395,17 @@ Linking CXX executable cmTC_1db36
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7c398/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_7c398.dir/build.make CMakeFiles/cmTC_7c398.dir/build
-Building CXX object CMakeFiles/cmTC_7c398.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_7c398.dir/feature_tests.cxx.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_7c398
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7c398.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_7c398.dir/feature_tests.cxx.o  -o cmTC_7c398  
+Run Build Command:"/usr/bin/gmake" "cmTC_b6927/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_b6927.dir/build.make CMakeFiles/cmTC_b6927.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b6927.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_b6927.dir/feature_tests.cxx.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_b6927
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6927.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_b6927.dir/feature_tests.cxx.o  -o cmTC_b6927 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -387,15 +468,17 @@ Linking CXX executable cmTC_7c398
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
+Change Dir: /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c412f/fast"
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_c412f.dir/build.make CMakeFiles/cmTC_c412f.dir/build
-Building CXX object CMakeFiles/cmTC_c412f.dir/feature_tests.cxx.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_c412f.dir/feature_tests.cxx.o -c /Users/vicostudio/Documents/Shared/TEK2/CPP/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_c412f
-/usr/local/Cellar/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c412f.dir/link.txt --verbose=1
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++     -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_c412f.dir/feature_tests.cxx.o  -o cmTC_c412f  
+Run Build Command:"/usr/bin/gmake" "cmTC_3fc60/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_3fc60.dir/build.make CMakeFiles/cmTC_3fc60.dir/build
+gmake[1]: Entering directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_3fc60.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_3fc60.dir/feature_tests.cxx.o -c /home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_3fc60
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3fc60.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_3fc60.dir/feature_tests.cxx.o  -o cmTC_3fc60 -rdynamic 
+gmake[1]: Leaving directory '/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

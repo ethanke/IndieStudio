@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun  3 20:12:02 2017 Sousa Victor
-// Last update Tue Jun 13 05:11:20 2017 Sousa Victor
+// Last update Wed Jun 14 20:49:47 2017 Lucas Gambini
 //
 
 #include "Circuit.hpp"
@@ -64,7 +64,7 @@ std::vector<GameCheckpoint> const &Circuit::getCheckpoints() const {
     return this->_checkpoints;
 }
 
-std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> const> const &Circuit::getStartingBlock() const {
+std::vector<std::pair<irr::core::vector3df, irr::core::vector3df> > const &Circuit::getStartingBlock() const {
     return this->_startingBlock;
 }
 
