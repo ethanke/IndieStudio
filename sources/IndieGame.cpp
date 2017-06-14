@@ -298,7 +298,7 @@ void IndieGame::leaveRace(sio::message::ptr const &msg) {
 
 void IndieGame::addRaceAi(sio::message::ptr const &msg) {
     if (msg->get_map()["leader"]->get_bool() == false) {
-        NetworkCar *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), msg->get_map()["short_id"]->get_string());
+        NetworkCar *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), 0);
         this->_cars[msg->get_map()["short_id"]->get_string()] = nc;
         this->_cars[msg->get_map()["short_id"]->get_string()] = nc;
         this->_objectList.push_back(nc);
