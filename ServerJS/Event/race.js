@@ -55,6 +55,35 @@ exports.leaveRace = function(socket, io, msg_str) {
     });
 }
 
+exports.startRace = function(socket, io, msg_str) {
+    console.log("RECEIVING from " + socket.id + ": \'starting race\': " + msg_str);
+    var msg = JSON.parse(msg_str);
+    
+    setTimeout(function () {
+	var json_res = {error: "!!!!  3  !!!!"};
+	console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
+	socket.emit('error message', json_res);
+    }, 1000);
+
+    setTimeout(function () {
+	var json_res = {error: "!!!!  2  !!!!"};
+	console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
+	socket.emit('error message', json_res);
+    }, 2000);
+    
+    setTimeout(function () {
+	var json_res = {error: "!!!!  1  !!!!"};
+	console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
+	socket.emit('error message', json_res);
+    }, 3000);
+    
+    setTimeout(function () {
+	var json_res = {error: "!!!!  GOOOO  !!!!"};
+	console.log("EMITING   to   " + socket.id + ": \'join race\': " + JSON.stringify(json_res));
+	socket.emit('error message', json_res);
+    }, 4000);
+}
+
 function joinRace(socket, io, msg, self, race) {
     Race.update({"_id": race._id}, {$push: {'clients': self._id}}, function(err, result) {
 	if (result) {
@@ -65,7 +94,7 @@ function joinRace(socket, io, msg, self, race) {
 			    for (var i = 0; i < raceResultF[0].clients.length; i++) {
 				if (raceResultF[0].clients[i].socketID != socket.id) {
 				    if (io.sockets.connected[raceResultF[0].clients[i].socketID] != undefined) {
-					var json_res = {'short_id': self.shortID};
+					var json_res = {'short_id': self.shortID, 'nb_total': raceResultF[0].clients.length - 1};
 					console.log("EMITING   to   " + raceResultF[0].clients[i].socketID + ": \'join race\': " + JSON.stringify(json_res));
 					io.sockets.connected[raceResultF[0].clients[i].socketID].emit('join race', json_res);
 				    }
@@ -74,7 +103,7 @@ function joinRace(socket, io, msg, self, race) {
 			    
 			    for (var i = 0; i < raceResultF[0].clients.length; i++) {
 				if (raceResultF[0].clients[i].socketID != socket.id) {
-				    var json_res = {'short_id': raceResultF[0].clients[i].shortID};
+				    var json_res = {'short_id': raceResultF[0].clients[i].shortID, 'nb_total': raceResultF[0].clients.length - 1};
 				    console.log("EMITING   to   " + socket.id + ": \'join race\': " + JSON.stringify(json_res));
 				    socket.emit('join race', json_res);
 				}
@@ -99,6 +128,9 @@ function createNewRace(socket, io, msg, self) {
 		if (result) {
 		    Clients.update({"_id": self._id}, {$set: {'raceID': resultRace.id}}, function(err, result) {
 			if (result) {
+			    var json_res = {'short_id': "null", 'nb_total': 0};
+			    console.log("EMITING   to   " + socket.id + ": \'join race\': " + JSON.stringify(json_res));
+			    socket.emit('join race', json_res);
 			}
 		    });   
 		}

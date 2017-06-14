@@ -24,14 +24,10 @@ io.on('connection', function(socket) {
     console.log("Client         " + socket.id + " connected.");
     socket.emit('give your id', { message: 'Welcome!' });
 
-    setTimeout(function () {
-	socket.emit('error message', { error: "Hellllloooo"});
-    }, 5000);
-    
     // CLIENT DISCONNECTED
     socket.on('disconnect', function() {
 	Login.disconnect(socket, io);
-    })
+    });
         
     // REGISTER NEW USER / LOGIN KNOWN USERS
     socket.on('id client is', function(msg) {
@@ -68,6 +64,10 @@ io.on('connection', function(socket) {
 	RaceManager.leaveRace(socket, io, msg);
     });
 
+    socket.on('starting race', function(msg) {
+	RaceManager.startRace(socket, io, msg);
+    });
+    
 });
 
 app.listen(3000);
