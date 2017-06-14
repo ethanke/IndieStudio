@@ -267,7 +267,6 @@ void IndieGame::joinRace(sio::message::ptr const &msg) {
         if (msg->get_map()["short_id"]->get_string() != "null") {
             this->_course->addPlayer(msg->get_map()["short_id"]->get_string());
             this->_race->push_ennemy(this->_cars[msg->get_map()["short_id"]->get_string()]);
-            this->_race->FreezePlayers();
         }
         if (this->_race->getCurrentPlayerAmount() == msg->get_map()["nb_total"]->get_int()) {
             this->_race->setPlayer(this->_car);
