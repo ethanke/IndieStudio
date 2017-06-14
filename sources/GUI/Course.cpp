@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 00:40:58 2017 Lucas Gambini
-** Last update Mon Jun 12 01:42:53 2017 Lucas Gambini
+** Last update Wed Jun 14 20:01:59 2017 Lucas Gambini
 */
 
 
@@ -71,8 +71,10 @@ void Course::addPlayer(std::string const & player_id) {
 }
 
 void Course::ripPlayers() {
-    for (auto &x: this->_players)
-        x->remove();
+    for (auto &x: this->_players) {
+        if (x)
+            x->remove();
+    }
     this->_players.clear();
 }
 
@@ -82,6 +84,7 @@ void Course::ripPlayer(std::string const &player) {
         std::string txt(ws.begin(), ws.end());
         if (txt == player) {
             x->remove();
+            x = NULL;
             return;
         }
     }
