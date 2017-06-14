@@ -106,6 +106,11 @@ void Client::SetupCallback() {
     {
         this->_money = data->get_map()["money"]->get_int();
     }));
+
+    this->_client.socket()->on("add checkpoint", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
 }
 
 void Client::stop() {

@@ -122,9 +122,10 @@ void IndieGame::addEventReceiver() {
     this->_operation["send pos"] = i++;
     this->_operation["add car"] = i++;
     this->_operation["delete car"] = i++;
-    this->_operation["join race"] = i++;
+    this->_operation["join race"] = i++; //5
     this->_operation["leave race"] = i++;
     this->_operation["error message"] = i++;
+    this->_operation["add checkpoint"] = i++;
     Client::Instance().init(this);
 }
 
@@ -150,23 +151,10 @@ void IndieGame::OnFrame() {
                 this->deleteNetworkCar(str.second);
                 break;
             case 5:
-                if (this->_course) {
-                    if (str.second->get_map()["short_id"]->get_string() != "null") {
-                        this->_course->addPlayer(str.second->get_map()["short_id"]->get_string());
-                        this->_race->push_ennemy(this->_cars[str.second->get_map()["short_id"]->get_string()]);
-                    }
-                    if (this->_race->getCurrentPlayerAmount() == str.second->get_map()["nb_total"]->get_int()) {
-                        this->_race->setPlayer(this->_car);
-                        this->_course->addPlayer(Client::Instance().getShortId());
-                    }
-                }
+                this->joinRace(str.second);
                 break;
             case 6:
-                if (this->_course && str.second->get_map()["is_leader"]->get_bool() == true) {
-                    this->_course->setVisible(false);
-                }
-                else if (this->_course)
-                    this->_course->ripPlayer(str.second->get_map()["short_id"]->get_string());
+                this->leaveRace(str.second);
                 break;
             case 7:
                 if (this->_error) {
@@ -174,6 +162,9 @@ void IndieGame::OnFrame() {
                     this->_error->setVisible(true);
                     this->_errorTimer = 0;
                 }
+                break;
+            case 8:
+                //Add checkpoint
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
@@ -245,14 +236,15 @@ void IndieGame::updateCarsPosition(sio::message::ptr const &msg) {
 
 void IndieGame::addNetworkCar(sio::message::ptr const &msg) {
     if (this->_cars.count(msg->get_map()["car_id"]->get_string()) == 0) {
-        Car *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), msg->get_map()["car_no"]->get_int());
+        NetworkCar *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), msg->get_map()["car_no"]->get_int());
+        nc->setShortId(msg->get_map()["car_id"]->get_string());
         this->_cars[msg->get_map()["car_id"]->get_string()] = nc;
         this->_objectList.push_back(nc);
     }
 }
 
 void IndieGame::deleteNetworkCar(sio::message::ptr const &msg) {
-    for (std::unordered_map<std::string, Car *>::iterator it = this->_cars.begin(); it != this->_cars.end(); it++) {
+    for (std::unordered_map<std::string, NetworkCar *>::iterator it = this->_cars.begin(); it != this->_cars.end(); it++) {
         if ((it->first) == msg->get_map()["short_id"]->get_string()) {
             for (auto &obj : this->_objectList) {
                 if (obj == it->second) {
@@ -552,4 +544,25 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
 
 void IndieGame::OnReleaseKey(irr::EKEY_CODE keyCode) {
     (void)keyCode;
+}
+
+void IndieGame::joinRace(sio::message::ptr const &msg) {
+    if (this->_course) {
+        if (msg->get_map()["short_id"]->get_string() != "null") {
+            this->_course->addPlayer(msg->get_map()["short_id"]->get_string());
+            this->_race->push_ennemy(this->_cars[msg->get_map()["short_id"]->get_string()]);
+        }
+        if (this->_race->getCurrentPlayerAmount() == msg->get_map()["nb_total"]->get_int()) {
+            this->_race->setPlayer(this->_car);
+            this->_course->addPlayer(Client::Instance().getShortId());
+        }
+    }
+}
+
+void IndieGame::leaveRace(sio::message::ptr const &msg) {
+    if (this->_course && msg->get_map()["is_leader"]->get_bool() == true) {
+        this->_course->setVisible(false);
+    }
+    else if (this->_course)
+        this->_course->ripPlayer(msg->get_map()["short_id"]->get_string());
 }

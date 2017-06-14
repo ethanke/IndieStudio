@@ -12,6 +12,8 @@
 #define NETWORKCAR_HPP_
 
 #include "Car.hpp"
+#include "Utils.hpp"
+#include <irrlicht.h>
 
 namespace indie {
 
@@ -22,6 +24,11 @@ namespace indie {
         ~NetworkCar();
 
         virtual void OnFrame();
+
+        void setShortId(std::string const &id);
+
+    private:
+        irr::scene::IBillboardTextSceneNode *_name;
 
     };
 

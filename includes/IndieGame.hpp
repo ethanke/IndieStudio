@@ -90,8 +90,12 @@ namespace indie {
         void changeCarColor();
 
     private:
+
+        void joinRace(sio::message::ptr const &msg);
+        void leaveRace(sio::message::ptr const &msg);
+
         Car *_car;
-        std::unordered_map<std::string, Car *> _cars;
+        std::unordered_map<std::string, NetworkCar *> _cars;
         Car *_aiCar;
         GeneticTrainer *_genTrainer;
         std::vector<GameCheckpoint> _checkpoints;

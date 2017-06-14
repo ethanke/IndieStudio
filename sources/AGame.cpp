@@ -39,7 +39,6 @@ void AGame::Setup() {
     irr::gui::IGUIFont* font = this->_gui->getFont("misc/try.xml");
     if (font)
         skin->setFont(font);
-    this->_gui->getSkin()->getFont()->setInvisibleCharacters(L"! ");
     this->launchMenu();
 }
 
