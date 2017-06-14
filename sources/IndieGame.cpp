@@ -18,6 +18,8 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_error = NULL;
     this->_car = NULL;
     this->_connectedTo = "-1";
+    this->_race = NULL;
+    this->_errorTimer = 0;
 }
 
 IndieGame::~IndieGame() {
@@ -42,8 +44,8 @@ void IndieGame::addGameObject() {
     this->_objectList.push_back(this->_car);
 
     int j = 1;
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(20, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(-5, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 7, irr::core::vector3df(-20, 0, 0)));
+    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 7, irr::core::vector3df(-50, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
     this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
@@ -79,15 +81,7 @@ void IndieGame::addGameObject() {
     this->_onlineUI = NULL;
     this->_concessionnaire = NULL;
 
-    this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
-    this->_race->InitCircuit();
-    this->_race->setPlayer(this->_car);
-    this->_race->addAICar();
-    this->_race->addAICar();
-    this->_race->addAICar();
-    this->_objectList.push_back(this->_race);
-
-    this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(0, 0, this->getWindowSize().Width, this->getWindowSize().Height / 2.5));
+    this->_error = this->_gui->addStaticText(L"Error Message", irr::core::rect<irr::s32>(300, 300, this->getWindowSize().Width - 300, this->getWindowSize().Height / 2.5));
     irr::gui::IGUIFont* font = this->_gui->getFont("misc/error.xml");
     if (font)
         this->_error->setOverrideFont(font);
@@ -156,8 +150,16 @@ void IndieGame::OnFrame() {
                 this->deleteNetworkCar(str.second);
                 break;
             case 5:
-                if (this->_course)
-                    this->_course->addPlayer(str.second->get_map()["short_id"]->get_string());
+                if (this->_course) {
+                    if (str.second->get_map()["short_id"]->get_string() != "null") {
+                        this->_course->addPlayer(str.second->get_map()["short_id"]->get_string());
+                        this->_race->push_ennemy(this->_cars[str.second->get_map()["short_id"]->get_string()]);
+                    }
+                    if (this->_race->getCurrentPlayerAmount() == str.second->get_map()["nb_total"]->get_int()) {
+                        this->_race->setPlayer(this->_car);
+                        this->_course->addPlayer(Client::Instance().getShortId());
+                    }
+                }
                 break;
             case 6:
                 if (this->_course && str.second->get_map()["is_leader"]->get_bool() == true) {
@@ -170,6 +172,7 @@ void IndieGame::OnFrame() {
                 if (this->_error) {
                     this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string()));
                     this->_error->setVisible(true);
+                    this->_errorTimer = 0;
                 }
                 break;
             default:
@@ -182,7 +185,6 @@ void IndieGame::OnFrame() {
 
     if (this->_car) {
         std::string str("online id: #" + Client::Instance().getShortId() + ". Connected to: " + this->_connectedTo);
-        // this->_gui->getSkin()->getFont()->setInvisibleCharacters(L"! ");
         this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(20, 20, 300, 75), irr::video::SColor(255, 180, 180, 180) );
         str = std::to_string(Client::Instance().getMoney()) + "$";
         this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
@@ -348,13 +350,14 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->_concessionnaire->setVisible(false);
                         break;
                     case Course::RUN:
-                        //LANCER LA COURSE SA MERE
+                        Client::Instance().startingRace();
+                        this->_course->setVisible(false);
                         break;
                     case Course::CANCEL:
-                        OnLeavingCourse();
+                        this->OnLeavingCourse();
                         break;
                     case Audio::Quit:
-                        _menu->getSettings()->getAudio()->setVisible(false);
+                        this->_menu->getSettings()->getAudio()->setVisible(false);
                         break;
                     case JoinServer::LEAVE:
                         this->OnLeavingOnline();
@@ -365,7 +368,7 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case MainMenu::PLAY:
                         delete _mainmenu;
-                        _mainmenu = NULL;
+                        this->_mainmenu = NULL;
                         addEventReceiver();
                         addGameObject();
                         this->_device->getCursorControl()->setVisible(false);
@@ -398,14 +401,19 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
     this->_device->getCursorControl()->setVisible(true);
     this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(this->_course);
+    this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
+    this->_race->InitCircuit();
     if (this->_connectedTo == "-1") {
         this->_course->addPlayer("You");
         this->_course->addPlayer("IA");
         this->_course->addPlayer("IA");
         this->_course->addPlayer("IA");
+        this->_race->addAICar();
+        this->_race->addAICar();
+        this->_race->addAICar();
+        this->_race->setPlayer(this->_car);
     }
-    else
-        this->_course->addPlayer("#" + Client::Instance().getShortId());
+    this->_objectList.push_back(this->_race);
     Client::Instance().creatingCourseLobby(ch.getID());
 }
 

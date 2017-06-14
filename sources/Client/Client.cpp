@@ -255,6 +255,10 @@ void Client::requestMoney() {
     this->_client.socket()->emit("get money", "{\"id\": \"" + this->_id + "\"}");
 }
 
+void Client::startingRace() {
+    this->_client.socket()->emit("starting race", "{\"id\": \"" + this->_id + "\"}");
+}
+
 std::string const Client::getString(rapidjson::Document const &d) {
     rapidjson::StringBuffer buffer;
     buffer.Clear();

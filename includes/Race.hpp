@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:30:32 2017 Vacca_J
-** Last update Tue Jun 13 05:21:39 2017 Sousa Victor
+** Last update Wed Jun 14 01:49:51 2017 Lucas Gambini
 */
 
 #ifndef RACE_HPP_
@@ -32,6 +32,7 @@ namespace indie {
         void setPlayer(Car *player);
         void push_ennemy(Car *ennemy);
         void addAICar();
+        int getCurrentPlayerAmount() const;
 
         void OnEnterInCourseChPt(GameCheckpoint const &ch);
 

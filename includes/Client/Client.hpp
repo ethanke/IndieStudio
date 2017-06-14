@@ -65,6 +65,7 @@ namespace indie {
         void creatingCourseLobby(irr::s32 const &id);
         void leavingCourseLobby();
         void setCarNo(int no);
+        void startingRace();
 
         std::string const getString(rapidjson::Document const &d);
 

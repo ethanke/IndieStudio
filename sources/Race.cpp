@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:32:46 2017 Vacca_J
-** Last update Wed Jun 14 01:30:41 2017 Sousa Victor
+** Last update Wed Jun 14 01:54:32 2017 Lucas Gambini
 */
 
 #include "Race.hpp"
@@ -148,6 +148,7 @@ void Race::setPlayer(Car *player) {
 
 void Race::push_ennemy(Car *ennemy) {
     this->_ennemies.push_back(ennemy);
+    this->_currentPlayerAmount++;
 }
 
 void Race::addAICar() {
@@ -172,4 +173,8 @@ void Race::OnEnterInCourseChPt(GameCheckpoint const &ch) {
             }
         }
     }
+}
+
+int Race::getCurrentPlayerAmount() const {
+    return this->_currentPlayerAmount;
 }
