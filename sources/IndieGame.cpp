@@ -127,6 +127,7 @@ void IndieGame::addEventReceiver() {
     this->_operation["error message"] = i++;
     this->_operation["add checkpoint"] = i++;
     this->_operation["start race"] = i++;
+    this->_operation["add race ai"] = i++;
     Client::Instance().init(this);
 }
 
@@ -169,6 +170,9 @@ void IndieGame::OnFrame() {
                 break;
             case 9:
                 this->_race->UnFreezePlayers();
+                break;
+            case 10:
+                this->addRaceAi(str.second);
                 break;
             default:
                 std::cerr << "Command not found" << std::endl;
@@ -290,6 +294,18 @@ void IndieGame::leaveRace(sio::message::ptr const &msg) {
     }
     else if (this->_course)
         this->_course->ripPlayer(msg->get_map()["short_id"]->get_string());
+}
+
+void IndieGame::addRaceAi(sio::message::ptr const &msg) {
+    if (msg->get_map()["leader"]->get_bool() == false) {
+        NetworkCar *nc = new NetworkCar(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), msg->get_map()["short_id"]->get_int());
+        this->_cars[msg->get_map()["short_id"]->get_string()] = nc;
+        this->_cars[msg->get_map()["short_id"]->get_string()] = nc;
+        this->_objectList.push_back(nc);
+    } else {
+        this->_race->addAICar();
+        this->_race->FreezePlayers();
+    }
 }
 
 bool IndieGame::OnEvent(const irr::SEvent& event){

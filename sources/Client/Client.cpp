@@ -116,6 +116,11 @@ void Client::SetupCallback() {
     {
         this->_bridge->addEvent(name, data);
     }));
+
+    this->_client.socket()->on("add race ai", sio::socket::event_listener_aux([&](std::string const& name, sio::message::ptr const& data, bool isAck, sio::message::list &ack_resp)
+    {
+        this->_bridge->addEvent(name, data);
+    }));
 }
 
 void Client::stop() {

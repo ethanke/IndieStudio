@@ -93,6 +93,7 @@ namespace indie {
 
         void joinRace(sio::message::ptr const &msg);
         void leaveRace(sio::message::ptr const &msg);
+        void addRaceAi(sio::message::ptr const &msg);
 
         Car *_car;
         std::unordered_map<std::string, NetworkCar *> _cars;
