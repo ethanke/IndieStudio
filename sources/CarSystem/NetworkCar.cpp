@@ -29,5 +29,5 @@ void NetworkCar::OnFrame() {
 }
 
 void NetworkCar::setShortId(std::string const &id) {
-    this->_name->setText(Utils::StrToWstr(id));
+    this->_name->setText(Utils::StrToWstr(id.data()));
 }

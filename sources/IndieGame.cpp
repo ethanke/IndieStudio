@@ -159,7 +159,7 @@ void IndieGame::OnFrame() {
                 break;
             case 7:
                 if (this->_error) {
-                    this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string()));
+                    this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string().data()));
                     this->_error->setVisible(true);
                     this->_errorTimer = 0;
                 }
@@ -180,9 +180,9 @@ void IndieGame::OnFrame() {
 
     if (this->_car) {
         std::string str("online id: #" + Client::Instance().getShortId() + ". Connected to: " + this->_connectedTo);
-        this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(20, 20, 300, 75), irr::video::SColor(255, 180, 180, 180) );
+        this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, 20, 300, 75), irr::video::SColor(255, 180, 180, 180) );
         str = std::to_string(Client::Instance().getMoney()) + "$";
-        this->_gui->getSkin()->getFont()->draw(Utils::StrToWstr(str), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
+        this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
     }
 
 
