@@ -245,6 +245,10 @@ void Client::leavingCourseLobby() {
     this->_client.socket()->emit("leave race", this->getString(d));
 }
 
+void Client::endRace() {
+    this->_client.socket()->emit("end race", "{\"id\": \"" + this->_id + "\"}");
+}
+
 void Client::setId(std::string const & id) {
     std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/id.txt")).c_str());
 
