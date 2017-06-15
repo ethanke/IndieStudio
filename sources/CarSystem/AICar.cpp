@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Wed May 24 20:31:35 2017 Sousa Victor
-// Last update Tue Jun 13 05:17:52 2017 Sousa Victor
+// Last update Thu Jun 15 23:22:54 2017 Sousa Victor
 //
 
 #include "AICar.hpp"
@@ -105,6 +105,8 @@ void AICar::OnEnterInCourseChPt(GameCheckpoint const &ch) {
                 check.setChVisible(false);
             }
         }
+        if (ch.getID() == this->_circuit.getCheckpoints()[this->_circuit.getCheckpoints().size() - 1].getID())
+            Client::Instance().endRace(this->_netID);
     }
 }
 

@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:50:28 2017 Gaëtan Léandre
-// Last update Sun Jun 11 18:15:01 2017 Sousa Victor
+// Last update Thu Jun 15 23:18:36 2017 Sousa Victor
 //
 
 #include                "Client.hpp"
@@ -245,8 +245,8 @@ void Client::leavingCourseLobby() {
     this->_client.socket()->emit("leave race", this->getString(d));
 }
 
-void Client::endRace() {
-    this->_client.socket()->emit("end race", "{\"id\": \"" + this->_id + "\"}");
+void Client::endRace(std::string const & id) {
+    this->_client.socket()->emit("end race", "{\"short_id\": \"" + id + "\"}");
 }
 
 void Client::setId(std::string const & id) {

@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:32:46 2017 Vacca_J
-** Last update Thu Jun 15 13:47:09 2017 Lucas Gambini
+** Last update Thu Jun 15 23:21:33 2017 Sousa Victor
 */
 
 #include "Race.hpp"
@@ -178,9 +178,9 @@ void Race::OnEnterInCourseChPt(GameCheckpoint const &ch) {
             if (check.getID() == ch.getID()) {
                 check.setChVisible(false);
             }
-            if (ch.getID() == this->_circuit.getCheckpoints()[this->_circuit.getCheckpoints().size() - 1].getID())
-                Client::Instance().endRace();
         }
+        if (ch.getID() == this->_circuit.getCheckpoints()[this->_circuit.getCheckpoints().size() - 1].getID())
+            Client::Instance().endRace(Client::Instance().getShortId());
     }
 }
 

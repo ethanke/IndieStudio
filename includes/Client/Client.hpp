@@ -5,7 +5,7 @@
 // Login   <gaetan.leandre@epitech.eu>
 //
 // Started on  Tue Jun  6 21:51:52 2017 Gaëtan Léandre
-// Last update Sun Jun 11 18:14:28 2017 Sousa Victor
+// Last update Thu Jun 15 23:18:28 2017 Sousa Victor
 //
 
 #ifndef             CLIENT_HPP
@@ -66,7 +66,7 @@ namespace indie {
         void leavingCourseLobby();
         void setCarNo(int no);
         void startingRace();
-        void endRace();
+        void endRace(std::string const & id);
         void debug(std::string const &msg);
 
         std::string const getString(rapidjson::Document const &d);
