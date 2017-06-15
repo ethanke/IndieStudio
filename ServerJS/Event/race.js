@@ -74,13 +74,111 @@ exports.startRace = function(socket, io, msg_str) {
 	    if (self.roomID == null) {
 		startRaceCounterOffline(socket, io, msg);
 	    } else {
-		
+		Room.find({'_id': self.roomID}).populate('clients').exec(function(err, roomList) {
+		    if (roomList.length != 0) {
+			var room = roomList[0];
+			Race.find({'_id': self.raceID}).populate('leader').populate('clients').exec(function(err, raceList) {
+			    if (raceList.length != 0) {
+				var race = raceList[0];
+				if (race.leader.shortID == self.shortID) {
+				    createAI(socket, io, msg, self, room, race, function() {
+					startRaceCounterOnline(socket, io, msg, self, room, race); 
+				    });
+				} else {
+				    var json_res = {error: "Only the leader, #" + race.leader.shortID + " can choose to start the race!!"};
+				    console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
+				    socket.emit('error message', json_res);
+				}
+			    }
+			});
+		    }
+		});
 	    }
 	}
     });
 }
 
+function createAI(socket, io, msg, self, room, race, callback) {
+    for (var i = race.clients.length; i < 4; i++) {
+	var newClient = Clients({
+	    'socketID': undefined,
+	    'connected': true,
+	    'shortID': "ai" + i,
+	    'money': 0,
+	    "roomID": null,
+	    "raceID": race._id
+	});
+	newClient.save(function(err, result) {
+	    if (result) {
+		Race.update({"_id": race._id}, {$push: {'clients': result._id}}, function(err, resultUpdate) {
+		    if (resultUpdate) {
+			for (var j = 0; j < race.clients.length; j++) {
+			    if (io.sockets.connected[race.clients[j].socketID] != undefined) {
+				var isLeader = (race.leader.shortID == race.clients[j].shortID);
+				var json_res = {"short_id": result.shortID, 'leader': isLeader};
+				console.log("EMITING   to   " + race.clients[j].socketID + ": \'add race ai\': " + JSON.stringify(json_res));
+				io.sockets.connected[race.clients[j].socketID].emit('add race ai', json_res);
+			    }
+			}
+		    }
+		});
+	    }
+	});
+    }
+    setTimeout(function () {
+	callback();
+    }, 500);
+}
     
+function startRaceCounterOnline(socket, io, msg, self, room, race) {
+    setTimeout(function () {
+	for (var j = 0; j < race.clients.length; j++) {
+	    if (io.sockets.connected[race.clients[j].socketID] != undefined) {
+		var json_res = {error: "!!!!  3  !!!!"};
+		console.log("EMITING   to   " + race.clients[j].socketID + ": \'error message\': " + JSON.stringify(json_res));
+		io.sockets.connected[race.clients[j].socketID].emit('error message', json_res);
+	    }
+	}
+    }, 1000);
+    
+    setTimeout(function () {
+	for (var j = 0; j < race.clients.length; j++) {
+	    if (io.sockets.connected[race.clients[j].socketID] != undefined) {
+		var json_res = {error: "!!!!  2  !!!!"};
+		console.log("EMITING   to   " + race.clients[j].socketID + ": \'error message\': " + JSON.stringify(json_res));
+		io.sockets.connected[race.clients[j].socketID].emit('error message', json_res);
+	    }
+	}
+    }, 2000);
+    
+    setTimeout(function () {
+	for (var j = 0; j < race.clients.length; j++) {
+	    if (io.sockets.connected[race.clients[j].socketID] != undefined) {
+		var json_res = {error: "!!!!  1  !!!!"};
+		console.log("EMITING   to   " + race.clients[j].socketID + ": \'error message\': " + JSON.stringify(json_res));
+		io.sockets.connected[race.clients[j].socketID].emit('error message', json_res);
+	    }
+	}
+    }, 3000);
+    
+    setTimeout(function () {
+	for (var j = 0; j < race.clients.length; j++) {
+	    if (io.sockets.connected[race.clients[j].socketID] != undefined) {
+		var json_res = {error: "!!!!  GOOO  !!!!"};
+		console.log("EMITING   to   " + race.clients[j].socketID + ": \'error message\': " + JSON.stringify(json_res));
+		io.sockets.connected[race.clients[j].socketID].emit('error message', json_res);
+	    }
+	}
+	for (var j = 0; j < race.clients.length; j++) {
+	    if (io.sockets.connected[race.clients[j].socketID] != undefined) {	
+		var json_res = {};
+		console.log("EMITING   to   " + race.clients[j].socketID + ": \'start race\': " + JSON.stringify(json_res));
+		io.sockets.connected[race.clients[j].socketID].emit('start race', json_res);
+	    }
+	}
+    }, 4000);
+}
+
 function startRaceCounterOffline(socket, io, msg) {
     setTimeout(function () {
 	var json_res = {error: "!!!!  3  !!!!"};
@@ -102,7 +200,7 @@ function startRaceCounterOffline(socket, io, msg) {
     
     setTimeout(function () {
 	var json_res = {error: "!!!!  GOOOO  !!!!"};
-	console.log("EMITING   to   " + socket.id + ": \'join race\': " + JSON.stringify(json_res));
+	console.log("EMITING   to   " + socket.id + ": \'error message\': " + JSON.stringify(json_res));
 	socket.emit('error message', json_res);
 
 	var json_res = {};
