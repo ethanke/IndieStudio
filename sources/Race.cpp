@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Thu Jun 01 01:32:46 2017 Vacca_J
-** Last update Thu Jun 15 00:52:09 2017 Lucas Gambini
+** Last update Thu Jun 15 01:15:32 2017 Lucas Gambini
 */
 
 #include "Race.hpp"
@@ -155,13 +155,16 @@ void Race::push_ennemy(Car *ennemy) {
     this->_currentPlayerAmount++;
 }
 
-void Race::addAICar() {
+void Race::addAICar(std::string const &short_id) {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_real_distribution<double> dist(0.0, 7.0);
     AICar *car = new AICar(this->_smgr, this->_gui, this->_eventReceiver, this->_bulletPhysSys, this->_circuit, dist(mt));
     car->setPosition(this->_circuit.getStartingBlock(this->_currentPlayerAmount).first);
     car->setRotation(this->_circuit.getStartingBlock(this->_currentPlayerAmount).second);
+    car->mustSendData(true);
+    car->setShouldNetwork(true);
+    car->setNetworkID(short_id);
     this->_aiCars.push_back(car);
     this->_currentPlayerAmount++;
 }

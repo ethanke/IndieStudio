@@ -34,6 +34,8 @@ namespace indie {
 
         void OnEnterInCourseChPt(GameCheckpoint const &ch);
 
+        void setShouldNetwork(bool b);
+
     protected:
         Neural::Network _steerBrain;
         Neural::Network _engineBrain;
@@ -45,8 +47,11 @@ namespace indie {
         int _n3Check;
 
         virtual void KeyboardEvent();
+        virtual void updateCamera();
+        virtual void SendInfo();
 
-        std::ofstream file;
+        bool _shouldNetwork;
+
     };
 
 }

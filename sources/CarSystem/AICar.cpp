@@ -24,6 +24,8 @@ AICar::AICar(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment*
     this->_steerBrain.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car_steering.txt");
     this->_engineBrain.loadFrom(std::string(SOURCES_PATH) + "/NetworkData/samples_save/car_engine.txt");
 
+    this->_shouldNetwork = false;
+
 }
 
 AICar::~AICar() {
@@ -114,4 +116,18 @@ void AICar::KeyboardEvent() {
 
     std::vector<double> steerResult = this->_steerBrain.getResults();
     this->_car->steer(steerResult[0]);
+}
+
+void AICar::SendInfo() {
+    if (this->_shouldNetwork) {
+        Car::SendInfo();
+    }
+}
+
+void AICar::setShouldNetwork(bool b) {
+    this->_shouldNetwork = b;
+}
+
+void AICar::updateCamera() {
+
 }

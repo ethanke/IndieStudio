@@ -56,6 +56,8 @@ namespace indie {
         int getCarNo() const;
         void setFreeze(bool value);
 
+        void setNetworkID(std::string const &id);
+
 
     protected:
         physics::CBulletPhysics* _bulletPhysicsSystem;
@@ -65,6 +67,7 @@ namespace indie {
         Circuit const _circuit;
 
         int _car_no;
+        std::string _netID;
         bool _isAI;
         CLoadCar _carLoader;
         physics::PhysicsCar* _car;
@@ -85,6 +88,7 @@ namespace indie {
 
         virtual void KeyboardEvent();
         virtual void updateCamera();
+        virtual void SendInfo();
 
     };
 

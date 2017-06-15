@@ -60,21 +60,8 @@ Car::~Car() {
 
 void Car::OnFrame() {
     KeyboardEvent();
-    if (!this->_isAI) {
-        updateCamera();
-        if (this->_elapsedTime >= 0.1) {
-            if (this->_mustSendData == true)
-                Client::Instance().sendPosAndRota(this->getPosition(), this->getRotation());
-            this->_elapsedTime = 0;
-        } else {
-            this->_elapsedTime += DeltaTimer::DeltaTime;
-        }
-    }
-    if (!this->_isAI && this->_mustSendData == true && this->_elapsedTime >= 0.1) {
-        Client::Instance().sendEngineData(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue());
-        this->_elapsedTime1 = 0;
-    } else if (this->_elapsedTime1 < 0.1)
-        this->_elapsedTime1 += DeltaTimer::DeltaTime;
+    updateCamera();
+    this->SendInfo();
 
     if (this->_freeze == true) {
         this->setBreakingForce(1000.0f);
@@ -84,6 +71,7 @@ void Car::OnFrame() {
 }
 
 void Car::updateCamera() {
+    this->_netID = Client::Instance().getShortId();
 	core::vector3df targetPos = this->_car->getPosition();
     core::vector3df targetRot = this->_car->getRotation();
     core::vector3df targetdir = targetRot.rotationToDirection().normalize();
@@ -95,6 +83,21 @@ void Car::updateCamera() {
 
 	this->_camera->setPosition(this->_cameraPosition);
 	this->_camera->setTarget(targetPos);
+}
+
+void Car::SendInfo() {
+    if (this->_elapsedTime >= 0.1) {
+        if (this->_mustSendData == true)
+            Client::Instance().sendPosAndRota(this->getPosition(), this->getRotation(), this->_netID);
+        this->_elapsedTime = 0;
+    } else {
+        this->_elapsedTime += DeltaTimer::DeltaTime;
+    }
+    if (this->_mustSendData == true && this->_elapsedTime >= 0.1) {
+        Client::Instance().sendEngineData(getLinearVelocity(), getAngularVelocity(), this->_car->getEngineForce(), this->_car->getBreakingForce(), this->_car->getSteeringValue(), this->_netID);
+        this->_elapsedTime1 = 0;
+    } else if (this->_elapsedTime1 < 0.1)
+        this->_elapsedTime1 += DeltaTimer::DeltaTime;
 }
 
 void Car::KeyboardEvent() {
@@ -213,4 +216,8 @@ int Car::getCarNo() const {
 
 void Car::setFreeze(bool value) {
     this->_freeze = value;
+}
+
+void Car::setNetworkID(std::string const &id) {
+    this->_netID = id;
 }

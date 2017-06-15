@@ -155,12 +155,16 @@ void Client::joinId(const wchar_t *dest_id) {
     this->_client.socket()->emit("joining someone", this->getString(d));
 }
 
-void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3df const &rot) {
+void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3df const &rot, std::string const &short_id) {
     rapidjson::Document d;
     d.SetObject();
     rapidjson::Value v(rapidjson::kObjectType);
 
-    v.SetString(this->_shortId.c_str(), static_cast<rapidjson::SizeType>(this->_shortId.length()), d.GetAllocator());
+    std::string id = this->_shortId;
+    if (short_id != "-1")
+        id = short_id;
+
+    v.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), d.GetAllocator());
     d.AddMember("short_id", v, d.GetAllocator());
 
     v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
@@ -184,13 +188,15 @@ void Client::sendPosAndRota(irr::core::vector3df const &pos, irr::core::vector3d
     this->_client.socket()->emit("send pos", this->getString(d));
 }
 
-void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering) {
+void Client::sendEngineData(irr::core::vector3df const &vel, irr::core::vector3df const &ang, float engine, float breaking, float steering, std::string const &short_id) {
     rapidjson::Document d;
     d.SetObject();
     rapidjson::Value v(rapidjson::kObjectType);
     rapidjson::Value v1(engine);
-
-    v.SetString(this->_shortId.c_str(), static_cast<rapidjson::SizeType>(this->_shortId.length()), d.GetAllocator());
+    std::string id = this->_shortId;
+    if (short_id != "-1")
+        id = short_id;
+    v.SetString(id.c_str(), static_cast<rapidjson::SizeType>(id.length()), d.GetAllocator());
     d.AddMember("short_id", v, d.GetAllocator());
     v.SetString(this->_id.c_str(), static_cast<rapidjson::SizeType>(this->_id.length()), d.GetAllocator());
     d.AddMember("id", v, d.GetAllocator());

@@ -183,8 +183,8 @@ void IndieGame::OnFrame() {
     this->unlockEventBuffer();
 
     if (this->_car) {
-        std::string str("online id: #" + Client::Instance().getShortId() + ". Connected to: " + this->_connectedTo);
-        this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, 20, 300, 75), irr::video::SColor(255, 180, 180, 180) );
+        std::string str("Your id: #" + Client::Instance().getShortId() + "\nConnected to: " + (this->_connectedTo  == "-1" ? "Nobody" : "#" + this->_connectedTo));
+        this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, 20, 200, 75), irr::video::SColor(255, 180, 180, 180));
         str = std::to_string(Client::Instance().getMoney()) + "$";
         this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
     }
@@ -303,7 +303,7 @@ void IndieGame::addRaceAi(sio::message::ptr const &msg) {
         this->_cars[msg->get_map()["short_id"]->get_string()] = nc;
         this->_objectList.push_back(nc);
     } else {
-        this->_race->addAICar();
+        this->_race->addAICar(msg->get_map()["short_id"]->get_string());
         this->_race->FreezePlayers();
     }
 }
@@ -397,14 +397,17 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case Course::CANCEL:
                         this->OnLeavingCourse();
-                        this->_race->UnFreezePlayers();
-                        for (auto &race : this->_objectList) {
-                            if (this->_race == race) {
-                                race = NULL;
-                                break;
+                        if (this->_race != NULL) {
+                            this->_race->UnFreezePlayers();
+                            for (auto &race : this->_objectList) {
+                                if (this->_race == race) {
+                                    race = NULL;
+                                    break;
+                                }
                             }
                         }
                         delete this->_race;
+                        this->_race = NULL;
                         break;
                     case Audio::Quit:
                         this->_menu->getSettings()->getAudio()->setVisible(false);
@@ -458,9 +461,9 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
         this->_course->addPlayer("IA");
         this->_course->addPlayer("IA");
         this->_course->addPlayer("IA");
-        this->_race->addAICar();
-        this->_race->addAICar();
-        this->_race->addAICar();
+        this->_race->addAICar("ai#1");
+        this->_race->addAICar("ai#2");
+        this->_race->addAICar("ai#3");
         this->_race->setPlayer(this->_car);
         this->_race->FreezePlayers();
     }
