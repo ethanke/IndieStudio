@@ -28,7 +28,7 @@ exports.disconnect = function(socket, io) {
 			Race.update({"_id": clientList[0].raceID}, {$set: {'clients': [], 'raceID': -1}}, function(err, result) {});
 		    } else {
 			Race.update({"_id": clientList[0].raceID}, {$pull: {'clients': clientList[0]._id}}, function(err, result) {
-			    Clients.update({"_id": msg.id.toObjectId()}, {$set: {'raceID': null}}, function(err, result) {});
+			    Clients.update({"_id": clientList[0]._id}, {$set: {'raceID': null}}, function(err, result) {});
 			});
 		    }
 		}
