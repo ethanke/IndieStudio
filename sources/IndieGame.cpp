@@ -160,7 +160,9 @@ void IndieGame::OnFrame() {
                 break;
             case 7:
                 if (this->_error) {
-                    this->_error->setText(Utils::StrToWstr(str.second->get_map()["error"]->get_string().data()));
+                    irr::core::stringw _str(L"");
+                    _str += str.second->get_map()["error"]->get_string().c_str();
+                    this->_error->setText(_str.c_str());
                     this->_error->setVisible(true);
                     this->_errorTimer = 0;
                 }

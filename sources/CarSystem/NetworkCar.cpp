@@ -29,5 +29,7 @@ void NetworkCar::OnFrame() {
 }
 
 void NetworkCar::setShortId(std::string const &id) {
-    this->_name->setText(Utils::StrToWstr(id.data()));
+    irr::core::stringw str(L"");
+    str += id.c_str();
+    this->_name->setText(str.c_str());
 }
