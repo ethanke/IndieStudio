@@ -162,6 +162,7 @@ void IndieGame::OnFrame() {
                 if (this->_error) {
                     irr::core::stringw _str(L"");
                     _str += str.second->get_map()["error"]->get_string().c_str();
+                    _str.replace('!', ' ');
                     this->_error->setText(_str.c_str());
                     this->_error->setVisible(true);
                     this->_errorTimer = 0;

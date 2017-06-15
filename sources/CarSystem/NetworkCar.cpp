@@ -31,5 +31,6 @@ void NetworkCar::OnFrame() {
 void NetworkCar::setShortId(std::string const &id) {
     irr::core::stringw str(L"");
     str += id.c_str();
+    str.replace('!', ' ');
     this->_name->setText(str.c_str());
 }
