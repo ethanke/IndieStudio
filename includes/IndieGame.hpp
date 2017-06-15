@@ -66,27 +66,19 @@ namespace indie {
 
         virtual void OnEnterCourse(GameCheckpoint const &ch);
         virtual void OnLeavingCourse();
-
         virtual void OnEnterMoney();
-
-        virtual void OnEnterInCourseChPt(GameCheckpoint const &ch);
-
         virtual void OnEnterOnline();
         virtual void OnLeavingOnline();
-
         virtual void OnEnterConcess();
         virtual void OnLeavingConcess();
 
         virtual void guiVisible(IGUI*);
-
         virtual void launchMenu();
 
         void updateCarsData(sio::message::ptr const &msg);
         void updateCarsPosition(sio::message::ptr const &msg);
-
         void addNetworkCar(sio::message::ptr const &msg);
         void deleteNetworkCar(sio::message::ptr const &msg);
-
         void changeCarColor();
 
     private:

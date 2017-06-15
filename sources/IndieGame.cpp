@@ -308,6 +308,169 @@ void IndieGame::addRaceAi(sio::message::ptr const &msg) {
     }
 }
 
+void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
+    if (!this->_course) {
+        this->_course = new Course(this->_gui, this->_driver, this->_windowSize);
+        this->_course->SetupGUI();
+        this->_objectList.push_back(this->_course);
+        this->_guiVisible.push_back(this->_course);
+    }
+    this->_course->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(this->_course);
+    this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
+    this->_race->InitCircuit();
+    if (this->_connectedTo == "-1") {
+        this->_course->addPlayer("You");
+        this->_course->addPlayer("IA");
+        this->_course->addPlayer("IA");
+        this->_course->addPlayer("IA");
+        this->_race->addAICar("ai#1");
+        this->_race->addAICar("ai#2");
+        this->_race->addAICar("ai#3");
+        this->_race->setPlayer(this->_car);
+        this->_race->FreezePlayers();
+    }
+    this->_objectList.push_back(this->_race);
+    Client::Instance().creatingCourseLobby(ch.getID());
+}
+
+void IndieGame::OnLeavingCourse() {
+    this->_course->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+    Client::Instance().leavingCourseLobby();
+}
+
+void IndieGame::changeCarColor() {
+    // update car mesh
+    Client::Instance().setCarNo(this->_concessionnaire->getColorIndex());
+}
+
+void IndieGame::OnEnterGarage(void) {
+    if (!this->_garage) {
+        this->_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
+        this->_garage->SetupGUI();
+        this->_objectList.push_back(this->_garage);
+        this->_guiVisible.push_back(this->_garage);
+    }
+    this->_garage->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(_garage);
+}
+
+void IndieGame::OnLeavingGarage(void) {
+    this->_garage->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::OnLeavingMenu() {
+    this->_menu->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::OnOpenningMenu()
+{
+    if (!this->_menu)
+    {
+        this->_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
+        this->_menu->SetupGUI();
+        this->_objectList.push_back(this->_menu);
+        this->_guiVisible.push_back(this->_menu);
+    }
+    if (this->_menu->isVisible() == true) {
+        this->_device->getCursorControl()->setVisible(false);
+        this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+        this->_menu->setVisible(false);
+    } else {
+        this->_device->getCursorControl()->setVisible(true);
+        this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+        this->_menu->setVisible(true);
+    }
+    this->guiVisible(_menu);
+}
+
+void IndieGame::launchMenu()
+{
+    _mainmenu = new MainMenu(_gui, _driver, _windowSize);
+    _mainmenu->SetupGUI();
+}
+
+void IndieGame::OnEnterMoney() {
+    // Client::Instance().addMoney(200);
+}
+
+void IndieGame::OnEnterOnline() {
+    if (!this->_onlineUI) {
+        this->_onlineUI = new JoinServer(this->_gui, this->_driver, this->_windowSize);
+        this->_onlineUI->SetupGUI();
+        this->_objectList.push_back(this->_onlineUI);
+        this->_guiVisible.push_back(this->_onlineUI);
+    }
+    this->_onlineUI->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(_onlineUI);
+}
+
+void IndieGame::OnLeavingOnline() {
+    this->_onlineUI->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::OnEnterConcess(void) {
+    if (!this->_concessionnaire) {
+        this->_concessionnaire = new Concessionnaire(this->_gui, this->_driver, this->_windowSize);
+        this->_concessionnaire->SetupGUI();
+        this->_objectList.push_back(this->_concessionnaire);
+        this->_guiVisible.push_back(this->_concessionnaire);
+    }
+    this->_concessionnaire->setVisible(true);
+    this->_device->getCursorControl()->setVisible(true);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
+    this->guiVisible(_concessionnaire);
+}
+
+void IndieGame::OnLeavingConcess(void) {
+    this->_concessionnaire->setVisible(false);
+    this->_device->getCursorControl()->setVisible(false);
+    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
+}
+
+void IndieGame::guiVisible(IGUI *obj)
+{
+    for (auto & gui : _guiVisible)
+    {
+        if (gui->isVisible() == true && gui != obj && gui != this->_course) {
+            gui->setVisible(false);
+        }
+    }
+}
+
+void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
+    if (_mainmenu)
+        return;
+    switch (keyCode) {
+        case irr::KEY_ESCAPE:
+            OnOpenningMenu();
+            break;
+        case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
+            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + "    " + std::to_string(this->_car->getRotation().X) + ", " + std::to_string(this->_car->getRotation().Y) + ", " + std::to_string(this->_car->getRotation().Z) + " >> pos").c_str());
+            break;
+        default:
+            break;
+    }
+}
+
+void IndieGame::OnReleaseKey(irr::EKEY_CODE keyCode) {
+    (void)keyCode;
+}
+
 bool IndieGame::OnEvent(const irr::SEvent& event){
     if (event.EventType == irr::EET_GUI_EVENT) {
         irr::s32 id = event.GUIEvent.Caller->getID();
@@ -441,170 +604,4 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
     }
 
     return EventReceiver::OnEvent(event);
-}
-
-void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
-    if (!this->_course) {
-        this->_course = new Course(this->_gui, this->_driver, this->_windowSize);
-        this->_course->SetupGUI();
-        this->_objectList.push_back(this->_course);
-        this->_guiVisible.push_back(this->_course);
-    }
-    this->_course->setVisible(true);
-    this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-    this->guiVisible(this->_course);
-    this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
-    this->_race->InitCircuit();
-    if (this->_connectedTo == "-1") {
-        this->_course->addPlayer("You");
-        this->_course->addPlayer("IA");
-        this->_course->addPlayer("IA");
-        this->_course->addPlayer("IA");
-        this->_race->addAICar("ai#1");
-        this->_race->addAICar("ai#2");
-        this->_race->addAICar("ai#3");
-        this->_race->setPlayer(this->_car);
-        this->_race->FreezePlayers();
-    }
-    this->_objectList.push_back(this->_race);
-    Client::Instance().creatingCourseLobby(ch.getID());
-}
-
-void IndieGame::OnLeavingCourse() {
-    this->_course->setVisible(false);
-    this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-    Client::Instance().leavingCourseLobby();
-}
-
-void IndieGame::changeCarColor() {
-    // update car mesh
-    Client::Instance().setCarNo(this->_concessionnaire->getColorIndex());
-}
-
-void IndieGame::OnEnterGarage(void) {
-    if (!this->_garage) {
-        this->_garage = new Garage(this->_gui, this->_driver, this->_windowSize);
-        this->_garage->SetupGUI();
-        this->_objectList.push_back(this->_garage);
-        this->_guiVisible.push_back(this->_garage);
-    }
-    this->_garage->setVisible(true);
-    this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-    this->guiVisible(_garage);
-}
-
-void IndieGame::OnLeavingGarage(void) {
-    this->_garage->setVisible(false);
-    this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-}
-
-void IndieGame::OnLeavingMenu() {
-    this->_menu->setVisible(false);
-    this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-}
-
-void IndieGame::OnOpenningMenu()
-{
-    if (!this->_menu)
-    {
-        this->_menu = new Menu(this->_gui, this->_driver, this->_windowSize);
-        this->_menu->SetupGUI();
-        this->_objectList.push_back(this->_menu);
-        this->_guiVisible.push_back(this->_menu);
-    }
-    if (this->_menu->isVisible() == true) {
-        this->_device->getCursorControl()->setVisible(false);
-        this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-        this->_menu->setVisible(false);
-    } else {
-        this->_device->getCursorControl()->setVisible(true);
-        this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-        this->_menu->setVisible(true);
-    }
-    this->guiVisible(_menu);
-}
-
-void IndieGame::launchMenu()
-{
-    _mainmenu = new MainMenu(_gui, _driver, _windowSize);
-    _mainmenu->SetupGUI();
-}
-
-void IndieGame::OnEnterMoney() {
-    // Client::Instance().addMoney(200);
-}
-
-void IndieGame::OnEnterInCourseChPt(GameCheckpoint const &ch) {
-}
-
-void IndieGame::OnEnterOnline() {
-    if (!this->_onlineUI) {
-        this->_onlineUI = new JoinServer(this->_gui, this->_driver, this->_windowSize);
-        this->_onlineUI->SetupGUI();
-        this->_objectList.push_back(this->_onlineUI);
-        this->_guiVisible.push_back(this->_onlineUI);
-    }
-    this->_onlineUI->setVisible(true);
-    this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-    this->guiVisible(_onlineUI);
-}
-
-void IndieGame::OnLeavingOnline() {
-    this->_onlineUI->setVisible(false);
-    this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-}
-
-void IndieGame::OnEnterConcess(void) {
-    if (!this->_concessionnaire) {
-        this->_concessionnaire = new Concessionnaire(this->_gui, this->_driver, this->_windowSize);
-        this->_concessionnaire->SetupGUI();
-        this->_objectList.push_back(this->_concessionnaire);
-        this->_guiVisible.push_back(this->_concessionnaire);
-    }
-    this->_concessionnaire->setVisible(true);
-    this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-    this->guiVisible(_concessionnaire);
-}
-
-void IndieGame::OnLeavingConcess(void) {
-    this->_concessionnaire->setVisible(false);
-    this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-}
-
-void IndieGame::guiVisible(IGUI *obj)
-{
-    for (auto & gui : _guiVisible)
-    {
-        if (gui->isVisible() == true && gui != obj && gui != this->_course) {
-            gui->setVisible(false);
-        }
-    }
-}
-
-void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
-    if (_mainmenu)
-        return;
-    switch (keyCode) {
-        case irr::KEY_ESCAPE:
-            OnOpenningMenu();
-            break;
-        case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
-            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + "    " + std::to_string(this->_car->getRotation().X) + ", " + std::to_string(this->_car->getRotation().Y) + ", " + std::to_string(this->_car->getRotation().Z) + " >> pos").c_str());
-            break;
-        default:
-            break;
-    }
-}
-
-void IndieGame::OnReleaseKey(irr::EKEY_CODE keyCode) {
-    (void)keyCode;
 }
