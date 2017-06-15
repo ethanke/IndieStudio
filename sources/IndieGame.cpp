@@ -162,7 +162,7 @@ void IndieGame::OnFrame() {
                 if (this->_error) {
                     irr::core::stringw _str(L"");
                     _str += str.second->get_map()["error"]->get_string().c_str();
-                    _str.replace('!', ' ');
+                    _str.replace(' ', ' ');
                     this->_error->setText(_str.c_str());
                     this->_error->setVisible(true);
                     this->_errorTimer = 0;
@@ -190,6 +190,10 @@ void IndieGame::OnFrame() {
         this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, 20, 200, 75), irr::video::SColor(255, 180, 180, 180));
         str = std::to_string(Client::Instance().getMoney()) + "$";
         this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
+        std::stringstream s;
+        s << std::fixed << std::setprecision(2) << std::abs((this->_car->getVel() - 0.6) * 1.5);
+        str = s.str();
+        this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, this->getWindowSize().Height - 50, 100, 50), irr::video::SColor(255, 180, 180, 180) );
     }
 
 

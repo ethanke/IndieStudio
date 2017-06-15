@@ -12,6 +12,8 @@
 #define INDIEGAME_HPP
 
 #include <thread>
+#include <sstream>
+#include <iomanip>
 #include <vector>
 #include <unordered_map>
 #include <random>
