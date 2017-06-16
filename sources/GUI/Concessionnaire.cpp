@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 23:55:02 2017 Vacca_J
-** Last update Tue Jun 13 15:53:36 2017 Lucas Gambini
+** Last update Fri Jun 16 13:09:34 2017 Lucas Gambini
 */
 
 #include "Concessionnaire.hpp"
@@ -151,6 +151,7 @@ void Concessionnaire::OnFrame()
         this->_exit1->setVisible(false);
         this->_title1->setVisible(false);
         this->_enter1->setVisible(false);
+        this->_enter1->setEnabled(true);
         if (this->_carcolor->isPressed() == true)
           SetupCOLOR();
     }
@@ -171,6 +172,7 @@ void Concessionnaire::OnFrame()
       this->_exit1->setVisible(false);
       this->_title1->setVisible(false);
       this->_enter1->setVisible(false);
+      this->_enter1->setEnabled(false);
     }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Wed May 31 00:47:53 2017 Lucas Gambini
-** Last update Wed May 31 16:27:52 2017 Lucas Gambini
+** Last update Fri Jun 16 13:10:59 2017 Lucas Gambini
 */
 
 #include "JoinServer.hpp"
@@ -52,13 +52,17 @@ void JoinServer::OnFrame(void) {
         this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 200, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
         this->_title->setVisible(true);
         this->_leave_->setVisible(true);
+        this->_leave_->setEnabled(true);
         this->_join->setVisible(true);
+        this->_join->setEnabled(true);
         this->_editBox->setVisible(true);
     }
     else {
         this->_title->setVisible(false);
         this->_leave_->setVisible(false);
+        this->_leave_->setEnabled(false);
         this->_join->setVisible(false);
+        this->_join->setEnabled(false);
         this->_editBox->setVisible(false);
     }
 }
