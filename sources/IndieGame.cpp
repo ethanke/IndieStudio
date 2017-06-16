@@ -20,12 +20,13 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_connectedTo = "-1";
     this->_race = NULL;
     this->_errorTimer = 0;
-
-    irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
+    this->_engine = irrklang::createIrrKlangDevice();
+    if (this->_engine)
+        this->_engine->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
 }
 
 IndieGame::~IndieGame() {
-
+    this->_engine->drop();
 }
 
 void IndieGame::addGameObject() {
