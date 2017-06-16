@@ -110,8 +110,6 @@ namespace indie {
 
         std::vector<IGUI*> _guiVisible;
 
-        irr::video::ITexture *_image;
-
         std::string _connectedTo;
 
         irr::gui::IGUIStaticText *_error;

@@ -324,7 +324,6 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
     }
     this->_course->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(this->_course);
     this->_race = new Race(this->_smgr, this->_gui, this, this->bulletPhysSys);
     this->_race->InitCircuit();
@@ -346,7 +345,6 @@ void IndieGame::OnEnterCourse(GameCheckpoint const &ch) {
 void IndieGame::OnLeavingCourse() {
     this->_course->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
     Client::Instance().leavingCourseLobby();
 }
 
@@ -364,20 +362,17 @@ void IndieGame::OnEnterGarage(void) {
     }
     this->_garage->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(_garage);
 }
 
 void IndieGame::OnLeavingGarage(void) {
     this->_garage->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::OnLeavingMenu() {
     this->_menu->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::OnOpenningMenu()
@@ -391,12 +386,10 @@ void IndieGame::OnOpenningMenu()
     }
     if (this->_menu->isVisible() == true) {
         this->_device->getCursorControl()->setVisible(false);
-        this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
-        this->_menu->setVisible(false);
+            this->_menu->setVisible(false);
     } else {
         this->_device->getCursorControl()->setVisible(true);
-        this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
-        this->_menu->setVisible(true);
+            this->_menu->setVisible(true);
     }
     this->guiVisible(_menu);
 }
@@ -420,14 +413,12 @@ void IndieGame::OnEnterOnline() {
     }
     this->_onlineUI->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(_onlineUI);
 }
 
 void IndieGame::OnLeavingOnline() {
     this->_onlineUI->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::OnEnterConcess(void) {
@@ -439,14 +430,12 @@ void IndieGame::OnEnterConcess(void) {
     }
     this->_concessionnaire->setVisible(true);
     this->_device->getCursorControl()->setVisible(true);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(false);
     this->guiVisible(_concessionnaire);
 }
 
 void IndieGame::OnLeavingConcess(void) {
     this->_concessionnaire->setVisible(false);
     this->_device->getCursorControl()->setVisible(false);
-    this->_smgr->getActiveCamera()->setInputReceiverEnabled(true);
 }
 
 void IndieGame::guiVisible(IGUI *obj)

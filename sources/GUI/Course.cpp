@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 00:40:58 2017 Lucas Gambini
-** Last update Wed Jun 14 23:43:27 2017 Lucas Gambini
+** Last update Fri Jun 16 13:02:47 2017 Lucas Gambini
 */
 
 
@@ -51,11 +51,15 @@ void Course::OnFrame(void) {
         this->_title->setVisible(true);
         this->_run->setVisible(true);
         this->_cancel->setVisible(true);
+        this->_run->setEnabled(true);
+        this->_cancel->setEnabled(true);
     }
     else {
         this->_title->setVisible(false);
         this->_run->setVisible(false);
         this->_cancel->setVisible(false);
+        this->_run->setEnabled(false);
+        this->_cancel->setEnabled(false);
         this->ripPlayers();
     }
 }
