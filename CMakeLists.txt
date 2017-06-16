@@ -66,6 +66,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     link_directories(/usr/local/lib/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/lib/OSX/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/lib/OSX/)
+    link_directories(${PROJECT_SOURCE_DIR}/lib/irrKlang-64bit-1.5.0/lib/OSX/)
     link_directories(${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/lib/OSX/)
 endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -157,8 +158,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         Xext
         Xxf86vm
         X11
-	sioclient
-	boost_system
+        sioclient
+        boost_system
     )
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -174,6 +175,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         "-framework Carbon"
         sioclient
         boost_system
+        irrklang
     )
 endif()
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
@@ -196,6 +198,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/lib/irrlicht-1.8.4/include/
     ${PROJECT_SOURCE_DIR}/lib/bullet3-2.83.7/include/bullet/
     ${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/include/
+    ${PROJECT_SOURCE_DIR}/lib/irrKlang-64bit-1.5.0/include/
     ${PROJECT_SOURCE_DIR}/lib/socket.io-client-cpp/lib/rapidjson/include/rapidjson/
 )
 
@@ -206,13 +209,20 @@ configure_file(
     ${PROJECT_BINARY_DIR}/includes/IndieStudioConfig.h
 )
 
-
 # install binary
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     IF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         SET(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
     ENDIF(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    install(TARGETS IndieStudio DESTINATION IndieStudio.app/Contents/MacOS)
+    install(
+        TARGETS IndieStudio DESTINATION IndieStudio.app/Contents/MacOS
+    )
+    install(
+        CODE "execute_process(COMMAND install_name_tool -change /usr/local/lib/libirrklang.dylib ${PROJECT_SOURCE_DIR}/lib/irrKlang-64bit-1.5.0/lib/OSX/libirrklang.dylib IndieStudio)"
+    )
+    install(
+        CODE "execute_process(COMMAND install_name_tool -change /usr/local/lib/libirrklang.dylib ${PROJECT_SOURCE_DIR}/lib/irrKlang-64bit-1.5.0/lib/OSX/libirrklang.dylib IndieStudio.app/Contents/MacOS/IndieStudio)"
+    )
     file(COPY ${PROJECT_SOURCE_DIR}/Assets DESTINATION IndieStudio.app/Contents/Assets)
     string(STRIP IndieStudio.app/Contents/ SOURCES_PATH)
 endif()

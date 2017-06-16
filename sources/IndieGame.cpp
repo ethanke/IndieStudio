@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Wed Jun 14 01:30:23 2017 Sousa Victor
+// Last update Fri Jun 16 15:21:25 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -20,6 +20,8 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_connectedTo = "-1";
     this->_race = NULL;
     this->_errorTimer = 0;
+
+    irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
 }
 
 IndieGame::~IndieGame() {
