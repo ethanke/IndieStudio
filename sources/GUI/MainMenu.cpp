@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Tue Jun 06 15:36:49 2017 Full Name
-** Last update	Tue Jun 06 18:47:51 2017 Full Name
+** Last update Fri Jun 16 15:14:43 2017 Lucas Gambini
 */
 
 #include "MainMenu.hpp"
@@ -24,9 +24,11 @@ MainMenu::MainMenu(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *dri
 
 MainMenu::~MainMenu()
 {
-    _start->remove();
-    _multijoueur->remove();
-    _quit->remove();
+    this->_start->remove();
+    this->_multijoueur->remove();
+    this->_quit->remove();
+    this->_back->remove();
+    this->_title->remove();
 }
 
 bool MainMenu::getPlay() const
@@ -41,17 +43,20 @@ void MainMenu::setPlay(bool play)
 
 void MainMenu::SetupGUI()
 {
-    // this->_image = this->_driver->getTexture("misc/mainmenu.png");
-    // this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
-    // irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
-    // this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
-    this->_start = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 100, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 100, this->_windowSize.Height / 2 - 60), NULL, PLAY,
+
+    this->_texture = this->_driver->getTexture("menu.jpg");
+    this->_back = this->_gui->addImage(this->_texture, irr::core::position2d<irr::s32>(0, 0));
+
+    this->_title = this->_gui->addStaticText(L"I Don't Car", irr::core::rect<irr::s32>(160, 160, this->_windowSize.Width, this->_windowSize.Height));
+    this->_title->setOverrideColor(irr::video::SColor(255, 180, 180, 180));
+    this->_title->setOverrideFont(this->_gui->getFont("misc/menu.xml"));
+
+    this->_start = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 6 - 100, this->_windowSize.Height / 2 - 160, this->_windowSize.Width / 6 + 100, this->_windowSize.Height / 2 - 80), NULL, PLAY,
             L"PLAY", L"");
-    this->_multijoueur = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 100, this->_windowSize.Height / 2 - 40, this->_windowSize.Width / 2 + 100, this->_windowSize.Height / 2 + 40), NULL, MULTIJOUEUR,
+    this->_multijoueur = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 6 - 100, this->_windowSize.Height / 2 - 60, this->_windowSize.Width / 6 + 100, this->_windowSize.Height / 2 + 20), NULL, MULTIJOUEUR,
             L"MULTIJOUEUR", L"");
-    this->_quit = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 100, this->_windowSize.Height / 2 + 60, this->_windowSize.Width / 2 + 100, this->_windowSize.Height / 2 + 140), NULL, QUIT,
+    this->_quit = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 6 - 100, this->_windowSize.Height / 2 + 40, this->_windowSize.Width / 6 + 100, this->_windowSize.Height / 2 + 120), NULL, QUIT,
             L"QUIT", L"");
-//    this->_driver->endScene();
 }
 
 void MainMenu::setVisible(bool visible)
@@ -66,10 +71,4 @@ bool MainMenu::isVisible() const
 
 void MainMenu::OnFrame()
 {
-//    this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 200, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 + 200));
-//    irr::core::rect<irr::s32> rect(0, 0, this->_image->getSize().Width, this->_image->getSize().Height);
-//    this->_driver->draw2DImage(this->_image, irr::core::position2d<irr::s32>(0, 0), irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height), &rect);
-    // this->_start->setVisible(true);
-    // this->_multijoueur->setVisible(true);
-    // this->_quit->setVisible(true);
 }

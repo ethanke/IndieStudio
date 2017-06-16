@@ -193,7 +193,7 @@ void IndieGame::OnFrame() {
         std::stringstream s;
         s << std::fixed << std::setprecision(2) << std::abs((this->_car->getVel() - 0.6) * 1.5);
         str = s.str();
-        this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, this->getWindowSize().Height - 50, 100, 50), irr::video::SColor(255, 180, 180, 180) );
+        this->_gui->getSkin()->getFont()->draw(str.data(), irr::core::rect<irr::s32>(20, this->getWindowSize().Height - 50, 100, 50), irr::video::SColor(255, 180, 180, 180) );
     }
 
 
@@ -396,8 +396,8 @@ void IndieGame::OnOpenningMenu()
 
 void IndieGame::launchMenu()
 {
-    _mainmenu = new MainMenu(_gui, _driver, _windowSize);
-    _mainmenu->SetupGUI();
+    this->_mainmenu = new MainMenu(this->_gui, this->_driver, this->_windowSize);
+    this->_mainmenu->SetupGUI();
 }
 
 void IndieGame::OnEnterMoney() {
