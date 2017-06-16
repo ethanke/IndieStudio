@@ -100,9 +100,9 @@ void CLoadCar::Init(irr::scene::ISceneManager *smgr, physics::CBulletPhysics* BP
 
 }
 
-void CLoadCar::Update(s32 drivetype)
+void CLoadCar::Update(s32 drivetype, bool reverse)
 {
-	car->update(drivetype, max_speed);
+	car->update(drivetype, max_speed, reverse);
 }
 
 void CLoadCar::resetCar(s32 newangle)

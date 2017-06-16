@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sat Jun 10 16:38:11 2017 Sousa Victor
-// Last update Sat Jun 10 16:41:03 2017 Sousa Victor
+// Last update Fri Jun 16 17:52:08 2017 Sousa Victor
 //
 
 #include "NetworkCar.hpp"
@@ -22,7 +22,7 @@ NetworkCar::~NetworkCar() {
 }
 
 void NetworkCar::OnFrame() {
-    this->_carLoader.Update(drive_tipe);
+    this->_carLoader.Update(drive_tipe, false);
     auto pos = this->getPosition();
     pos.Y += 3;
     this->_name->setPosition(pos);

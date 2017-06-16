@@ -16,7 +16,7 @@ class CLoadCar{
 		~CLoadCar();
 		//pretty self explanatory...
 		void Init(irr::scene::ISceneManager* smgr, physics::CBulletPhysics* BPS, s32 val);
-		void Update(s32 drivetype);
+		void Update(s32 drivetype, bool reverse);
 		//return car
 		physics::PhysicsCar* getCar() { return car; }
 		//return car node

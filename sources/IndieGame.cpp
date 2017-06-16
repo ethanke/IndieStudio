@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri Jun 16 15:21:25 2017 Sousa Victor
+// Last update Fri Jun 16 17:57:21 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -191,7 +191,8 @@ void IndieGame::OnFrame() {
         str = std::to_string(Client::Instance().getMoney()) + "$";
         this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
         std::stringstream s;
-        s << std::fixed << std::setprecision(2) << std::abs((this->_car->getVel() - 0.6) * 1.5);
+        s << std::fixed << std::setprecision(2) << std::abs(this->_car->getVel() - 0.6);
+        s << "km/h   " << std::setprecision(0) << this->_car->getRPM() << "rpm   " << this->_car->getGear() << "gear";
         str = s.str();
         this->_gui->getSkin()->getFont()->draw(str.data(), irr::core::rect<irr::s32>(20, this->getWindowSize().Height - 50, 100, 50), irr::video::SColor(255, 180, 180, 180) );
     }
