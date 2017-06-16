@@ -35,6 +35,12 @@ namespace irr
 			m_wheelNode_FR = wheelNode_FR;
 			m_wheelNode_RL = wheelNode_RL;
 			m_wheelNode_RR = wheelNode_RR;
+
+            gear = 1;
+
+            wheels = 25.f;
+			maxrpm = 4500.f;
+			minrpm = 1500.f;
 		}
 
 
@@ -251,7 +257,7 @@ namespace irr
 		}
 
 
-		void PhysicsCar::update(s32 car_drive, f32 max_speed)
+		void PhysicsCar::update(s32 car_drive, f32 max_speed, bool reverse)
 		{
 			switch (car_drive) {
 				case RWD: {
@@ -391,6 +397,41 @@ namespace irr
 
 				}
 			}
+
+            vel = getlinVel();
+
+            switch(gear)
+            {
+                case 0: ratio = 3.38f;	//reverse
+                    break;
+                case 1: ratio = 3.47f;
+                    break;
+                case 2: ratio = 2.47f;
+                    break;
+                case 3: ratio = 1.73f;
+                    break;
+                case 4: ratio = 1.30f;
+                    break;
+                case 5: ratio = 1.04f;
+                    break;
+                case 6: ratio = 0.76f;
+                    break;
+                default: ratio = 2.97f;
+            }
+
+            //calculate rpm
+            rpm = vel*ratio*wheels;
+
+            if( rpm > maxrpm && gear < 6  && !reverse ) {
+                gear++;
+            }
+            else if ( rpm < minrpm && gear > 1 )
+                --gear;
+            else if ( reverse )
+                gear = 0;
+            else if ( !reverse && gear == 0 )
+                gear = 1;
+
 		}
 
 

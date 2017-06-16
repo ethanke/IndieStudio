@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Tue Jun 13 14:59:50 2017 Sousa Victor
+// Last update Fri Jun 16 17:54:03 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -67,7 +67,7 @@ void Car::OnFrame() {
         this->setBreakingForce(1000.0f);
         this->setEngineForce(0.0f);
     }
-	this->_carLoader.Update(drive_tipe);
+	this->_carLoader.Update(drive_tipe, this->reverse);
 }
 
 void Car::updateCamera() {
@@ -220,4 +220,11 @@ void Car::setFreeze(bool value) {
 
 void Car::setNetworkID(std::string const &id) {
     this->_netID = id;
+}
+
+float Car::getRPM() const {
+    return this->_car->getRPM();
+}
+float Car::getGear() const {
+    return this->_car->getGear();
 }

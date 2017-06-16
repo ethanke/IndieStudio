@@ -35,7 +35,7 @@ namespace irr
 
 			bool init(physics::SPhysicsCarParams *carParams);
 			void reset(void);
-			void update(s32 car_drive, f32 max_speed);
+			void update(s32 car_drive, f32 max_speed, bool reverse);
 
 			float getEngineForce(void) const { return m_engineForce; }
 			void setEngineForce(float newForce) { m_engineForce = newForce; }
@@ -46,6 +46,9 @@ namespace irr
             float getSteeringValue(void) const { return m_vehicleSteering; }
 			void setSteeringValue(float newForce) { m_vehicleSteering = newForce; }
 
+
+            float getRPM() { return this->rpm; }
+            float getGear() { return this->gear; }
 
 			void resetSteering(void)
 			{
@@ -167,6 +170,9 @@ namespace irr
 			btRaycastVehicle::btVehicleTuning m_tuning;
 			btVehicleRaycaster* m_vehicleRayCaster;
 			btRaycastVehicle* m_vehicle;
+
+            irr::s32 gear, rpm;
+            irr::f32 ratio, wheels, maxrpm, minrpm;
 
 			// scene nodes (visual objects)
 			scene::IAnimatedMeshSceneNode* m_chassisNode;
