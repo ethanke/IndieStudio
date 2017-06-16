@@ -20,13 +20,10 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_connectedTo = "-1";
     this->_race = NULL;
     this->_errorTimer = 0;
-    this->_engine = irrklang::createIrrKlangDevice();
-    if (this->_engine)
-        this->_engine->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
+    SoundManager::Instance().getEngine()->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
 }
 
 IndieGame::~IndieGame() {
-    this->_engine->drop();
 }
 
 void IndieGame::addGameObject() {
@@ -464,6 +461,10 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
         default:
             break;
     }
+    if (this->_menu && this->_menu->getSettings() && this->_menu->getSettings()->getKeyboard() && this->_menu->getSettings()->getKeyboard()->isVisible() == true) {
+        this->_menu->getSettings()->getKeyboard()->OnEnterKey(keyCode);
+        KeyboardManager::Instance().setMap(this->_menu->getSettings()->getKeyboard()->getMap());
+    }
 }
 
 void IndieGame::OnReleaseKey(irr::EKEY_CODE keyCode) {
@@ -506,28 +507,28 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->_guiVisible.push_back(this->_menu->getSettings()->getKeyboard());
                         this->guiVisible(this->_menu->getSettings()->getKeyboard());
                         break;
-                   case Keyboard::up:
+                   case Keyboard::KEYBOARD_BTNS::up:
                         _menu->getSettings()->getKeyboard()->resetUp();
                         break;
-                   case Keyboard::down:
+                   case Keyboard::KEYBOARD_BTNS::down:
                         _menu->getSettings()->getKeyboard()->resetDown();
                         break;
-                   case Keyboard::left:
+                   case Keyboard::KEYBOARD_BTNS::left:
                         _menu->getSettings()->getKeyboard()->resetLeft();
                         break;
-                   case Keyboard::right:
+                   case Keyboard::KEYBOARD_BTNS::right:
                         _menu->getSettings()->getKeyboard()->resetRight();
                         break;
-                   case Keyboard::forward:
+                   case Keyboard::KEYBOARD_BTNS::forward:
                         _menu->getSettings()->getKeyboard()->resetForward();
                         break;
-                   case Keyboard::backward:
+                   case Keyboard::KEYBOARD_BTNS::backward:
                         _menu->getSettings()->getKeyboard()->resetBackward();
                         break;
-                   case Keyboard::space:
+                   case Keyboard::KEYBOARD_BTNS::space:
                         _menu->getSettings()->getKeyboard()->resetBrake();
                         break;
-                   case Keyboard::quit:
+                   case Keyboard::KEYBOARD_BTNS::quit:
                         _menu->getSettings()->getKeyboard()->setVisible(false);
                         break;
                    case Audio::PLUS:

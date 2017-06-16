@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 17:38:44 2017 Vacca_J
-** Last update Tue Jun 06 19:17:11 2017 Vacca_J
+** Last update Sat Jun 17 01:36:27 2017 Lucas Gambini
 */
 
 #include "Keyboard.hpp"
@@ -18,12 +18,12 @@ Keyboard::Keyboard(irr::gui::IGUIEnvironment *gui, irr::video::IVideoDriver *dri
   this->_driver = driver;
   this->_windowSize = windowSize;
   this->_isVisible = true;
-  this->_mymap[UP] = irr::KEY_UP;
-  this->_mymap[DOWN] = irr::KEY_DOWN;
-  this->_mymap[LEFT] = irr::KEY_LEFT;
-  this->_mymap[RIGHT] = irr::KEY_RIGHT;
-  this->_mymap[FORWARD] = irr::KEY_KEY_D;
-  this->_mymap[BACKWARD] = irr::KEY_KEY_R;
+  this->_mymap[KEYCODE_TYPE::UP] = irr::KEY_UP;
+  this->_mymap[KEYCODE_TYPE::DOWN] = irr::KEY_DOWN;
+  this->_mymap[KEYCODE_TYPE::LEFT] = irr::KEY_LEFT;
+  this->_mymap[KEYCODE_TYPE::RIGHT] = irr::KEY_RIGHT;
+  this->_mymap[KEYCODE_TYPE::FORWARD] = irr::KEY_KEY_D;
+  this->_mymap[KEYCODE_TYPE::BACKWARD] = irr::KEY_KEY_R;
   this->_id = 0;
 }
 
@@ -34,25 +34,25 @@ Keyboard::~Keyboard()
 void Keyboard::SetupGUI()
 {
   this->_exit = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 45, this->_windowSize.Height / 2 + 110, this->_windowSize.Width / 2 + 45, this->_windowSize.Height / 2 + 160), NULL, 1008,
-    L"EXIT", L"EXIT");
-  this->_left = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 320, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 - 270, this->_windowSize.Height / 2 + 25), NULL, 1003,
-    L"LEFT", L"LEFT");
-  this->_right = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 200, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 - 150, this->_windowSize.Height / 2 + 25), NULL, 1004,
-    L"RIGHT", L"RIGHT");
-  this->_down = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 270, this->_windowSize.Height / 2 + 35, this->_windowSize.Width / 2 - 200, this->_windowSize.Height / 2 + 85), NULL, 1002,
-    L"DOWN", L"DOWN");
-  this->_up = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 270, this->_windowSize.Height / 2 - 85, this->_windowSize.Width / 2 - 200, this->_windowSize.Height / 2 - 35), NULL, 1001,
-    L"UP", L"UP");
-  this->_forward = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 200, this->_windowSize.Height / 2 - 85, this->_windowSize.Width / 2 + 270, this->_windowSize.Height / 2 - 35), NULL, 1005,
-    L"FORWARD", L"FORWARD");
-  this->_backward = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 200, this->_windowSize.Height / 2 + 35, this->_windowSize.Width / 2 + 270, this->_windowSize.Height / 2 + 85), NULL, 1006,
-    L"BACKWARD", L"BACKWARD");
-  this->_space = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 85, this->_windowSize.Height / 2 + 25, this->_windowSize.Width / 2 + 85, this->_windowSize.Height / 2 + 55), NULL, 1007,
-    L"FREIN", L"FREIN");
+    L"EXIT", L"");
+  this->_left = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 340, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 - 260, this->_windowSize.Height / 2 + 25), NULL, 1003,
+    L"LEFT", L"");
+  this->_right = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 180, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 - 100, this->_windowSize.Height / 2 + 25), NULL, 1004,
+    L"RIGHT", L"");
+  this->_down = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 260, this->_windowSize.Height / 2 + 35, this->_windowSize.Width / 2 - 180, this->_windowSize.Height / 2 + 85), NULL, 1002,
+    L"DOWN", L"");
+  this->_up = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 260, this->_windowSize.Height / 2 - 75, this->_windowSize.Width / 2 - 180, this->_windowSize.Height / 2 - 25), NULL, 1001,
+    L"UP", L"");
+  this->_forward = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 150, this->_windowSize.Height / 2 - 85, this->_windowSize.Width / 2 + 310, this->_windowSize.Height / 2 - 35), NULL, 1005,
+    L"FORWARD", L"");
+  this->_backward = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 150, this->_windowSize.Height / 2 + 35, this->_windowSize.Width / 2 + 310, this->_windowSize.Height / 2 + 85), NULL, 1006,
+    L"BACKWARD", L"");
+  this->_space = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 85, this->_windowSize.Height / 2 + 55, this->_windowSize.Width / 2 + 85, this->_windowSize.Height / 2 + 85), NULL, 1007,
+    L"FREIN", L"");
 
-  this->_title2 = this->_gui->addStaticText(L"Press new KEY", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 120, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 80));
+  this->_title2 = this->_gui->addStaticText(L"Click a Button and Press new KEY", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 210, this->_windowSize.Height / 2 - 150, this->_windowSize.Width / 2 + 210, this->_windowSize.Height / 2 - 50));
   this->_title2->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
-  this->_title = this->_gui->addStaticText(L"Keyboard", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 150, this->_windowSize.Height / 2 - 190, this->_windowSize.Width / 2 + 150, this->_windowSize.Height / 2 - 170));
+  this->_title = this->_gui->addStaticText(L"Keyboard", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 100, this->_windowSize.Height / 2 - 190, this->_windowSize.Width / 2 + 100, this->_windowSize.Height / 2 - 160));
   this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
 }
 
@@ -139,4 +139,8 @@ void Keyboard::OnFrame()
       this->_title->setVisible(false);
       this->_title2->setVisible(false);
     }
+}
+
+const std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> &Keyboard::getMap() const {
+    return this->_mymap;
 }

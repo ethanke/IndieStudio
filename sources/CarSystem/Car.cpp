@@ -102,7 +102,7 @@ void Car::SendInfo() {
 
 void Car::KeyboardEvent() {
 	//steering
-	if(_eventReceiver->IsKeyDown(irr::KEY_UP)) {
+	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::UP])) {
 		if(!reverse)
 			this->_car->goForward();
 		else
@@ -111,28 +111,28 @@ void Car::KeyboardEvent() {
         this->_car->slowdown();
     }
 
-    if(_eventReceiver->IsKeyDown(irr::KEY_DOWN)) {
+    if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::DOWN])) {
 		this->_car->stop();
 	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_LEFT)) {
+	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::LEFT])) {
 		this->_car->steerLeft();
 	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_RIGHT)) {
+	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::RIGHT])) {
 		this->_car->steerRight();
 	}
-	else if(!_eventReceiver->IsKeyDown(irr::KEY_LEFT) && !_eventReceiver->IsKeyDown(irr::KEY_RIGHT))
+	else if (!_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::LEFT]) && !_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::RIGHT]))
 		this->_car->resetSteering();
 
-	if(_eventReceiver->IsKeyDown(irr::KEY_SPACE)) {
+	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::SPACE])) {
 		this->_car->handbrake();
 	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R)) {
+	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::BACKWARD])) {
 		reverse = true;
 	}
-	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {
+	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::FORWARD])) {
 		reverse = false;
 	}
-    if(_eventReceiver->IsKeyDown(irr::KEY_KEY_C)) {
+    if (_eventReceiver->IsKeyDown(irr::KEY_KEY_C)) {
 		this->_lookback = true;
 	} else {
         this->_lookback = false;
@@ -143,6 +143,50 @@ void Car::KeyboardEvent() {
 	// }
 
 }
+
+// void Car::KeyboardEvent() {
+// 	//steering
+// 	if(_eventReceiver->IsKeyDown(irr::KEY_UP)) {
+// 		if(!reverse)
+// 			this->_car->goForward();
+// 		else
+// 			this->_car->goBackwards();
+// 	} else {
+//         this->_car->slowdown();
+//     }
+//
+//     if(_eventReceiver->IsKeyDown(irr::KEY_DOWN)) {
+// 		this->_car->stop();
+// 	}
+// 	if(_eventReceiver->IsKeyDown(irr::KEY_LEFT)) {
+// 		this->_car->steerLeft();
+// 	}
+// 	if(_eventReceiver->IsKeyDown(irr::KEY_RIGHT)) {
+// 		this->_car->steerRight();
+// 	}
+// 	else if(!_eventReceiver->IsKeyDown(irr::KEY_LEFT) && !_eventReceiver->IsKeyDown(irr::KEY_RIGHT))
+// 		this->_car->resetSteering();
+//
+// 	if(_eventReceiver->IsKeyDown(irr::KEY_SPACE)) {
+// 		this->_car->handbrake();
+// 	}
+// 	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R)) {
+// 		reverse = true;
+// 	}
+// 	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {
+// 		reverse = false;
+// 	}
+//     if(_eventReceiver->IsKeyDown(irr::KEY_KEY_C)) {
+// 		this->_lookback = true;
+// 	} else {
+//         this->_lookback = false;
+//     }
+// 	// if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
+// 	// {
+// 	// 	this->_carLoader.resetCar(0); // 90
+// 	// }
+//
+// }
 
 irr::core::vector3d<float>	Car::getPosition() const {
     return this->_car->getPosition();

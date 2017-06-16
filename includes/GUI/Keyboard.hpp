@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 17:36:35 2017 Vacca_J
-** Last update Tue Jun 06 18:46:07 2017 Vacca_J
+** Last update Fri Jun 16 22:06:55 2017 Lucas Gambini
 */
 
 #ifndef KEYBOARD_HPP_
@@ -39,16 +39,16 @@ class Keyboard : public IGUI , public EventReceiver {
       quit
   };
 
-public: enum KEYCODE_TYPE
-{
-    UP = 1,
-    DOWN,
-    LEFT,
-    RIGHT,
-    FORWARD,
-    BACKWARD,
-    SPACE,
-};
+  public: enum KEYCODE_TYPE
+  {
+     UP = 1,
+     DOWN,
+     LEFT,
+     RIGHT,
+     FORWARD,
+     BACKWARD,
+     SPACE
+ };
 
 private:
   int _id;
@@ -91,6 +91,7 @@ public:
 
   void resetBrake(void);
 
+  const std::map<KEYCODE_TYPE, irr::EKEY_CODE> &getMap() const;
 
   void SetupGUI();
   void setVisible(bool visible);
@@ -101,5 +102,12 @@ public:
 
 }
 
+#else
+
+namespace indie {
+
+    class Keyboard;
+
+}
 
 #endif /* !KEYBOARD_HPP_ */

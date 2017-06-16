@@ -100,6 +100,9 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/Race.cpp
     ${PROJECT_SOURCE_DIR}/sources/Circuit.cpp
 
+    ${PROJECT_SOURCE_DIR}/sources/SoundManager.cpp
+    ${PROJECT_SOURCE_DIR}/sources/KeyboardManager.cpp
+
     ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysics.cpp
     ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysicsAnimator.cpp
     ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysicsUtils.cpp
@@ -136,6 +139,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/NeuralNetwork/GeneticTrainer.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/Client/Client.cpp
+
 
 )
 

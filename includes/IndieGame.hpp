@@ -41,6 +41,8 @@
 #include "Concessionnaire.hpp"
 #include "Client.hpp"
 #include "NetworkCar.hpp"
+#include "SoundManager.hpp"
+#include "KeyboardManager.hpp"
 
 namespace indie {
 
@@ -105,8 +107,6 @@ namespace indie {
         JoinServer *_onlineUI;
         MainMenu *_mainmenu;
         Concessionnaire *_concessionnaire;
-
-        irrklang::ISoundEngine* _engine;
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;

@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 14:33:37 2017 Vacca_J
-** Last update Tue May 30 18:47:31 2017 Vacca_J
+** Last update Fri Jun 16 18:29:00 2017 Lucas Gambini
 */
 
 #ifndef AUDIO_HPP
@@ -17,6 +17,7 @@
 #include <IGUIEnvironment.h>
 #include "IGameObject.hpp"
 #include "IGUI.hpp"
+#include "SoundManager.hpp"
 
 namespace indie {
 
@@ -54,6 +55,7 @@ private:
   irr::video::ITexture *_green;
 
   bool _isVisible;
+
 public:
 
   Audio(irr::gui::IGUIEnvironment*, irr::video::IVideoDriver*, irr::core::dimension2du);

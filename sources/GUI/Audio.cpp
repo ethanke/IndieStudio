@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 14:35:05 2017 Vacca_J
-** Last update Tue May 30 18:59:17 2017 Vacca_J
+** Last update Fri Jun 16 19:15:33 2017 Lucas Gambini
 */
 
 #include "Audio.hpp"
@@ -91,41 +91,31 @@ bool Audio::isVisible(void) const
 
 void Audio::plus()
 {
-    for (auto& x : this->_volume)
-    {
-      if (x->getImage() == this->_red)
-      {
-        x->setImage(this->_green);
-        return;
-      }
-  }
+  if (SoundManager::Instance().getEngine()->getSoundVolume() < 1)
+    SoundManager::Instance().getEngine()->setSoundVolume(SoundManager::Instance().getEngine()->getSoundVolume() + 0.1f);
 }
 
 void Audio::moin()
 {
-    for (int i = this->_volume.size() - 1; i >= 0; i--)
-    {
-      if (i == 0)
-      {
-        this->_volume[i]->setImage(this->_red);
-        return;
-      }
-      else if (this->_volume[i]->getImage() == this->_green)
-      {
-        this->_volume[i]->setImage(this->_red);
-        return;
-      }
-  }
+  if (SoundManager::Instance().getEngine()->getSoundVolume() > 0)
+    SoundManager::Instance().getEngine()->setSoundVolume(SoundManager::Instance().getEngine()->getSoundVolume() - 0.1f);
 }
 
 void Audio::OnFrame()
 {
     if (_isVisible == true)
     {
-      for (auto& x : this->_volume)
-      {
-        x->setVisible(true);
-      }
+        float i = 0.0f;
+        for (auto& x : this->_volume)
+        {
+            x->setVisible(true);
+            if (i < SoundManager::Instance().getEngine()->getSoundVolume()) {
+                x->setImage(this->_green);
+            } else {
+                x->setImage(this->_red);
+            }
+            i += 0.1f;
+        }
         this->_driver->draw2DRectangle(irr::video::SColor(200,75,75,75), irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 250, this->_windowSize.Height / 2 - 140, this->_windowSize.Width / 2 + 250, this->_windowSize.Height / 2 + 180));
         this->_plus->setVisible(true);
         this->_moin->setVisible(true);
@@ -142,6 +132,5 @@ void Audio::OnFrame()
         this->_moin->setVisible(false);
         this->_exit->setVisible(false);
         this->_title->setVisible(false);
-      //  this->_bar->setVisible(false);
     }
 }

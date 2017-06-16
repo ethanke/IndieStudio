@@ -20,6 +20,8 @@
 #include "Circuit.hpp"
 #include "Client.hpp"
 #include "loadCar.h"
+#include "KeyboardManager.hpp"
+#include "Keyboard.hpp"
 
 namespace indie {
 
