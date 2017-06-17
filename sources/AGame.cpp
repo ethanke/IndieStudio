@@ -26,6 +26,8 @@ AGame::AGame(int width, int height) {
 
     }
     this->_windowSize = irr::core::dimension2du(width, height);
+    SizeS::Instance().Width = width;
+    SizeS::Instance().Height = height;
     this->_minimapCamera = NULL;
 
     std::srand(std::time(NULL));
@@ -55,7 +57,6 @@ void AGame::Setup() {
 
 void AGame::Start() {
     this->_isRunning = true;
-
     this->loop();
 
     this->_isRunning = false;

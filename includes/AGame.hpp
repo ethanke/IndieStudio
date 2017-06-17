@@ -26,6 +26,7 @@
 #include "IGameObject.hpp"
 #include "AGameCamera.hpp"
 #include "Minimap.hpp"
+#include "SizeS.hpp"
 
 namespace indie {
 

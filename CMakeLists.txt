@@ -101,6 +101,7 @@ set(SRC_FILES
     ${PROJECT_SOURCE_DIR}/sources/Circuit.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/SoundManager.cpp
+    ${PROJECT_SOURCE_DIR}/sources/SizeS.cpp
     ${PROJECT_SOURCE_DIR}/sources/KeyboardManager.cpp
 
     ${PROJECT_SOURCE_DIR}/sources/BulletAnimator/CBulletPhysics.cpp
