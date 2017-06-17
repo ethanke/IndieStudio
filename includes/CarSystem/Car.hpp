@@ -34,7 +34,7 @@ namespace indie {
 
         virtual void OnFrame();
 
-        virtual AGameCamera *getCamera() const;
+        virtual AGameCamera *getCamera();
         virtual irr::core::vector3d<float> getPosition() const;
         void setPosition(irr::core::vector3df const &pos);
         virtual irr::core::vector3d<float> getRotation() const;

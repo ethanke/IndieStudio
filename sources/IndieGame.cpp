@@ -211,6 +211,11 @@ void IndieGame::OnFrame() {
             }
         }
     }
+
+    if (this->_menu && this->_menu->getSettings() && this->_menu->getSettings()->getGraphic() && this->_menu->getSettings()->getGraphic()->isVisible() == true) {
+        this->_car->getCamera()->setFarValue(this->_menu->getSettings()->getGraphic()->getText());
+    }
+
 }
 
 void IndieGame::updateCarsData(sio::message::ptr const &msg) {
@@ -596,6 +601,21 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                     case MainMenu::QUIT:
                         this->_device->closeDevice();
                         break;
+                    case Graphic::EXIT:
+                        this->_menu->getSettings()->getGraphic()->setVisible(false);
+                        break;
+                    case Graphic::RESOL1:
+                        this->writeResolution(640, 480);
+                        this->_device->closeDevice();
+                        break;
+                    case Graphic::RESOL2:
+                        this->writeResolution(1280, 720);
+                        this->_device->closeDevice();
+                        break;
+                    case Graphic::RESOL3:
+                        this->writeResolution(1920, 1080);
+                        this->_device->closeDevice();
+                        break;
                     default:
                         break;
                 }
@@ -605,4 +625,11 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
     }
 
     return EventReceiver::OnEvent(event);
+}
+
+void IndieGame::writeResolution(int x, int y) {
+    std::ofstream infile((std::string(SOURCES_PATH) + std::string("/Data/resolution.txt")).c_str());
+    infile << std::to_string(x);
+    infile << "\n";
+    infile << std::to_string(y);
 }

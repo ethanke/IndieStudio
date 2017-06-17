@@ -11,7 +11,7 @@
 #include "IndieGame.hpp"
 
 int main(int argc, char* argv[]) {
-    indie::IndieGame game(1920, 1080);
+    indie::IndieGame game(-1, -1);
 
     game.Setup();
     game.Start();

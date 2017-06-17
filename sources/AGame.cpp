@@ -14,6 +14,17 @@ using namespace indie;
 
 irr::f32 DeltaTimer::DeltaTime;
 AGame::AGame(int width, int height) {
+    if (width == -1 || height == -1) {
+        std::ifstream infile((std::string(SOURCES_PATH) + std::string("/Data/resolution.txt")).c_str());
+        if (infile.is_open() && infile >> width && infile >> height)
+            std::cout << "winSize loaded" << std::endl;
+        else {
+            width = 1920;
+            height = 1080;
+            std::cerr << "winSize not loaded" << std::endl;
+        }
+
+    }
     this->_windowSize = irr::core::dimension2du(width, height);
     this->_minimapCamera = NULL;
 

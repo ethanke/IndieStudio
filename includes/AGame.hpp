@@ -16,6 +16,7 @@
 #include <time.h>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "IndieStudioConfig.h"
 

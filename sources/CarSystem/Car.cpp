@@ -137,56 +137,9 @@ void Car::KeyboardEvent() {
 	} else {
         this->_lookback = false;
     }
-	// if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
-	// {
-	// 	this->_carLoader.resetCar(0); // 90
-	// }
 
 }
 
-// void Car::KeyboardEvent() {
-// 	//steering
-// 	if(_eventReceiver->IsKeyDown(irr::KEY_UP)) {
-// 		if(!reverse)
-// 			this->_car->goForward();
-// 		else
-// 			this->_car->goBackwards();
-// 	} else {
-//         this->_car->slowdown();
-//     }
-//
-//     if(_eventReceiver->IsKeyDown(irr::KEY_DOWN)) {
-// 		this->_car->stop();
-// 	}
-// 	if(_eventReceiver->IsKeyDown(irr::KEY_LEFT)) {
-// 		this->_car->steerLeft();
-// 	}
-// 	if(_eventReceiver->IsKeyDown(irr::KEY_RIGHT)) {
-// 		this->_car->steerRight();
-// 	}
-// 	else if(!_eventReceiver->IsKeyDown(irr::KEY_LEFT) && !_eventReceiver->IsKeyDown(irr::KEY_RIGHT))
-// 		this->_car->resetSteering();
-//
-// 	if(_eventReceiver->IsKeyDown(irr::KEY_SPACE)) {
-// 		this->_car->handbrake();
-// 	}
-// 	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_R)) {
-// 		reverse = true;
-// 	}
-// 	if(_eventReceiver->IsKeyDown(irr::KEY_KEY_D)) {
-// 		reverse = false;
-// 	}
-//     if(_eventReceiver->IsKeyDown(irr::KEY_KEY_C)) {
-// 		this->_lookback = true;
-// 	} else {
-//         this->_lookback = false;
-//     }
-// 	// if(_eventReceiver->IsKeyDown(irr::KEY_BACK))
-// 	// {
-// 	// 	this->_carLoader.resetCar(0); // 90
-// 	// }
-//
-// }
 
 irr::core::vector3d<float>	Car::getPosition() const {
     return this->_car->getPosition();
@@ -208,7 +161,7 @@ void Car::setRotation(irr::core::vector3df const &rot) {
     this->_car->setRotation(rot);
 }
 
-AGameCamera *Car::getCamera() const {
+AGameCamera *Car::getCamera() {
     return this->_camera;
 }
 
