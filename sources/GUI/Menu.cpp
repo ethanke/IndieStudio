@@ -5,7 +5,7 @@
 ** Login	Full Name
 **
 ** Started on	Thu May 18 15:46:39 2017 Full Name
-** Last update Mon May 22 19:02:05 2017 Vacca_J
+** Last update Sat Jun 17 17:12:10 2017 Lucas Gambini
 */
 
 #include "Menu.hpp"
@@ -72,6 +72,11 @@ void Menu::OnFrame()
         this->_resume->setVisible(true);
         this->_quit->setVisible(true);
         this->_title->setVisible(true);
+
+        this->_setting->setEnabled(true);
+        this->_resume->setEnabled(true);
+        this->_quit->setEnabled(true);
+        this->_title->setEnabled(true);
     }
     else
     {
@@ -79,5 +84,10 @@ void Menu::OnFrame()
         this->_resume->setVisible(false);
         this->_quit->setVisible(false);
         this->_title->setVisible(false);
+
+        this->_setting->setEnabled(false);
+        this->_resume->setEnabled(false);
+        this->_quit->setEnabled(false);
+        this->_title->setEnabled(false);
     }
 }

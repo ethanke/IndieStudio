@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 17:38:44 2017 Vacca_J
-** Last update Sat Jun 17 01:36:27 2017 Lucas Gambini
+** Last update Sat Jun 17 17:13:39 2017 Lucas Gambini
 */
 
 #include "Keyboard.hpp"
@@ -125,6 +125,15 @@ void Keyboard::OnFrame()
         this->_space->setVisible(true);
         this->_title->setVisible(true);
         this->_title2->setVisible(true);
+
+        this->_exit->setEnabled(true);
+        this->_up->setEnabled(true);
+        this->_down->setEnabled(true);
+        this->_right->setEnabled(true);
+        this->_left->setEnabled(true);
+        this->_forward->setEnabled(true);
+        this->_backward->setEnabled(true);
+        this->_space->setEnabled(true);
     }
     else
     {
@@ -138,6 +147,15 @@ void Keyboard::OnFrame()
       this->_space->setVisible(false);
       this->_title->setVisible(false);
       this->_title2->setVisible(false);
+
+      this->_exit->setEnabled(false);
+      this->_up->setEnabled(false);
+      this->_down->setEnabled(false);
+      this->_right->setEnabled(false);
+      this->_left->setEnabled(false);
+      this->_forward->setEnabled(false);
+      this->_backward->setEnabled(false);
+      this->_space->setEnabled(false);
     }
 }
 

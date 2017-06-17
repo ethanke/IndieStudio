@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 14:35:05 2017 Vacca_J
-** Last update Fri Jun 16 19:15:33 2017 Lucas Gambini
+** Last update Sat Jun 17 17:13:24 2017 Lucas Gambini
 */
 
 #include "Audio.hpp"
@@ -121,6 +121,10 @@ void Audio::OnFrame()
         this->_moin->setVisible(true);
         this->_exit->setVisible(true);
         this->_title->setVisible(true);
+
+        this->_plus->setEnabled(true);
+        this->_moin->setEnabled(true);
+        this->_exit->setEnabled(true);
     }
     else
     {
@@ -132,5 +136,9 @@ void Audio::OnFrame()
         this->_moin->setVisible(false);
         this->_exit->setVisible(false);
         this->_title->setVisible(false);
+
+        this->_plus->setEnabled(false);
+        this->_moin->setEnabled(false);
+        this->_exit->setEnabled(false);
     }
 }
