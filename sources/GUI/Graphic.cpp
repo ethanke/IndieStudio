@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 22:17:17 2017 Vacca_J
-** Last update Sat Jun 17 04:35:13 2017 Lucas Gambini
+** Last update Sun Jun 18 18:46:51 2017 Lucas Gambini
 */
 
 #include "Graphic.hpp"
@@ -86,8 +86,11 @@ void Graphic::OnFrame()
 }
 
 int Graphic::getText() const {
+    int v = 1000;
     std::wstring ws(this->_editBox->getText());
     std::string str(ws.begin(), ws.end());
-    int v  = atoi(str.c_str());
+    if (str.size() < 6 && str.size() >= 2) {
+        v  = atoi(str.c_str());
+    }
     return v;
 }
