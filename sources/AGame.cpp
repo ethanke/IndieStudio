@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:22:15 2017 Sousa Victor
-// Last update Sat Jun 10 23:31:55 2017 Sousa Victor
+// Last update Sun Jun 18 21:25:40 2017 Sousa Victor
 //
 
 #include "AGame.hpp"
@@ -28,7 +28,6 @@ AGame::AGame(int width, int height) {
     this->_windowSize = irr::core::dimension2du(width, height);
     SizeS::Instance().Width = width;
     SizeS::Instance().Height = height;
-    this->_minimapCamera = NULL;
 
     std::srand(std::time(NULL));
 }
@@ -57,7 +56,7 @@ void AGame::Setup() {
 
 void AGame::Start() {
     this->_isRunning = true;
-    
+
     this->loop();
 
     this->_isRunning = false;
@@ -76,7 +75,14 @@ void AGame::loop() {
             irr::scene::ICameraSceneNode *mainCam = this->_smgr->getActiveCamera();
             this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
             this->_driver->beginScene(true, true, irr::video::SColor(255,20,20,40));
-            this->_smgr->drawAll();
+
+            for (auto &cam: this->_cameraList) {
+                this->_smgr->setActiveCamera(cam->getCamera());
+                this->_driver->setViewPort(cam->getViewPort());
+                this->_smgr->drawAll();
+            }
+            this->_driver->setViewPort(irr::core::rect<irr::s32>(0, 0, this->_windowSize.Width, this->_windowSize.Height));
+
             objectOnFrame();
             this->OnFrame();
             this->_gui->drawAll();
@@ -98,8 +104,6 @@ void AGame::objectOnFrame() {
             obj->OnFrame();
         }
     }
-    if (this->_minimapCamera)
-        this->_minimapCamera->OnFrame();
 }
 
 irr::core::dimension2du const &AGame::getWindowSize() const {

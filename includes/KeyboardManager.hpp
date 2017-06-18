@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Fri Jun 16 19:35:25 2017 Lucas Gambini
-** Last update Fri Jun 16 21:17:48 2017 Lucas Gambini
+** Last update Sun Jun 18 04:36:44 2017 Sousa Victor
 */
 
 #ifndef KEYBOARDMANAGER_HPP
@@ -23,10 +23,12 @@ namespace indie {
         static KeyboardManager &Instance();
         void setMap(std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> const &map);
         std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> &getMap();
+        std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> &getMap2();
 
     private:
         static KeyboardManager _instance;
         std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> _map;
+        std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> _map2;
 
     };
 

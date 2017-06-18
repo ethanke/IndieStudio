@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Fri Jun 16 17:53:24 2017 Sousa Victor
+// Last update Sun Jun 18 04:12:52 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -15,6 +15,7 @@
 #include <unordered_map>
 #include <vector>
 #include <fstream>
+#include "SizeS.hpp"
 #include "BasicCamera.hpp"
 #include "EventReceiver.hpp"
 #include "Circuit.hpp"
@@ -29,7 +30,7 @@ namespace indie {
 
     public:
         Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no = 0,
-            irr::core::vector3df position = irr::core::vector3df(-9, 40, 0), bool isAI = false);
+            irr::core::vector3df position = irr::core::vector3df(-9, 40, 0), bool isAI = false, int multiID = -1);
         ~Car();
 
         virtual void OnFrame();
@@ -74,6 +75,7 @@ namespace indie {
         int _car_no;
         std::string _netID;
         bool _isAI;
+        int _multiID;
         CLoadCar _carLoader;
         physics::PhysicsCar* _car;
         irr::s32 drive_tipe;

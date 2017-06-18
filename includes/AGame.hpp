@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Mon May  8 22:20:36 2017 Sousa Victor
-// Last update Tue Jun  6 18:19:06 2017 John Doe
+// Last update Sun Jun 18 21:23:47 2017 Sousa Victor
 //
 
 #ifndef AGAME_HPP_
@@ -67,7 +67,7 @@ namespace indie {
         irr::gui::IGUIEnvironment* _gui;
         std::vector<IGameObject *> _objectList;
         std::vector<EventDelegate *> _eventReceiverList;
-        AGameCamera *_minimapCamera;
+        std::vector<AGameCamera *> _cameraList;
 
     private:
         irr::video::ITexture *_image;

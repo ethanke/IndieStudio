@@ -5,16 +5,16 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:46:09 2017 Sousa Victor
-// Last update Fri May 12 00:09:38 2017 Sousa Victor
+// Last update Sat Jun 17 22:57:01 2017 Sousa Victor
 //
 
 #include "BasicCamera.hpp"
 
 using namespace indie;
 
-BasicCamera::BasicCamera(irr::scene::ISceneManager *sceneManager, irr::scene::ISceneNode* parent, irr::s32 id,
+BasicCamera::BasicCamera(irr::scene::ISceneManager *sceneManager, const irr::core::rect<irr::s32>& viewPort, irr::scene::ISceneNode* parent, irr::s32 id,
                          irr::core::vector3df const &position, irr::core::vector3df const &lookat)
-                         : AGameCamera(sceneManager, parent, id) {
+                         : AGameCamera(sceneManager, parent, id, viewPort) {
 
     this->_camera = this->_smgr->addCameraSceneNode (parent, position, lookat, id);
 

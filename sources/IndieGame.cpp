@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Fri Jun 16 17:57:21 2017 Sousa Victor
+// Last update Sun Jun 18 21:19:43 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -23,6 +23,7 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_menu = NULL;
     this->_errorTimer = 0;
     this->_splashCt = 0;
+    this->_multi = false;
 }
 
 IndieGame::~IndieGame() {
@@ -42,26 +43,40 @@ void IndieGame::addGameObject() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_real_distribution<double> dist(0.0, 7.0);
-    this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), dist(mt));
-    this->_objectList.push_back(this->_car);
+    if (this->_multi) {
+        this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), dist(mt), irr::core::vector3df(-5, 40, 0), false, 1);
+        this->_objectList.push_back(this->_car);
+        this->_cameraList.push_back(this->_car->getCamera());
 
-    int j = 1;
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 7, irr::core::vector3df(-20, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 7, irr::core::vector3df(-50, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(313.75, 0, -215.9)));
-    this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
+        this->_car2 = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), dist(mt), irr::core::vector3df(-15, 40, 0), false, 2);
+        this->_objectList.push_back(this->_car2);
+        this->_cameraList.push_back(this->_car2->getCamera());
 
-    this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
-    this->_objectList.push_back(this->_carWatch);
+    } else {
+        this->_car = new Car(this->_smgr, this->_gui, this, bulletPhysSys, Circuit(), dist(mt), irr::core::vector3df(-5, 40, 0), false, -1);
+        this->_objectList.push_back(this->_car);
+        this->_cameraList.push_back(this->_car->getCamera());
+    }
 
-    this->_events = new RandomEvent(this->_smgr, this->_carWatch);
-    this->_objectList.push_back(this->_events);
+    if (this->_multi == false) {
+        int j = 1;
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 7, irr::core::vector3df(-20, 0, 0)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 7, irr::core::vector3df(-50, 0, 0)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(313.75, 0, -215.9)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
 
-    Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_carWatch, this->_driver, this->_device, this->_gui, this->getWindowSize());
-    this->_objectList.push_back(map);
+        this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
+        this->_objectList.push_back(this->_carWatch);
+
+        this->_events = new RandomEvent(this->_smgr, this->_carWatch);
+        this->_objectList.push_back(this->_events);
+
+        Minimap *map = new Minimap(this->_smgr, NULL, -1, this->_car, this->_carWatch, this->_driver, this->_device, this->_gui, this->getWindowSize());
+        this->_objectList.push_back(map);
+    }
 
     irr::scene::ILightSceneNode *sun_node;
     irr::video::SLight sun_data;
@@ -615,7 +630,12 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         this->_device->getCursorControl()->setVisible(false);
                         break;
                     case MainMenu::MULTIJOUEUR:
-                        //todo écran sein dés
+                        delete _mainmenu;
+                        this->_mainmenu = NULL;
+                        this->_multi = true;
+                        addEventReceiver();
+                        addGameObject();
+                        this->_device->getCursorControl()->setVisible(false);
                         break;
                     case MainMenu::QUIT:
                         this->_device->closeDevice();

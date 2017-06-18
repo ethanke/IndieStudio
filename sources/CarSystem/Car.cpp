@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Fri Jun 16 17:54:03 2017 Sousa Victor
+// Last update Sun Jun 18 04:37:08 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -13,7 +13,7 @@
 using namespace indie;
 
 Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* guiManager, EventReceiver *eventReceiver, physics::CBulletPhysics *bulletPhysicsSystem, Circuit const &circuit, int car_no,
-         irr::core::vector3df position, bool isAI):
+         irr::core::vector3df position, bool isAI, int multiID):
     AGameObject(sceneManager), _circuit(circuit) {
 
     this->_gui = guiManager;
@@ -25,13 +25,22 @@ Car::Car(irr::scene::ISceneManager *sceneManager, irr::gui::IGUIEnvironment* gui
     }
 
     this->_cameraPosition = core::vector3df(30, 30, 30);
-	this->_cameraHeight = 3.5f;
-	this->_baseCameraDistance = 6.0f;
+	this->_cameraHeight = 3.0f;
+	this->_baseCameraDistance = 6.5f;
     this->_elapsedTime = 0;
 
+    this->_multiID = multiID;
     this->_isAI = isAI;
     if (!this->_isAI) {
-        this->_camera = new BasicCamera(this->_smgr, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
+        irr::core::rect<irr::s32> port(0, 0, SizeS::Instance().Width, SizeS::Instance().Height);
+        if (this->_multiID == 1) {
+            port = irr::core::rect<irr::s32>(0, 0, SizeS::Instance().Width, SizeS::Instance().Height / 2);
+        } else if (this->_multiID == 2) {
+            port = irr::core::rect<irr::s32>(0, SizeS::Instance().Height / 2, SizeS::Instance().Width, SizeS::Instance().Height);
+        }
+        this->_camera = new BasicCamera(this->_smgr, port, 0, -1, irr::core::vector3df(-4, 38, 0), irr::core::vector3df(2, 36, 0));
+        this->_camera->setAspectRatio(1.f * this->_camera->getViewPort().getWidth() / this->_camera->getViewPort().getHeight());
+        this->_camera->setFOV(this->_camera->getFOV() * this->_camera->getViewPort().getHeight() / (SizeS::Instance().Height / (this->_multiID == -1 ? 1 : 1.5)));
         this->_camera->setFarValue(500);
     }
 
@@ -101,8 +110,9 @@ void Car::SendInfo() {
 }
 
 void Car::KeyboardEvent() {
+    std::map<Keyboard::KEYCODE_TYPE, irr::EKEY_CODE> map = (this->_multiID == 2 ? KeyboardManager::Instance().getMap2() : KeyboardManager::Instance().getMap());
 	//steering
-	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::UP])) {
+	if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::UP])) {
 		if(!reverse)
 			this->_car->goForward();
 		else
@@ -111,25 +121,25 @@ void Car::KeyboardEvent() {
         this->_car->slowdown();
     }
 
-    if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::DOWN])) {
+    if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::DOWN])) {
 		this->_car->stop();
 	}
-	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::LEFT])) {
+	if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::LEFT])) {
 		this->_car->steerLeft();
 	}
-	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::RIGHT])) {
+	if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::RIGHT])) {
 		this->_car->steerRight();
 	}
-	else if (!_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::LEFT]) && !_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::RIGHT]))
+	else if (!_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::LEFT]) && !_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::RIGHT]))
 		this->_car->resetSteering();
 
-	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::SPACE])) {
+	if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::SPACE])) {
 		this->_car->handbrake();
 	}
-	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::BACKWARD])) {
+	if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::BACKWARD])) {
 		reverse = true;
 	}
-	if (_eventReceiver->IsKeyDown(KeyboardManager::Instance().getMap()[Keyboard::KEYCODE_TYPE::FORWARD])) {
+	if (_eventReceiver->IsKeyDown(map[Keyboard::KEYCODE_TYPE::FORWARD])) {
 		reverse = false;
 	}
     if (_eventReceiver->IsKeyDown(irr::KEY_KEY_C)) {

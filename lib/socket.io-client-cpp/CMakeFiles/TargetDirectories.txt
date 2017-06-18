@@ -1,8 +1,0 @@
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/install/strip.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/install/local.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/install.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/list_install_components.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/sioclient.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/edit_cache.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/sioclient_tls.dir
-/home/gambin_l/Projects/IndieStudio/lib/socket.io-client-cpp/CMakeFiles/rebuild_cache.dir

@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:42:36 2017 Sousa Victor
-// Last update Fri Jun 16 15:22:09 2017 Sousa Victor
+// Last update Sun Jun 18 21:23:37 2017 Sousa Victor
 //
 
 #ifndef INDIEGAME_HPP
@@ -94,7 +94,9 @@ namespace indie {
         void addRaceAi(sio::message::ptr const &msg);
         void writeResolution(int x, int y);
 
+        bool _multi;
         Car *_car;
+        Car *_car2;
         std::unordered_map<std::string, NetworkCar *> _cars;
         Car *_aiCar;
         GeneticTrainer *_genTrainer;
