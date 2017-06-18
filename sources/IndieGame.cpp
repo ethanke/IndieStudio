@@ -61,9 +61,9 @@ void IndieGame::addGameObject() {
     if (this->_multi == false) {
         int j = 1;
         this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(558.102905, 0, 1.411877)));
-        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(588.3, 0, -261.0)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 7, irr::core::vector3df(588.3, 0, -261.0)));
         this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(313.75, 0, -215.9)));
-        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(300.840912, 0, 270.575653)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 5, irr::core::vector3df(300.840912, 0, 270.575653)));
 
         this->_carWatch = new carWatcher(this->_car, this->_checkpoints, this, this->_smgr);
         this->_objectList.push_back(this->_carWatch);
