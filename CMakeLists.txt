@@ -166,7 +166,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
         X11
         sioclient
         boost_system
-        irrKlang
+        IrrKlang
     )
 endif()
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
