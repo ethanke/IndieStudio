@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Fri Jun 16 18:17:19 2017 Lucas Gambini
-** Last update Sat Jun 17 01:22:54 2017 Lucas Gambini
+** Last update Sun Jun 18 18:20:09 2017 Lucas Gambini
 */
 
 #include "SoundManager.hpp"
@@ -20,7 +20,8 @@ SoundManager::SoundManager() {
 }
 
 SoundManager::~SoundManager() {
-    this->_engine = irrklang::createIrrKlangDevice();
+    if (this->_engine)
+        this->_engine->drop();
 }
 
 SoundManager &SoundManager::Instance() {

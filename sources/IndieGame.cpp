@@ -20,6 +20,7 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_connectedTo = "-1";
     this->_race = NULL;
     this->_splash = NULL;
+    this->_menu = NULL;
     this->_errorTimer = 0;
     this->_splashCt = 0;
 }
@@ -426,7 +427,6 @@ void IndieGame::launchSplash()
 }
 
 void IndieGame::OnEnterMoney() {
-    // Client::Instance().addMoney(200);
 }
 
 void IndieGame::OnEnterOnline() {
