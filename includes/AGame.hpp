@@ -54,6 +54,7 @@ namespace indie {
         virtual void loop();
         virtual void objectOnFrame();
         virtual void launchMenu() = 0;
+        virtual void launchSplash() = 0;
 
     protected:
         bool _isRunning;

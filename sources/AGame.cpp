@@ -52,11 +52,12 @@ void AGame::Setup() {
     irr::gui::IGUIFont* font = this->_gui->getFont("misc/try.xml");
     if (font)
         skin->setFont(font);
-    this->launchMenu();
+    this->launchSplash();
 }
 
 void AGame::Start() {
     this->_isRunning = true;
+    
     this->loop();
 
     this->_isRunning = false;

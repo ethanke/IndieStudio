@@ -19,7 +19,9 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_car = NULL;
     this->_connectedTo = "-1";
     this->_race = NULL;
+    this->_splash = NULL;
     this->_errorTimer = 0;
+    this->_splashCt = 0;
     SoundManager::Instance().getEngine()->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
 }
 
@@ -184,6 +186,15 @@ void IndieGame::OnFrame() {
     }
     this->_cmdBuffer.clear();
     this->unlockEventBuffer();
+
+    if (this->_splash) {
+        this->_splashCt += DeltaTimer::DeltaTime;
+        if (this->_splashCt >= 3) {
+            this->launchMenu();
+            this->_splash->remove();
+            this->_splash = NULL;
+        }
+    }
 
     if (this->_car) {
         std::string str("Your id: #" + Client::Instance().getShortId() + "\nConnected to: " + (this->_connectedTo  == "-1" ? "Nobody" : "#" + this->_connectedTo));
@@ -404,6 +415,11 @@ void IndieGame::launchMenu()
 {
     this->_mainmenu = new MainMenu(this->_gui, this->_driver, this->_windowSize);
     this->_mainmenu->SetupGUI();
+}
+
+void IndieGame::launchSplash()
+{
+    this->_splash = this->_gui->addImage(this->_driver->getTexture("menu.jpg"), irr::core::position2d<irr::s32>(0, 0));
 }
 
 void IndieGame::OnEnterMoney() {

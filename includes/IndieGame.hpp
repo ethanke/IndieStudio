@@ -79,6 +79,7 @@ namespace indie {
 
         virtual void guiVisible(IGUI*);
         virtual void launchMenu();
+        virtual void launchSplash();
 
         void updateCarsData(sio::message::ptr const &msg);
         void updateCarsPosition(sio::message::ptr const &msg);
@@ -108,6 +109,9 @@ namespace indie {
         JoinServer *_onlineUI;
         MainMenu *_mainmenu;
         Concessionnaire *_concessionnaire;
+
+        irr::gui::IGUIImage *_splash;
+        irr::f32 _splashCt;
 
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;
