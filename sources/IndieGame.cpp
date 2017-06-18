@@ -420,7 +420,7 @@ void IndieGame::launchMenu()
 
 void IndieGame::launchSplash()
 {
-    this->_splash = this->_gui->addImage(this->_driver->getTexture("menu.jpg"), irr::core::position2d<irr::s32>(0, 0));
+    this->_splash = this->_gui->addImage(this->_driver->getTexture("../Assets/IDC/splach.png"), irr::core::position2d<irr::s32>(0, 0));
 }
 
 void IndieGame::OnEnterMoney() {
