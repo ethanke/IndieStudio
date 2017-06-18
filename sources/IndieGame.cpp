@@ -60,10 +60,7 @@ void IndieGame::addGameObject() {
 
     if (this->_multi == false) {
         int j = 1;
-        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 7, irr::core::vector3df(-20, 0, 0)));
-        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 7, irr::core::vector3df(-50, 0, 0)));
-        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(384.2, 0, 4.4)));
-        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(200, 0, 0)));
+        this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::COURSE, 10, irr::core::vector3df(384.2, 0, 4.4)));
         this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::CONCESSIONNAIRE, 10, irr::core::vector3df(280, 0, 0)));
         this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::ONLINE, 10, irr::core::vector3df(313.75, 0, -215.9)));
         this->_checkpoints.push_back(GameCheckpoint(this->_smgr, 3, 0, NULL, j++, GameCheckpoint::GARAGE, 10, irr::core::vector3df(-1700.6, 0, 70.4)));
@@ -502,6 +499,9 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
     switch (keyCode) {
         case irr::KEY_ESCAPE:
             OnOpenningMenu();
+            break;
+        case irr::KEY_SPACE:
+            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + "    " + std::to_string(this->_car->getRotation().X) + ", " + std::to_string(this->_car->getRotation().Y) + ", " + std::to_string(this->_car->getRotation().Z) + " >> pos").c_str());
             break;
         default:
             break;
