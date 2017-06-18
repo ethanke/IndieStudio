@@ -193,6 +193,7 @@ void IndieGame::OnFrame() {
             this->launchMenu();
             this->_splash->remove();
             this->_splash = NULL;
+            this->_splashCt = 0;
         }
     }
 
