@@ -115,6 +115,8 @@ namespace indie {
         irr::gui::IGUIImage *_splash;
         irr::f32 _splashCt;
 
+        irr::f32 _getMoneyCt;
+
         physics::CBulletPhysics* bulletPhysSys;
         physics::SPhysicsParams physicsParams;
 

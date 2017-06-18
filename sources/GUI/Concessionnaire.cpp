@@ -5,7 +5,7 @@
 ** Login   <Vacca_J@epitech.net>
 **
 ** Started on  Sat May 20 23:55:02 2017 Vacca_J
-** Last update Fri Jun 16 13:09:34 2017 Lucas Gambini
+** Last update Sun Jun 18 22:33:04 2017 Lucas Gambini
 */
 
 #include "Concessionnaire.hpp"
@@ -108,25 +108,25 @@ void Concessionnaire::SetupGUI()
   this->_title->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
 
 // COLOR
-   this->_title1 = this->_gui->addStaticText(L"Color Shop", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 130, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 90));
-   this->_title1->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
-   this->_previous1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 200, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 - 150, this->_windowSize.Height / 2 + 25), NULL, 20003,
+    this->_title1 = this->_gui->addStaticText(L"Color Shop", irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 140, this->_windowSize.Height / 2 - 130, this->_windowSize.Width / 2 + 140, this->_windowSize.Height / 2 - 90));
+    this->_title1->setTextAlignment(irr::gui::EGUIA_CENTER, irr::gui::EGUIA_SCALE);
+    this->_previous1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 200, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 - 150, this->_windowSize.Height / 2 + 25), NULL, 20003,
            L"<", L"<");
-   this->_next1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 150, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 + 200, this->_windowSize.Height / 2 + 23), NULL, 20002,
+    this->_next1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 150, this->_windowSize.Height / 2 - 25, this->_windowSize.Width / 2 + 200, this->_windowSize.Height / 2 + 23), NULL, 20002,
            L">", L">");
-this->_exit1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 25, this->_windowSize.Height / 2 + 125, this->_windowSize.Width / 2 + 125, this->_windowSize.Height / 2 + 175), NULL, 20005,
-             L"QUIT", L"QUIT");
-this->_enter1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 125, this->_windowSize.Height / 2 + 125, this->_windowSize.Width / 2 - 25, this->_windowSize.Height / 2 + 175), NULL, 20004,
-             L"CHANGE", L"CHANGE");
-this->_color = this->_gui->addImage(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 125, this->_windowSize.Height / 2 + -50, this->_windowSize.Width / 2 + 125, this->_windowSize.Height / 2 + 50), NULL, -1,
+    this->_exit1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 + 25, this->_windowSize.Height / 2 + 125, this->_windowSize.Width / 2 + 240, this->_windowSize.Height / 2 + 175), NULL, 20005,
+             L"QUIT", L"");
+    this->_enter1 = this->_gui->addButton(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 240, this->_windowSize.Height / 2 + 125, this->_windowSize.Width / 2 - 25, this->_windowSize.Height / 2 + 175), NULL, 20004,
+             L"CHANGE (200$)", L"");
+    this->_color = this->_gui->addImage(irr::core::rect<irr::s32>(this->_windowSize.Width / 2 - 125, this->_windowSize.Height / 2 + -50, this->_windowSize.Width / 2 + 125, this->_windowSize.Height / 2 + 50), NULL, -1,
                L"", L"");
 
 }
 
 void Concessionnaire::setVisible(bool visible)
 {
-  this->_isVisible = visible;
-  this->_isVisible1 = visible;
+    this->_isVisible = visible;
+    this->_isVisible1 = visible;
 }
 
 bool Concessionnaire::isVisible(void) const

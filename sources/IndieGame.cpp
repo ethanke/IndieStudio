@@ -215,6 +215,12 @@ void IndieGame::OnFrame() {
     if (this->_car) {
         std::string str("Your id: #" + Client::Instance().getShortId() + "\nConnected to: " + (this->_connectedTo  == "-1" ? "Nobody" : "#" + this->_connectedTo));
         this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(20, 20, 200, 75), irr::video::SColor(255, 180, 180, 180));
+        if (this->_getMoneyCt >= 5) {
+            Client::Instance().requestMoney();
+            this->_getMoneyCt = 0;
+        } else {
+            this->_getMoneyCt += DeltaTimer::DeltaTime;
+        }
         str = std::to_string(Client::Instance().getMoney()) + "$";
         this->_gui->getSkin()->getFont()->draw(str.data(), core::rect<s32>(this->getWindowSize().Width - 100, 20, this->getWindowSize().Width, 50), irr::video::SColor(255, 180, 180, 180) );
         std::stringstream s;
@@ -382,7 +388,6 @@ void IndieGame::OnLeavingCourse() {
 }
 
 void IndieGame::changeCarColor() {
-    // update car mesh
     this->_car->changeMesh(this->_concessionnaire->getColorIndex());
     Client::Instance().setCarNo(this->_concessionnaire->getColorIndex());
 }
@@ -443,6 +448,8 @@ void IndieGame::launchSplash()
 }
 
 void IndieGame::OnEnterMoney() {
+    Client::Instance().addMoney(200);
+    Client::Instance().requestMoney();
 }
 
 void IndieGame::OnEnterOnline() {
@@ -495,9 +502,6 @@ void IndieGame::OnEnterKey(irr::EKEY_CODE keyCode) {
     switch (keyCode) {
         case irr::KEY_ESCAPE:
             OnOpenningMenu();
-            break;
-        case irr::KEY_SPACE: //TMP POUR EXPORTER LA POS DE LA COM DANS UN FICHIER
-            system(std::string("echo " + std::to_string(this->_smgr->getActiveCamera()->getPosition().X) + ", 0, " + std::to_string(this->_smgr->getActiveCamera()->getPosition().Z) + "    " + std::to_string(this->_car->getRotation().X) + ", " + std::to_string(this->_car->getRotation().Y) + ", " + std::to_string(this->_car->getRotation().Z) + " >> pos").c_str());
             break;
         default:
             break;
@@ -590,7 +594,18 @@ bool IndieGame::OnEvent(const irr::SEvent& event){
                         break;
                     case Concessionnaire::CHANGEC:
                         this->_concessionnaire->setVisible(false);
-                        this->changeCarColor();
+                        if (Client::Instance().getMoney() >= 200) {
+                            this->changeCarColor();
+                            Client::Instance().addMoney(-200);
+                        } else {
+                            if (this->_error) {
+                                irr::core::stringw _str(L"Not enough money to buy this car.");
+                                _str.replace(' ', ' ');
+                                this->_error->setText(_str.c_str());
+                                this->_error->setVisible(true);
+                                this->_errorTimer = 0;
+                            }
+                        }
                         break;
                     case Concessionnaire::QUITC:
                         this->_concessionnaire->setVisible(false);

@@ -5,7 +5,7 @@
 ** Login   <gmblucas@epitech.net>
 **
 ** Started on  Sat May 20 01:55:01 2017 Lucas Gambini
-** Last update Fri Jun 09 21:27:51 2017 Lucas Gambini
+** Last update Sun Jun 18 22:34:30 2017 Lucas Gambini
 */
 
 #include "RandomEvent.hpp"
@@ -17,8 +17,8 @@ RandomEvent::RandomEvent(irr::scene::ISceneManager* smgr, carWatcher *watcher) {
     this->_watcher = watcher;
     this->_currentOffset = -1;
     #ifndef DEBUG
-        this->_IMin = 60;
-        this->_IMax = 600;
+        this->_IMin = 10;
+        this->_IMax = 40;
     #else
         this->_IMin = 1;
         this->_IMax = 5;
