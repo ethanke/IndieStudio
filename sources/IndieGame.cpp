@@ -415,7 +415,9 @@ void IndieGame::launchMenu()
 {
     this->_mainmenu = new MainMenu(this->_gui, this->_driver, this->_windowSize);
     this->_mainmenu->SetupGUI();
-    SoundManager::Instance().getEngine()->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
+    irrklang::ISoundEngine* _engine = SoundManager::Instance().getEngine();
+    if (_engine)
+        _engine->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
 }
 
 void IndieGame::launchSplash()
