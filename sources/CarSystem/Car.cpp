@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:18:00 2017 Sousa Victor
-// Last update Sun Jun 18 04:37:08 2017 Sousa Victor
+// Last update Sun Jun 18 21:46:33 2017 Sousa Victor
 //
 
 #include "Car.hpp"
@@ -234,4 +234,8 @@ float Car::getRPM() const {
 }
 float Car::getGear() const {
     return this->_car->getGear();
+}
+
+void Car::changeMesh(int id) {
+    this->_car->changeMesh(id, this->_smgr);
 }

@@ -142,6 +142,7 @@ namespace irr
             virtual irr::core::vector3df const getLinearVelocity() const;
             void setLinearVelocity(irr::core::vector3df const &vec);
 
+            void changeMesh(int id, irr::scene::ISceneManager *sm);
 
 		private:
 
@@ -181,6 +182,8 @@ namespace irr
 			scene::IAnimatedMeshSceneNode* m_wheelNode_FR;
 			scene::IAnimatedMeshSceneNode* m_wheelNode_RL;
 			scene::IAnimatedMeshSceneNode* m_wheelNode_RR;
+
+            irr::scene::IAnimatedMeshSceneNode* loadMeshFromFile(const char* filename, irr::scene::ISceneManager *sm);
 		};
 
 	} // end of namespace physics

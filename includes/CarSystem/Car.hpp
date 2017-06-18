@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Thu May 11 23:14:16 2017 Sousa Victor
-// Last update Sun Jun 18 04:12:52 2017 Sousa Victor
+// Last update Sun Jun 18 21:40:16 2017 Sousa Victor
 //
 
 #ifndef CAR_HPP_
@@ -63,6 +63,8 @@ namespace indie {
         void setFreeze(bool value);
 
         void setNetworkID(std::string const &id);
+
+        void changeMesh(int id);
 
 
     protected:

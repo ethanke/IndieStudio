@@ -5,7 +5,7 @@
 // Login   <sousa_v@epitech.eu>
 //
 // Started on  Sun May  7 05:48:01 2017 Sousa Victor
-// Last update Sun Jun 18 21:19:43 2017 Sousa Victor
+// Last update Sun Jun 18 21:39:57 2017 Sousa Victor
 //
 
 #include "IndieGame.hpp"
@@ -383,6 +383,7 @@ void IndieGame::OnLeavingCourse() {
 
 void IndieGame::changeCarColor() {
     // update car mesh
+    this->_car->changeMesh(this->_concessionnaire->getColorIndex());
     Client::Instance().setCarNo(this->_concessionnaire->getColorIndex());
 }
 

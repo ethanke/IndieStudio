@@ -540,5 +540,52 @@ namespace irr
             chassisBody->setLinearVelocity(btVector3(vec.X, vec.Y, vec.Z));
         }
 
+        void PhysicsCar::changeMesh(int id, irr::scene::ISceneManager *sceneManager) {
+            m_chassisNode->remove();
+            switch (id) {
+        		case 0:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV.obj", sceneManager);
+        		    break;
+                case 1:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV_blue.obj", sceneManager);
+        		    break;
+                case 2:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV_green.obj", sceneManager);
+        		    break;
+                case 3:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV_orange.obj", sceneManager);
+        		    break;
+                case 4:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV_pink.obj", sceneManager);
+        		    break;
+                case 5:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV_white.obj", sceneManager);
+        		    break;
+                case 6:
+                    m_chassisNode = loadMeshFromFile("car/SV/SV_yellow.obj", sceneManager);
+        		    break;
+            }
+        }
+
+        irr::scene::IAnimatedMeshSceneNode* PhysicsCar::loadMeshFromFile(const char* filename, irr::scene::ISceneManager *sm)
+        {
+
+        	irr::scene::IAnimatedMesh* mesh = sm->getMesh(filename);
+        	if (mesh == NULL) return NULL;
+
+        	irr::scene::IAnimatedMeshSceneNode* node = sm->addAnimatedMeshSceneNode(mesh);
+        	if (node == NULL)
+        	{
+        		//mesh->drop();
+        		return NULL;
+        	}
+
+        	node->setMaterialFlag(video::EMF_LIGHTING, false);	// no lighting
+        	//shadows....uncomment if shit isn't working
+            //node->addShadowVolumeSceneNode(NULL, -1, true);
+
+        	return node;
+        }
+
 	} // end of namespace physics
 } // end of namespace irr
