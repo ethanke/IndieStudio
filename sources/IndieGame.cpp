@@ -22,7 +22,6 @@ IndieGame::IndieGame(int width, int height) : AGame(width, height) {
     this->_splash = NULL;
     this->_errorTimer = 0;
     this->_splashCt = 0;
-    SoundManager::Instance().getEngine()->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
 }
 
 IndieGame::~IndieGame() {
@@ -189,7 +188,7 @@ void IndieGame::OnFrame() {
 
     if (this->_splash) {
         this->_splashCt += DeltaTimer::DeltaTime;
-        if (this->_splashCt >= 3) {
+        if (this->_splashCt >= 4) {
             this->launchMenu();
             this->_splash->remove();
             this->_splash = NULL;
@@ -416,11 +415,12 @@ void IndieGame::launchMenu()
 {
     this->_mainmenu = new MainMenu(this->_gui, this->_driver, this->_windowSize);
     this->_mainmenu->SetupGUI();
+    SoundManager::Instance().getEngine()->play2D((std::string(SOURCES_PATH) + std::string("/Assets/music/NFSCarbonMenu.ogg")).c_str(), true);
 }
 
 void IndieGame::launchSplash()
 {
-    this->_splash = this->_gui->addImage(this->_driver->getTexture("../Assets/IDC/splach.png"), irr::core::position2d<irr::s32>(0, 0));
+    this->_splash = this->_gui->addImage(this->_driver->getTexture("splash.png"), irr::core::position2d<irr::s32>(0, 0));
 }
 
 void IndieGame::OnEnterMoney() {
